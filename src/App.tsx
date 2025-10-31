@@ -1,11 +1,20 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "./components/layout/Main";
-export default function App() {
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MainLayout from "./components/layout/Main";
+import Home from "./pages/home/Home";
+import ServicesPage from "./pages/services/ServicesPage";
+
+function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/" element={<Main />}></Route>
+        {/* All pages that use the main layout go here */}
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="services" element={<ServicesPage />} />
+        </Route>
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
+
+export default App;
