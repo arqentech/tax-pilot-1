@@ -9,7 +9,7 @@ const Navbar = () => {
   const linkStyle = "hover:text-[#0166FF] transition-colors duration-200";
 
   return (
-    <nav className="relative z-50">
+    <nav className="relative z-50 w-full">
       <div className="container-main flex items-center justify-between py-4">
         <Link to="/" className="flex items-center flex-shrink-0">
           <img
@@ -62,7 +62,7 @@ const Navbar = () => {
             : "opacity-0 scale-y-0 pointer-events-none"
         }`}
       >
-        <div className={`flex flex-col items-center gap-4 py-4 ${baseText}`}>
+        <div className={`container-main flex flex-col items-center gap-4 py-4 ${baseText}`}>
           {[...navLinks, ...actionLinks].map(({ to, label }) => (
             <Link
               key={to}

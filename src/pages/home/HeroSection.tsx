@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section className="w-full py-4 overflow-hidden ">
+    <section className="bg-[#FBFBFA] w-full py-4 overflow-hidden ">
       <div className="container-main flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
         <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:space-y-8 max-w-xl mx-auto">
           <h1 className="font-bricolage font-extrabold text-[44px]  lg:text-[86px] tracking-[-0.09em] leading-[0.9]">
