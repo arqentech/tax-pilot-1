@@ -20,7 +20,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#373737] text-white w-full px-8 md:px-20 py-16 ">
+    <footer className="bg-[#373737] text-white w-full px-8 md:px-20 py-16 global-contianer ">
       <div className="max-w-[1320px] mx-auto">
         <div className="font-bricolage grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12  pb-10">
           <div className="col-span-2 md:col-span-1 order-1 md:order-1">

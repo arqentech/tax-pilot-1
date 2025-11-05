@@ -11,7 +11,7 @@
   body {
     font-family: "Archivo", sans-serif;
     background-color: var(--color-page-bg);
-    color: #34352E;
+    color: #34352e;
     font-size: 1rem;
     line-height: 1.5rem;
     font-weight: 500;
@@ -32,31 +32,8 @@
 .font-archivo {
   font-family: "Archivo", sans-serif;
 }
-
 @layer components {
-  .page-container {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    max-width: 1320px;
-  }
-
-  @media (min-width: 640px) {
-    .page-container {
-      padding-left: 3rem;
-      padding-right: 3rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .page-container {
-      padding-left: 6rem;
-      padding-right: 6rem;
-    }
-  }
-
-  .container-main {
+  .global-container {
     max-width: 1320px;
     margin-left: auto;
     margin-right: auto;
@@ -65,16 +42,23 @@
   }
 
   @media (min-width: 640px) {
-    .container-main {
+    .global-container {
       padding-left: 3rem;
       padding-right: 3rem;
     }
   }
 
   @media (min-width: 1024px) {
-    .container-main {
+    .global-container {
       padding-left: 6rem;
       padding-right: 6rem;
     }
   }
+}
+
+@utility heading-base {
+  @apply font-extrabold text-[44px] leading-[38px] lg:text-[58px] lg:leading-[73px] tracking-[-0.03em];
+}
+@utility text-base {
+  @apply font-bold text-[18px] leading-[25px] lg:text-[20px];
 }

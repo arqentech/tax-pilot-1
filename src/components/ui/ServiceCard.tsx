@@ -9,7 +9,7 @@ interface ServiceCardProps {
   vatIncluded?: boolean;
   hours?: string;
   link: string;
-  ctaType?: "get" | "go";
+  category?: string;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -19,7 +19,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   vatIncluded = true,
   hours,
   link,
-  ctaType = "get",
+  category,
 }) => {
   return (
     <div className="w-full rounded-2xl shadow-sm border border-[#E6E6E1] hover:shadow-md transition-shadow duration-200 overflow-hidden">
@@ -45,7 +45,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           )}
 
           {hours && (
-            <span className="flex items-center gap-1 bg-purple-100 text-purple-700 text-xs font-medium px-2 py-1 rounded-full">
+            <span className="flex items-center gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-xs font-medium px-2 py-1 rounded-full">
               <Clock className="w-3 h-3" />
               {hours}
             </span>
@@ -58,8 +58,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           to={link}
           className="text-[#04226B] text-sm font-semibold hover:underline flex items-center gap-1"
         >
-          {ctaType === "go" ? "Go to the service" : "Get this service"}
-          <span> &gt;</span>
+          <span className="block lg:hidden text-[18px] font-extrabold leading-[25px]">
+            Get this service{" "}
+          </span>
+          <span className="hidden lg:block text-[18px] font-extrabold leading-[25px]">
+            Go to the service
+          </span>
+          <span>&gt;</span>
         </Link>
       </div>
     </div>

@@ -5,7 +5,6 @@ export default function HowWeWork() {
   return (
     <section className="page-container py-28">
       <div className="grid md:grid-cols-2 bg-[#2563EB] rounded-[32px] text-white overflow-hidden shadow-xl">
-        {/* LEFT SIDE */}
         <div className="flex flex-col justify-center px-8 sm:px-12 lg:px-20 py-16 lg:py-24">
           <span className="inline-flex items-center rounded-full bg-white/15 px-5 py-2.5 text-sm font-medium backdrop-blur-md">
             How we work
@@ -31,7 +30,6 @@ export default function HowWeWork() {
           </a>
         </div>
 
-        {/* RIGHT SIDE */}
         <div className="relative bg-[#1D4ED8]">
           {steps.map((step, idx) => (
             <div

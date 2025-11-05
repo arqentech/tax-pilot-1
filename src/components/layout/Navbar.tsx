@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <nav className="relative z-50 w-full">
-      <div className="container-main flex items-center justify-between py-4">
+      <div className="global-container flex items-center justify-between py-4">
         <Link to="/" className="flex items-center flex-shrink-0">
           <img
             src="/svg/header-logo.svg"
@@ -21,7 +21,7 @@ const Navbar = () => {
         </Link>
 
         <div
-          className={`hidden md:flex items-center justify-center gap-8 ${baseText}`}
+          className={`hidden md:flex text-base items-center justify-center gap-8 ${baseText}`}
         >
           {navLinks.map(({ to, label }) => (
             <Link key={to} to={to} className={linkStyle}>
@@ -62,7 +62,9 @@ const Navbar = () => {
             : "opacity-0 scale-y-0 pointer-events-none"
         }`}
       >
-        <div className={`container-main flex flex-col items-center gap-4 py-4 ${baseText}`}>
+        <div
+          className={`container-main flex flex-col items-center gap-4 py-4 ${baseText}`}
+        >
           {[...navLinks, ...actionLinks].map(({ to, label }) => (
             <Link
               key={to}

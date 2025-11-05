@@ -48,7 +48,7 @@ const TeamSection = () => {
 
   return (
     <section className="w-full py-16 sm:py-20 lg:py-24">
-      <div className="container-main flex w-full flex-col items-center gap-12 text-center lg:flex-row lg:items-start lg:justify-between lg:gap-12 lg:text-left">
+      <div className="global-container flex w-full flex-col items-center gap-12 text-center lg:flex-row lg:items-start lg:justify-between lg:gap-12 lg:text-left">
         <div className="flex max-w-[500px] flex-col items-center gap-6 lg:items-start lg:flex-none">
           <span className="inline-flex items-center rounded-full bg-[#F1EDE7] px-4 py-1.5 text-[14px] font-semibold uppercase tracking-[0.18em] text-[#6F6D66]">
             Team

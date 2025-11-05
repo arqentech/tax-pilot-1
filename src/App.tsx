@@ -7,7 +7,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* All pages that use the main layout go here */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path="services" element={<ServicesPage />} />

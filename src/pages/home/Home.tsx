@@ -1,6 +1,6 @@
 import HowWeWork from "../../components/ui/HowWeWork";
 import HeroSection from "./HeroSection";
-import ServicesSection from "./ServicesSection";
+import ServicesSection from "./HomeServicesSection";
 import TeamSection from "./TeamSection";
 import WhatDefinesUs from "./WhatDefinesUs";
 
