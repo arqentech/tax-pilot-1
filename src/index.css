@@ -1,5 +1,15 @@
+/* Import Google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600&display=swap");
 @import "tailwindcss";
+
+/* Manually include Degular Display Demo */
+@font-face {
+  font-family: "Degular Display Demo";
+  src: url("/fonts/degular-display-demo.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
   --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
@@ -29,9 +39,14 @@
   font-family: "Bricolage Grotesque", sans-serif;
 }
 
+.font-degular {
+  font-family: "Degular Display Demo", sans-serif;
+}
+
 .font-archivo {
   font-family: "Archivo", sans-serif;
 }
+
 @layer components {
   .global-container {
     max-width: 1320px;
@@ -59,6 +74,7 @@
 @utility heading-base {
   @apply font-extrabold text-[44px] leading-[38px] lg:text-[58px] lg:leading-[73px] tracking-[-0.03em];
 }
+
 @utility text-base {
   @apply font-bold text-[18px] leading-[25px] lg:text-[20px];
 }

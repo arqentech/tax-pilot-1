@@ -2,38 +2,34 @@ const WhatDefinesUs = () => {
   return (
     <section className="w-full py-16">
       <div className="page-container">
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-6 mb-12 text-center md:text-left">
-          <h2 className="text-[#34352E] font-extrabold text-[38px] lg:text-[58px] tracking-[-0.08em]">
+        <div className="flex flex-col items-center md:grid md:grid-cols-2 gap-6 mb-12 text-center md:text-left">
+          <h2 className="text-[#34352E] font-extrabold text-[38px] lg:text-[58px] tracking-[-0.03em] leading-[73px]">
             What defines us
           </h2>
 
-          <p className="text-[#555] text-base lg:text-lg max-w-[480px] md:ml-auto mx-auto md:mx-0">
+          <p className="text-[18px] font-medium leading-[25px] lg:text-[20px]:">
             Access over 150 certified CAF and patronage services, guided step by
             step by real experts, all from the comfort of your home.
           </p>
         </div>
 
-        <div className="w-full bg-[#FBFBFA] rounded-[24px] border border-[#E5E5E5] px-8 py-12 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0">
+        <div className="w-full bg-[#FBFBFA] jutify-center items-center rounded-[24px] border border-[#E6E6E1] py-12 grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className={`flex flex-row sm:flex-col items-start sm:items-center gap-4 sm:gap-6 py-4 sm:py-0 sm:px-6 ${
-                index !== 0 ? "sm:border-l sm:border-[#E5E5E5]" : ""
+              className={`flex flex-row lg:flex-col items-center lg:items-center text-center gap-4 lg:gap-6 px-6 py-4 ${
+                index !== 0 ? "lg:border-l lg:border-[#E5E5E5]" : ""
               }`}
             >
               <div className="w-20 h-20 rounded-full bg-[#34352E] flex items-center justify-center shrink-0">
-                <img
-                  src={feature.icon}
-                  alt={feature.title}
-                  className="w-10 h-10"
-                />
+                <img src={feature.icon} alt={feature.title} />
               </div>
 
-              <div className="flex flex-col sm:items-center">
-                <h3 className="text-[#34352E] font-semibold text-[20px] md:text-[22px] mb-2">
+              <div className="flex flex-col items-start text-start lg:items-center lg:text-center">
+                <h3 className="font-bricolage tracking-[-0.09em] font-extrabold text-[26px] lg:text-[36px] leading-[34px] lg:leading-[48px]">
                   {feature.title}
                 </h3>
-                <p className="text-[#5C5C5C] text-[15px] md:text-[16px] leading-[24px] max-w-[260px] sm:text-center">
+                <p className="text-[14px] leading-[18px] lg:text-[18px] lg:leading-[25px]">
                   {feature.description}
                 </p>
               </div>

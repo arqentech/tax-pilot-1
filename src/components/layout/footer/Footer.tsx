@@ -4,21 +4,6 @@ import NewsletterSignup from "./NewsletterSignup";
 import SocialLinks from "./SocialLinks";
 
 const Footer = () => {
-  const quickLinks = [
-    { label: "How it works", path: "/how-it-works" },
-    { label: "Services", path: "/services" },
-    { label: "Blogs", path: "/blogs" },
-    { label: "FAQ", path: "/faq" },
-    { label: "Contact us", path: "/contact" },
-  ];
-
-  const legalLinks = [
-    { label: "Privacy policy", path: "/privacy-policy" },
-    { label: "Cookie policy", path: "/cookie-policy" },
-    { label: "Terms of use", path: "/terms-of-use" },
-    { label: "General use cases", path: "/use-cases" },
-  ];
-
   return (
     <footer className="bg-[#373737] text-white w-full px-8 md:px-20 py-16 global-contianer ">
       <div className="max-w-[1320px] mx-auto">
@@ -58,3 +43,17 @@ const Footer = () => {
 };
 
 export default Footer;
+const quickLinks = [
+  { label: "How it works", path: "/how-it-works" },
+  { label: "Services", path: "/services" },
+  { label: "Blogs", path: "/blogs" },
+  { label: "FAQ", path: "/faq" },
+  { label: "Contact us", path: "/contact" },
+];
+
+const legalLinks = [
+  { label: "Privacy policy", path: "/privacy-policy" },
+  { label: "Cookie policy", path: "/cookie-policy" },
+  { label: "Terms of use", path: "/terms-of-use" },
+  { label: "General use cases", path: "/use-cases" },
+];

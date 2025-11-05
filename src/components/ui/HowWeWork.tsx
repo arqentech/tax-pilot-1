@@ -1,21 +1,17 @@
-import { Lightbulb, Link as LinkIcon, MessageSquare } from "lucide-react";
-import React from "react";
-
 export default function HowWeWork() {
   return (
     <section className="page-container py-28">
-      <div className="grid md:grid-cols-2 bg-[#2563EB] rounded-[32px] text-white overflow-hidden shadow-xl">
-        <div className="flex flex-col justify-center px-8 sm:px-12 lg:px-20 py-16 lg:py-24">
-          <span className="inline-flex items-center rounded-full bg-white/15 px-5 py-2.5 text-sm font-medium backdrop-blur-md">
+      <div className="grid md:grid-cols-2 bg-[#037BFF] rounded-[32px] justify-center items-center text-white overflow-hidden shadow-xl">
+        <div className="flex flex-col justify-center px-8 lg:px-20 py-16 lg:py-24">
+          <span className="w-[156px] h-[34px] inline-flex items-center justify-center rounded-full bg-[#006ADE] font-medium backdrop-blur-md">
             How we work
           </span>
 
-          <h2 className="mt-6 font-bricolage font-extrabold text-[42px] sm:text-[52px] lg:text-[64px] leading-[1.1]">
-            We Simplify
-            <br /> Taxes, Together.
+          <h2 className="mt-6 font-bricolage text-[38px] lg:text-[58px] lg:leading-[59px] font-extrabold leading-[38px] tracking-[-0.03em]">
+            We Simplify Taxes, Together.
           </h2>
 
-          <p className="mt-6 max-w-md text-[#BFDDFF] text-lg leading-relaxed">
+          <p className="mt-6 text-[#BFDDFF] text-[18px] lg:text-[20px] leading-[25px]">
             With TaxPilot, you're never alone. Our digital platform keeps things
             simple while real professionals personally guide your entire process
             step by step.
@@ -23,27 +19,29 @@ export default function HowWeWork() {
 
           <a
             href="#services"
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-[#FDE047] to-[#FACC15] px-7 py-3.5 text-lg font-semibold text-[#34352E] shadow-[0_6px_18px_rgba(0,0,0,0.12)] hover:brightness-105 transition duration-200"
+            className="hidden lg:inline-flex font-bricolage mt-10 leading-[100%] w-[262px] h-[62px] items-center justify-center gap-2 rounded-full bg-gradient-to-b from-[#FFDD77] to-[#FFC107] font-extrabold text-[#34352E] text-[24px] shadow-[0_6px_18px_rgba(0,0,0,0.12)] hover:brightness-105 transition duration-200"
           >
             Explore Services
             <span className="text-xl">›</span>
           </a>
         </div>
 
-        <div className="relative bg-[#1D4ED8]">
+        <div className="relative bg-[#037BFF] flex flex-col items-center justify-center">
           {steps.map((step, idx) => (
             <div
               key={step.number}
-              className={`relative px-8 sm:px-12 lg:px-20 py-12 ${
+              className={`relative px-8 sm:px-12 lg:px-20 py-12 w-full flex items-start gap-4 ${
                 idx !== 0 ? "border-t border-white/15" : ""
               }`}
             >
-              <div className="flex items-start gap-4">
-                <div className="text-[#FCD34D] flex-shrink-0 mt-[2px]">
-                  {step.icon}
-                </div>
+              <img
+                src={step.icon}
+                alt={`${step.title} icon`}
+                className="w-10 h-10 flex-shrink-0 mt-[2px]"
+              />
 
-                <div className="pr-20">
+              <div className="pr-20 flex flex-col justify-between h-full">
+                <div>
                   <h3 className="text-xl font-semibold font-bricolage">
                     {step.title}
                   </h3>
@@ -53,7 +51,7 @@ export default function HowWeWork() {
                 </div>
               </div>
 
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 text-[110px] lg:text-[140px] font-extrabold text-white/10 font-bricolage select-none pointer-events-none">
+              <div className="font-degular absolute right-0 top-9 text-[121px] lg:text-[220px] font-bold text-white/10 leading-[100%] select-none pointer-events-none">
                 {step.number}
               </div>
             </div>
@@ -65,7 +63,7 @@ export default function HowWeWork() {
 }
 
 type Step = {
-  icon: React.ReactNode;
+  icon: string;
   title: string;
   description: string;
   number: string;
@@ -73,24 +71,24 @@ type Step = {
 
 const steps: Step[] = [
   {
-    icon: <Lightbulb className="h-7 w-7 stroke-[2.3]" />,
+    icon: "/svg/bulb.svg",
     title: "Compare and Choose",
     description:
-      "Select your service and upload your documents securely. No paperwork or queues just a few clicks.",
+      "Select your service and upload your documents securely. No paperwork or queues — just a few clicks.",
     number: "01",
   },
   {
-    icon: <LinkIcon className="h-7 w-7 stroke-[2.3]" />,
+    icon: "/svg/analysis.svg",
     title: "Personalized Analysis",
     description:
       "Our certified experts review your data carefully and handle every detail for accurate results.",
     number: "02",
   },
   {
-    icon: <MessageSquare className="h-7 w-7 stroke-[2.3]" />,
+    icon: "/svg/consultation.svg",
     title: "Real-Time Consultation",
     description:
-      "Get your completed file right in your dashboard and email or WhatsApp fast, simple, and secure.",
+      "Get your completed file right in your dashboard and email or WhatsApp — fast, simple, and secure.",
     number: "03",
   },
 ];
