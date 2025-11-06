@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { teamMembers } from "../../data/TeamData";
 import TeamCard from "../../components/ui/TeamCard";
+import Badge from "../../components/ui/Badge";
 
 const TeamSection = () => {
   const [activeMember, setActiveMember] = useState<string | null>(
@@ -13,15 +14,13 @@ const TeamSection = () => {
 
   return (
     <section className="w-full py-16 lg:py-10">
-      <div className="flex w-full flex-col items-center gap-12 text-center lg:flex-row lg:items-start lg:justify-center lg:gap-12 lg:text-left">
-        <div className="flex max-w-[500px] flex-col items-center gap-6 lg:items-start">
-          <span className="inline-flex items-center rounded-full bg-[#F1EDE7] px-4 py-1.5 text-[14px] font-semibold uppercase tracking-[0.18em] text-[#6F6D66]">
-            Team
-          </span>
-          <h2 className="font-bricolage text-[38px] font-extrabold leading-[1.05] tracking-[-0.09em] text-[#2F2D24] lg:text-[58px]">
+      <div className="flex w-full flex-col items-center text-center lg:flex-row lg:items-start lg:justify-center lg:gap-12 lg:text-left">
+        <div className="flex  flex-col items-center gap-6 lg:items-start">
+          <Badge text="Team" width="86px" />
+          <h2 className="font-bricolage text-[38px] font-extrabold leading-[38px] lg:leading-[73px] tracking-[-0.09em] lg:text-[58px]">
             The TaxPilot Team
           </h2>
-          <p className="max-w-[480px] text-[18px] font-medium text-[#5A5851] lg:text-[20px]">
+          <p className=" text-[18px] font-medium text-[#5A5851] lg:text-[20px]">
             Our professionals bring years of expertise to ensure precision and
             peace of mind.
           </p>

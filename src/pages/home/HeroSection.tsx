@@ -28,7 +28,7 @@ const HeroSection = () => {
           <img
             src="/svg/hero-illustration.png"
             alt="Hero illustration showing online tax services"
-            className="w-full w-[328.36px] lg:w-[646.11px] h-auto object-contain"
+            className=" w-[328.36px] lg:w-[646.11px] h-auto object-contain"
             loading="lazy"
           />
         </div>

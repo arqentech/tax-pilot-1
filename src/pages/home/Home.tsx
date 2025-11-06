@@ -1,3 +1,4 @@
+import FAQ from "../../components/ui/FAQ";
 import HowWeWork from "../../components/ui/HowWeWork";
 import HeroSection from "./HeroSection";
 import ServicesSection from "./HomeServicesSection";
@@ -12,6 +13,7 @@ export default function Home() {
       <HowWeWork />
       <ServicesSection />
       <TeamCard />
+      <FAQ/>
     </div>
   );
 }

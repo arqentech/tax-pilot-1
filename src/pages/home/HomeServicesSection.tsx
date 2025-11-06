@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { cardData } from "../../data/CardData";
 import ServiceCard from "../../components/ui/ServiceCard";
 import SearchBar from "../../components/ui/SearchBar";
+import Badge from "../../components/ui/Badge";
 
 const ServicesSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,11 +24,7 @@ const ServicesSection = () => {
     <section className="w-full py-4">
       <div className="container-main">
         <div className="w-full flex flex-col items-center justify-center text-center mb-12">
-          <div className="flex justify-center mb-6">
-            <span className="inline-block bg-[#E6E6E1] text-[#34352E] text-sm font-medium px-4 py-2 rounded-full">
-              Services
-            </span>
-          </div>
+         <Badge text="Services " width="115px"/>
 
           <h2 className="font-bricolage heading-base">
             All Your Needs, in One Place.
