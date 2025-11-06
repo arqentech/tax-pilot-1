@@ -1,5 +1,3 @@
-// src/data/teamMembers.ts
-
 export interface TeamMember {
   name: string;
   role: string;

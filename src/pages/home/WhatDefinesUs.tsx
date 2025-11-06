@@ -1,6 +1,6 @@
 const WhatDefinesUs = () => {
   return (
-    <section className="w-full py-16">
+    <section className="w-full py-10">
       <div className="page-container">
         <div className="flex flex-col items-center md:grid md:grid-cols-2 gap-6 mb-12 text-center md:text-left">
           <h2 className="text-[#34352E] font-extrabold text-[38px] lg:text-[58px] tracking-[-0.03em] leading-[73px]">
