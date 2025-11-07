@@ -10,6 +10,8 @@ interface ServiceCardProps {
   hours?: string;
   link: string;
   category?: string;
+  inDepthAnalysis?: string;
+  advantages?: string[];
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -20,6 +22,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   hours,
   link,
   category,
+  inDepthAnalysis,
+  advantages,
 }) => {
   return (
     <div className="w-full rounded-2xl shadow-sm border border-[#E6E6E1] hover:shadow-md transition-shadow duration-200 overflow-hidden">

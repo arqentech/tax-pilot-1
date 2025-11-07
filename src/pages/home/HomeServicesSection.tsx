@@ -21,7 +21,7 @@ const ServicesSection = () => {
   const displayServices = filteredServices.slice(0, 6);
 
   return (
-    <section className="w-full py-4">
+    <section className="w-full py-10">
       <div className="container-main">
         <div className="w-full flex flex-col items-center justify-center text-center mb-12">
          <Badge text="Services " width="115px"/>

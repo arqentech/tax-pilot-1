@@ -1,5 +1,7 @@
+import BlogSection from "../../components/ui/blogs/BlogSection";
 import FAQ from "../../components/ui/FAQ";
 import HowWeWork from "../../components/ui/HowWeWork";
+import TaxPilotSection from "../../components/ui/TaxPilotSection";
 import HeroSection from "./HeroSection";
 import ServicesSection from "./HomeServicesSection";
 import TeamCard from "./TeamSection";
@@ -13,7 +15,9 @@ export default function Home() {
       <HowWeWork />
       <ServicesSection />
       <TeamCard />
-      <FAQ/>
+      <FAQ />
+      <BlogSection />
+      <TaxPilotSection/>
     </div>
   );
 }

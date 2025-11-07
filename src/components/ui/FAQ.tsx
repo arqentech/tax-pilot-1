@@ -51,9 +51,9 @@ export default function FAQ() {
         ))}
       </div>
 
-      <p className="mt-8 text-sm text-gray-500">
+      <p className="hidden lg:block mt-8 text-[18px] leading-[25px]">
         Still have questions?{" "}
-        <a href="#" className="underline font-medium">
+        <a href="#" className="underline font-medium italic">
           Chat with an expert
         </a>
       </p>
