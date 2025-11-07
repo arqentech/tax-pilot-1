@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { cardData } from "../../data/CardData";
+import { CheckCircle, Clock } from "lucide-react";
+import PrimaryButton from "../../components/ui/PrimaryButton";
 
 const Details: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -20,35 +22,44 @@ const Details: React.FC = () => {
   }
 
   return (
-    <div className="mt-[84px] lg:mt-[92px] flex justify-center min-h-screen px-4 pb-16">
-      <div className="max-w-[960px] w-full">
-        <div className="flex flex-col md:flex-row items-center gap-6 border-b pb-6 mb-8">
-          <div className="p-6 rounded-2xl">
-            <img
-              src="/svg/client-calls-customer-care-for-support.svg"
-              alt={service.title}
-              className="w-40 h-40 object-contain"
-            />
-          </div>
-          <div className="flex-1">
-            <h1 className="text-3xl font-semibold text-gray-900">
+    <div className="flex justify-center min-h-screen px-4 pb-16">
+      <div className="w-full max-w-7xl">
+        <div className="flex flex-row flex-wrap md:flex-nowrap items-center gap-10 pb-6">
+          <div className="flex-1 order-1 md:order-1">
+            <h1 className="font-bricolage font-extrabold text-[44px] leading-[38px] lg:text-[58px] lg:leading-[59px]">
               {service.title}
             </h1>
             <p className="text-gray-600 mt-2 max-w-[600px]">
               {service.description}
             </p>
 
-            <div className="flex items-center gap-4 mt-4">
+            <div className="flex items-center gap-4 mt-4 flex-wrap">
               <span className="text-2xl font-bold text-blue-600">
                 € {service.price.toFixed(2)}
               </span>
               {service.vatIncluded && (
-                <span className="text-sm text-green-600">VAT Included</span>
+                <span className="bg-[#EEFCD7] flex items-center gap-1 text-[#36500C] text-xs font-medium px-2 py-1 rounded-full">
+                  <CheckCircle className="w-3 h-3" />
+                  VAT Included
+                </span>
               )}
-              <span className="text-sm text-gray-500">⏱ {service.hours}</span>
+              <span className="flex items-center gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-xs font-medium px-2 py-1 rounded-full">
+                <Clock className="w-3 h-3" />
+                {service.hours}
+              </span>
             </div>
 
-            <button className="mt-6 px-6 py-3">Request Service</button>
+            <div className="mt-6">
+              <PrimaryButton text="Request Service" width="257px" />
+            </div>
+          </div>
+
+          <div className="flex-shrink-0 order-2 md:order-2 p-6 rounded-2xl flex justify-center">
+            <img
+              src="/svg/client-calls-customer-care-for-support.svg"
+              alt={service.title}
+              className="w-[311px] h-[341px] md:w-[400px] md:h-[450px] lg:w-[493px] lg:h-[542px] object-contain"
+            />
           </div>
         </div>
 
@@ -63,7 +74,6 @@ const Details: React.FC = () => {
           </div>
         )}
 
-        {/* Advantages */}
         {service.advantages && (
           <div>
             <h2 className="text-2xl font-semibold mb-4 text-gray-900">

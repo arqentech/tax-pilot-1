@@ -4,7 +4,6 @@ export default function TaxPilotSection() {
   return (
     <section className="w-full flex justify-center py-10 px-4">
       <div className="bg-[#FFC107] w-full max-w-[430px] lg:max-w-[1200px] rounded-[28px] p-6 flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-20">
-        {/* TEXT BLOCK */}
         <div className="flex-1">
           <h2 className="text-[28px] leading-[32px] font-extrabold text-[#0A0A0A] lg:text-[58px] lg:leading-[59px]">
             Ready to simplify <br /> your taxes with <br /> Tax Pilot?
@@ -32,7 +31,6 @@ export default function TaxPilotSection() {
           </button>
         </div>
 
-        {/* ILLUSTRATION */}
         <div className="flex-1 flex justify-center w-full">
           <img
             src="/svg/businesswoman-presents-business-report.svg"

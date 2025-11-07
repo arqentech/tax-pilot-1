@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { faqData } from "../../data/FAQData";
-import Badge from "./Badge";
 
-export default function FAQ() {
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface FAQProps {
+  data: FAQItem[];
+}
+
+export default function FAQ({ data }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (index: number) => {
@@ -10,16 +17,9 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-20 text-center">
-      <Badge text="FAQ" width="77px" center />
-
-      <h2 className="font-bricolage font-extrabold mt-4 text-[38px] leading-[38px] lg:text-[58px] lg:leading-[59px] tracking-[-0.03em]">
-        <span className="block">Your Tax Questions,</span>
-        <span className="block">answered Simply.</span>
-      </h2>
-
+    <section className="py-4 text-center">
       <div className="mt-12 space-y-4 max-w-2xl mx-auto">
-        {faqData.map((item, index) => (
+        {data.map((item, index) => (
           <div
             key={index}
             className="border border-gray-200 rounded-xl p-4 cursor-pointer text-left"
@@ -30,7 +30,7 @@ export default function FAQ() {
                 {item.question}
               </p>
               <span
-                className={`transition-transform duration-200  text-3xl ${
+                className={`transition-transform duration-200 text-3xl ${
                   openIndex === index ? "rotate-45" : ""
                 }`}
               >

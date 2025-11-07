@@ -1,8 +1,6 @@
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-export const faqData: FAQItem[] = [
+import type { FAQItem } from "../components/ui/FAQ";
+
+export const homeFaqData: FAQItem[] = [
   { question: "How does TaxPilot work?", answer: "TaxPilot works by..." },
   {
     question: "What documents do I need to get started?",
