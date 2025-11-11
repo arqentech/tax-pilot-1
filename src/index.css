@@ -56,19 +56,19 @@
     padding-right: 1.5rem;
   }
 
-  @media (min-width: 640px) {
+  /* @media (min-width: 640px) {
     .global-container {
       padding-left: 3rem;
       padding-right: 3rem;
     }
-  }
+  } */
 
-  @media (min-width: 1024px) {
+  /* @media (min-width: 1024px) {
     .global-container {
       padding-left: 6rem;
       padding-right: 6rem;
     }
-  }
+  } */
 }
 
 @utility heading-base {

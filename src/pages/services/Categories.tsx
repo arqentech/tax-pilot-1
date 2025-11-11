@@ -7,7 +7,7 @@ interface CategoriesProps {
 
 const Categories: React.FC<CategoriesProps> = ({ onSelect }) => {
   return (
-    <div className="w-[400px] lg:w-[874px] bg-[#F9F9F7] border border-[#E6E6E1] rounded-[32px] p-4 flex flex-wrap gap-3 mt-4">
+    <div className="w-[400px] lg:w-[874px] border border-[#E6E6E1] rounded-[32px] p-4 flex flex-wrap gap-3 mt-4">
       {categoriesData.map((cat, i) => (
         <button
           key={i}

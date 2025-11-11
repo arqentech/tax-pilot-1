@@ -22,10 +22,17 @@ const Details: React.FC = () => {
   }
 
   return (
-    <div className="flex justify-center min-h-screen px-4 pb-16">
-      <div className="w-full max-w-7xl">
-        <div className="flex flex-row flex-wrap md:flex-nowrap items-center gap-10 pb-6">
-          <div className="flex-1 order-1 md:order-1">
+    <div className="grid grid-col-1 justify-center min-h-screen px-4 pb-16">
+      <div className=" w-full">
+        <div className="flex flex-col md:flex-row items-center gap-10  pb-6 mb-4">
+          <div className="p-6 rounded-2xl">
+            <img
+              src="/svg/client-calls-customer-care-for-support.svg"
+              alt={service.title}
+              className="w-[311px] h-[341px] lg-w[493px] lg:h-[542.07px] object-contain"
+            />
+          </div>
+          <div className="flex-1">
             <h1 className="font-bricolage font-extrabold text-[44px] leading-[38px] lg:text-[58px] lg:leading-[59px]">
               {service.title}
             </h1>
@@ -33,7 +40,7 @@ const Details: React.FC = () => {
               {service.description}
             </p>
 
-            <div className="flex items-center gap-4 mt-4 flex-wrap">
+            <div className="flex items-center gap-4 mt-4">
               <span className="text-2xl font-bold text-blue-600">
                 € {service.price.toFixed(2)}
               </span>
@@ -49,17 +56,7 @@ const Details: React.FC = () => {
               </span>
             </div>
 
-            <div className="mt-6">
-              <PrimaryButton text="Request Service" width="257px" />
-            </div>
-          </div>
-
-          <div className="flex-shrink-0 order-2 md:order-2 p-6 rounded-2xl flex justify-center">
-            <img
-              src="/svg/client-calls-customer-care-for-support.svg"
-              alt={service.title}
-              className="w-[311px] h-[341px] md:w-[400px] md:h-[450px] lg:w-[493px] lg:h-[542px] object-contain"
-            />
+            <PrimaryButton text="Request Service" width="257px" />
           </div>
         </div>
 

@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 export default function NewsletterSignup() {
   return (
-    <div>
+    <div >
       <h3 className="font-bricolage font-semibold text-lg md:text-xl leading-tight mb-4">
         Newsletter
       </h3>
-      <div className="flex items-center bg-[#D7D7D7] rounded-md overflow-hidden w-full max-w-[300px]">
+      <div className="flex items-center bg-[#D7D7D7] rounded-md overflow-hidden w-full ">
         <input
           type="email"
           placeholder="Email"
