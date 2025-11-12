@@ -8,7 +8,6 @@ const Footer = () => {
     <footer className="bg-[#373737] text-white w-full px-8 lg:px-20 py-16">
       <div className="max-w-[1320px] mx-auto">
         <div className="font-bricolage grid grid-cols-1 lg:grid-cols-4 gap-10 pb-12">
-          {/* Logo */}
           <div className="order-1 lg:order-1">
             <FooterLogo />
           </div>
@@ -63,3 +62,4 @@ const legalLinks = [
   { label: "Terms of use", path: "/terms-of-use" },
   { label: "General use cases", path: "/use-cases" },
 ];
+

@@ -5,7 +5,7 @@ const HeroSection = () => {
     <section className=" bg-[#FBFBFA] w-full py-4 overflow-hidden ">
       <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
         <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:space-y-8 max-w-xl mx-auto">
-          <h1 className="font-bricolage font-extrabold text-[44px] leading-[38px] lg:text-[86px] lg:leading-[73px] tracking-[-0.09em] leading-[0.9]">
+          <h1 className="font-bricolage font-extrabold text-[44px] leading-[38px] lg:text-[86px] lg:leading-[73px] tracking-[-0.09em] ">
             <span className="">Online taxes made</span>
             <span className="block whitespace-nowrap">
               Simple with Tax Pilot.

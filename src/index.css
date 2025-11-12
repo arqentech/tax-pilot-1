@@ -1,26 +1,12 @@
-/* Import Google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600&display=swap");
-@import "tailwindcss";
-
-/* Manually include Degular Display Demo */
-@font-face {
-  font-family: "Degular Display Demo";
-  src: url("/fonts/degular-display-demo.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@theme {
-  --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
-  --color-page-bg: #fbfbfa;
-}
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @layer base {
   html,
   body {
-    font-family: "Archivo", sans-serif;
-    background-color: var(--color-page-bg);
+    font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+    background-color: #fbfbfa;
     color: #34352e;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -39,10 +25,6 @@
   font-family: "Bricolage Grotesque", sans-serif;
 }
 
-.font-degular {
-  font-family: "Degular Display Demo", sans-serif;
-}
-
 .font-archivo {
   font-family: "Archivo", sans-serif;
 }
@@ -55,26 +37,14 @@
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
-
-  /* @media (min-width: 640px) {
-    .global-container {
-      padding-left: 3rem;
-      padding-right: 3rem;
-    }
-  } */
-
-  /* @media (min-width: 1024px) {
-    .global-container {
-      padding-left: 6rem;
-      padding-right: 6rem;
-    }
-  } */
 }
 
-@utility heading-base {
-  @apply font-extrabold text-[44px] leading-[38px] lg:text-[58px] lg:leading-[73px] tracking-[-0.03em];
-}
+@layer utilities {
+  .heading-base {
+    @apply font-extrabold text-[44px] leading-[38px] lg:text-[58px] lg:leading-[73px] tracking-[-0.03em];
+  }
 
-@utility text-base {
-  @apply font-bold text-[18px] leading-[25px] lg:text-[20px];
+  .text-base {
+    @apply font-bold text-[18px] leading-[25px] lg:text-[20px];
+  }
 }

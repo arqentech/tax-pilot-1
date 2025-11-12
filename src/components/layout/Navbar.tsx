@@ -15,7 +15,7 @@ const Navbar = () => {
           <img
             src="/svg/header-logo.svg"
             alt="TaxPilot logo"
-            className="h-8 w-auto"
+            className="h-[136px] w-[157px] md:h-[42px] md:w-[193.59px]"
             loading="lazy"
           />
         </Link>
