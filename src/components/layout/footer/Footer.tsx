@@ -5,27 +5,27 @@ import SocialLinks from "./SocialLinks";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#373737] text-white w-full px-8 lg:px-20 py-16">
+    <footer className="bg-[#373737] text-white w-full px-8 md:px-20 py-16">
       <div className="max-w-[1320px] mx-auto">
-        <div className="font-bricolage grid grid-cols-1 lg:grid-cols-4 gap-10 pb-12">
-          <div className="order-1 lg:order-1">
+        <div className="font-bricolage grid grid-cols-1 md:grid-cols-4 gap-10 pb-12">
+          <div className="order-1 md:order-1">
             <FooterLogo />
           </div>
 
-          <div className="order-2 grid grid-cols-2 gap-10 lg:hidden">
+          <div className="order-2 grid grid-cols-2 gap-10 md:hidden">
             <FooterLinks title="Quick Links" links={quickLinks} />
             <FooterLinks title="Legal" links={legalLinks} />
           </div>
 
-          <div className="hidden lg:block order-2 lg:order-2">
+          <div className="hidden md:block order-2 md:order-2">
             <FooterLinks title="Quick Links" links={quickLinks} />
           </div>
 
-          <div className="hidden lg:block order-3 lg:order-3">
+          <div className="hidden md:block order-3 md:order-3">
             <FooterLinks title="Legal" links={legalLinks} />
           </div>
 
-          <div className="order-4 lg:order-4 ">
+          <div className="order-4 md:order-4 ">
             <NewsletterSignup />
           </div>
         </div>

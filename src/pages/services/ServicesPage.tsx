@@ -28,17 +28,17 @@ const ServicesPage: React.FC = () => {
   });
 
   return (
-    <div className="mt-[84px] lg:mt-[92px] flex justify-center min-h-screen pb-16 px-4">
+    <div className=" mt-4 sm:mt-5 md:mt-6 flex justify-center min-h-screen px-4">
       <div className="w-full max-w-[1320px] flex flex-col items-center">
         <div className="text-center mb-8">
           <h1 className="font-bricolage heading-base">All Services</h1>
-          <p className="text-base mt-2">Below are our Services and Bonuses</p>
+          <p className=" mt-2">Below are our Services and Bonuses</p>
         </div>
 
         <div className="flex flex-row items-center justify-center gap-4 mb-10 w-full">
           <SearchBar
             onSearch={setQuery}
-            wrapperClass="w-[322px] lg:w-[725px] w-full"
+            wrapperClass="w-[322px] md:w-[725px] w-full"
           />
           <FilterButton onFilterClick={toggleFilter} />
         </div>
@@ -48,9 +48,9 @@ const ServicesPage: React.FC = () => {
         <div
           className="
             grid gap-6 
-            grid-cols-1 lg:grid-cols-2
+            grid-cols-1 md:grid-cols-2 lg:grid-cols-2
             justify-items-center w-full
-            overflow-y-auto max-h-[80vh] pt-2
+            pt-2
           "
         >
           {filteredData.map((card, index) => (

@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section className=" bg-[#FBFBFA] w-full py-4 overflow-hidden ">
+    <section className="w-full pt-3 pb-8 sm:pt-4 sm:pb-10 md:pt-12 md:pb-16 overflow-hidden">
       <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
         <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:space-y-8 max-w-xl mx-auto">
-          <h1 className="font-bricolage font-extrabold text-[44px] leading-[38px] lg:text-[86px] lg:leading-[73px] tracking-[-0.09em] ">
+          <h1 className="font-bricolage main-heading ">
             <span className="">Online taxes made</span>
             <span className="block whitespace-nowrap">
               Simple with Tax Pilot.

@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <nav className="relative z-50 w-full">
-      <div className="global-container flex items-center justify-between py-4">
+      <div className="global-container flex items-center justify-between md:py-4">
         <Link to="/" className="flex items-center flex-shrink-0">
           <img
             src="/svg/header-logo.svg"

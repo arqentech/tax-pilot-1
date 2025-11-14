@@ -8,13 +8,13 @@ function HomePageFAQ() {
       <div className="flex flex-col items-center ">
         <Badge text="FAQ" width="77px" center />
 
-        <h2 className="font-bricolage font-extrabold mt-4 text-[38px] leading-[38px] lg:text-[58px] lg:leading-[59px] tracking-[-0.03em]">
+        <h2 className="font-bricolage sub-heading mt-4">
           <span className="block">Your Tax Questions,</span>
           <span className="block">answered Simply.</span>
         </h2>
       </div>
       <div>
-        <FAQ data={homeFaqData}/>
+        <FAQ data={homeFaqData} />
       </div>
     </div>
   );
