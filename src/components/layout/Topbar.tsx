@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const TopBar = () => {
   return (
-    <div className="bg-[#037BFF] text-[#BFDDFF] text-center py-2 flex justify-center items-center gap-1">
+    <div className="bg-[#007BFF] text-[#BFDDFF] text-center py-2 flex justify-center items-center gap-1">
       <span className="font-medium text-[18px] leading-[25px]">
         New services added recently •
       </span>

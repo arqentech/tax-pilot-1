@@ -5,6 +5,8 @@ import ServicesPage from "./pages/services/ServicesPage";
 import ServiceDetails from "./pages/service-details/ServiceDetails";
 import Login from "./pages/auth/Login";
 import PrivacyPolicy from "./pages/privacy/PrivacyPolicy";
+import AuthLayout from "./pages/auth/Auth";
+import LoginPage from "./pages/auth/Login";
 
 function App() {
   return (
@@ -16,8 +18,10 @@ function App() {
           <Route path="services" element={<ServicesPage />} />
 
           <Route path="services/:slug" element={<ServiceDetails />} />
-          <Route path="login" element={<Login />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
+        </Route>
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<LoginPage />} />
         </Route>
       </Routes>
     </Router>
