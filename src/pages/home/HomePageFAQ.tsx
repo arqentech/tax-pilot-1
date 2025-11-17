@@ -1,6 +1,6 @@
 import Badge from "../../components/ui/Badge";
 import FAQ from "../../components/ui/FAQ";
-import { homeFaqData } from "../../data/HomeFAQData";
+import { homeFaqData } from "../../data/FAQData";
 
 function HomePageFAQ() {
   return (
@@ -13,7 +13,7 @@ function HomePageFAQ() {
           <span className="block">answered Simply.</span>
         </h2>
       </div>
-      <div>
+      <div className="max-w-2xl mx-auto ">
         <FAQ data={homeFaqData} />
       </div>
     </div>

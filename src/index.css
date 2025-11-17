@@ -50,12 +50,12 @@
     @apply md:text-[58px] md:leading-[73px];
   }
   .sub-heading {
-    @apply font-bricolage font-extrabold text-[38px] leading-[38px] tracking-[-0.08em];
+    @apply font-bricolage font-extrabold text-[44px] leading-[38px] tracking-[-0.08em];
     @apply md:text-[58px] md:leading-[59px];
   }
 
   .text-base {
-    @apply font-bold text-[18px] leading-[25px] md:text-[20px] tracking-[-0.03em];
+    @apply  text-[18px] leading-[25px] md:text-[20px] ;
   }
 }
 

@@ -14,10 +14,10 @@ export default function Home() {
       <HeroSection />
       <WhatDefinesUs />
       <HowWeWork />
-      {/* <ServicesSection /> */}
-      {/* <TeamCard /> */}
+      <ServicesSection />
+      <TeamCard />
       <HomePageFAQ/>
-      {/* <BlogSection /> */}
+      <BlogSection />
       <TaxPilotSection/>
     </div>
   );
