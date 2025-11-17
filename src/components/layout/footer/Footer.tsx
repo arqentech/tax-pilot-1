@@ -53,7 +53,7 @@ const quickLinks = [
   { label: "Services", path: "/services" },
   { label: "Blogs", path: "/blogs" },
   { label: "FAQ", path: "/faq" },
-  { label: "Contact us", path: "/contact" },
+  { label: "Contact us", path: "/contact-us" },
 ];
 
 const legalLinks = [

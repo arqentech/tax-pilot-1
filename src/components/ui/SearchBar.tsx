@@ -6,7 +6,7 @@ interface SearchBarProps {
   onSearch: (query: string) => void;
   className?: string;
   wrapperClass?: string;
-  placeholder?: string; // <-- add this
+  placeholder?: string; 
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({

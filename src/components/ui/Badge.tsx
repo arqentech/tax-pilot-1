@@ -3,7 +3,7 @@ import React from "react";
 interface BadgeProps {
   text: string;
   width?: string;
-  center?: boolean; // optional: auto-center the badge
+  center?: boolean;
 }
 
 const Badge: React.FC<BadgeProps> = ({

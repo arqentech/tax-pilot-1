@@ -47,7 +47,7 @@ export default function FAQPage() {
   return (
     <section className="w-full py-10">
       <div className="flex flex-col items-center gap-4 w-full max-w-6xl mx-auto px-4">
-        <span className="sub-heading text-center">FAQ</span>
+        <span className="sub-heading text-center">FAQs</span>
         <p className="text-base text-[#5F6057] text-center">
           Frequently asked questions about our services
         </p>

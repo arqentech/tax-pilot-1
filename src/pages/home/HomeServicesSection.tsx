@@ -27,7 +27,7 @@ const ServicesSection = () => {
          <Badge text="Services " width="115px"/>
 
           <h2 className="font-bricolage heading-base">
-            All Your Needs, in One Place.
+            All Your Tax Needs, in One Place.
           </h2>
 
           <p className="text-base">

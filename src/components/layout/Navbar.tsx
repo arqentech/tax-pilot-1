@@ -90,6 +90,6 @@ const navLinks = [
 ];
 
 const actionLinks = [
-  { to: "/contact", label: "Contact" },
+  { to: "/contact-us", label: "Contact" },
   { to: "/login", label: "Login" },
 ];
