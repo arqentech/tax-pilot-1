@@ -106,9 +106,9 @@ export default function LoginPage() {
 
             <p className="text-center text-[18px] leading-[25px] ">
               New user?{" "}
-              <a href="/sign-up" className=" text-[18px] leading-[25px] italic hover:text-blue-500 underline font-medium">
+              <Link to="/sign-up" className=" text-[18px] leading-[25px] italic hover:text-blue-500 underline font-medium">
                 Create account
-              </a>
+              </Link>
             </p>
           </CardFooter>
         </form>

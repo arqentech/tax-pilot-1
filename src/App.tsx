@@ -23,7 +23,7 @@ function App() {
           <Route path="services/:slug" element={<ServiceDetails />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="faq" element={<FAQ />} />
-          <Route path="contact-us" element={<SignUpPage />} />
+          <Route path="contact-us" element={<ContactUs />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginPage />} />

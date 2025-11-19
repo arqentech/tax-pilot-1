@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export interface FAQItem {
   question: string;
@@ -50,9 +51,9 @@ export default function FAQ({ data }: FAQProps) {
 
       <p className="hidden lg:block mt-8 text-[18px] leading-[25px]">
         Still have questions?{" "}
-        <a href="#" className="underline font-medium italic">
+        <Link to="#" className="underline font-medium italic">
           Chat with an expert
-        </a>
+        </Link>
       </p>
     </section>
   );

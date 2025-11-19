@@ -84,18 +84,18 @@ export default function SignUpPage() {
             <div className="w-full md:w-[466px] flex justify-between items-center text-sm mt-2">
               <span>
                 I agree to the
-                <a
-                  href="/privacy-policy"
+                <Link
+                  to="/privacy-policy"
                   className="text-blue-500 hover:underline"
                 >
                   {" "}
                   Privacy Policy{" "}
-                </a>
+                </Link>
                 and
-                <a href="/terms" className="text-blue-500 hover:underline">
+                <Link to="/terms" className="text-blue-500 hover:underline">
                   {" "}
                   Terms{" "}
-                </a>
+                </Link>
                 .
               </span>
             </div>
