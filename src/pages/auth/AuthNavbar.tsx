@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Handbag, Menu, Undo2, X } from "lucide-react";
 
-const LoginNavbar = () => {
+const AuthNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const baseText = "text-[#34352E] font-medium text-base md:text-lg";
@@ -70,7 +70,7 @@ const LoginNavbar = () => {
   );
 };
 
-export default LoginNavbar;
+export default AuthNavbar;
 const navLinks = [
   { to: "/how-it-works", label: "How it works" },
   { to: "/services", label: "Services" },

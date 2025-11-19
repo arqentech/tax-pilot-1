@@ -68,12 +68,12 @@ export default function LoginPage() {
                 </Label>
               </div>
 
-              <a
-                href="#"
+              <Link
+                to="/forgot-password"
                 className="text-[16px] leading-[25px] text-[#04226B] hover:underline"
               >
                 Forgot your password
-              </a>
+              </Link>
             </div>
           </CardContent>
 

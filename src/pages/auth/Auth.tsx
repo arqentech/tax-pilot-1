@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
-import LoginNavbar from "./LoginNavbar";
+import LoginNavbar from "./AuthNavbar";
 import Footer from "@/components/layout/footer/Footer";
+import AuthNavbar from "./AuthNavbar";
 
 export default function AuthLayout() {
   return (
     <>
-      <LoginNavbar />
+      <AuthNavbar />
       <Outlet />
       <Footer />
     </>
