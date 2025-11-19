@@ -55,7 +55,16 @@
   }
 
   .text-base {
-    @apply  text-[18px] leading-[25px] md:text-[20px] ;
+    @apply text-[18px] leading-[25px] md:text-[20px];
+  }
+  .custom-box-shadow {
+    background: linear-gradient(to bottom, #54564a, #34352e);
+
+    border: 1px solid rgba(52, 53, 46, 0.28);
+
+    /* Inner shadows */
+    box-shadow: inset 0px -3px 3px #272822,
+      inset 0px 5px 8px rgba(46, 47, 40, 0.62);
   }
 }
 

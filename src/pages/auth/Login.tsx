@@ -26,9 +26,7 @@ export default function LoginPage() {
     <div className="w-full flex items-center justify-center bg-[#FFFFFF] py-10">
       <Card className="w-full md:w-auto md:h-[732px] rounded-[26px] border border-[#E7E7E7] p-8 flex-col items-center justify-center">
         <CardHeader className="text-center mb-4">
-          <CardTitle className="sub-heading">
-            Login
-          </CardTitle>
+          <CardTitle className="sub-heading">Login</CardTitle>
         </CardHeader>
 
         <form onSubmit={handleLogin} className="">
@@ -80,7 +78,7 @@ export default function LoginPage() {
           <CardFooter className="flex flex-col space-y-5 mt-4">
             <Button
               type="submit"
-              className="w-[400px] h-[60px] md:w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px] bg-gradient-to-b from-[#2E2E2E] to-black shadow-md hover:opacity-90"
+              className="w-[400px] h-[60px] md:w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px] custom-box-shadow hover:opacity-90"
             >
               Continue
             </Button>
@@ -106,7 +104,10 @@ export default function LoginPage() {
 
             <p className="text-center text-[18px] leading-[25px] ">
               New user?{" "}
-              <Link to="/sign-up" className=" text-[18px] leading-[25px] italic hover:text-blue-500 underline font-medium">
+              <Link
+                to="/sign-up"
+                className=" text-[18px] leading-[25px] italic hover:text-blue-500 underline font-medium"
+              >
                 Create account
               </Link>
             </p>
