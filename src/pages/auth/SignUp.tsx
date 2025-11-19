@@ -130,12 +130,12 @@ export default function SignUpPage() {
 
             <p className="text-center text-[18px] leading-[25px] ">
               New user?{" "}
-              <a
-                href="/login"
+              <Link
+                to="/login"
                 className=" text-[18px] leading-[25px] italic hover:text-blue-500 font-medium underline "
               >
                 Login
-              </a>
+              </Link>
             </p>
           </CardFooter>
         </form>
