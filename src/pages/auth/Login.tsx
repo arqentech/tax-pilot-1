@@ -106,7 +106,7 @@ export default function LoginPage() {
 
             <p className="text-center text-[18px] leading-[25px] ">
               New user?{" "}
-              <a href="/signup" className=" text-[18px] leading-[25px] italic hover:text-blue-500 underline font-medium">
+              <a href="/sign-up" className=" text-[18px] leading-[25px] italic hover:text-blue-500 underline font-medium">
                 Create account
               </a>
             </p>
