@@ -10,7 +10,6 @@ import LoginPage from "./pages/auth/Login";
 import FAQ from "./pages/faq/FAQPage";
 import ContactUs from "./pages/contact/ContactPage";
 import SignUpPage from "./pages/auth/SingnUp";
-import TestPage from "./pages/auth/login/TestPage";
 
 function App() {
   return (
@@ -25,10 +24,10 @@ function App() {
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="contact-us" element={<ContactUs />} />
+          <Route path="/signup" element={<SignUpPage />} />
         </Route>
         <Route element={<AuthLayout />}>
-          <Route path="/login" element={<TestPage />} />
-          <Route path="/test" element={<TestPage/>} />
+          <Route path="/login" element={<LoginPage />} />
         </Route>
       </Routes>
     </Router>
