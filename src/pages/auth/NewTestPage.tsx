@@ -2,7 +2,7 @@ import React from 'react'
 
 function NewTestPage() {
   return (
-    <div>NewTestPage</div>
+    <div>HELLOOOO! I am textpilot-setup</div>
   )
 }
 
