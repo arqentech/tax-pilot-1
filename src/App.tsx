@@ -11,7 +11,6 @@ import FAQ from "./pages/faq/FAQPage";
 import ContactUs from "./pages/contact/ContactPage";
 import SignUpPage from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
-import NewTestPage from "./pages/auth/NewTestPage";
 
 function App() {
   return (
