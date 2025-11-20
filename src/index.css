@@ -43,11 +43,11 @@
 
 @layer utilities {
   .main-heading {
-    @apply font-extrabold text-[44px] leading-[38px] tracking-[-0.09em];
+    @apply font-extrabold text-[40px] leading-[38px] tracking-[-0.09em];
     @apply md:text-[86px] md:leading-[73px];
   }
   .heading-base {
-    @apply font-extrabold text-[38px] leading-[73px] tracking-[-0.03em];
+    @apply font-extrabold text-[38px] leading-[73px] tracking-[-0.09em];
     @apply md:text-[58px] md:leading-[73px];
   }
   .sub-heading {

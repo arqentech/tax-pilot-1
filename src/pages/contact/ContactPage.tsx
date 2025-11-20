@@ -27,10 +27,12 @@ export default function ContactUs() {
           <CardTitle className="sub-heading ">
             Do you need assistance?
           </CardTitle>
-          <p className="text-sm text-gray-600 mt-2">
-            Our chat is available Monday to Friday for quick, clear support.
-            Outside these hours, feel free to email us using the form below.
-          </p>
+          <div className="text-base mt-2 md:max-w-[595px] text-justify">
+            <p>
+              Our chat is available Monday to Friday for quick, clear support.
+              Outside these hours, feel free to email us using the form below.
+            </p>
+          </div>
         </CardHeader>
 
         <CardContent className="flex flex-col ">

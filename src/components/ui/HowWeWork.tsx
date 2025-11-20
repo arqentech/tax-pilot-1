@@ -53,7 +53,7 @@ export default function HowWeWork() {
                 </div>
               </div>
 
-              <div className="font-degular absolute right-0 top-9 text-[121px] lg:text-[220px] font-bold text-white/10 leading-[100%] select-none pointer-events-none">
+              <div className="font- absolute right-0 top-6 text-[121px] lg:text-[220px] font-bold text-white/10 leading-[100%] select-none pointer-events-none">
                 {step.number}
               </div>
             </div>

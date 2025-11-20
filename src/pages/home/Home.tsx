@@ -11,14 +11,14 @@ import WhatDefinesUs from "./WhatDefinesUs";
 export default function Home() {
   return (
     <div className="flex flex-col">
-      <HeroSection />
+      {/* <HeroSection />
       <WhatDefinesUs />
-      <HowWeWork />
+      <HowWeWork /> */}
       <ServicesSection />
-      <TeamCard />
-      <HomePageFAQ/>
-      <BlogSection />
-      <TaxPilotSection/>
+      {/* <TeamCard /> */}
+      {/* <HomePageFAQ/> */}
+      {/* <BlogSection /> */}
+      {/* <TaxPilotSection/> */}
     </div>
   );
 }

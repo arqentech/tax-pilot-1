@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckCircle, Clock } from "lucide-react";
+import { CheckCircle, ChevronRight, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ServiceCardProps {
@@ -68,7 +68,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           <span className="hidden lg:block text-[18px] font-extrabold leading-[25px]">
             Go to the service
           </span>
-          <span>&gt;</span>
+          <ChevronRight size={18} />
         </Link>
       </div>
     </div>
