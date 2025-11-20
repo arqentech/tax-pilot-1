@@ -1,5 +1,6 @@
 import { Handbag } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export default function EmptyCart() {
   return (
@@ -13,12 +14,14 @@ export default function EmptyCart() {
       </div>
 
       <h1 className="text-[20px] font-normal text-[#5F6057] ">Empty Cart</h1>
-      <Button
-        type="submit"
-        className="custom-box-shadow max-w-[244px] h-[60px] mt-6 w-[460px] h-[60px] md:w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px]  hover:opacity-90"
-      >
-        Choose a Service
-      </Button>
+      <Link to="/services">
+        <Button
+          type="submit"
+          className="custom-box-shadow max-w-[244px] h-[60px] mt-6 w-[460px] h-[60px] md:w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px]  hover:opacity-90"
+        >
+          Choose a Service
+        </Button>
+      </Link>
     </div>
   );
 }
