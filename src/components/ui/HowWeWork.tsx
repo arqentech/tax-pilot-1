@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function HowWeWork() {
   return (
     <section className="page-container py-10">
@@ -17,13 +19,13 @@ export default function HowWeWork() {
             step by step.
           </p>
 
-          <a
-            href="#services"
+          <Link
+            to="#services"
             className="hidden lg:inline-flex font-bricolage mt-10 leading-[100%] w-[262px] h-[62px] items-center justify-center gap-2 rounded-full bg-gradient-to-b from-[#FFDD77] to-[#FFC107] font-extrabold text-[#34352E] text-[24px] shadow-[0_6px_18px_rgba(0,0,0,0.12)] hover:brightness-105 transition duration-200"
           >
             Explore Services
             <span className="text-xl">›</span>
-          </a>
+          </Link>
         </div>
 
         <div className="relative bg-[#037BFF] flex flex-col items-center justify-center">

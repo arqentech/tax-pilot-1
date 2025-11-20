@@ -4,7 +4,7 @@ const HeroSection = () => {
   return (
     <section className="w-full pt-3 pb-8 sm:pt-4 sm:pb-10 md:pt-12 md:pb-16 overflow-hidden">
       <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
-        <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:space-y-8 max-w-xl mx-auto">
+        <div className="w-auto flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:space-y-8  ">
           <h1 className="font-bricolage main-heading ">
             <span className="">Online taxes made</span>
             <span className="block whitespace-nowrap">
@@ -28,7 +28,7 @@ const HeroSection = () => {
           <img
             src="/svg/hero-illustration.png"
             alt="Hero illustration showing online tax services"
-            className=" w-[328.36px] lg:w-[646.11px] h-auto object-contain"
+            className="w-auto md:w-[646.11px] h-auto object-contain"
             loading="lazy"
           />
         </div>

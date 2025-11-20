@@ -28,8 +28,8 @@ export default function ContactUs() {
             Do you need assistance?
           </CardTitle>
           <p className="text-sm text-gray-600 mt-2">
-            Our chat is available Monday to Friday. Outside these hours, email
-            us.
+            Our chat is available Monday to Friday for quick, clear support.
+            Outside these hours, feel free to email us using the form below.
           </p>
         </CardHeader>
 
