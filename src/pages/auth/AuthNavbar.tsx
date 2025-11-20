@@ -78,4 +78,4 @@ const navLinks = [
   { to: "/blogs", label: "Blogs" },
 ];
 
-const actionLinks = [{ to: "/contact", label: "Contact" }];
+const actionLinks = [{ to: "/contact-us", label: "Contact" }];

@@ -26,9 +26,7 @@ export default function LoginPage() {
     <div className="w-full flex items-center justify-center bg-[#FFFFFF] py-10">
       <Card className="w-full md:w-auto md:h-[732px] rounded-[26px] border border-[#E7E7E7] p-8 flex-col items-center justify-center">
         <CardHeader className="text-center mb-4">
-          <CardTitle className="sub-heading">
-            Login
-          </CardTitle>
+          <CardTitle className="sub-heading">Login</CardTitle>
         </CardHeader>
 
         <form onSubmit={handleLogin} className="">
@@ -40,7 +38,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-[460px]  h-[60px] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] text-[18px] leading-[24px] font-normal placeholder-[#9D9E98]"
+              className="w-full h-[60px] bg-[#FBFBFA] !placeholder-[#9D9E98] rounded-[14px] border border-[#E6E6E1] !text-[18px] !leading-[24px] font-normal placeholder-[#9D9E98]"
             />
 
             <Input
@@ -50,11 +48,11 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-[460px] md:w-[466px] h-[60px] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] text-[18px] leading-[24px] font-normal placeholder-text-[14px] "
+              className="w-full md:w-[466px] h-[60px] !placeholder-[#9D9E98] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] !text-[18px] !leading-[24px] font-normal placeholder-text-[14px] "
             />
 
-            <div className="w-full w-[460px] md:w-[466px] flex justify-between items-center text-sm mt-2">
-              <div className="flex items-center space-x-2">
+            <div className="w-full flex  md:justify-between items-center text-sm mt-2 ">
+              <div className="flex items-center space-x-2 ">
                 <Checkbox
                   id="remember"
                   checked={remember}
@@ -80,7 +78,7 @@ export default function LoginPage() {
           <CardFooter className="flex flex-col space-y-5 mt-4">
             <Button
               type="submit"
-              className="w-[400px] h-[60px] md:w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px] bg-gradient-to-b from-[#2E2E2E] to-black shadow-md hover:opacity-90"
+              className="w-full h-[60px] md:w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px] custom-box-shadow hover:opacity-90"
             >
               Continue
             </Button>
@@ -94,7 +92,7 @@ export default function LoginPage() {
             <Button
               type="button"
               variant="outline"
-              className="w-[400px] md:w-[466px] h-[60px] rounded-full bg-[#F6F6F3] border-[#E6E6E1] text-[20px] text-[#5F6057] flex items-center justify-center gap-2"
+              className="w-full md:w-[466px] h-[60px] rounded-full bg-[#F6F6F3] border-[#E6E6E1] text-[20px] text-[#5F6057] flex items-center justify-center gap-2"
             >
               <img
                 src="/svg/google-icon-logo.svg"
@@ -106,7 +104,10 @@ export default function LoginPage() {
 
             <p className="text-center text-[18px] leading-[25px] ">
               New user?{" "}
-              <Link to="/sign-up" className=" text-[18px] leading-[25px] italic hover:text-blue-500 underline font-medium">
+              <Link
+                to="/sign-up"
+                className=" text-[18px] leading-[25px] italic hover:text-blue-500 underline font-medium"
+              >
                 Create account
               </Link>
             </p>

@@ -56,7 +56,7 @@ const Details: React.FC = () => {
               </span>
             </div>
 
-            <PrimaryButton text="Request Service" width="257px" />
+            <PrimaryButton text="Request Service" width="257px"  />
           </div>
         </div>
 

@@ -11,6 +11,7 @@ import FAQ from "./pages/faq/FAQPage";
 import ContactUs from "./pages/contact/ContactPage";
 import SignUpPage from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
+import EmptyCart from "./pages/cart/EmptyCart";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="contact-us" element={<ContactUs />} />
+          <Route path="cart" element={<EmptyCart />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginPage />} />

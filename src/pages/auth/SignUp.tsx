@@ -121,7 +121,7 @@ export default function SignUpPage() {
           <CardFooter className="flex flex-col space-y-5 mt-4">
             <Button
               type="submit"
-              className="w-[460px] h-[60px] md:w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px] bg-gradient-to-b from-[#2E2E2E] to-black shadow-md hover:opacity-90"
+              className="w-[460px] h-[60px] md:w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px] custom-box-shadow hover:opacity-90"
             >
               Sign Up
             </Button>

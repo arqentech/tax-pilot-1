@@ -58,7 +58,7 @@ export default function ContactForm({
 
       <Button
         type="submit"
-        className="w-full h-[60px]  rounded-full bg-[linear-gradient(180deg,#54564A_0%,#34352E_44.72%)] text-[24px] text-white font-bricolage "
+        className="w-full h-[60px] rounded-full bg-[linear-gradient(180deg,#54564A_0%,#34352E_44.72%)] text-[24px] text-white font-bricolage "
       >
         Send
       </Button>
