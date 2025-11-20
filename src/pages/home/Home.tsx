@@ -12,13 +12,13 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <HeroSection />
-      {/* <WhatDefinesUs /> */}
-      {/* <HowWeWork /> */}
-      {/* <ServicesSection /> */}
-      {/* <TeamCard /> */}
-      {/* <HomePageFAQ/> */}
-      {/* <BlogSection /> */}
-      {/* <TaxPilotSection/> */}
+      <WhatDefinesUs />
+      <HowWeWork />
+      <ServicesSection />
+      <TeamCard />
+      <HomePageFAQ/>
+      <BlogSection />
+      <TaxPilotSection/>
     </div>
   );
 }
