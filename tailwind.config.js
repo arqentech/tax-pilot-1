@@ -6,6 +6,9 @@ const config = {
     extend: {
       fontFamily: {
         archivo: ["Archivo", "sans-serif"],
+        archivo: ["Archivo", "ui-sans-serif", "system-ui", "sans-serif"],
+        bricolage: ["Bricolage Grotesque", "sans-serif"],
+        degular: ["Degular Display Demo", "sans-serif"],
       },
       colors: {
         pageBg: "#fbfbfa",
