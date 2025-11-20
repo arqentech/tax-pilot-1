@@ -51,7 +51,7 @@ export default function LoginPage() {
               className="w-full md:w-[466px] h-[60px] !placeholder-[#9D9E98] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] !text-[18px] !leading-[24px] font-normal placeholder-text-[14px] "
             />
 
-            <div className="w-full flex justify-between items-center text-sm mt-2 ">
+            <div className="w-full flex  md:justify-between items-center text-sm mt-2 ">
               <div className="flex items-center space-x-2 ">
                 <Checkbox
                   id="remember"
