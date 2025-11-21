@@ -16,7 +16,7 @@ export default function Home() {
       <HowWeWork />
       <ServicesSection />
       <TeamCard />
-      {/* <HomePageFAQ/> */}
+      <HomePageFAQ/>
       {/* <BlogSection /> */}
       {/* <TaxPilotSection/> */}
     </div>
