@@ -6,7 +6,7 @@
 @layer base {
   html,
   body {
-    color-scheme: light;
+    
     font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
     background-color: #fbfbfa;
     color: #34352e;
@@ -63,7 +63,6 @@
 
     border: 1px solid rgba(52, 53, 46, 0.28);
 
-    /* Inner shadows */
     box-shadow: inset 0px -3px 3px #272822,
       inset 0px 5px 8px rgba(46, 47, 40, 0.62);
   }

@@ -22,11 +22,11 @@ const HeroSection = () => {
           </Link>
         </div>
 
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-4 w-full">
           <img
             src="/svg/hero-illustration.png"
             alt="Hero illustration showing online tax services"
-            className="min-w-[328px] md:w-[646px] h-auto"
+            className=" h-auto"
             loading="lazy"
           />
         </div>
