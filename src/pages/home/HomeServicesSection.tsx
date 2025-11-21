@@ -37,7 +37,7 @@ const ServicesSection = () => {
         <SearchBar onSearch={handleSearch} wrapperClass="w-full w-full place" />
       </div>
 
-      <div className="block md:hidden overflow-x-auto w-[335px]">
+      <div className="block md:hidden overflow-x-auto w-[333px]">
         <div className="flex gap-3 px-4">
           {displayServices.map((service) => (
             <div key={service.link} className="min-w-[333px]">
