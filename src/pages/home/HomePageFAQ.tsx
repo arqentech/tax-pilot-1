@@ -9,8 +9,6 @@ function HomePageFAQ() {
         <Badge text="FAQ" width="77px" center />
 
         <h2 className="font-bricolage sub-heading mt-4 max-w-[489px]">
-          {/* <span className="block">Your Tax Questions,</span>
-          <span className="block">answered Simply.</span> */}
           <p>Your Tax Questions, answered Simply.</p>
         </h2>
       </div>
