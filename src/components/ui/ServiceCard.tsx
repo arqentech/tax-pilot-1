@@ -26,7 +26,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   advantages,
 }) => {
   return (
-    <div className="w-full max-w-[427px] rounded-2xl shadow-sm border border-[#E6E6E1] hover:shadow-md transition-shadow duration-200 overflow-hidden">
+    <div className="w-full md:max-w-[641px] rounded-2xl shadow-sm border border-[#E6E6E1] hover:shadow-md transition-shadow duration-200 overflow-hidden">
       <div className="bg-[#F9F9F799] pt-4 pr-4 pb-4 pl-4 min-h-[200px]">
         <h3 className="font-bricolage text-[20px] md:text-[24px] md:leading-tight font-extrabold">
           {title}

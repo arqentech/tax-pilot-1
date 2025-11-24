@@ -12,6 +12,7 @@ import ContactUs from "./pages/contact/ContactPage";
 import SignUpPage from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import EmptyCart from "./pages/cart/EmptyCart";
+import Blogs from "./pages/blogs/Blogs";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route index element={<Home />} />
 
           <Route path="services" element={<ServicesPage />} />
-
+          <Route path="blogs" element={<Blogs/>}/>
           <Route path="services/:slug" element={<ServiceDetails />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="faq" element={<FAQ />} />

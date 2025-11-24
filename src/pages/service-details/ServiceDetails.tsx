@@ -1,3 +1,4 @@
+import ClientReviews from "@/components/ui/ClientReview";
 import HowWeWork from "../../components/ui/HowWeWork";
 import TaxPilotSection from "../../components/ui/TaxPilotSection";
 import Breadcrumbs from "./BreadCrumb";
@@ -10,6 +11,7 @@ function ServiceDetails() {
       <Breadcrumbs/>
       <Details />
       <HowWeWork />
+      <ClientReviews showBadge={false}/>
       <RelatedServices />
       <TaxPilotSection />
     </div>

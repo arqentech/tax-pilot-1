@@ -1,3 +1,4 @@
+import ClientReviews from "@/components/ui/ClientReview";
 import BlogSection from "../../components/ui/blogs/BlogSection";
 import FAQ from "../../components/ui/FAQ";
 import HowWeWork from "../../components/ui/HowWeWork";
@@ -7,6 +8,7 @@ import HomePageFAQ from "./HomePageFAQ";
 import ServicesSection from "./HomeServicesSection";
 import TeamCard from "./TeamSection";
 import WhatDefinesUs from "./WhatDefinesUs";
+import RelatedServices from "../service-details/RelatedServices";
 
 export default function Home() {
   return (
@@ -14,11 +16,13 @@ export default function Home() {
       <HeroSection />
       <WhatDefinesUs />
       <HowWeWork />
-      {/* <ServicesSection /> */}
-      {/* <TeamCard /> */}
-      <HomePageFAQ/>
-      {/* <BlogSection /> */}
-      {/* <TaxPilotSection/> */}
+      <ServicesSection />
+      <TeamCard />
+      <HomePageFAQ />
+      <BlogSection />
+      <ClientReviews/>
+      <RelatedServices/>
+      <TaxPilotSection />
     </div>
   );
 }

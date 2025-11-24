@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section className="w-full py-10">
-      <div className="flex flex-col md:flex-row items-center justify-between">
+    <section className="bg-[#FBFBFA] w-full py-10">
+      <div className="max-w-[1320px] mx-auto flex flex-col gap-10 md:flex-row md:items-center md:justify-between md:gap-16 px-6">
         <div className="w-full flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:space-y-8">
           <h1 className="font-bricolage main-heading ">
-            <span className="">Online taxes made</span>
-            <span className="block whitespace-nowrap">
+            <span className="md:inline-block lg:whitespace-nowrap">
+              Online taxes made
+            </span>
+            <span className="md:block lg:whitespace-nowrap">
               Simple with Tax Pilot.
             </span>
           </h1>
@@ -22,11 +24,11 @@ const HeroSection = () => {
           </Link>
         </div>
 
-        <div className="flex justify-center mt-4 w-full">
+        <div className="w-full max-w-[360px] sm:max-w-[460px] md:max-w-[540px] lg:max-w-[646px] mx-auto md:mx-0">
           <img
             src="/svg/hero-illustration.png"
             alt="Hero illustration showing online tax services"
-            className=" h-auto"
+            className="w-full h-auto object-contain"
             loading="lazy"
           />
         </div>

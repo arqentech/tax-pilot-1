@@ -31,11 +31,11 @@ export default function TaxPilotSection() {
           </button>
         </div>
 
-        <div className="flex-1 flex justify-center w-full">
+        <div className="flex-1 flex w-full justify-end relative">
           <img
             src="/svg/businesswoman-presents-business-report.svg"
             alt="Tax Illustration"
-            className="w-full max-w-[330px] lg:max-w-[500px]"
+            className="w-full max-w-[330px] lg:max-w-[500px] mr-[-30px] sm:mr-[-40px] lg:mr-[-60px]"
           />
         </div>
       </div>

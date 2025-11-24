@@ -9,7 +9,7 @@ const Navbar = () => {
   const linkStyle = "hover:text-[#0166FF] transition-colors duration-200";
 
   return (
-    <nav className="relative z-50 w-full">
+    <nav className="relative z-50 w-full bg-[#FBFBFA]">
       <div className="global-container flex items-center justify-between md:py-4">
         <Link to="/" className="flex items-center flex-shrink-0">
           <img

@@ -1,6 +1,7 @@
 export const categoriesData = [
   "Certificates and support services",
   "Income Tax Return",
+  "Finance",
   "House",
   "Family",
   "Consulting",
