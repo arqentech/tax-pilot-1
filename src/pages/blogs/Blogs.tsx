@@ -12,17 +12,15 @@ const Blogs: React.FC = () => {
 
   const toggleFilter = () => {
     setIsFilterOpen((prev) => {
-      // Reset category if closing
       if (prev) setSelectedCategory(null);
       return !prev;
     });
   };
 
   const handleCategorySelect = (category: string | null) => {
-    setSelectedCategory(category); // toggle selection handled in Categories
+    setSelectedCategory(category);
   };
 
-  // Filter blogs by search + selected category
   const filteredBlogs = blogData.filter((blog) => {
     const matchesSearch = blog.title
       .toLowerCase()
@@ -70,7 +68,9 @@ const Blogs: React.FC = () => {
               </div>
             ))
           ) : (
-            <p className="text-gray-500 text-lg mt-6">No blogs found</p>
+            <div className="col-span-full text-center mt-6">
+              <p className="text-base">No blog found</p>
+            </div>
           )}
         </div>
       </div>

@@ -5,45 +5,46 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+} from "@/components/ui/BreadCrumb";
 
-const Breadcrumbs: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();
+type Crumb = {
+  label: string;
+  href?: string | null;
+};
 
-  const formatLabel = (value: string) =>
-    value?.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+interface GenericBreadcrumbsProps {
+  items: Crumb[];
+  className?: string;
+}
 
+const Breadcrumbs: React.FC<GenericBreadcrumbsProps> = ({
+  items,
+  className = "",
+}) => {
   return (
-    <div className="bg-[#F6F6F3] hidden  md:w-full md:h-[50px] md:flex justify-center items-center rounded-xl">
+    <div
+      className={`bg-[#F6F6F3] hidden  md:h-[50px] md:flex justify-center items-center rounded-xl ${className}`}
+    >
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink
-              asChild
-              className="text-[16px] leading-[25px] text-[#A9AAA5]"
-            >
-              <Link to="/">Home</Link>
-            </BreadcrumbLink>
-            <BreadcrumbSeparator />
-          </BreadcrumbItem>
+          {items.map((item, index) => (
+            <BreadcrumbItem key={index}>
+              {item.href ? (
+                <BreadcrumbLink
+                  href={item.href}
+                  className="text-[16px] leading-[25px] text-[#A9AAA5]"
+                >
+                  {item.label}
+                </BreadcrumbLink>
+              ) : (
+                <BreadcrumbPage className="text-[16px] leading-[25px] text-[#A9AAA5]">
+                  {item.label}
+                </BreadcrumbPage>
+              )}
 
-          <BreadcrumbItem>
-            <BreadcrumbLink
-              asChild
-              className="text-[16px] leading-[25px] text-[#A9AAA5]"
-            >
-              <Link to="/services">Services</Link>
-            </BreadcrumbLink>
-            {slug && <BreadcrumbSeparator />}
-          </BreadcrumbItem>
-
-          {slug && (
-            <BreadcrumbItem className="text-[16px] leading-[25px] text-[#A9AAA5]">
-              <BreadcrumbLink>{formatLabel(slug)}</BreadcrumbLink>
+              {index !== items.length - 1 && <BreadcrumbSeparator />}
             </BreadcrumbItem>
-          )}
+          ))}
         </BreadcrumbList>
       </Breadcrumb>
     </div>

@@ -3,9 +3,14 @@ import { useParams, Link } from "react-router-dom";
 import { cardData } from "../../data/CardData";
 import { CheckCircle, Clock } from "lucide-react";
 import PrimaryButton from "../../components/ui/PrimaryButton";
+import Breadcrumbs from "./BreadCrumb";
 
 const Details: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+
+  const formatLabel = (value: string | undefined) =>
+    value?.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+
   const service = cardData.find(
     (item) => item.link.replace("/services", "") === `/${slug}`
   );
@@ -23,19 +28,29 @@ const Details: React.FC = () => {
 
   return (
     <div className="grid grid-col-1 justify-center min-h-screen px-4 pb-16">
-      <div className=" w-full">
-        <div className="flex flex-col md:flex-row items-center gap-10  pb-6 mb-4">
+      <div className="w-full">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Services", href: "/services" },
+            { label: formatLabel(slug) ?? "", href: null },
+          ]}
+        />
+
+        <div className="flex flex-col md:flex-row items-center gap-10 pb-6 mb-4">
           <div className="p-6 rounded-2xl">
             <img
               src="/svg/client-calls-customer-care-for-support.svg"
               alt={service.title}
-              className="w-[311px] h-[341px] lg-w[493px] lg:h-[542.07px] object-contain"
+              className="w-[311px] h-[341px] lg:w-[493px] lg:h-[542px] object-contain"
             />
           </div>
+
           <div className="flex-1">
             <h1 className="font-bricolage font-extrabold text-[44px] leading-[38px] lg:text-[58px] lg:leading-[59px]">
               {service.title}
             </h1>
+
             <p className="text-gray-600 mt-2 max-w-[600px]">
               {service.description}
             </p>
@@ -44,22 +59,25 @@ const Details: React.FC = () => {
               <span className="text-2xl font-bold text-blue-600">
                 € {service.price.toFixed(2)}
               </span>
+
               {service.vatIncluded && (
                 <span className="bg-[#EEFCD7] flex items-center gap-1 text-[#36500C] text-xs font-medium px-2 py-1 rounded-full">
                   <CheckCircle className="w-3 h-3" />
                   VAT Included
                 </span>
               )}
+
               <span className="flex items-center gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-xs font-medium px-2 py-1 rounded-full">
                 <Clock className="w-3 h-3" />
                 {service.hours}
               </span>
             </div>
 
-            <PrimaryButton text="Request Service" width="257px"  />
+            <PrimaryButton text="Request Service" width="257px" />
           </div>
         </div>
 
+        {/* In Depth Analysis */}
         {service.inDepthAnalysis && (
           <div className="mb-10">
             <h2 className="text-2xl font-semibold mb-4 text-gray-900">
@@ -71,13 +89,14 @@ const Details: React.FC = () => {
           </div>
         )}
 
+        {/* Advantages */}
         {service.advantages && (
           <div>
             <h2 className="text-2xl font-semibold mb-4 text-gray-900">
               Advantages
             </h2>
             <ul className="space-y-3">
-              {service.advantages.map((adv: string, index: number) => (
+              {service.advantages.map((adv, index) => (
                 <li
                   key={index}
                   className="bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-700"

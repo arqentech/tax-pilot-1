@@ -4,7 +4,7 @@ import BlogCard from "./BlogCard";
 
 export default function BlogSection() {
   return (
-    <section className=" py-10">
+    <section className="py-10">
       <div className="max-w-7xl mx-auto px-4">
         <Badge text="Blog" width="78px" center />
 
@@ -23,7 +23,7 @@ export default function BlogSection() {
                 key={index}
                 className="min-w-[400px] lg:min-w-0 mr-6 last:mr-0 snap-center"
               >
-                <BlogCard {...item} />
+                <BlogCard {...item} slug={item.slug} />
               </div>
             ))}
           </div>

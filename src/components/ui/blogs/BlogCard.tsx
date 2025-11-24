@@ -1,9 +1,13 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
 interface BlogCardProps {
   tag: string;
   image: string;
   title: string;
   description: string;
   readTime: string;
+  slug: string; 
 }
 
 export default function BlogCard({
@@ -12,9 +16,19 @@ export default function BlogCard({
   title,
   description,
   readTime,
+  slug,
 }: BlogCardProps) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/blogs/${slug}`);
+  };
+
   return (
-    <div className="w-full h-[465px] md:max-w-[427px] md:h-[535px] border border-[#E6E6E6] rounded-[26px] bg-white overflow-hidden p-2 flex flex-col shadow-sm">
+    <div
+      onClick={handleClick}
+      className="cursor-pointer w-full h-[465px] md:max-w-[427px] md:h-[535px] border border-[#E6E6E6] rounded-[26px] bg-white overflow-hidden p-2 flex flex-col shadow-sm hover:shadow-md transition-shadow"
+    >
       <div className="relative w-full h-[233px] md:h-[291px] rounded-[20px] overflow-hidden">
         <img src={image} alt={title} className="w-full h-full object-cover" />
 

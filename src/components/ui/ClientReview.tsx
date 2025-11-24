@@ -4,12 +4,12 @@ import { ReviewCard } from "./ReviewCard";
 import Badge from "./Badge";
 
 interface ClientReviewsProps {
-  showBadge?: boolean; // optional prop, defaults to true if not provided
+  showBadge?: boolean; 
 }
 
 const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
   return (
-    <section className="hidden md:w-full md:flex flex-col items-center py-16">
+    <section className="hidden lg:w-full lg:flex flex-col items-center py-16">
       {showBadge && <Badge text="Testimonials" width="146px" />}
 
       <div className="text-center max-w-2xl mb-10">

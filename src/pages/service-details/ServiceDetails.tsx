@@ -8,10 +8,9 @@ import RelatedServices from "./RelatedServices";
 function ServiceDetails() {
   return (
     <div className="flex flex-col">
-      <Breadcrumbs/>
       <Details />
       <HowWeWork />
-      <ClientReviews showBadge={false}/>
+      <ClientReviews showBadge={false} />
       <RelatedServices />
       <TaxPilotSection />
     </div>

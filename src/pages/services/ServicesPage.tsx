@@ -12,7 +12,6 @@ const ServicesPage: React.FC = () => {
 
   const toggleFilter = () => {
     setIsFilterOpen((prev) => {
-      // When closing filter → reset selected category
       if (prev === true) {
         setSelectedCategory(null);
       }
@@ -21,7 +20,6 @@ const ServicesPage: React.FC = () => {
   };
 
   const handleCategorySelect = (category: string) => {
-    // Toggle (select again to unselect)
     setSelectedCategory((prev) => (prev === category ? null : category));
   };
 
@@ -67,8 +65,8 @@ const ServicesPage: React.FC = () => {
               <ServiceCard key={index} {...card} />
             ))
           ) : (
-            <div className="w-full flex justify-center mt-6">
-              <p className="text-gray-500 text-lg">No services found</p>
+            <div className="col-span-full text-center mt-6">
+              <p className="text-base">No service found</p>
             </div>
           )}
         </div>
