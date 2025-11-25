@@ -16,8 +16,10 @@ const FilterButton: React.FC<FilterButtonProps> = ({
         flex items-center justify-center 
         bg-[#34352E] 
         rounded-full 
-        h-[64px] px-4
-        w-[64px]
+        md:h-[64px] px-4
+        md:w-[64px]
+        w-[45px]
+        h-[45px]
         lg:w-[129px]
         hover:bg-[#2a2b26] 
         transition-colors

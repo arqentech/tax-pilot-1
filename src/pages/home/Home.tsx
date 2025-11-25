@@ -14,15 +14,15 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <HeroSection />
-      {/* <WhatDefinesUs />
+      <WhatDefinesUs />
       <HowWeWork />
       <ServicesSection />
-      <TeamCard />
+      {/* <TeamCard /> */}
       <HomePageFAQ />
-      <BlogSection />
-      <ClientReviews/>
-      <RelatedServices/>
-      <TaxPilotSection /> */}
+      {/* <BlogSection /> */}
+      {/* <ClientReviews/> */}
+      {/* <RelatedServices/> */}
+      <TaxPilotSection />
     </div>
   );
 }

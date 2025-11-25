@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function HowWeWork() {
   return (
-    <section className="page-container py-10">
+    <section className=" py-10">
       <div className="grid md:grid-cols-2 bg-[#037BFF] rounded-[32px] justify-center items-center text-white overflow-hidden shadow-xl">
         <div className="flex flex-col justify-center px-8 lg:px-20 py-16 lg:py-24">
           <span className="w-[156px] h-[34px] inline-flex items-center justify-center rounded-full bg-[#006ADE] font-medium backdrop-blur-md">

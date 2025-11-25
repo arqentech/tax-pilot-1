@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <section className="full-bleed relative bg-[#FBFBFA] pt-[20px] pb-16  md:pb-24">
-      <div className="global-container flex flex-col gap-12 md:flex-row md:items-center md:justify-between md:gap-16">
+      <div className="global-container flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-16">
         <div className="w-full flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:space-y-8">
           <h1 className="font-bricolage main-heading ">
             <span className="md:inline-block lg:whitespace-nowrap">
-              Online taxes made
+              Online taxes made {""}
             </span>
             <span className="md:block lg:whitespace-nowrap">
               Simple with Tax Pilot.
