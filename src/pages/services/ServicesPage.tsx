@@ -36,7 +36,7 @@ const ServicesPage: React.FC = () => {
   });
 
   return (
-    <div className="py-10 t-4 sm:mt-5 md:mt-6 flex justify-center min-h-screen px-4">
+    <div className="sm:mt-5 md:mt-6 flex justify-center min-h-screen px-4 mb-10">
       <div className="w-full max-w-[1320px] flex flex-col items-center">
         <div className="text-center mb-8">
           <h1 className="font-bricolage heading-base">All Services</h1>
@@ -46,7 +46,7 @@ const ServicesPage: React.FC = () => {
         <div className="flex flex-row items-center justify-center gap-4  w-full">
           <SearchBar
             onSearch={setQuery}
-            wrapperClass="w-[322px] md:w-[725px] w-full"
+            wrapperClass="w-[322px] md:max-w-[725px] w-full"
           />
           <FilterButton onFilterClick={toggleFilter} />
         </div>

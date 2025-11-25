@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <HeroSection />
-      <WhatDefinesUs />
+      {/* <WhatDefinesUs />
       <HowWeWork />
       <ServicesSection />
       <TeamCard />
@@ -22,7 +22,7 @@ export default function Home() {
       <BlogSection />
       <ClientReviews/>
       <RelatedServices/>
-      <TaxPilotSection />
+      <TaxPilotSection /> */}
     </div>
   );
 }

@@ -53,14 +53,14 @@ export default function SimpleDropdown({ items, onSelect }: DropdownProps) {
 
   return (
     <DropdownMenuPrimitive.Root>
-      <DropdownMenuPrimitive.Trigger className="inline-flex items-center justify-center rounded-[48px] bg-[#34352E] px-3 w-[64px] md:w-[144px] h-[64px]  text-[#F1F1EC]">
+      <DropdownMenuPrimitive.Trigger className="inline-flex items-center justify-center rounded-[48px] bg-[#34352E] px-3 w-[45px] h-[45px] md:w-[64px] lg:w-[144px] md:h-[64px]  text-[#F1F1EC]">
         <img
           src="/svg/filter-funnel.svg"
           alt="Filter"
-          className="w-5 h-5 md:hidden"
+          className="w-5 h-5 lg:hidden"
         />
 
-        <span className="hidden md:inline ml-2">{selectedItem}</span>
+        <span className="hidden lg:inline ml-2">{selectedItem}</span>
 
         <ChevronDown className="ml-1 h-4 w-4" />
       </DropdownMenuPrimitive.Trigger>

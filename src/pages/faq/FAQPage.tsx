@@ -45,30 +45,24 @@ export default function FAQPage() {
   );
 
   return (
-    <section className="w-full py-10">
-      <div className="flex flex-col items-center gap-4 w-full max-w-6xl mx-auto px-4">
+    <section className="w-full py-12 md:py-16">
+      <div className="flex flex-col items-center gap-6">
         <span className="sub-heading text-center">FAQs</span>
-        <p className="text-base text-[#5F6057] text-center">
+        <p className="text-base text-center text-[#5F6057]">
           Frequently asked questions about our services
         </p>
 
-        <div className="w-full flex md:flex-row gap-4 mt-4 items-center justify-center">
-          <div className="w-full md:w-[710px] h-[64px] md:h-[74px]">
+        <div className="flex w-full items-center gap-3 pt-2 flex-row justify-center md:gap-4">
+          <div className="w-full flex-1 md:max-w-[710px]">
             <SearchBar onSearch={handleSearch} placeholder="Search query" />
           </div>
 
-          <div>
+          <div className="w-full md:w-auto">
             <SimpleDropdown items={faqOptions} onSelect={handleSelect} />
           </div>
         </div>
 
-        {query && (
-          <p className="text-sm text-gray-500  w-full text-left">
-            Searching for: <b>{query}</b>
-          </p>
-        )}
-
-        <div className="max-w-[874px] mx-auto w-full">
+        <div className="w-full max-w-[874px]">
           {filteredFaqs.length > 0 ? (
             <FAQ data={filteredFaqs} />
           ) : (

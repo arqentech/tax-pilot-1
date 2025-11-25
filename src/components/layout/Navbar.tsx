@@ -1,16 +1,22 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Handbag, Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
+  const navWrapperClass = isHome
+    ? "full-bleed relative bg-[#FBFBFA]"
+    : "relative w-full bg-white";
+  const mobileMenuBg = isHome ? "bg-[#FBFBFA]" : "bg-white";
 
   const baseText = "text-[#34352E] font-medium text-base md:text-lg";
   const linkStyle = "hover:text-[#0166FF] transition-colors duration-200";
 
   return (
-    <nav className="relative z-50 w-full ">
-      <div className="global-container flex items-center justify-between md:py-4">
+    <nav className={`${navWrapperClass} z-50`}>
+      <div className="global-container flex items-center justify-between py-3 md:py-4">
         <Link to="/" className="flex items-center flex-shrink-0">
           <img
             src="/svg/header-logo.svg"
@@ -56,7 +62,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`absolute top-full left-0 w-full bg-white md:hidden transform transition-all duration-300 origin-top ${
+        className={`absolute top-full left-0 w-full ${mobileMenuBg} md:hidden transform transition-all duration-300 origin-top ${
           isOpen
             ? "opacity-100 scale-y-100 pointer-events-auto"
             : "opacity-0 scale-y-0 pointer-events-none"

@@ -9,7 +9,7 @@ interface ClientReviewsProps {
 
 const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
   return (
-    <section className="hidden lg:w-full lg:flex flex-col items-center py-16">
+    <section className="full-bleed bg-[#FBFBFA] hidden lg:flex flex-col items-center py-16">
       {showBadge && <Badge text="Testimonials" width="146px" />}
 
       <div className="text-center max-w-2xl mb-10">

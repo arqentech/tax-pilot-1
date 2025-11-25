@@ -6,7 +6,7 @@ interface SearchBarProps {
   onSearch: (query: string) => void;
   className?: string;
   wrapperClass?: string;
-  placeholder?: string; 
+  placeholder?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -16,7 +16,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
   placeholder,
 }) => {
   const isLargeScreen = useMediaQuery({ minWidth: 1024 });
-
   const autoPlaceholder = isLargeScreen ? "Search" : "Search for a service";
 
   return (
@@ -25,20 +24,23 @@ const SearchBar: React.FC<SearchBarProps> = ({
         flex items-center
         bg-[#F9F9F7]
         border border-[#E6E6E1]
-        rounded-[48px]
-        h-[64px]
-        px-4
-        shadow-sm w-full 
+        rounded-3xl
+        md:rounded-[48px]
+        h-[50px] md:h-[64px]
+        px-3
+        shadow-sm
+        min-w-[50px]
+        max-w-full
         ${wrapperClass}
       `}
     >
-      <Search className="w-6 h-6 text-[#A4A59F] mr-3 flex-shrink-0" />
+      <Search className="w-6 h-6 text-[#A4A59F] flex-shrink-0" />
       <input
         type="text"
         onChange={(e) => onSearch(e.target.value)}
         placeholder={placeholder ?? autoPlaceholder}
         className={`
-          flex-1 bg-transparent outline-none text-[#34352E] placeholder-[#A4A59F] text-base
+          flex-1 min-w-0 bg-transparent outline-none text-[#34352E] placeholder-[#A4A59F] md:text-base 
           ${className}
         `}
       />
