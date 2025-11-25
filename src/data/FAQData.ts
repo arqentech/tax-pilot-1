@@ -114,3 +114,28 @@ export const generalFaqData: FAQItem[] = [
       "You sign up, complete your profile, upload required documents, and select a service. Our team processes your request and keeps you updated.",
   },
 ];
+export const blogsFaqData: FAQItem[] = [
+  {
+    question: "Can I be contacted by phone?",
+    answer: "Yes, if you have provided consent for phone communications.",
+  },
+  {
+    question: "How can I opt out of email communications?",
+    answer:
+      "You can unsubscribe using the link inside our emails or update your notification settings.",
+  },
+  {
+    question: "How can I stay up to date on new services?",
+    answer:
+      "Enable notifications or check the announcements inside your dashboard.",
+  },
+  {
+    question: "Is my data protected?",
+    answer: "Yes. We follow strict data protection and encryption standards.",
+  },
+  {
+    question: "Where can I download the App?",
+    answer:
+      "You can download the mobile app from the App Store or Google Play.",
+  },
+];

@@ -14,7 +14,7 @@ const Feedback = ({
   };
 
   return (
-    <div className={`rounded-[26px] p-8 ${className}`}>
+    <div className={`rounded-[26px] py-8 ${className}`}>
       <h3 className="font-bricolage text-[22px] font-extrabold leading-[30px]">
         {question}
       </h3>

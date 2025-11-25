@@ -2,6 +2,8 @@ import { blogData } from "@/data/BlogData";
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import Breadcrumbs from "../service-details/BreadCrumb";
+import Feedback from "@/components/ui/Feedback";
+import BlogsFaq from "./BlogsFaq";
 
 export default function BlogPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -27,27 +29,25 @@ export default function BlogPage() {
 
       <div className="max-w-[985px] mx-auto px-4 py-10 text-center">
         <div className="flex items-center justify-center gap-4 mb-4">
-          <span className="bg-[#E9F8D7] text-[#4C6B22] px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
+          <span className="bg-[#EEFCD7] text-[#36500C] border border-[#D9E6C0] px-4 py-1 rounded-full text-sm font-medium flex items-center gap-2">
             <img src="/svg/calendar.svg" className="w-4" />
             26, Oct, 2025
           </span>
 
-          <span className="bg-[#F3E8FF] text-[#7E3AF2] px-3 py-1 rounded-full text-sm font-medium">
-            {blog.tag}
+          <span className="flex items-center bg-[#E7D8FB] text-[#3C0D6D] border border-[#D2BDE9] w-[94px] px-3 py-1 rounded-full text-sm font-medium">
+            <img src="/svg/funnel.svg" className="w-4" /> {blog.tag}
           </span>
 
-          <span className="bg-[#F6F6F6] text-[#555] px-3 py-1 rounded-full text-sm font-medium">
+          <span className="bg-[#34352E1C] w-[109px] border border-[#34352E2E] text-[#3C0D6D]px-3 py-1 rounded-full text-sm font-medium">
             {blog.readTime}
           </span>
         </div>
 
-        <h1 className="text-[32px] md:text-[48px] font-extrabold leading-tight text-[#1A1A1A]">
-          {blog.title}
-        </h1>
+        <h1 className="sub-heading">{blog.title}</h1>
       </div>
 
       <div className="w-full px-4">
-        <div className="w-full rounded-[25px] overflow-hidden">
+        <div className="w-full md:w-[1320px] rounded-[25px] overflow-hidden">
           <img
             src={blog.image}
             alt={blog.title}
@@ -56,13 +56,15 @@ export default function BlogPage() {
         </div>
       </div>
 
-      <div className="max-w-[985px] mx-auto px-4 pt-12 pb-20">
+      <div className="max-w-[985px]  mx-auto px-4 pt-12 pb-20">
         <h2 className="text-[26px] font-bold mb-3">In-depth analysis</h2>
         <p className="text-[17px] text-[#4A4A4A] leading-[28px] whitespace-pre-line">
           {blog.inDepthAnalysis}
         </p>
 
-        <h2 className="mt-10 text-[26px] font-bold">Key Advantages</h2>
+        <h2 className="mt-10 font-bricolage text-[28px] font-extrabold">
+          Advantages
+        </h2>
         <ul className="mt-3 space-y-2 text-[17px] text-[#555] leading-[28px]">
           {blog.advantages.map((item, index) => (
             <li key={index} className="flex gap-2">
@@ -71,10 +73,19 @@ export default function BlogPage() {
           ))}
         </ul>
 
-        <h2 className="mt-10 text-[26px] font-bold">Conclusion</h2>
+        <h2 className="mt-10 font-bricolage text-[28px] font-extrabold">
+          Conclusion
+        </h2>
         <p className="mt-3 text-[17px] text-[#4A4A4A] leading-[28px]">
           {blog.conclusion}
         </p>
+        <div>
+          <h2 className="mt-10 font-bricolage text-[28px] font-extrabold">
+            Frequently Asked Questions
+          </h2>
+          <BlogsFaq />
+        </div>
+        <Feedback />
       </div>
     </div>
   );
