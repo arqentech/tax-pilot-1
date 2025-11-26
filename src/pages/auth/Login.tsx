@@ -11,11 +11,13 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Eye, EyeClosed } from "lucide-react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,15 +43,29 @@ export default function LoginPage() {
               className="w-full h-[60px] bg-[#FBFBFA] !placeholder-[#9D9E98] rounded-[14px] border border-[#E6E6E1] !text-[18px] !leading-[24px] font-normal placeholder-[#9D9E98]"
             />
 
-            <Input
-              id="password"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full md:w-[466px] h-[60px] !placeholder-[#9D9E98] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] !text-[18px] !leading-[24px] font-normal placeholder-text-[14px] "
-            />
+            <div className="relative w-full md:w-[466px]">
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="h-[60px] !placeholder-[#9D9E98] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] !text-[18px] !leading-[24px] font-normal placeholder-text-[14px] pr-12"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute inset-y-0 right-4 flex items-center text-[#5F6057]"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? (
+                  <Eye className="h-5 w-5" />
+                ) : (
+                  <EyeClosed className="h-5 w-5" />
+                )}
+              </button>
+            </div>
 
             <div className="w-full flex justify-between items-center text-sm mt-2">
               <div className="flex items-center ">
