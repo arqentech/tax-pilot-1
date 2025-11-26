@@ -51,7 +51,7 @@
     @apply md:text-[58px] md:leading-[73px];
   }
   .sub-heading {
-    @apply font-bricolage font-extrabold text-[38px] leading-[38px] tracking-[-0.08em];
+    @apply font-bricolage font-extrabold text-[44px] leading-[38px] tracking-[-0.08em];
     @apply md:text-[58px] md:leading-[59px];
   }
 

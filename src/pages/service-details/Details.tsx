@@ -7,7 +7,7 @@ import { Link, useParams } from "react-router-dom";
 
 const Details: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { cartItems, setCartItems } = useCart(); // use cart context
+  const { addToCart } = useCart();
 
   const formatLabel = (value: string | undefined) =>
     value?.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -27,19 +27,20 @@ const Details: React.FC = () => {
     );
   }
 
-  // Add service to cart (dummy logic)
   const handleRequestService = () => {
-    if (!cartItems.some((item) => item.title === service.title)) {
-      setCartItems([
-        ...cartItems,
-        {
-          id: Date.now(), // unique ID for demo
-          title: service.title,
-          price: service.price,
-          description: service.description,
-        },
-      ]);
-      alert("Service added to cart!"); // optional feedback
+    const result = addToCart({
+      title: service.title,
+      price: service.price,
+      description: service.description,
+      hours: service.hours,
+      link: service.link,
+      vatIncluded: service.vatIncluded,
+    });
+
+    if (result.added) {
+      alert("Service added to cart!");
+    } else {
+      alert("Service already added to cart.");
     }
   };
 
@@ -90,7 +91,7 @@ const Details: React.FC = () => {
               </span>
             </div>
 
-            {/* Button triggers adding to cart */}
+            
             <PrimaryButton
               text="Request Service"
               width="257px"

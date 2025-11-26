@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Handbag, Menu, X } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation();
+  const { cartItems } = useCart();
+  const cartCount = cartItems.length;
   const isHome = pathname === "/";
   const navWrapperClass = isHome
     ? "full-bleed relative bg-[#FBFBFA]"
@@ -42,14 +45,30 @@ const Navbar = () => {
               {label}
             </Link>
           ))}
-          <Link to="/cart" className={`${linkStyle} flex items-center`}>
+          <Link
+            to="/cart"
+            className={`${linkStyle} relative flex items-center`}
+          >
             <Handbag className="h-5 w-5" />
+            {cartCount > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#007BFF] px-1 text-xs font-semibold text-white">
+                {cartCount}
+              </span>
+            )}
           </Link>
         </div>
 
         <div className="flex items-center gap-4 md:hidden">
-          <Link to="/cart" className={`${linkStyle} flex items-center`}>
+          <Link
+            to="/cart"
+            className={`${linkStyle} relative flex items-center`}
+          >
             <Handbag className="h-5 w-5" />
+            {cartCount > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#007BFF]  px-1 text-xs font-semibold text-white">
+                {cartCount}
+              </span>
+            )}
           </Link>
           <button
             onClick={() => setIsOpen((prev) => !prev)}
@@ -62,7 +81,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`absolute top-full left-0 w-full ${mobileMenuBg} md:hidden transform transition-all duration-300 origin-top ${
+        className={`absolute  left-0 w-full ${mobileMenuBg} md:hidden transform transition-all duration-300 origin-top ${
           isOpen
             ? "opacity-100 scale-y-100 pointer-events-auto"
             : "opacity-0 scale-y-0 pointer-events-none"
