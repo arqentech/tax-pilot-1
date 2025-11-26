@@ -36,21 +36,21 @@ const ServicesPage: React.FC = () => {
   });
 
   return (
-    <div className="sm:mt-5 md:mt-6 flex justify-center min-h-screen px-4 mb-10">
-      <div className="w-full max-w-[1320px] flex flex-col items-center">
-        <div className="text-center mb-8">
+    <div className="full-bleed bg-[#FBFBFA]">
+      <div className="global-container flex min-h-screen flex-col items-center px-4 pb-12 pt-8 md:pb-16 md:pt-12">
+        <div className="mb-8 text-center">
           <h1 className="font-bricolage heading-base">All Services</h1>
-          <p className="mt-2">Below are our Services and Bonuses</p>
+          <p className="mt-2 text-base">Below are our Services and Bonuses</p>
         </div>
 
-        <div className="flex flex-row items-center justify-center gap-4  w-full">
-          <SearchBar
-            onSearch={setQuery}
-            wrapperClass="w-[322px] md:max-w-[725px] w-full"
-          />
+        <div className="flex w-full  items-center gap-3 flex-row justify-center md:gap-4">
+          <div className="w-full md:max-w-[720px]">
+            <SearchBar onSearch={setQuery} />
+          </div>
           <FilterButton onFilterClick={toggleFilter} />
         </div>
-        <div className="mb-5">
+
+        <div className="mt-5 w-full max-w-[980px]">
           <Categories
             onSelect={handleCategorySelect}
             searchValue={query}
@@ -59,16 +59,18 @@ const ServicesPage: React.FC = () => {
           />
         </div>
 
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 justify-items-center w-full pt-2">
-          {filteredData.length > 0 ? (
-            filteredData.map((card, index) => (
-              <ServiceCard key={index} {...card} />
-            ))
-          ) : (
-            <div className="col-span-full text-center mt-6">
-              <p className="text-base">No service found</p>
-            </div>
-          )}
+        <div className="mt-6 w-full">
+          <div className="grid max-h-[calc(100vh-320px)] grid-cols-1 gap-6 overflow-y-auto pb-4 md:grid-cols-2 lg:grid-cols-2">
+            {filteredData.length > 0 ? (
+              filteredData.map((card, index) => (
+                <ServiceCard key={index} {...card} />
+              ))
+            ) : (
+              <div className="col-span-full mt-6 text-center">
+                <p className="text-base">No service found</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

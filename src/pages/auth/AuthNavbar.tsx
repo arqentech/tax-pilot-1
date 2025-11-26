@@ -72,7 +72,7 @@ const AuthNavbar = () => {
 
 export default AuthNavbar;
 const navLinks = [
-  { to: "/how-it-works", label: "How it works" },
+  { to: "/", label: "How it works" },
   { to: "/services", label: "Services" },
   { to: "/faq", label: "FAQ" },
   { to: "/blogs", label: "Blogs" },

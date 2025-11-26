@@ -52,7 +52,7 @@ export default function FAQPage() {
           Frequently asked questions about our services
         </p>
 
-        <div className="flex w-full items-center gap-3 pt-2 flex-row justify-center md:gap-4">
+        <div className="flex w-full sm:flex-col items-center gap-3 pt-2 flex-row justify-center md:gap-4">
           <div className="w-full flex-1 md:max-w-[710px]">
             <SearchBar onSearch={handleSearch} placeholder="Search query" />
           </div>
