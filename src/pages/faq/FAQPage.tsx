@@ -46,18 +46,22 @@ export default function FAQPage() {
 
   return (
     <section className="w-full py-12 md:py-16">
-      <div className="flex flex-col items-center gap-6">
+      <div className="global-container flex flex-col items-center gap-6">
         <span className="sub-heading text-center">FAQs</span>
         <p className="text-base text-center text-[#5F6057]">
           Frequently asked questions about our services
         </p>
 
-        <div className="flex w-full sm:flex-col items-center gap-3 pt-2 flex-row justify-center md:gap-4">
-          <div className="w-full flex-1 md:max-w-[710px]">
-            <SearchBar onSearch={handleSearch} placeholder="Search query" />
+        <div className="flex w-full  items-center gap-3 flex-row justify-center md:gap-4">
+          {" "}
+          <div className="w-full md:max-w-[720px]">
+            <SearchBar
+              onSearch={handleSearch}
+              placeholder="Search query"
+              wrapperClass="w-full"
+            />
           </div>
-
-          <div className="w-full md:w-auto">
+          <div>
             <SimpleDropdown items={faqOptions} onSelect={handleSelect} />
           </div>
         </div>
