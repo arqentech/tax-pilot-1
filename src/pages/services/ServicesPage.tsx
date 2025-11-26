@@ -36,8 +36,8 @@ const ServicesPage: React.FC = () => {
   });
 
   return (
-    <div className="full-bleed bg-[#FBFBFA]">
-      <div className="global-container flex min-h-screen flex-col items-center px-4 pb-12 pt-8 md:pb-16 md:pt-12">
+    <div className="w-full md:py-16">
+      <div className="flex min-h-screen flex-col items-center px-4 md:pb-16 ">
         <div className="mb-8 text-center">
           <h1 className="font-bricolage heading-base">All Services</h1>
           <p className="mt-2 text-base">Below are our Services and Bonuses</p>

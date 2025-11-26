@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className={`${navWrapperClass} z-50`}>
-      <div className="global-container flex items-center justify-between py-3 md:py-4">
+      <div className="global-container flex items-center justify-between md:py-4">
         <Link to="/" className="flex items-center flex-shrink-0">
           <img
             src="/svg/header-logo.svg"
@@ -69,7 +69,7 @@ const Navbar = () => {
         }`}
       >
         <div
-          className={`container-main flex flex-col items-center gap-4 py-4 ${baseText}`}
+          className={`container-main flex flex-col items-center gap-4  ${baseText}`}
         >
           {[...navLinks, ...actionLinks].map(({ to, label }) => (
             <Link

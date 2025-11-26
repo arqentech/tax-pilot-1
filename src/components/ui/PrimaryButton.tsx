@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 interface PrimaryButtonProps {
   text: string;
@@ -6,6 +6,7 @@ interface PrimaryButtonProps {
   bgColor?: string;
   hoverColor?: string;
   textColor?: string;
+  onClick?: () => void; // <-- added this
 }
 
 export default function PrimaryButton({
@@ -14,6 +15,7 @@ export default function PrimaryButton({
   bgColor = "#007BFF",
   hoverColor = "#0068d6",
   textColor = "#FFFFFF",
+  onClick, // <-- added
 }: PrimaryButtonProps) {
   return (
     <button
@@ -29,6 +31,7 @@ export default function PrimaryButton({
       className="mt-6 rounded-full px-6 font-semibold flex items-center justify-center gap-2 shadow-lg transition-all duration-200"
       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = hoverColor)}
       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = bgColor)}
+      onClick={onClick} // <-- connect the handler
     >
       {text} <ChevronRight size={18} />
     </button>

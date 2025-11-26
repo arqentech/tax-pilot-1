@@ -14,6 +14,7 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 import EmptyCart from "./pages/cart/EmptyCart";
 import Blogs from "./pages/blogs/Blogs";
 import BlogDetail from "./pages/blog-details/BlogDetails";
+import CartPage from "./pages/cart/Cart";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="contact-us" element={<ContactUs />} />
-          <Route path="cart" element={<EmptyCart />} />
+          <Route path="cart" element={<CartPage />} />
         </Route>
 
         <Route element={<AuthLayout />}>

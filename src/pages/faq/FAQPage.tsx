@@ -45,8 +45,8 @@ export default function FAQPage() {
   );
 
   return (
-    <section className="w-full py-12 md:py-16">
-      <div className="global-container flex flex-col items-center gap-6">
+    <section className="w-full  md:py-16">
+      <div className=" flex flex-col items-center gap-6">
         <span className="sub-heading text-center">FAQs</span>
         <p className="text-base text-center text-[#5F6057]">
           Frequently asked questions about our services

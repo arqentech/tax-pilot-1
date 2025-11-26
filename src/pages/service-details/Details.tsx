@@ -1,12 +1,13 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
-import { cardData } from "../../data/CardData";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import { useCart } from "@/contexts/CartContext";
 import { CheckCircle, Clock } from "lucide-react";
-import PrimaryButton from "../../components/ui/PrimaryButton";
 import Breadcrumbs from "./BreadCrumb";
+import { cardData } from "@/data/CardData";
+import { Link, useParams } from "react-router-dom";
 
 const Details: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { cartItems, setCartItems } = useCart(); // use cart context
 
   const formatLabel = (value: string | undefined) =>
     value?.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -25,6 +26,22 @@ const Details: React.FC = () => {
       </div>
     );
   }
+
+  // Add service to cart (dummy logic)
+  const handleRequestService = () => {
+    if (!cartItems.some((item) => item.title === service.title)) {
+      setCartItems([
+        ...cartItems,
+        {
+          id: Date.now(), // unique ID for demo
+          title: service.title,
+          price: service.price,
+          description: service.description,
+        },
+      ]);
+      alert("Service added to cart!"); // optional feedback
+    }
+  };
 
   return (
     <div className="grid grid-col-1 justify-center min-h-screen px-4 pb-16">
@@ -73,11 +90,15 @@ const Details: React.FC = () => {
               </span>
             </div>
 
-            <PrimaryButton text="Request Service" width="257px" />
+            {/* Button triggers adding to cart */}
+            <PrimaryButton
+              text="Request Service"
+              width="257px"
+              onClick={handleRequestService}
+            />
           </div>
         </div>
 
-        {/* In Depth Analysis */}
         {service.inDepthAnalysis && (
           <div className="mb-10">
             <h2 className="text-2xl font-semibold mb-4 text-gray-900">
@@ -89,7 +110,6 @@ const Details: React.FC = () => {
           </div>
         )}
 
-        {/* Advantages */}
         {service.advantages && (
           <div>
             <h2 className="text-2xl font-semibold mb-4 text-gray-900">
