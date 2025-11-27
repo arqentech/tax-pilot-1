@@ -13,12 +13,12 @@ import RelatedServices from "../service-details/RelatedServices";
 export default function Home() {
   return (
     <div className="flex flex-col">
-      <HeroSection />
+      {/* <HeroSection />
       <WhatDefinesUs />
       <HowWeWork />
-      <ServicesSection />
-      {/* <TeamCard /> */}
-      <HomePageFAQ />
+      <ServicesSection /> */}
+      <TeamCard />
+      {/* <HomePageFAQ /> */}
       {/* <BlogSection /> */}
       {/* <ClientReviews/> */}
       {/* <RelatedServices/> */}

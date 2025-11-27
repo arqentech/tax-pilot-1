@@ -29,9 +29,9 @@ const Details: React.FC = () => {
 
   const handleRequestService = () => {
     const result = addToCart({
-      title: service.title,
-      price: service.price,
-      description: service.description,
+          title: service.title,
+          price: service.price,
+          description: service.description,
       hours: service.hours,
       link: service.link,
       vatIncluded: service.vatIncluded,
