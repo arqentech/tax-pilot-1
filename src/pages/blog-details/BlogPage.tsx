@@ -5,6 +5,7 @@ import Breadcrumbs from "../service-details/BreadCrumb";
 import Feedback from "@/components/ui/Feedback";
 import BlogsFaq from "./BlogsFaq";
 import ShareButtons from "@/components/ui/ShareButtons";
+import IseeSection from "@/components/ui/ISEESection";
 
 export default function BlogPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -59,7 +60,7 @@ export default function BlogPage() {
 
       <div className="w-full md:grid grid-cols-[220px_1fr] gap-16 mx-auto px-4 pt-12 pb-20">
         <div className="hidden md:block">
-          <ShareButtons  />
+          <ShareButtons />
         </div>
 
         <div>
@@ -93,6 +94,7 @@ export default function BlogPage() {
             <BlogsFaq />
           </div>
 
+          <IseeSection />
           <Feedback />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BadgeCheck } from "lucide-react";
 
 export default function TaxPilotSection() {
   return (
@@ -11,17 +11,17 @@ export default function TaxPilotSection() {
 
           <ul className="mt-4 space-y-3 text-[16px] lg:text-[20px] leading-[23px]">
             <li className="flex items-center gap-3">
-              <img src="/svg/check.svg" className="w-5 h-5" />
+              <BadgeCheck color="#0AD6A1" width={20} />
               <span>Upload. Done. Relax</span>
             </li>
 
             <li className="flex items-center gap-3">
-              <img src="/svg/check.svg" className="w-5 h-5" />
+              <BadgeCheck color="#0AD6A1" width={20} />
               <span>Anytime, anywhere, any device</span>
             </li>
 
             <li className="flex items-center gap-3">
-              <img src="/svg/check.svg" className="w-5 h-5" />
+              <BadgeCheck color="#0AD6A1" width={20} />
               <span>Data protected by certified experts</span>
             </li>
           </ul>

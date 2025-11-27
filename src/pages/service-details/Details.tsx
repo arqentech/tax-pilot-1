@@ -60,7 +60,7 @@ const Details: React.FC = () => {
             <img
               src="/svg/client-calls-customer-care-for-support.svg"
               alt={service.title}
-              className="w-[311px] h-[341px] lg:w-[493px] lg:h-[542px] object-contain"
+              className="w-full lg:w-[493px] lg:h-[542px] object-contain"
             />
           </div>
 
