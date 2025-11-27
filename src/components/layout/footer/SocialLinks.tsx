@@ -1,4 +1,3 @@
-import { Linkedin, Instagram, Facebook, Music2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const socialLinks = [

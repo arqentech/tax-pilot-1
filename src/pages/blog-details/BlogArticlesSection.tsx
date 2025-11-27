@@ -1,5 +1,3 @@
-// <-- import blog section list
-
 import Badge from "@/components/ui/Badge";
 import BlogList from "@/components/ui/blogs/BlogList";
 

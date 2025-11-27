@@ -15,7 +15,7 @@ const TeamCard = ({
 
   const sizeClasses = isPrimary
     ? "w-[356px] h-[438px] md:hover:scale-105"
-    : "w-[106px] h-[438px] md:hover:scale-105";
+    : "w-[106px] h-[438px] md:hover:scale-105 opacity-50";
 
   const borderRadius = isPrimary ? "rounded-[32px]" : "rounded-[26px]";
   const nameTextSize = isPrimary ? "text-[22px]" : "text-[18px]";

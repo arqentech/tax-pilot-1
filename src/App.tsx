@@ -15,10 +15,12 @@ import EmptyCart from "./pages/cart/EmptyCart";
 import Blogs from "./pages/blogs/Blogs";
 import BlogDetail from "./pages/blog-details/BlogDetails";
 import CartPage from "./pages/cart/Cart";
+import ScrollToTop from "./components/layout/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />

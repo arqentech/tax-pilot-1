@@ -30,8 +30,12 @@ export default function FAQ({ data }: FAQProps) {
               <p className="px-2 font-medium text-[16px] lg:text-[18px] leading-[25px]">
                 {item.question}
               </p>
-              <span className="transition-transform duration-200 text-3xl">
-                {openIndex === index ? "-" : "+"}
+              <span
+                className={`transition-transform duration-200 text-3xl ${
+                  openIndex === index ? "rotate-45" : "rotate-0"
+                }`}
+              >
+                +
               </span>
             </div>
 
@@ -40,7 +44,7 @@ export default function FAQ({ data }: FAQProps) {
                 openIndex === index ? "max-h-40 mt-2" : "max-h-0"
               }`}
             >
-              <p className="px-2 font-medium text-[16px] lg:text-[18px] leading-[25px]">
+              <p className="px-2 font-normal text-[#5F6057] text-[16px] lg:text-[18px] leading-[25px]">
                 {item.answer}
               </p>
             </div>

@@ -1,4 +1,5 @@
 import { ArrowRight, BadgeCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function TaxPilotSection() {
   return (
@@ -25,17 +26,18 @@ export default function TaxPilotSection() {
               <span>Data protected by certified experts</span>
             </li>
           </ul>
-
-          <button className="mt-6 bg-[#007BFF] text-white rounded-full px-6 py-3 font-semibold flex items-center gap-2 shadow-lg hover:bg-[#0068d6] transition">
-            Explore Services <ArrowRight size={18} />
-          </button>
+          <Link to="/services">
+            <button className="mt-6 bg-[#007BFF] text-white rounded-full px-6 py-3 font-semibold flex items-center gap-2 shadow-lg hover:bg-[#0068d6] transition">
+              Explore Services <ArrowRight size={18} />
+            </button>
+          </Link>
         </div>
 
-        <div className="flex-1 flex w-full justify-end relative">
+        <div className="flex-1 flex w-full justify-end a">
           <img
             src="/svg/businesswoman-presents-business-report.svg"
             alt="Tax Illustration"
-            className="w-full max-w-[330px] lg:max-w-[500px] mr-[-30px] sm:mr-[-40px] lg:mr-[-60px]"
+            className="w-full max-w-[330px] lg:max-w-[500px] mr-[-30px] sm:mr-[-40px] lg:mr-[-60px] "
           />
         </div>
       </div>

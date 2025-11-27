@@ -24,7 +24,7 @@ const Navbar = () => {
           <img
             src="/svg/header-logo.svg"
             alt="TaxPilot logo"
-            className="h-[136px] w-[157px] md:h-[42px] md:w-[193.59px]"
+            className="h-[70px] w-[157px] md:h-[42px] md:w-[193.59px]"
             loading="lazy"
           />
         </Link>
@@ -81,7 +81,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`absolute  left-0 w-full ${mobileMenuBg} md:hidden transform transition-all duration-300 origin-top ${
+        className={`absolute left-0 w-full ${mobileMenuBg} md:hidden transform transition-all duration-300 origin-top ${
           isOpen
             ? "opacity-100 scale-y-100 pointer-events-auto"
             : "opacity-0 scale-y-0 pointer-events-none"
