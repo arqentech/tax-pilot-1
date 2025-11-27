@@ -1,5 +1,5 @@
 import FooterLogo from "./FooterLogo";
-import FooterLinks from "./FotterLinks";
+import FooterLinks from "./FooterLinks";
 import NewsletterSignup from "./NewsletterSignup";
 import SocialLinks from "./SocialLinks";
 

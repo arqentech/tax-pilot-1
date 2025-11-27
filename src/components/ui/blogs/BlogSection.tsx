@@ -17,14 +17,9 @@ export default function BlogSection() {
         </p>
 
         <div className="w-full mt-14">
-          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 overflow-x-auto scrollbar-hide">
             {blogData.slice(0, 3).map((item, index) => (
-              <div
-                key={index}
-                className="min-w-[400px] lg:min-w-0 mr-6 last:mr-0 snap-center"
-              >
-                <BlogCard {...item} slug={item.slug} />
-              </div>
+              <BlogCard key={index} {...item} slug={item.slug} />
             ))}
           </div>
         </div>
