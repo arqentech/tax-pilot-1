@@ -16,7 +16,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
   const parts = highlight ? review.split(highlight) : [review];
 
   return (
-    <div className="bg-[#F6F6F3] w-[414px] h-[247px] rounded-[26px] p-6 flex flex-col justify-between">
+    <div className="bg-[#F6F6F3] w-full max-w-[414px] h-[247px] rounded-[26px] p-6 flex flex-col justify-between">
       <p className=" text-[18px] leading-relaxed">
         {parts.map((part, idx) => (
           <React.Fragment key={idx}>

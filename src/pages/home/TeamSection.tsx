@@ -14,8 +14,8 @@ const TeamSection = () => {
 
   return (
     <section className="w-full py-16 md:py-10">
-      <div className="flex w-full flex-col items-center text-center md:flex-row md:items-start md:justify-center md:gap-12 md:text-left">
-        <div className="flex flex-col items-center gap-2 md:items-start">
+      <div className="flex w-full flex-col items-center text-center lg:flex-row lg:items-start lg:justify-center lg:gap-12 lg:text-left">
+        <div className="flex flex-col items-center gap-2 lg:items-start">
           <Badge text="Team" width="86px" />
           <h2 className="font-bricolage text-[38px] font-extrabold leading-[38px] md:leading-[73px] tracking-[-0.09em] md:text-[58px]">
             The TaxPilot Team
@@ -55,7 +55,7 @@ const TeamSection = () => {
               <TeamCard
                 key={member.name}
                 member={member}
-                className={`snap-center flex-shrink-0 w-[80%] sm:w-[280px] ${
+                className={`snap-center flex-shrink-0 w-[80%] max-w-[360px] ${
                   index === teamMembers.length - 1 ? "mr-4" : ""
                 }`}
               />
