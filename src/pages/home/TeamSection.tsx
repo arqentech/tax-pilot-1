@@ -55,7 +55,7 @@ const TeamSection = () => {
               <TeamCard
                 key={member.name}
                 member={member}
-                className={`snap-center flex-shrink-0 w-[80%] max-w-[360px] ${
+                className={`snap-center flex-shrink-0 w-[90%] max-w-[360px] ${
                   index === teamMembers.length - 1 ? "mr-4" : ""
                 }`}
               />

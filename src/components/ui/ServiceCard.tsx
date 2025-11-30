@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckCircle, ChevronRight, Clock } from "lucide-react";
+import {  ChevronRight, CircleCheck, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ServiceCardProps {
@@ -43,7 +43,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
           {vatIncluded && (
             <span className="bg-[#EEFCD7] flex items-center gap-1 text-[#36500C] text-xs font-medium px-2 py-1 rounded-full">
-              <CheckCircle className="w-3 h-3" />
+              <CircleCheck className="w-3 h-3" />
               VAT Included
             </span>
           )}

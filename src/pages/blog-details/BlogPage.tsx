@@ -29,8 +29,8 @@ export default function BlogPage() {
         ]}
       />
 
-      <div className="w-full mx-auto px-4 py-10 text-center">
-        <div className="flex items-center justify-center gap-4 mb-4">
+      <div className="w-full mx-auto py-10 text-center">
+        <div className="w-full flex flex-wrap items-center justify-center gap-4 mb-4">
           <span className="bg-[#EEFCD7] text-[#36500C] border border-[#D9E6C0] px-4 py-1 rounded-full text-sm font-medium flex items-center gap-2">
             <img src="/svg/calendar.svg" className="w-4" />
             26, Oct, 2025
@@ -48,7 +48,7 @@ export default function BlogPage() {
         <h1 className="sub-heading">{blog.title}</h1>
       </div>
 
-      <div className="w-full px-4">
+      <div className="w-full">
         <div className="w-full rounded-[25px] overflow-hidden mb-6 md:mb-20">
           <img
             src={blog.image}
@@ -63,7 +63,7 @@ export default function BlogPage() {
           <ShareButtons />
         </div>
 
-        <div>
+        <div className="w-full">
           <h2 className="text-[26px] font-bold mb-3">In-depth analysis</h2>
           <p className="text-[17px] text-justify text-[#4A4A4A] leading-[28px] whitespace-pre-line">
             {blog.inDepthAnalysis}

@@ -16,7 +16,7 @@ const RelatedServices = () => {
 
   return (
     <section className="w-full py-10">
-      <div className="container-main">
+      <div className="w-full">
         <div className="w-full flex flex-col items-center justify-center text-center mb-12">
           <Badge text="Services " width="115px" />
 
@@ -28,10 +28,10 @@ const RelatedServices = () => {
           </p>
         </div>
 
-        <div className="block md:hidden overflow-x-auto scrollbar-hide">
-          <div className="flex gap-4 px-4">
+        <div className="block w-full sm:hidden overflow-x-auto mt-14 max-w-[300px] mx-auto">
+          <div className="flex gap-4 ">
             {displayServices.map((service) => (
-              <div key={service.link} className="min-w-[280px]">
+              <div key={service.link} className="min-w-[300px]">
                 <ServiceCard
                   title={service.title}
                   description={service.description}
@@ -45,7 +45,7 @@ const RelatedServices = () => {
           </div>
         </div>
 
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 mb-12">
           {displayServices.map((service) => (
             <ServiceCard
               key={service.link}

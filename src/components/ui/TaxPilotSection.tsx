@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 export default function TaxPilotSection() {
   return (
-    <section className="w-full flex justify-center py-10 px-4">
-      <div className="bg-[#FFC107] w-full max-w-[430px] lg:max-w-[1200px] rounded-[28px] p-6 flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-20">
+    <section className="w-full flex justify-center py-10 ">
+      <div className="bg-[#FFC107] w-full lg:max-w-full rounded-[28px] p-6 flex flex-col justify-center lg:flex-row lg:items-center gap-10 lg:gap-20">
         <div className="flex-1">
-          <h2 className="text-[28px] leading-[32px] font-extrabold text-[#0A0A0A] lg:text-[58px] lg:leading-[59px]">
-            Ready to simplify <br /> your taxes with <br /> Tax Pilot?
+          <h2 className="sub-heading max-w-[]">
+            Ready to simplify your taxes with Tax Pilot?
           </h2>
 
           <ul className="mt-4 space-y-3 text-[16px] lg:text-[20px] leading-[23px]">
@@ -33,11 +33,11 @@ export default function TaxPilotSection() {
           </Link>
         </div>
 
-        <div className="flex-1 flex w-full justify-end a">
+        <div className="flex-1 flex w-full justify-center lg:justify-end">
           <img
             src="/svg/businesswoman-presents-business-report.svg"
             alt="Tax Illustration"
-            className="w-full max-w-[330px] lg:max-w-[500px] mr-[-30px] sm:mr-[-40px] lg:mr-[-60px] "
+            className="w-full  md:max-w-[400px] lg:max-w-[604px] mr-[-30px] sm:mr-[-40px] lg:mr-[-60px] "
           />
         </div>
       </div>

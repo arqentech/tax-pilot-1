@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CheckCircle, Clock, Trash2 } from "lucide-react";
+import { CircleCheck, Clock, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 import PrimaryButton from "@/components/ui/PrimaryButton";
@@ -55,7 +55,7 @@ export default function FilledCart({ items }: FilledCartProps) {
 
                   <div className="flex flex-wrap items-center gap-3 md:gap-4 md:justify-end">
                     <span className="inline-flex items-center gap-2 rounded-full bg-[#EEFCD7] px-3 py-1 text-xs font-semibold text-[#36500C]">
-                      <CheckCircle className="h-4 w-4" />
+                      <CircleCheck className="h-4 w-4" />
                       VAT Included
                     </span>
                     {item.hours ? (
