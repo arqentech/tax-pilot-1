@@ -32,7 +32,7 @@ export default function HowWeWork() {
           {steps.map((step, idx) => (
             <div
               key={step.number}
-              className={`relative sm:px-12 lg:px-20 py-12 w-full flex items-start gap-4 ${
+              className={`relative px-5 sm:px-12 lg:px-20 py-12 w-full flex items-start gap-4 ${
                 idx !== 0 ? "border-t border-white/15" : ""
               }`}
             >
