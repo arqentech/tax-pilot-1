@@ -19,7 +19,7 @@ export default function FAQ({ data }: FAQProps) {
 
   return (
     <section className="py-4 text-center">
-      <div className="mt-12 space-y-4 mx-auto">
+      <div className="mt-6 space-y-4 mx-auto">
         {data.map((item, index) => (
           <div
             key={index}
@@ -30,10 +30,9 @@ export default function FAQ({ data }: FAQProps) {
               <p className="px-2 font-medium text-[16px] lg:text-[18px] leading-[25px]">
                 {item.question}
               </p>
-             <span className="transition-transform duration-200 text-3xl">
-  {openIndex === index ? "-" : "+"}
-</span>
-
+              <span className="transition-transform duration-200 text-3xl">
+                {openIndex === index ? "-" : "+"}
+              </span>
             </div>
 
             <div

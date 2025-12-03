@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckCircle, Clock } from "lucide-react";
+import { CheckCircle, ChevronRight, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ServiceCardProps {
@@ -26,18 +26,18 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   advantages,
 }) => {
   return (
-    <div className="w-full rounded-2xl shadow-sm border border-[#E6E6E1] hover:shadow-md transition-shadow duration-200 overflow-hidden">
+    <div className="w-full md:max-w-[641px] rounded-2xl shadow-sm border border-[#E6E6E1] hover:shadow-md transition-shadow duration-200 overflow-hidden">
       <div className="bg-[#F9F9F799] pt-4 pr-4 pb-4 pl-4 min-h-[200px]">
-        <h3 className="font-bricolage text-[20px] lg:text-[24px] lg:leading-tight font-extrabold">
+        <h3 className="font-bricolage text-[20px] md:text-[24px] md:leading-tight font-extrabold">
           {title}
         </h3>
 
-        <p className="text-[14px] lg:text-[16px] mt-2 line-clamp-2 text-[#5F6057]">
+        <p className="text-[14px] md:text-[16px] mt-2 line-clamp-2 text-[#5F6057]">
           {description}
         </p>
 
-        <div className="mt-4 lg:mt-6 flex items-center gap-2 lg:gap-3 flex-wrap">
-          <span className="text-xl lg:text-2xl font-semibold text-gray-900">
+        <div className="mt-4 md:mt-6 flex items-center gap-2 md:gap-3 flex-wrap">
+          <span className="text-xl md:text-2xl font-semibold text-gray-900">
             € {price.toFixed(2)}
           </span>
 
@@ -57,18 +57,18 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
       </div>
 
-      <div className="bg-[#E6E6E1] py-3 lg:py-4 px-4 lg:px-6">
+      <div className="bg-[#E6E6E1] relative py-3 md:py-4 px-4 md:px-6">
         <Link
           to={link}
           className="text-[#04226B] text-sm font-semibold hover:underline flex items-center gap-1"
         >
-          <span className="block lg:hidden text-[18px] font-extrabold leading-[25px]">
+          <span className="block md:hidden text-[18px] font-extrabold leading-[25px]">
             Get this service{" "}
           </span>
-          <span className="hidden lg:block text-[18px] font-extrabold leading-[25px]">
+          <span className="hidden md:block text-[18px] font-extrabold leading-[25px]">
             Go to the service
           </span>
-          <span>&gt;</span>
+          <ChevronRight size={18} />
         </Link>
       </div>
     </div>

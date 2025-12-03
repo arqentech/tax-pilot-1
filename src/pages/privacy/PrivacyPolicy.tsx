@@ -4,7 +4,7 @@ import policyData from "./policyData.json";
 export default function PrivacyPolicy() {
   return (
     <div className="w-full flex justify-center py-10">
-      <Card className="w-auto h-auto md:h[1913px] rounded-[26px] p-10 shadow-sm bg-white border-[#E6E6E1]">
+      <Card className="w-full h-auto md:h[1913px] rounded-[26px] md:px-6 shadow-sm bg-white border-[#E6E6E1]">
         <CardContent className="py-5">
           <h1 className="font-bricolage sub-heading text-center py-10">{policyData.title}</h1>
 
@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
               {section.content.map((para, idx) => (
                 <p
                   key={idx}
-                  className="text-[18px] font-normal leading-[25px] mb-4"
+                  className="text-[18px] font-normal leading-[25px] mb-4 text-justify"
                 >
                   {para}
                 </p>

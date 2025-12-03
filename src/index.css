@@ -6,8 +6,9 @@
 @layer base {
   html,
   body {
+    
     font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
-    background-color: #fbfbfa;
+    background-color: #ffffff;
     color: #34352e;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -42,20 +43,28 @@
 
 @layer utilities {
   .main-heading {
-    @apply font-extrabold text-[44px] leading-[38px] tracking-[-0.09em];
+    @apply font-extrabold text-[40px] leading-[38px] tracking-[-0.09em];
     @apply md:text-[86px] md:leading-[73px];
   }
   .heading-base {
-    @apply font-extrabold text-[38px] leading-[73px] tracking-[-0.03em];
+    @apply font-extrabold text-[38px] leading-[73px] tracking-[-0.09em];
     @apply md:text-[58px] md:leading-[73px];
   }
   .sub-heading {
-    @apply font-bricolage font-extrabold text-[44px] leading-[38px] tracking-[-0.08em];
+    @apply font-bricolage font-extrabold text-[42px] leading-[38px] tracking-[-0.08em];
     @apply md:text-[58px] md:leading-[59px];
   }
 
   .text-base {
-    @apply  text-[18px] leading-[25px] md:text-[20px] ;
+    @apply text-[18px] leading-[25px] md:text-[20px];
+  }
+  .custom-box-shadow {
+    background: linear-gradient(to bottom, #54564a, #34352e);
+
+    border: 1px solid rgba(52, 53, 46, 0.28);
+
+    box-shadow: inset 0px -3px 3px #272822,
+      inset 0px 5px 8px rgba(46, 47, 40, 0.62);
   }
 }
 

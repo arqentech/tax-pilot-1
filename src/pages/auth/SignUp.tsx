@@ -34,7 +34,7 @@ export default function SignUpPage() {
 
   return (
     <div className=" flex items-center justify-center bg-[#FFFFFF] py-10">
-      <Card className="w-full md:w-auto md:h-[732px] rounded-[26px] border border-[#E7E7E7] p-8 flex-col items-center justify-center">
+      <Card className="w-full md:max-w-[650px] md:h-[892px] rounded-[26px] border border-[#E7E7E7] p-8 flex-col items-center justify-center">
         <CardHeader className="text-center mb-4">
           <CardTitle className="sub-heading">Get Started</CardTitle>
         </CardHeader>
@@ -52,7 +52,7 @@ export default function SignUpPage() {
               className="bg-[#FBFBFA] rounded-[14px] !text-[18px] h-[60px] border border-[#FBFBFA] placeholder:!text-[#9D9E98]"
             />
 
-            <div className="flex gap-2">
+            <div className="w-full flex gap-6 justify-between">
               <Input
                 id="name"
                 name="name"
@@ -121,7 +121,7 @@ export default function SignUpPage() {
           <CardFooter className="flex flex-col space-y-5 mt-4">
             <Button
               type="submit"
-              className="w-[460px] h-[60px] md:w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px] bg-gradient-to-b from-[#2E2E2E] to-black shadow-md hover:opacity-90"
+              className="w-full h-[60px] md:max-w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px] custom-box-shadow hover:opacity-90"
             >
               Sign Up
             </Button>
@@ -135,7 +135,7 @@ export default function SignUpPage() {
             <Button
               type="button"
               variant="outline"
-              className="w-[400px] md:w-[466px] h-[60px] rounded-full bg-[#F6F6F3] border-[#E6E6E1] text-[20px] text-[#5F6057] flex items-center justify-center gap-2"
+              className="w-full md:max-w-[466px] h-[60px] rounded-full bg-[#F6F6F3] border-[#E6E6E1] text-[20px] text-[#5F6057] flex items-center justify-center gap-2"
             >
               <img
                 src="/svg/google-icon-logo.svg"
