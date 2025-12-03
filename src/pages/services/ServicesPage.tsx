@@ -31,8 +31,7 @@ const ServicesPage: React.FC = () => {
     const fetchServices = async () => {
       try {
         setLoading(true);
-        const apiUrl = import.meta.env.VITE_API_URL || "https://api.stage.taxpilot.it/v1/services";
-        const response = await fetch("https://api.stage.taxpilot.it/v1/services");
+        const response = await fetch("/api/services");
         const data = await response.json();
 
         if (data.status === "success" && data.results?.data) {
