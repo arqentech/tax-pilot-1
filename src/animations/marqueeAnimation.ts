@@ -1,7 +1,7 @@
 import { Transition, TargetAndTransition } from "framer-motion";
 
 export const marqueeAnimation: TargetAndTransition = {
-  x: ["-100%", "100%"],
+  x: ["-20%", "100%"],
 };
 
 export const marqueeTransition: Transition = {

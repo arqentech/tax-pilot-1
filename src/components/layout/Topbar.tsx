@@ -8,7 +8,7 @@ const TopBar = () => {
   const controls = useAnimation();
 
   useEffect(() => {
-    controls.start(marqueeAnimation); // start left → right
+    controls.start(marqueeAnimation);
   }, [controls]);
 
   return (
@@ -17,8 +17,8 @@ const TopBar = () => {
         className="flex items-center gap-1 whitespace-nowrap"
         animate={controls}
         transition={marqueeTransition}
-        onHoverStart={() => controls.stop()}           // pause on hover
-        onHoverEnd={() => controls.start(marqueeAnimation)} // resume
+        onHoverStart={() => controls.stop()}           
+        onHoverEnd={() => controls.start(marqueeAnimation)} 
       >
         <span className="flex-shrink-0 font-medium text-sm leading-[20px] md:text-[18px] md:leading-[25px]">
           New services added recently •

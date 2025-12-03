@@ -14,15 +14,15 @@ import HomeBlogSection from "./HomeBlogSection";
 export default function Home() {
   return (
     <div className="flex flex-col">
-      {/* <HeroSection />
+      <HeroSection />
       <WhatDefinesUs />
       <HowWeWork />
       <ServicesSection />
       <TeamCard />
       <ClientReviews />
-      <HomePageFAQ /> */}
+      <HomePageFAQ />
       <HomeBlogSection />
-      {/* <TaxPilotSection /> */}
+      <TaxPilotSection />
     </div>
   );
 }
