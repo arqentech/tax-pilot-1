@@ -3,7 +3,7 @@ import { useCart } from "@/contexts/CartContext";
 import { CircleCheck, Clock } from "lucide-react";
 import Breadcrumbs from "./BreadCrumb";
 import { cardData } from "@/data/CardData";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 
 const Details: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
