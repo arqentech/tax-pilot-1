@@ -16,6 +16,8 @@ import Blogs from "./pages/blogs/Blogs";
 import BlogDetail from "./pages/blog-details/BlogDetails";
 import CartPage from "./pages/cart/Cart";
 import ScrollToTop from "./components/layout/ScrollToTop";
+import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
   return (

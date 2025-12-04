@@ -4,6 +4,7 @@ import { useMediaQuery } from "react-responsive";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
+  value?: string;
   className?: string;
   wrapperClass?: string;
   placeholder?: string;
@@ -11,6 +12,7 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({
   onSearch,
+  value,
   className = "",
   wrapperClass = "",
   placeholder,
@@ -38,6 +40,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       <input
         type="text"
         onChange={(e) => onSearch(e.target.value)}
+        value={value ?? undefined}
         placeholder={placeholder ?? autoPlaceholder}
         className={`
           flex-1 min-w-0 bg-transparent outline-none text-[#34352E] placeholder-[#A4A59F] md:text-base 

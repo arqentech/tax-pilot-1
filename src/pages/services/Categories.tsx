@@ -1,14 +1,20 @@
 import React from "react";
-import { categoriesData } from "../../data/CategoriesData";
+
+export interface CategoryOption {
+  identifier: string;
+  title: string;
+}
 
 interface CategoriesProps {
-  onSelect: (category: string) => void;
+  categories: CategoryOption[];
+  onSelect: (categoryIdentifier: string) => void;
   searchValue: string;
   isOpen: boolean;
   selectedCategory: string | null;
 }
 
 const Categories: React.FC<CategoriesProps> = ({
+  categories,
   onSelect,
   searchValue,
   isOpen,
@@ -16,8 +22,9 @@ const Categories: React.FC<CategoriesProps> = ({
 }) => {
   if (!isOpen) return null;
 
-  const filtered = categoriesData.filter((cat) =>
-    cat.toLowerCase().includes(searchValue.toLowerCase())
+  const normalizedSearch = searchValue.trim().toLowerCase();
+  const filtered = categories.filter((cat) =>
+    cat.title.toLowerCase().includes(normalizedSearch)
   );
 
   return (
@@ -25,20 +32,20 @@ const Categories: React.FC<CategoriesProps> = ({
       {filtered.length === 0 ? (
         <p className="text-gray-500 text-sm">No category found</p>
       ) : (
-        filtered.map((cat, i) => (
+        filtered.map((cat) => (
           <button
-            key={i}
-            onClick={() => onSelect(cat)}
+            key={cat.identifier}
+            onClick={() => onSelect(cat.identifier)}
             className={`
               px-4 py-2 rounded-full text-sm transition
               ${
-                selectedCategory === cat
+                selectedCategory === cat.identifier
                   ? "bg-[#037BFF] text-white"
                   : "bg-[#F1F1EC] text-gray-700 hover:bg-gray-200"
               }
             `}
           >
-            {cat}
+            {cat.title}
           </button>
         ))
       )}
