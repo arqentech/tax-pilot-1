@@ -27,7 +27,6 @@ const ServicesPage: React.FC = () => {
     }));
   }, [services]);
 
-  // Filter services based on search and category
   const filteredServices = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
     return services.filter((service: any) => {
@@ -105,7 +104,7 @@ const ServicesPage: React.FC = () => {
                   description_long={service.description_long}
                   price={service.price}
                   advantages={service.advantages}
-                  link={`/services/${service.identifier ?? service.id}`}
+                  identifier={service.identifier ?? service.id}
                 />
               ))
             ) : (

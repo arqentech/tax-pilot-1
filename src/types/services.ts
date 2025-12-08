@@ -1,13 +1,27 @@
+export interface ServiceImage {
+  service_id: number;
+  url: string;
+}
+
 export interface Category {
   id: number;
   identifier: string;
   title: string;
 }
 
+export interface ServiceCategory {
+  id: number;
+  service_id: number;
+  category_service_id: number;
+  category: Category;
+}
+
 export interface FAQ {
   id: number;
+  service_id: number;
   question: string;
   response: string;
+  position: number;
 }
 
 export interface Service {
@@ -17,7 +31,29 @@ export interface Service {
   description_short: string;
   description_long: string;
   price: number;
-  image?: { url: string };
-  categories: { category: Category }[];
-  faqs: FAQ[];
+  vatIncluded?: boolean;
+  hours?: string;
+  inDepthAnalysis?: string;
+  advantages?: string[];
+  image?: {
+    url: string;
+  };
+  categories?: {
+    category: {
+      identifier: string;
+      title: string;
+    };
+  }[];
+}
+export interface ServiceCardProps {
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  description_short?: string;
+  description_long?: string;
+  price?: number | string | null;
+  vatIncluded?: boolean;
+  hours?: string;
+  link?: string;
+  identifier?: string;
+  advantages?: string[];
 }

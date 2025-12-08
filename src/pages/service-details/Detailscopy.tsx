@@ -3,7 +3,7 @@ import { useCart } from "@/contexts/CartContext";
 import { CircleCheck, Clock } from "lucide-react";
 import Breadcrumbs from "./BreadCrumb";
 import { cardData } from "@/data/CardData";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const Details: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -101,7 +101,9 @@ const Details: React.FC = () => {
 
       {service.advantages && (
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <h2 className="text-justify text-2xl font-semibold text-gray-900">Advantages</h2>
+          <h2 className="text-justify text-2xl font-semibold text-gray-900">
+            Advantages
+          </h2>
 
           <div className="md:col-span-2">
             <ul className="space-y-3">

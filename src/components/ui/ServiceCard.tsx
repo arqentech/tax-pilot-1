@@ -1,19 +1,7 @@
 import React, { useMemo } from "react";
 import { ChevronRight, CircleCheck, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
-
-interface ServiceCardProps {
-  title: React.ReactNode;
-  description?: React.ReactNode;
-  description_short?: string;
-  description_long?: string;
-  price?: number | string | null;
-  vatIncluded?: boolean;
-  hours?: string;
-  link?: string;
-  identifier?: string;
-  advantages?: string[];
-}
+import { ServiceCardProps } from "@/types/services";
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
   title,
