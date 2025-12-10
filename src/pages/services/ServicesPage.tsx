@@ -10,7 +10,7 @@ const ServicesPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const { data: services = [], isLoading, isError } = useServices();
+  const { data: services = [], isLoading, isError, error } = useServices();
 
   const availableCategories = useMemo<CategoryOption[]>(() => {
     const map = new Map<string, string>();
@@ -57,12 +57,19 @@ const ServicesPage: React.FC = () => {
       <div className="text-center mt-10 text-gray-600">Loading services…</div>
     );
 
-  if (isError)
+  if (isError) {
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : "Failed to load services. Please check the console for details.";
+    
     return (
-      <div className="text-center mt-10 text-red-600">
-        Failed to load services.
+      <div className="text-center mt-10 px-4">
+        <p className="text-red-600 font-semibold mb-2">Failed to load services</p>
+        <p className="text-gray-600 text-sm">{errorMessage}</p>
+        <p className="text-gray-500 text-xs mt-2">Check browser console (F12) for more details</p>
       </div>
     );
+  }
 
   return (
     <div className="w-full md:py-16">

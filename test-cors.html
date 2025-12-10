@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS Test for TaxPilot API</title>
+</head>
+<body>
+    <h1>CORS Test</h1>
+    <button onclick="testCORS()">Test CORS</button>
+    <div id="result"></div>
+
+    <script>
+        async function testCORS() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            const apiUrl = 'https://api.stage.taxpilot.it/v1/services';
+            const yourDomain = window.location.origin;
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                const data = await response.json();
+                
+                // Check CORS headers
+                const corsHeader = response.headers.get('Access-Control-Allow-Origin');
+                
+                resultDiv.innerHTML = `
+                    <h2>✅ CORS Check Result:</h2>
+                    <p><strong>Your Domain:</strong> ${yourDomain}</p>
+                    <p><strong>CORS Header Found:</strong> ${corsHeader || 'NOT FOUND ❌'}</p>
+                    <p><strong>Status:</strong> ${corsHeader ? '✅ CORS is ENABLED' : '❌ CORS is BLOCKED'}</p>
+                    <p><strong>Response Status:</strong> ${response.status}</p>
+                `;
+            } catch (error) {
+                if (error.message.includes('CORS')) {
+                    resultDiv.innerHTML = `
+                        <h2>❌ CORS Error:</h2>
+                        <p><strong>Your Domain:</strong> ${yourDomain}</p>
+                        <p><strong>Error:</strong> ${error.message}</p>
+                        <p><strong>Status:</strong> ❌ Your domain is NOT allowed</p>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <h2>⚠️ Error:</h2>
+                        <p>${error.message}</p>
+                    `;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
