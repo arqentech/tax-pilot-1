@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import SearchBar from "../../components/ui/SearchBar";
 import FilterButton from "../../components/ui/FilterButton";
-import Categories from "../services/Categories";
 import BlogCard from "@/components/ui/blogs/BlogCard";
 import { blogData } from "@/data/BlogData";
+import Categories from "../services/Categories";
 
 const Blogs: React.FC = () => {
   const [query, setQuery] = useState("");
@@ -49,12 +49,12 @@ const Blogs: React.FC = () => {
           <FilterButton onFilterClick={toggleFilter} />
         </div>
         <div className="mb-5">
-          <Categories
+          {/* <Categories
             onSelect={handleCategorySelect}
             searchValue={query}
             isOpen={isFilterOpen}
             selectedCategory={selectedCategory}
-          />
+          /> */}
         </div>
 
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center w-full pt-2">
