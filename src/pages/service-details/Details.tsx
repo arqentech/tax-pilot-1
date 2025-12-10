@@ -4,6 +4,8 @@ import { CircleCheck, Clock } from "lucide-react";
 import Breadcrumbs from "./BreadCrumb";
 import { useParams } from "react-router-dom";
 import { useServiceDetails } from "@/hooks/useServiceDetails";
+import ServicesFAQ from "./ServicesFAQ";
+import HowWeWork from "@/components/ui/HowWeWork";
 
 const Loader = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -15,34 +17,44 @@ const Details: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { addToCart } = useCart();
 
-  const { data: service, isLoading, isError, error } = useServiceDetails(slug ?? "");
+  const {
+    data: service,
+    isLoading,
+    isError,
+    error,
+  } = useServiceDetails(slug ?? "");
 
   // Handle missing slug
   if (!slug) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-center text-red-600">Invalid service URL. Please select a valid service.</p>
+        <p className="text-center text-red-600">
+          Invalid service URL. Please select a valid service.
+        </p>
       </div>
     );
   }
 
   if (isLoading) return <Loader />;
-  
+
   if (isError) {
-    const errorMessage = error instanceof Error 
-      ? error.message 
-      : "Failed to load service. Please try again later.";
-    
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "Failed to load service. Please try again later.";
+
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
         <div className="text-center">
-          <p className="text-red-600 text-lg font-semibold mb-2">Error loading service</p>
+          <p className="text-red-600 text-lg font-semibold mb-2">
+            Error loading service
+          </p>
           <p className="text-gray-600">{errorMessage}</p>
         </div>
       </div>
     );
   }
-  
+
   if (!service) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -156,6 +168,32 @@ const Details: React.FC = () => {
                 {adv}
               </div>
             ))}
+          </div>
+        </section>
+      )}
+      <HowWeWork />
+
+      {service.faqs && service.faqs.length > 0 && (
+        <section className="grid gap-2 grid-cols-1 md:grid-cols-3 mt-12 md:space-x-7">
+          <div>
+            <h1 className="sub-heading mt-8">
+              <span className="block md:hidden text-center">
+                Your Tax Questions, answered Simply.
+              </span>
+              <span className="hidden md:block">
+                Frequently asked questions
+              </span>
+            </h1>
+
+            <p className="hidden md:block mt-6 text-base">
+              The Equivalent Economic Situation Indicator (ISEE) is a numerical
+              value that certifies the economic situation of a household in
+              Italy.
+            </p>
+          </div>
+
+          <div className="md:col-span-2 space-y-3">
+            <ServicesFAQ faqs={service.faqs} />
           </div>
         </section>
       )}

@@ -23,6 +23,10 @@ export interface FAQ {
   response: string;
   position: number;
 }
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
 
 export interface Service {
   id: number;
@@ -44,7 +48,9 @@ export interface Service {
       title: string;
     };
   }[];
+  faqs?: FAQ[]; // <-- Add this line
 }
+
 export interface ServiceCardProps {
   title: React.ReactNode;
   description?: React.ReactNode;

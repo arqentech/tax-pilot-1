@@ -41,7 +41,7 @@ export default function FAQ({ data }: FAQProps) {
 
             <div
               className={`overflow-hidden transition-all duration-300 ${
-                openIndex === index ? "max-h-40 mt-2" : "max-h-0"
+                openIndex === index ? "max-h-[1000px] mt-2" : "max-h-0"
               }`}
             >
               <p className="px-2 font-normal text-[#5F6057] text-[16px] lg:text-[18px] leading-[25px]">
