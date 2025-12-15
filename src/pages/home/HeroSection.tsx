@@ -23,38 +23,29 @@ const HeroSection = () => {
           </Link>
         </div>
 
-        {/* <div className="mx-auto w-full max-w-[360px] sm:max-w-[460px] md:max-w-[540px] lg:max-w-[646px] md:mx-0">
-          <img
-            src="/svg/hero-illustration.png"
-            alt="Hero illustration showing online tax services"
-            className="h-auto w-full object-contain"
-            loading="lazy"
-          />
-        </div> */}
-        <div className=" w-full max-w-[360px] sm:max-w-[460px] md:max-w-[540px] lg:max-w-[646px] md:mx-0">
-          <div className="w-full relative items-end  flex w-full max-w-[320px] justify-center sm:max-w-[380px]">
+        <div className="mx-auto w-full items-center justify-center max-w-[360px] sm:max-w-[460px] md:max-w-[540px] lg:max-w-[646px] md:mx-0">
+          <div className="relative w-full max-w-[800px] mx-auto">
             <img
               src="/svg/home/hero-illustration-1.svg"
               alt="Man using laptop for tax calculation"
-              className="h-auto w-full max-w-[310px] object-contain translate-x-[-140px] translate-y-[20px]"
+              className="h-auto w-full object-contain relative top-20 md:-left-24 md:top-20"
               loading="lazy"
             />
 
-            <img
-              src="/svg/home/hero-illustration-2.svg"
-              alt="Percentage icon"
-              className="absolute right-[90px] h-auto max-w-[100px] object-contain 
-                 -top-10 "
-              loading="lazy"
-            />
-
-            <img
-              src="/svg/home/hero-illustration-3.svg"
-              alt="Dollar icon"
-              className="absolute max-w-[50px] -top-10 right-[52%] h-auto w-[75px] translate-x-[30%] object-contain 
-                 sm:-top-18 sm:right-[56%] sm:w-[85px]"
-              loading="lazy"
-            />
+            <div className="absolute -right-[25%] top-0 md:top-0 md:right-0 flex items-start gap-2">
+              <img
+                src="/svg/home/hero-illustration-3.svg"
+                alt="Dollar icon"
+                className="h-auto w-[15%] sm:w-[20%]  md:w-[40%] object-contain"
+                loading="lazy"
+              />
+              <img
+                src="/svg/home/hero-illustration-2.svg"
+                alt="Percentage icon"
+                className="h-auto w-[25%] sm:w-[30%]  md:w-[50%] object-contain mt-4"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </div>
