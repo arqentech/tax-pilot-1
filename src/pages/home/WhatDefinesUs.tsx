@@ -4,7 +4,7 @@ const WhatDefinesUs = () => {
       <div className="page-container">
         <div className="flex flex-col items-center md:grid md:grid-cols-2 gap-6 mb-12 text-center md:text-left">
           <h2 className="heading-base">
-            What defines us
+            What defines us?
           </h2>
 
           <p className="text-[18px] font-medium leading-[25px] lg:text-[20px]:">

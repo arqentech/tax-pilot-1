@@ -28,3 +28,5 @@ curl -i -X GET "$API_URL" \
   -H "Origin: $YOUR_DOMAIN" \
   -H "Content-Type: application/json" \
   -v
+
+

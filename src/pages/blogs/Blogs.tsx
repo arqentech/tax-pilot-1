@@ -35,7 +35,7 @@ const Blogs: React.FC = () => {
     <div className="py-10 mt-4 sm:mt-5 md:mt-6 flex justify-center min-h-screen px-4">
       <div className="w-full max-w-[1320px] flex flex-col items-center">
         <div className="text-center mb-8">
-          <h1 className="font-bricolage heading-base">The TaxPilot Blog</h1>
+          <h1 className="font-bricolage heading-base">The TaxPilot Blog .</h1>
           <p className="mt-2">
             Tax news with TaxPilot: explore our blog for tips & insights.
           </p>

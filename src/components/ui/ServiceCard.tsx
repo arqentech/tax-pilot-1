@@ -15,7 +15,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   identifier,
   advantages,
 }) => {
-  // Sanitize HTML for string values
   const sanitize = (value?: string) =>
     value
       ? value
@@ -24,9 +23,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           .trim()
       : "";
 
-  // Compute description text
   const descriptionText = useMemo<React.ReactNode>(() => {
-    if (description) return description; // JSX or string passed directly
+    if (description) return description;
 
     let fallback = description_short ?? description_long ?? "";
     if (Array.isArray(advantages)) fallback += " " + advantages.join(" ");
@@ -35,14 +33,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     return cleaned.length > 220 ? `${cleaned.slice(0, 217)}...` : cleaned;
   }, [description, description_short, description_long, advantages]);
 
-  // Price parsing and formatting
   const displayPrice = useMemo(() => {
     if (price === null || price === undefined) return null;
     const numeric = typeof price === "string" ? parseFloat(price) : price;
     return Number.isFinite(numeric) ? `€ ${numeric.toFixed(2)}` : null;
   }, [price]);
 
-  // Determine link
   const serviceLink =
     link ?? (identifier ? `/services/${identifier}` : undefined);
   const showLink = Boolean(serviceLink);

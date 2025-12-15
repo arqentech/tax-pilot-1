@@ -49,7 +49,7 @@ export default function FAQPage() {
       <div className=" flex flex-col items-center gap-6">
         <span className="sub-heading text-center">FAQs</span>
         <p className="text-base text-center text-[#5F6057]">
-          Frequently asked questions about our services
+          Frequently asked questions about our services.
         </p>
 
         <div className="flex w-full  items-center gap-3 flex-row justify-center md:gap-4">

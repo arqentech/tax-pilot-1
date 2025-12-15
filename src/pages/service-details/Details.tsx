@@ -24,7 +24,6 @@ const Details: React.FC = () => {
     error,
   } = useServiceDetails(slug ?? "");
 
-  // Handle missing slug
   if (!slug) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -160,7 +159,7 @@ const Details: React.FC = () => {
             Advantages
           </h2>
           <div className="md:col-span-2 space-y-3">
-            {service.advantages.map((adv, index) => (
+            {service.advantages.map((adv: string, index: number) => (
               <div
                 key={index}
                 className="bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-700"

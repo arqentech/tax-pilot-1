@@ -18,7 +18,7 @@ const TeamSection = () => {
         <div className="flex flex-col items-center gap-2 lg:items-start">
           <Badge text="Team" width="86px" />
           <h2 className="font-bricolage text-[38px] font-extrabold leading-[38px] md:leading-[73px] tracking-[-0.09em] md:text-[58px]">
-            The TaxPilot Team
+            The TaxPilot Team.
           </h2>
           <p className="w-full text-justify text-[18px] font-medium text-[#5A5851] md:text-[20px]">
             Our professionals bring years of CAF experience and fiscal expertise

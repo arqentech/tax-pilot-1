@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 export default function HowWeWork() {
   return (
     <section className="w-full py-10">
-      <div className="grid md:grid-cols-2 bg-[#037BFF] rounded-[32px] justify-center items-center text-white overflow-hidden shadow-xl">
+      <div className="global-container">
+        <div className="grid md:grid-cols-2 bg-[#037BFF] rounded-[32px] justify-center items-center text-white overflow-hidden shadow-xl">
         <div className="flex flex-col justify-center px-8 lg:px-20 py-16 lg:py-24">
           <span className="w-[156px] h-[34px] inline-flex items-center justify-center rounded-full bg-[#006ADE] font-medium backdrop-blur-md">
-            How we work
+            How we work?
           </span>
 
           <h2 className="mt-6 font-bricolage text-[38px] lg:text-[58px] lg:leading-[59px] font-extrabold leading-[38px] tracking-[-0.03em]">
@@ -53,12 +54,13 @@ export default function HowWeWork() {
                 </div>
               </div>
 
-              <div className=" absolute right-0 bottom-0 text-[121px] lg:text-[220px] font-bold text-white/10 leading-[100%] select-none pointer-events-none">
+              <div className="absolute right-0 bottom-0 text-[121px] lg:text-[220px] font-bold text-white/10 leading-[100%] select-none pointer-events-none">
                 {step.number}
               </div>
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );
