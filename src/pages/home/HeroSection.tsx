@@ -1,23 +1,28 @@
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { floatUpDown } from "@/animations/float";
 
 const HeroSection = () => {
   return (
-    <section className="full-bleed relative bg-[#FBFBFA] pt-[20px] pb-16  md:pb-24">
-      <div className=" global-container flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-16">
-        <div className=" w-full flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:space-y-8">
-          <h1 className="font-bricolage main-heading ">
-            <span className="md:inline-block lg:whitespace-nowrap ">
-              Online taxes made {""}
+    <section className="full-bleed relative bg-[#FBFBFA] pt-[20px] pb-16 md:pb-24">
+      <div className="global-container flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-16">
+        {/* Left content */}
+        <div className="w-full flex flex-col items-center text-center md:items-start md:text-left space-y-6 md:space-y-8">
+          <h1 className="font-bricolage main-heading">
+            <span className="md:inline-block lg:whitespace-nowrap">
+              Online taxes made{" "}
             </span>
             <span className="md:block lg:whitespace-nowrap">
               Simple with Tax Pilot .
             </span>
           </h1>
+
           <p className="text-base leading-relaxed max-w-lg opacity-90">
             Access over 150 certified CAF and patronage services, guided step by
             step by real experts, all from the comfort of your home.
           </p>
+
           <Link to="/services">
             <PrimaryButton text="Explore Services" width="262px" />
           </Link>
@@ -32,18 +37,23 @@ const HeroSection = () => {
               loading="lazy"
             />
 
-            <div className="absolute -right-[25%] top-0 md:top-0 md:right-0 flex items-start gap-2">
-              <img
+            <div className="absolute right-0 top-0 flex items-start gap-2">
+              <motion.img
                 src="/svg/home/hero-illustration-3.svg"
                 alt="Dollar icon"
-                className="h-auto w-[15%] sm:w-[20%]  md:w-[40%] object-contain"
+                className="w-[clamp(32px,8vw,80px)] h-auto object-contain"
                 loading="lazy"
+                variants={floatUpDown(12, 3)}
+                animate="animate"
               />
-              <img
+
+              <motion.img
                 src="/svg/home/hero-illustration-2.svg"
                 alt="Percentage icon"
-                className="h-auto w-[25%] sm:w-[30%]  md:w-[50%] object-contain mt-4"
+                className="w-[clamp(40px,10vw,100px)] h-auto object-contain mt-4"
                 loading="lazy"
+                variants={floatUpDown(16, 3.5, 0.4)}
+                animate="animate"
               />
             </div>
           </div>
