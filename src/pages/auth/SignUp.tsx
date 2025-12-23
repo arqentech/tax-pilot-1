@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeClosed } from "lucide-react";
+import { useRegister } from "@/hooks/useRegister";
 
 export default function SignUpPage() {
   const [form, setForm] = useState({
@@ -21,6 +22,8 @@ export default function SignUpPage() {
   });
   const [showPassword, setShowPassword] = useState(false);
 
+  const registerMutation = useRegister();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -29,19 +32,42 @@ export default function SignUpPage() {
     }));
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(form);
+
+    const payload = {
+      email: form.email,
+      phone: form.mobile,
+      password: form.password,
+      name: form.name,
+      surname: form.surname,
+      accepted_terms_of_use: true,
+      accepted_privacy_policy: true,
+      accepted_marketing: true,
+    };
+
+    registerMutation.mutate(payload, {
+      onSuccess: (data) => {
+        console.log("User registered successfully:", data);
+      },
+      onError: (error: any) => {
+        console.error("Registration failed:", error);
+      },
+    });
   };
 
+  const isLoading = registerMutation.status === "pending";
+  const isError = registerMutation.status === "error";
+  const isSuccess = registerMutation.status === "success";
+
   return (
-    <div className=" flex items-center justify-center bg-[#FFFFFF] py-10">
+    <div className="flex items-center justify-center bg-[#FFFFFF] py-10">
       <Card className="w-full md:max-w-[650px] md:h-[892px] rounded-[26px] border border-[#E7E7E7] p-8 flex-col items-center justify-center">
         <CardHeader className="text-center mb-4">
           <CardTitle className="sub-heading">Get Started</CardTitle>
         </CardHeader>
 
-        <form onSubmit={handleLogin} className="">
+        <form onSubmit={handleSignUp}>
           <CardContent className="space-y-5 flex flex-col items-center">
             <Input
               id="email"
@@ -65,7 +91,6 @@ export default function SignUpPage() {
                 required
                 className="bg-[#FBFBFA] rounded-[14px] !text-[18px] h-[60px] border border-[#FBFBFA] placeholder:!text-[#9D9E98]"
               />
-
               <Input
                 id="surname"
                 name="surname"
@@ -114,38 +139,27 @@ export default function SignUpPage() {
               </button>
             </div>
 
-            <div className="w-full md:w-[466px] flex justify-between items-center text-sm mt-2">
-              <span>
-                I agree to the
-                <Link
-                  to="/privacy-policy"
-                  className="text-blue-500 hover:underline"
-                >
-                  {" "}
-                  Privacy Policy{" "}
-                </Link>
-                and
-                <Link to="/terms" className="text-blue-500 hover:underline">
-                  {" "}
-                  Terms{" "}
-                </Link>
-                .
-              </span>
-            </div>
+            {isError && (
+              <p className="text-red-500 text-center">
+                {(registerMutation.error as any)?.response?.data?.message ||
+                  "Something went wrong"}
+              </p>
+            )}
           </CardContent>
 
           <CardFooter className="flex flex-col space-y-5 mt-4">
             <Button
               type="submit"
-              className="w-full h-[60px] md:max-w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px] custom-box-shadow hover:opacity-90"
+              disabled={isLoading}
+              className="w-full h-[60px] md:max-w-[466px] font-bricolage font-extrabold rounded-full text-[#FFFFFF] text-[24px] custom-box-shadow hover:opacity-90"
             >
-              Sign Up
+              {isLoading ? "Signing Up..." : "Sign Up"}
             </Button>
 
             <div className="flex items-center gap-3 text-[#9D9E98]">
               <hr className="flex-1 border-t border-[#E6E6E1] w-[100px]" />
               <span className="text-[20px] leading-[25px]">or</span>
-              <hr className="flex-1 border-t border-[#E6E6E1] w-[100px] " />
+              <hr className="flex-1 border-t border-[#E6E6E1] w-[100px]" />
             </div>
 
             <Button
@@ -161,11 +175,11 @@ export default function SignUpPage() {
               Login With Google
             </Button>
 
-            <p className="text-center text-[18px] leading-[25px] ">
+            <p className="text-center text-[18px] leading-[25px]">
               New user?{" "}
               <Link
                 to="/login"
-                className=" text-[18px] leading-[25px] italic hover:text-blue-500 font-medium underline "
+                className="text-[18px] leading-[25px] italic hover:text-blue-500 font-medium underline"
               >
                 Login
               </Link>
