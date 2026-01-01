@@ -6,7 +6,7 @@ export default function HowWeWork() {
       <div className="grid md:grid-cols-2 bg-[#037BFF] rounded-[32px] justify-center items-center text-white overflow-hidden shadow-xl">
         <div className="flex flex-col justify-center px-8 lg:px-20 py-16 lg:py-24">
           <span className="w-[156px] h-[34px] inline-flex items-center justify-center rounded-full bg-[#006ADE] font-medium backdrop-blur-md">
-            How we work
+            How we work?
           </span>
 
           <h2 className="mt-6 font-bricolage text-[38px] lg:text-[58px] lg:leading-[59px] font-extrabold leading-[38px] tracking-[-0.03em]">

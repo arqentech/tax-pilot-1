@@ -8,11 +8,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeClosed } from "lucide-react";
 import { useRegister } from "@/hooks/useRegister";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     name: "",
@@ -47,18 +52,48 @@ export default function SignUpPage() {
     };
 
     registerMutation.mutate(payload, {
-      onSuccess: (data) => {
-        console.log("User registered successfully:", data);
+      onSuccess: () => {
+        navigate("/login");
       },
-      onError: (error: any) => {
-        console.error("Registration failed:", error);
-      },
+      onError: () => {},
     });
   };
 
-  const isLoading = registerMutation.status === "pending";
-  const isError = registerMutation.status === "error";
-  const isSuccess = registerMutation.status === "success";
+  const isLoading = registerMutation.isPending;
+  const isError = registerMutation.isError;
+
+  const getErrorMessage = () => {
+    if (!isError) return "";
+
+    const error = registerMutation.error as any;
+    const errorResponse = error?.response;
+    const statusCode = errorResponse?.status;
+    const backendMessage = errorResponse?.data?.message?.toLowerCase() || "";
+
+    if (statusCode === 409 && backendMessage.includes("email")) {
+      return "Email already exists";
+    }
+
+    if (statusCode === 409 && backendMessage.includes("phone")) {
+      return "Phone number already exists";
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(form.email)) return "Enter correct email";
+
+    return "Something went wrong. Please try again.";
+  };
+
+  const errorMessage = getErrorMessage();
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      console.log("Google Token:", tokenResponse.access_token);
+    },
+    onError: () => {
+      console.log("Google login failed");
+    },
+  });
 
   return (
     <div className="flex items-center justify-center bg-[#FFFFFF] py-10">
@@ -103,16 +138,18 @@ export default function SignUpPage() {
               />
             </div>
 
-            <Input
-              id="mobile"
-              name="mobile"
-              type="text"
-              placeholder="Mobile"
-              value={form.mobile}
-              onChange={handleChange}
-              required
-              className="bg-[#FBFBFA] rounded-[14px] !text-[18px] h-[60px] border border-[#FBFBFA] placeholder:!text-[#9D9E98]"
-            />
+            <div className="w-full">
+              <PhoneInput
+                defaultCountry="it"
+                value={form.mobile}
+                onChange={(phone) =>
+                  setForm((prev) => ({ ...prev, mobile: phone }))
+                }
+                placeholder="Mobile number"
+                className="w-full !rounded-[14px] !border !border-[#E6E6E1] !bg-[#FBFBFA]"
+                inputClassName="!h-[60px] !text-[18px] !bg-[#FBFBFA] !border-none  placeholder:!text-[#9D9E98]"
+              />
+            </div>
 
             <div className="relative w-full">
               <Input
@@ -140,10 +177,7 @@ export default function SignUpPage() {
             </div>
 
             {isError && (
-              <p className="text-red-500 text-center">
-                {(registerMutation.error as any)?.response?.data?.message ||
-                  "Something went wrong"}
-              </p>
+              <p className="text-red-500 text-center text-sm">{errorMessage}</p>
             )}
           </CardContent>
 
@@ -164,6 +198,7 @@ export default function SignUpPage() {
 
             <Button
               type="button"
+              onClick={() => googleLogin()}
               variant="outline"
               className="w-full md:max-w-[466px] h-[60px] rounded-full bg-[#F6F6F3] border-[#E6E6E1] text-[20px] text-[#5F6057] flex items-center justify-center gap-2"
             >
@@ -172,7 +207,7 @@ export default function SignUpPage() {
                 alt="Google"
                 className="w-5 h-5"
               />
-              Login With Google
+              Sign in with Google
             </Button>
 
             <p className="text-center text-[18px] leading-[25px]">

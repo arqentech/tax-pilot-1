@@ -6,7 +6,6 @@
 @layer base {
   html,
   body {
-    
     font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
     background-color: #ffffff;
     color: #34352e;
@@ -76,6 +75,24 @@
     width: 100vw;
     max-width: 100vw;
   }
+}
+
+/* Flag button (container) */
+.react-international-phone-country-selector-button {
+  border: none !important;
+  background:transparent !important;
+  width: 60px;
+  height: 60px;
+  padding: 10px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Flag emoji itself */
+.react-international-phone-flag-emoji {
+  font-size: 28px; /* controls flag size */
+  line-height: 1;
 }
 
 @layer base {

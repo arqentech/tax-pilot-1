@@ -10,19 +10,51 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeClosed } from "lucide-react";
+import { useLogin } from "@/hooks/useLogin";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const loginMutation = useLogin();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password, remember });
+
+    const payload = {
+      email: email.trim(),
+      password: password,
+    };
+
+    loginMutation.mutate(payload, {
+      onSuccess: (data) => {
+        const token = data.results.access_token;
+        localStorage.setItem("authToken", token);
+        navigate("/");
+      },
+      onError: () => {},
+    });
   };
+
+  const isLoading = loginMutation.isPending;
+  const isError = loginMutation.isError;
+  const errorMessage = "Email or password is incorrect";
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      console.log("Google Token:", tokenResponse.access_token);
+      navigate("/");
+    },
+    onError: () => {
+      console.log("Google login failed");
+    },
+  });
 
   return (
     <div className="w-full flex items-center justify-center bg-[#FFFFFF] py-10">
@@ -31,7 +63,7 @@ export default function LoginPage() {
           <CardTitle className="sub-heading">Login</CardTitle>
         </CardHeader>
 
-        <form onSubmit={handleLogin} className="">
+        <form onSubmit={handleLogin}>
           <CardContent className="space-y-5 flex flex-col items-center">
             <Input
               id="email"
@@ -40,7 +72,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full h-[60px] bg-[#FBFBFA] !placeholder-[#9D9E98] rounded-[14px] border border-[#E6E6E1] !text-[18px] !leading-[24px] font-normal placeholder-[#9D9E98]"
+              className="w-full h-[60px] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] !text-[18px] placeholder:!text-[#9D9E98]"
             />
 
             <div className="relative w-full md:w-[466px]">
@@ -51,7 +83,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="h-[60px] !placeholder-[#9D9E98] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] !text-[18px] !leading-[24px] font-normal placeholder-text-[14px] pr-12"
+                className="h-[60px] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] !text-[18px] pr-12 placeholder:!text-[#9D9E98]"
               />
               <button
                 type="button"
@@ -68,7 +100,7 @@ export default function LoginPage() {
             </div>
 
             <div className="w-full flex justify-between items-center text-sm mt-2">
-              <div className="flex items-center ">
+              <div className="flex items-center">
                 <Checkbox
                   id="remember"
                   checked={remember}
@@ -76,7 +108,7 @@ export default function LoginPage() {
                 />
                 <Label
                   htmlFor="remember"
-                  className="text-[14px] md:[16px] leading-[25px] ml-2"
+                  className="ml-2 text-[14px] md:text-[16px]"
                 >
                   Remember me
                 </Label>
@@ -84,29 +116,35 @@ export default function LoginPage() {
 
               <Link
                 to="/forgot-password"
-                className="text-[14px] md:[16px] leading-[25px] text-[#04226B] hover:underline "
+                className="text-[14px] md:text-[16px] text-[#04226B] hover:underline"
               >
                 Forgot your password
               </Link>
             </div>
+
+            {isError && (
+              <p className="text-red-500 text-center text-sm">{errorMessage}</p>
+            )}
           </CardContent>
 
           <CardFooter className="flex flex-col space-y-5 mt-4">
             <Button
               type="submit"
-              className="w-full h-[60px] md:w-[466px] font-bricolage font-extrabold  rounded-full text-[#FFFFFF] text-[24px] custom-box-shadow hover:opacity-90"
+              disabled={isLoading}
+              className="w-full h-[60px] md:w-[466px] font-bricolage font-extrabold rounded-full text-[#FFFFFF] text-[24px] custom-box-shadow hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Continue
+              {isLoading ? "Logging in..." : "Continue"}
             </Button>
 
             <div className="flex items-center gap-3 text-[#9D9E98]">
-              <hr className="flex-1 border-t border-[#E6E6E1] w-[100px]" />
+              <hr className="flex-1 border-t border-[#E6E6E1]" />
               <span className="text-[20px] leading-[25px]">or</span>
-              <hr className="flex-1 border-t border-[#E6E6E1] w-[100px] " />
+              <hr className="flex-1 border-t border-[#E6E6E1]" />
             </div>
 
             <Button
               type="button"
+              onClick={() => googleLogin()}
               variant="outline"
               className="w-full md:w-[466px] h-[60px] rounded-full bg-[#F6F6F3] border-[#E6E6E1] text-[20px] text-[#5F6057] flex items-center justify-center gap-2"
             >
@@ -118,11 +156,11 @@ export default function LoginPage() {
               Login With Google
             </Button>
 
-            <p className="text-center text-[18px] leading-[25px] ">
+            <p className="text-center text-[18px] leading-[25px]">
               New user?{" "}
               <Link
                 to="/sign-up"
-                className=" text-[18px] leading-[25px] italic hover:text-blue-500 underline font-medium"
+                className="italic hover:text-blue-500 underline font-medium"
               >
                 Create account
               </Link>
