@@ -48,7 +48,7 @@ export interface Service {
       title: string;
     };
   }[];
-  faqs?: FAQ[]; // <-- Add this line
+  faqs?: FAQ[]; 
 }
 
 export interface ServiceCardProps {

@@ -68,6 +68,7 @@ const Details: React.FC = () => {
 
   const handleRequestService = () => {
     const result = addToCart({
+      service_id: service.id,
       title: service.title,
       price: service.price,
       description: service.description_short,
