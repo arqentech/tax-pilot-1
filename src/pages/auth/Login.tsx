@@ -36,6 +36,7 @@ export default function LoginPage() {
       onSuccess: (data) => {
         const token = data.results.access_token;
         localStorage.setItem("authToken", token);
+        window.dispatchEvent(new Event("auth-changed"));
         navigate("/");
       },
       onError: () => {},
@@ -48,7 +49,8 @@ export default function LoginPage() {
 
   const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
-      console.log("Google Token:", tokenResponse.access_token);
+      localStorage.setItem("authToken", tokenResponse.access_token);
+      window.dispatchEvent(new Event("auth-changed"));
       navigate("/");
     },
     onError: () => {

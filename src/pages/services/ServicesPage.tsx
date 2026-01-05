@@ -3,7 +3,7 @@ import SearchBar from "../../components/ui/SearchBar";
 import ServiceCard from "../../components/ui/ServiceCard";
 import FilterButton from "../../components/ui/FilterButton";
 import Categories, { CategoryOption } from "./Categories";
-import { useServices } from "../../hooks/useServices"; // your hook
+import { useServices } from "../../hooks/useServices";
 
 const ServicesPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");

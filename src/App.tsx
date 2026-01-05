@@ -3,7 +3,6 @@ import MainLayout from "./components/layout/Main";
 import Home from "./pages/home/Home";
 import ServicesPage from "./pages/services/ServicesPage";
 import ServiceDetails from "./pages/service-details/ServiceDetails";
-import Login from "./pages/auth/Login";
 import PrivacyPolicy from "./pages/privacy/PrivacyPolicy";
 import AuthLayout from "./pages/auth/Auth";
 import LoginPage from "./pages/auth/Login";
@@ -11,13 +10,11 @@ import FAQ from "./pages/faq/FAQPage";
 import ContactUs from "./pages/contact/ContactPage";
 import SignUpPage from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
-import EmptyCart from "./pages/cart/EmptyCart";
 import Blogs from "./pages/blogs/Blogs";
 import BlogDetail from "./pages/blog-details/BlogDetails";
 import CartPage from "./pages/cart/Cart";
+import CheckoutPage from "./pages/checkout/Checkout";
 import ScrollToTop from "./components/layout/ScrollToTop";
-import { useEffect } from "react";
-import axios from "axios";
 
 function App() {
   return (
@@ -35,6 +32,7 @@ function App() {
           <Route path="faq" element={<FAQ />} />
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="cart" element={<CartPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
         </Route>
 
         <Route element={<AuthLayout />}>

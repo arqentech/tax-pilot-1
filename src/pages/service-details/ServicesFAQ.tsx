@@ -1,4 +1,3 @@
-// src/components/services/ServicesFAQ.tsx
 import FAQ, { FAQItem } from "@/components/ui/FAQ";
 import { FAQ as FAQType } from "@/types/services";
 import React from "react";

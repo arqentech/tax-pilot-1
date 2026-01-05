@@ -88,7 +88,9 @@ export default function SignUpPage() {
 
   const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
-      console.log("Google Token:", tokenResponse.access_token);
+      localStorage.setItem("authToken", tokenResponse.access_token);
+      window.dispatchEvent(new Event("auth-changed"));
+      navigate("/");
     },
     onError: () => {
       console.log("Google login failed");

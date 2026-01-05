@@ -1,9 +1,11 @@
-  import { Button } from "@/components/ui/button";
-  import { Input } from "@/components/ui/input";
-  import { CircleCheck, Clock, Trash2 } from "lucide-react";
-  import { Link } from "react-router-dom";
-  import { useCart } from "@/contexts/CartContext";
-  import PrimaryButton from "@/components/ui/PrimaryButton";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { CircleCheck, Clock, Trash2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useCart } from "@/contexts/CartContext";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import { useAuth } from "@/utils/auth";
+import { useNavigate } from "react-router-dom";
 
   interface FilledCartProps {
     items: {
@@ -17,10 +19,12 @@
     }[];
   }
 
-  export default function FilledCart({ items }: FilledCartProps) {
-    const subtotal = items.reduce((acc, item) => acc + item.price, 0);
-    const servicesLabel = items.length === 1 ? "service" : "services";
-    const { removeFromCart } = useCart();
+export default function FilledCart({ items }: FilledCartProps) {
+  const subtotal = items.reduce((acc, item) => acc + item.price, 0);
+  const servicesLabel = items.length === 1 ? "service" : "services";
+  const { removeFromCart } = useCart();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
     return (
       <section className=" pb-16">
@@ -137,21 +141,31 @@
                   </div>
 
                   <div className="relative flex flex-col items-center gap-4 border-t border-[#E6E6E1] pt-6 text-center">
-                    <p className="text-[14px] font-medium text-[#5F6057]">
-                      To continue you need to
-                    </p>
-                    <Link to="/login">
+                    {isAuthenticated ? (
                       <PrimaryButton
-                        text="Login to your Account "
+                        text="Proceed to Checkout"
                         width="291px"
+                        onClick={() => navigate("/checkout")}
                       />
-                    </Link>
-                    <p className="text-[14px] text-[#5F6057]">
-                      New user?{" "}
-                      <Link to="/sign-up" className="underline">
-                        Create account
-                      </Link>
-                    </p>
+                    ) : (
+                      <>
+                        <p className="text-[14px] font-medium text-[#5F6057]">
+                          To continue you need to
+                        </p>
+                        <Link to="/login">
+                          <PrimaryButton
+                            text="Login to your Account "
+                            width="291px"
+                          />
+                        </Link>
+                        <p className="text-[14px] text-[#5F6057]">
+                          New user?{" "}
+                          <Link to="/sign-up" className="underline">
+                            Create account
+                          </Link>
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

@@ -24,7 +24,6 @@ const Details: React.FC = () => {
     error,
   } = useServiceDetails(slug ?? "");
 
-  // Handle missing slug
   if (!slug) {
     return (
       <div className="min-h-screen flex items-center justify-center">
