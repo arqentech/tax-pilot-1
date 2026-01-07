@@ -9,9 +9,9 @@ import ServicesFAQ from "./ServicesFAQ";
 function ServiceDetails() {
   return (
     <div className="flex flex-col">
-      {/* <Details /> */}
+      <Details />
       <ClientReviews showBadge={false} />
-      <RelatedServices />
+      {/* <RelatedServices /> */}
       <TaxPilotSection />
     </div>
   );
