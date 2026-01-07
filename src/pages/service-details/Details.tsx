@@ -131,7 +131,7 @@ const Details: React.FC = () => {
             )}
           </div>
 
-          <div className="hidden md:block mt-5">
+          <div className=" mt-5">
             <PrimaryButton
               text="Request Service"
               width="257px"
