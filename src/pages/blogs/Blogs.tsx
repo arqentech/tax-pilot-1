@@ -32,8 +32,8 @@ const Blogs: React.FC = () => {
   });
 
   return (
-    <div className="py-10 mt-4 sm:mt-5 md:mt-6 flex justify-center min-h-screen px-4">
-      <div className="w-full max-w-[1320px] flex flex-col items-center">
+    <div className="py-10 mt-4 sm:mt-5 md:mt-6 flex justify-center min-h-screen ">
+      <div className="w-full flex flex-col items-center">
         <div className="text-center mb-8">
           <h1 className="font-bricolage heading-base">The TaxPilot Blog .</h1>
           <p className="mt-2">
@@ -41,29 +41,25 @@ const Blogs: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex flex-row items-center justify-center gap-4 w-full">
-          <SearchBar
-            onSearch={setQuery}
-            wrapperClass="w-full md:max-w-[725px] w-full"
-          />
+        <div className="flex w-full items-center gap-3 justify-center md:gap-4">
+          <div className="w-full md:max-w-[720px]">
+            <SearchBar onSearch={setQuery} />
+          </div>
           <FilterButton onFilterClick={toggleFilter} />
         </div>
-        <div className="mb-5">
-          {/* <Categories
+        {/* <div className="mb-5">
+          <Categories
             onSelect={handleCategorySelect}
             searchValue={query}
             isOpen={isFilterOpen}
             selectedCategory={selectedCategory}
-          /> */}
-        </div>
+          />
+        </div> */}
 
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center w-full pt-2">
           {filteredBlogs.length > 0 ? (
             filteredBlogs.map((blog, index) => (
-              <div
-                key={index}
-                className="min-w-[400px] lg:min-w-0 mr-6 last:mr-0 snap-center"
-              >
+              <div key={index}>
                 <BlogCard {...blog} />
               </div>
             ))
