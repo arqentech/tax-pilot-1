@@ -54,7 +54,7 @@ export default function FAQ({ data }: FAQProps) {
 
       <p className="hidden lg:block mt-8 text-[18px] leading-[25px]">
         Still have questions?{" "}
-        <Link to="#" className="underline font-medium italic">
+        <Link to="/contact-us" className="underline font-medium italic">
           Chat with an expert
         </Link>
       </p>
