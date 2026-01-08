@@ -23,7 +23,7 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
         <div className="md:hidden w-full overflow-x-auto px-4">
           <div className="flex gap-4 justify-start">
             {reviews.map((r, idx) => (
-              <div key={idx} className="min-w-[300px] flex-shrink-0">
+              <div key={idx} className="max-w-[300px] flex-shrink-0">
                 <ReviewCard {...r} />
               </div>
             ))}

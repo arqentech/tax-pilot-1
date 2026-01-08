@@ -14,7 +14,7 @@ export default function HowWeWork() {
             We Simplify Taxes, Together.
           </h2>
 
-          <p className="mt-6 text-[#BFDDFF] text-[18px] lg:text-[20px] leading-[25px]">
+          <p className="mt-6 text-justify text-[#BFDDFF] text-[18px] lg:text-[20px] leading-[25px]">
             With TaxPilot, you're never alone. Our digital platform keeps things
             simple while real professionals personally guide your entire process
             step by step.
@@ -43,7 +43,7 @@ export default function HowWeWork() {
                 className="w-10 h-10 flex-shrink-0 mt-[2px]"
               />
 
-              <div className="pr-2 flex flex-col justify-between h-full">
+              <div className="pr-4 text-justify flex flex-col justify-between h-full">
                 <div>
                   <h3 className="text-xl font-semibold font-bricolage">
                     {step.title}
