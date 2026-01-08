@@ -36,7 +36,7 @@ export default function BlogPage() {
             26, Oct, 2025
           </span>
 
-          <span className="flex items-center bg-[#E7D8FB] text-[#3C0D6D] border border-[#D2BDE9] w-[94px] px-3 py-1 rounded-full text-sm font-medium">
+          <span className="flex items-center bg-[#E7D8FB] text-[#3C0D6D] border border-[#D2BDE9] w-auto px-3 py-1 rounded-full text-sm font-medium">
             <img src="/svg/funnel.svg" className="w-4" /> {blog.tag}
           </span>
 
