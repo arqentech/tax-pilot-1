@@ -61,7 +61,7 @@ const WhatDefinesUs: React.FC = () => {
           ))}
         </div>
 
-        <div className="lg:hidden grid grid-cols-1 gap-6">
+        <div className="lg:hidden grid grid-cols-1 gap-3">
           {features.map((feature) => (
             <div
               key={feature.title}
