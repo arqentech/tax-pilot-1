@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 export default function TaxPilotSection() {
   return (
     <section className="w-full flex justify-center py-10 ">
-      <div className="bg-[#FFC107] w-full lg:max-w-full rounded-[28px] p-6 flex flex-col justify-center lg:flex-row lg:items-center gap-10 lg:gap-20">
+      <div className="bg-[#FFC107] w-full lg:max-w-full rounded-[28px] p-6 flex flex-col justify-center lg:flex-row lg:items-center ">
         <div className="flex-1">
-          <h2 className="sub-heading max-w-[]">
+          <h2 className="sub-heading ">
             Ready to simplify your taxes with Tax Pilot?
           </h2>
 
@@ -33,11 +33,11 @@ export default function TaxPilotSection() {
           </Link>
         </div>
 
-        <div className="flex-1 flex w-full justify-center lg:justify-end">
+        <div className="flex-1 flex w-full justify-center lg:justify-end py-5">
           <img
             src="/svg/businesswoman-presents-business-report.svg"
             alt="Tax Illustration"
-            className="w-full  md:max-w-[400px] lg:max-w-[604px] mr-[-30px] sm:mr-[-40px] lg:mr-[-60px] "
+            className="w-full max-w-[500px] lg:max-w-[604px] mr-[-60px] lg:mr-[-40px] "
           />
         </div>
       </div>
