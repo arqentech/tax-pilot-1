@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,15 +43,18 @@
 
 @layer utilities {
   .main-heading {
-    @apply font-extrabold text-[40px] leading-[38px] tracking-[-0.09em];
+    font-weight: 800 !important;
+    @apply text-[40px] leading-[38px] tracking-[-0.09em];
     @apply md:text-[86px] md:leading-[73px];
   }
   .heading-base {
-    @apply font-extrabold text-[38px] leading-[38px] tracking-[-0.09em];
+    font-weight: 800 !important;
+    @apply text-[38px] leading-[38px] tracking-[-0.09em];
     @apply md:text-[58px] md:leading-[73px];
   }
   .sub-heading {
-    @apply font-bricolage font-extrabold text-[38px] leading-[38px] tracking-[-0.09em];
+    font-weight: 800 !important;
+    @apply text-[38px] leading-[38px] tracking-[-0.09em];
     @apply md:text-[58px] md:leading-[59px];
   }
 

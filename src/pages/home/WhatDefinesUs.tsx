@@ -51,7 +51,7 @@ const WhatDefinesUs: React.FC = () => {
                   className="w-20 h-20"
                 />
               </div>
-              <h3 className="font-bricolage tracking-[-0.09em] font-extrabold text-[36px] leading-[48px]">
+              <h3 className="font-bricolage tracking-[-0.09em] font-black text-[36px] leading-[73px]">
                 {feature.title}
               </h3>
               <p className="text-[18px] leading-[25px] mt-2 text-[#555]">
