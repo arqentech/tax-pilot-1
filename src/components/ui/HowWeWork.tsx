@@ -43,7 +43,7 @@ export default function HowWeWork() {
                 className="w-10 h-10 flex-shrink-0 mt-[2px]"
               />
 
-              <div className="pr-4 text-justify flex flex-col justify-between h-full">
+              <div className="text-justify flex flex-col justify-between h-full">
                 <div>
                   <h3 className="text-xl font-semibold font-bricolage">
                     {step.title}
