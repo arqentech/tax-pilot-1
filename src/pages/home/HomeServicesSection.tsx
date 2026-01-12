@@ -33,8 +33,8 @@ const ServicesSection = () => {
     <section className="w-full py-10">
       <div className="flex flex-col items-center text-center mb-12">
         <Badge text="Services" width="115px" />
-        <h2 className="heading-base">All Your Tax Needs, in One Place.</h2>
-        <p className="text-base max-w-[660px]">
+        <h2 className="heading-base mt-2 ">All Your Tax Needs, in One Place.</h2>
+        <p className="text-base max-w-[660px] mt-4">
           Access over 150 certified CAF and patronage services, guided step by
           real experts, all from the comfort of your home.
         </p>

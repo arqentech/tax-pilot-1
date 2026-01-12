@@ -17,10 +17,10 @@ const TeamSection = () => {
       <div className="flex w-full flex-col items-center text-center lg:flex-row lg:items-start lg:justify-center lg:gap-12 lg:text-left">
         <div className="flex flex-col items-center gap-2 lg:items-start">
           <Badge text="Team" width="86px" />
-          <h2 className="font-bricolage text-[38px] font-extrabold leading-[38px] md:leading-[73px] tracking-[-0.09em] md:text-[58px]">
+          <h2 className="mt-2 font-bricolage text-[38px] font-extrabold leading-[38px] md:leading-[73px] tracking-[-0.09em] md:text-[58px]">
             The TaxPilot Team .
           </h2>
-          <p className="w-full text-justify text-[18px] font-medium text-[#5A5851] md:text-[20px]">
+          <p className="mt-4 mb-4 w-full text-justify text-[18px] font-medium text-[#5A5851] md:text-[20px]">
             Our professionals bring years of CAF experience and fiscal expertise
             to ensure precision, compliance, and total peace of mind.
           </p>
