@@ -65,7 +65,6 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Desktop grid */}
       <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {displayServices.map((service: any) => (
           <ServiceCard

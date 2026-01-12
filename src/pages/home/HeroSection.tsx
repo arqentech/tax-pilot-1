@@ -13,7 +13,7 @@ const HeroSection = () => {
               Online taxes made{" "}
             </span>
             <span className="md:block lg:whitespace-nowrap">
-              Simple with Tax Pilot .
+              Simple with Tax Pilot.
             </span>
           </h1>
 
