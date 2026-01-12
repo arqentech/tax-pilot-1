@@ -66,18 +66,29 @@
       inset 0px 5px 8px rgba(46, 47, 40, 0.62);
   }
 
-  .full-bleed {
+  /* .full-bleed {
     position: relative;
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
+  } */
+
+  .full-bleed {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: auto;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 }
 
 /* Flag button (container) */
 .react-international-phone-country-selector-button {
   border: none !important;
-  background:transparent !important;
+  background: transparent !important;
   width: 60px;
   height: 60px;
   padding: 10px !important;

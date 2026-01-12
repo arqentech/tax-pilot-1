@@ -17,19 +17,25 @@ const Details: React.FC = () => {
       (item) => item.link.replace("/services", "") === `/${slug}`
     ) || cardData[0];
 
-  const handleRequestService = () => {
-    const result = addToCart({
-      title: service.title,
-      price: service.price,
-      description: service.description,
-      hours: service.hours,
-      link: service.link,
-      vatIncluded: service.vatIncluded,
-    });
+  const handleRequestService = async () => {
+    try {
+      const result = await addToCart({
+        service_id: (service as any).id, 
+        title: service.title,
+        price: service.price,
+        description: service.description,
+        hours: service.hours,
+        link: service.link,
+        vatIncluded: service.vatIncluded,
+      });
 
-    alert(
-      result.added ? "Service added to cart!" : "Service already added to cart."
-    );
+      alert(
+        result.added ? "Service added to cart!" : "Service already added to cart."
+      );
+    } catch (error) {
+      console.error("Error adding service to cart:", error);
+      alert("Failed to add service to cart. Please try again.");
+    }
   };
 
   return (

@@ -65,20 +65,25 @@ const Details: React.FC = () => {
   const formatLabel = (value: string | undefined) =>
     value?.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 
-  const handleRequestService = () => {
-    const result = addToCart({
-      service_id: service.id,
-      title: service.title,
-      price: service.price,
-      description: service.description_short,
-      hours: service.hours ?? "",
-      link: `/services/${service.identifier}`,
-      vatIncluded: !!service.vatIncluded,
-    });
+  const handleRequestService = async () => {
+    try {
+      const result = await addToCart({
+        service_id: service.id,
+        title: service.title,
+        price: service.price,
+        description: service.description_short,
+        hours: service.hours ?? "",
+        link: `/services/${service.identifier}`,
+        vatIncluded: !!service.vatIncluded,
+      });
 
-    alert(
-      result.added ? "Service added to cart!" : "Service already added to cart."
-    );
+      alert(
+        result.added ? "Service added to cart!" : "Service already added to cart."
+      );
+    } catch (error) {
+      console.error("Error adding service to cart:", error);
+      alert("Failed to add service to cart. Please try again.");
+    }
   };
 
   return (
@@ -91,62 +96,66 @@ const Details: React.FC = () => {
         ]}
       />
 
-      <section className="flex flex-col-reverse md:flex-row justify-center py-10 gap-10 pb-6 mb-10">
-        <div className="py-6 rounded-2xl flex-shrink-0">
+      <section className="flex flex-col-reverse md:flex-row justify-center py-3 sm:py-6 md:py-10 gap-3 sm:gap-6 md:gap-10 pb-3 sm:pb-6 mb-4 sm:mb-8 md:mb-10">
+        <div className="py-2 sm:py-4 md:py-6 rounded-2xl flex-shrink-0 w-full md:w-auto px-2 sm:px-4 md:px-0">
           <img
             src={
               service.image?.url ||
               "/svg/client-calls-customer-care-for-support.svg"
             }
             alt={service.title}
-            className="w-full lg:w-[493px] lg:h-[542px] object-contain rounded-xl"
+            className="w-full max-w-full md:w-[493px] md:h-[542px] h-auto object-contain rounded-xl mx-auto md:mx-0"
           />
         </div>
 
-        <div className="flex-1">
-          <h1 className="text-center md:text-left font-bricolage font-extrabold text-[32px] md:text-[44px] lg:text-[58px] leading-tight">
+        <div className="flex-1 min-w-0">
+          <h1 className="text-center md:text-left font-bricolage font-extrabold text-[20px] sm:text-[28px] md:text-[44px] lg:text-[58px] leading-tight px-2 sm:px-4 md:px-0 break-words">
             {service.title}
           </h1>
 
           <div
-            className="text-gray-600 mt-3 max-w-[600px] text-justify"
+            className="text-gray-600 mt-2 sm:mt-3 max-w-[600px] text-justify text-xs sm:text-sm md:text-base px-2 sm:px-4 md:px-0 break-words"
             dangerouslySetInnerHTML={{ __html: service.description_short }}
           />
 
-          <div className="flex flex-wrap items-center gap-3 mt-4">
-            <span className="text-2xl font-bold">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 md:gap-3 mt-3 sm:mt-4 px-2 sm:px-4 md:px-0">
+            <span className="text-base sm:text-xl md:text-2xl font-bold whitespace-nowrap">
               € {service.price.toFixed(2)}
             </span>
 
             {service.vatIncluded && (
-              <span className="bg-[#EEFCD7] flex items-center gap-1 text-[#36500C] text-xs font-medium px-2 py-1 rounded-full">
-                <CircleCheck className="w-3 h-3" /> VAT Included
+              <span className="bg-[#EEFCD7] flex items-center gap-0.5 sm:gap-1 text-[#36500C] text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
+                <CircleCheck className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" /> 
+                <span className="whitespace-nowrap">VAT Included</span>
               </span>
             )}
 
             {service.hours && (
-              <span className="flex items-center gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-xs font-medium px-2 py-1 rounded-full">
-                <Clock className="w-3 h-3" /> {service.hours}
+              <span className="flex items-center gap-0.5 sm:gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
+                <Clock className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" /> 
+                <span className="whitespace-nowrap">{service.hours}</span>
               </span>
             )}
           </div>
 
-          <div className=" mt-5">
-            <PrimaryButton
-              text="Request Service"
-              width="257px"
-              onClick={handleRequestService}
-            />
+          <div className="mt-3 sm:mt-5 px-2 sm:px-4 md:px-0">
+            <div className="w-full max-w-full sm:max-w-[257px]">
+              <PrimaryButton
+                text="Request Service"
+                width="100%"
+                onClick={handleRequestService}
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {service.description_long && (
-        <section className="grid grid-cols-1 md:grid-cols-3 mb-12">
-          <h2 className="text-2xl font-semibold text-gray-900">
+        <section className="grid grid-cols-1 md:grid-cols-3 mb-4 sm:mb-8 md:mb-12 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4 md:px-0">
+          <h2 className="text-base sm:text-xl md:text-2xl font-semibold text-gray-900">
             In-depth analysis
           </h2>
-          <div className="md:col-span-2 text-gray-700 leading-relaxed whitespace-pre-line text-justify">
+          <div className="md:col-span-2 text-gray-700 leading-relaxed whitespace-pre-line text-justify text-xs sm:text-sm md:text-base break-words">
             <div
               dangerouslySetInnerHTML={{ __html: service.description_long }}
             />
@@ -155,15 +164,15 @@ const Details: React.FC = () => {
       )}
 
       {service.advantages && service.advantages.length > 0 && (
-        <section className="grid grid-cols-1 md:grid-cols-3 mb-12">
-          <h2 className="text-justify text-2xl font-semibold text-gray-900">
+        <section className="grid grid-cols-1 md:grid-cols-3 mb-4 sm:mb-8 md:mb-12 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4 md:px-0">
+          <h2 className="text-base sm:text-xl md:text-2xl font-semibold text-gray-900">
             Advantages
           </h2>
-          <div className="md:col-span-2 space-y-3">
+          <div className="md:col-span-2 space-y-2 sm:space-y-3">
             {service.advantages.map((adv: string, index: number) => (
               <div
                 key={index}
-                className="bg-gray-50 border border-gray-200 rounded-xl p-3 text-gray-700"
+                className="bg-gray-50 border border-gray-200 rounded-xl p-2 sm:p-3 md:p-4 text-gray-700 text-xs sm:text-sm md:text-base break-words"
               >
                 {adv}
               </div>
@@ -171,13 +180,14 @@ const Details: React.FC = () => {
           </div>
         </section>
       )}
+
       <HowWeWork />
 
       {service.faqs && service.faqs.length > 0 && (
-        <section className="grid gap-2 grid-cols-1 md:grid-cols-3 mt-12 md:space-x-7">
+        <section className="grid gap-3 sm:gap-4 md:gap-2 grid-cols-1 md:grid-cols-3 mt-4 sm:mt-8 md:mt-12 md:space-x-7 px-2 sm:px-4 md:px-0">
           <div>
-            <h1 className="sub-heading mt-8">
-              <span className="block md:hidden text-center">
+            <h1 className="sub-heading mt-2 sm:mt-4 md:mt-8">
+              <span className="block md:hidden text-center text-[24px] sm:text-[32px] leading-tight">
                 Your Tax Questions, answered Simply.
               </span>
               <span className="hidden md:block">
@@ -192,7 +202,7 @@ const Details: React.FC = () => {
             </p>
           </div>
 
-          <div className="md:col-span-2 space-y-3">
+          <div className="md:col-span-2 space-y-2 sm:space-y-3">
             <ServicesFAQ faqs={service.faqs} />
           </div>
         </section>
