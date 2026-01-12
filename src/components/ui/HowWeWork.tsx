@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 export default function HowWeWork() {
   return (
-    <section className="w-full full-bleed md:px-7 py-10">
+    <section className="full-bleed-mobile py-10 ">
       <div>
-        <div className="grid md:grid-cols-2 bg-[#037BFF] md:rounded-[32px] justify-center items-center text-white overflow-hidden shadow-xl">
+        <div className="grid md:grid-cols-2 bg-[#037BFF] md:rounded-[32px] justify-center items-center text-white overflow-hidden shadow-xl relative">
           <div className="flex flex-col md:items-start items-center justify-center px-8 lg:px-20 py-12 lg:py-24">
             <span className="w-[156px] h-[34px] inline-flex items-center justify-center rounded-full bg-[#006ADE] font-medium backdrop-blur-md">
               How we work?
@@ -29,34 +29,33 @@ export default function HowWeWork() {
             </Link>
           </div>
 
-          <div
-            className="relative bg-[#037BFF] flex flex-col items-center justify-center border-t border-[1px] border-[#51A4FF]
-"
-          >
+          <div className="relative bg-[#037BFF] flex flex-col items-start justify-center border-t border-[1px] border-[#51A4FF] md:border-t-0">
             {steps.map((step, idx) => (
               <div
                 key={step.number}
-                className={`relative px-5 sm:px-12 lg:px-20 py-8 w-full flex flex-col items-start gap-4 ${
+                className={`relative w-full ${
                   idx !== 0 ? "border-t border-[1px] border-[#51A4FF]" : ""
                 }`}
               >
-                <img
-                  src={step.icon}
-                  alt={`${step.title} icon`}
-                  className="w-10 h-10 flex-shrink-0"
-                />
+                <div className="flex flex-col items-start gap-4 px-5 sm:px-12 lg:px-20 py-8">
+                  <img
+                    src={step.icon}
+                    alt={`${step.title} icon`}
+                    className="w-10 h-10 flex-shrink-0"
+                  />
 
-                <div className="flex flex-col justify-between text-left">
-                  <h3 className="text-xl font-semibold font-bricolage mt-2">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-[#D6E7FF] leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+                  <div className="flex flex-col justify-between text-left">
+                    <h3 className="text-xl font-semibold font-bricolage mt-2">
+                      {step.title}
+                    </h3>
+                    <p className="mt-2 text-[#D6E7FF] leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
 
-                <div className="absolute bottom-[-1rem] right-[-1rem] md:right-[-1.5rem] lg:bottom-[-2.5rem] lg:right-[-2rem] text-[121px] lg:text-[220px] font-bold text-white/10 leading-[100%] select-none pointer-events-none">
-                  {step.number}
+                  <div className="absolute bottom-[-1rem] right-[-1rem] md:right-[-1.5rem] lg:bottom-[-2.5rem] lg:right-[-2rem] text-[121px] lg:text-[220px] font-bold text-white/10 leading-[100%] select-none pointer-events-none">
+                    {step.number}
+                  </div>
                 </div>
               </div>
             ))}
