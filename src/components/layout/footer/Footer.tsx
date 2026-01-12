@@ -5,7 +5,7 @@ import SocialLinks from "./SocialLinks";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#373737] text-white w-full px-8 md:px-20 py-16">
+    <footer className="bg-[#373737] text-white w-full px-8 md:px-20 py-12 ">
       <div className="max-w-[1320px] mx-auto">
         <div className="font-bricolage grid grid-cols-1 md:grid-cols-4 gap-10 pb-12">
           <div className="order-1 md:order-1">
@@ -29,7 +29,6 @@ const Footer = () => {
             <NewsletterSignup />
           </div>
         </div>
-
         <SocialLinks />
 
         <div className="text-center mt-8 text-[#999999] text-[14px] font-archivo leading-relaxed">

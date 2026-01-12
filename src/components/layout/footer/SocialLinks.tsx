@@ -29,7 +29,7 @@ const socialLinks = [
 
 export default function SocialLinks() {
   return (
-    <div className="w-full border-t border-b border-[#999999] mt-10">
+    <div className="w-full border-t border-b border-[#999999] mt-5">
       <div className="grid grid-cols-4 w-full text-center divide-x divide-[#999999]">
         {socialLinks.map(({ name, icon, href, alt }) => (
           <Link
