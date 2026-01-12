@@ -26,8 +26,8 @@ const TeamSection = () => {
           </p>
         </div>
 
-        <div className="w-full md:flex mt-5">
-          <div className="hidden md:flex items-end gap-5">
+        <div className="w-full md:flex justify-center mt-5">
+          <div className="hidden md:flex  gap-5">
             {[lead, ...others].map((member) => (
               <div
                 key={member.name}
