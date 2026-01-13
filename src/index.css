@@ -1,4 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap");
+
+@font-face {
+  font-family: "Degular Display Demo";
+  src: url("/fonts/fonnts.com-DegularDemo-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Degular Display Demo";
+  src: url("/fonts/fonnts.com-DegularDemo-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Degular Display Demo";
+  src: url("/fonts/fonnts.com-DegularDemo-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -29,6 +54,10 @@
 
 .font-archivo {
   font-family: "Archivo", sans-serif;
+}
+
+.font-degular {
+  font-family: "Degular Display Demo", sans-serif;
 }
 
 @layer components {

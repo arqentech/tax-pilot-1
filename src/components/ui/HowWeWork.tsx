@@ -29,15 +29,15 @@ export default function HowWeWork() {
             </Link>
           </div>
 
-          <div className="relative bg-[#037BFF] flex flex-col items-start justify-center border-t border-[1px] border-[#51A4FF] md:border-t-0">
+          <div className="relative bg-[#037BFF] flex flex-col items-start justify-center border-t border-[1px] border-[#51A4FF] overflow-hidden md:border-t-0">
             {steps.map((step, idx) => (
               <div
                 key={step.number}
-                className={`relative w-full ${
+                className={`relative w-full overflow-hidden ${
                   idx !== 0 ? "border-t border-[1px] border-[#51A4FF]" : ""
                 }`}
               >
-                <div className="flex flex-col items-start gap-4 px-5 sm:px-12 lg:px-20 py-8">
+                <div className="flex flex-col items-start gap-4 px-5 sm:px-12 py-8 max-w-[450px] w-[70%]">
                   <img
                     src={step.icon}
                     alt={`${step.title} icon`}
@@ -45,7 +45,7 @@ export default function HowWeWork() {
                   />
 
                   <div className="flex flex-col justify-between text-left">
-                    <h3 className="text-xl font-semibold font-bricolage mt-2">
+                    <h3 className="text-[26px] md:text-[28px] font-extrabold font-bricolage mt-2">
                       {step.title}
                     </h3>
                     <p className="mt-2 text-[#D6E7FF] leading-relaxed">
@@ -53,8 +53,10 @@ export default function HowWeWork() {
                     </p>
                   </div>
 
-                  <div className="absolute bottom-[-1rem] right-[-1rem] md:right-[-1.5rem] lg:bottom-[-2.5rem] lg:right-[-2rem] text-[121px] lg:text-[220px] font-bold text-white/10 leading-[100%] select-none pointer-events-none">
-                    {step.number}
+                  <div className="absolute bottom-[-1.5rem] right-[-2.5rem] md:right-[-1.5rem] lg:bottom-[-2.5rem] lg:right-[-2rem] pointer-events-none select-none">
+                    <span className="inline-block text-left w-[2ch] text-[150px] lg:text-[220px] font-bold font-degular text-white/10 leading-[100%]">
+                      {step.number}
+                    </span>
                   </div>
                 </div>
               </div>
