@@ -16,7 +16,7 @@ export default function FooterLinks({ title, links }: FooterLinksProps) {
           <li key={link.path}>
             <Link
               to={link.path}
-              className="text-[#999999] hover:text-white transition-colors text-base md:text-lg"
+              className="text-[#D7D7D7] font-normal font-inter hover:text-white transition-colors text-[18px] md:text-lg"
             >
               {link.label}
             </Link>

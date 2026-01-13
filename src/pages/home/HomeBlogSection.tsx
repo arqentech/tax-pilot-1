@@ -10,7 +10,7 @@ export default function HomeBlogSection() {
       <div className="w-full text-center max-w-[1320px] px-4">
         <Badge text="Blog" width="78px" center />
 
-        <h2 className="heading-base py-4">
+        <h2 className="font-bricolage heading-base py-4">
           Practical reads to help you move faster
         </h2>
 
