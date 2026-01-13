@@ -14,6 +14,7 @@ import Blogs from "./pages/blogs/Blogs";
 import BlogDetail from "./pages/blog-details/BlogDetails";
 import CartPage from "./pages/cart/Cart";
 import CheckoutPage from "./pages/checkout/Checkout";
+import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import ScrollToTop from "./components/layout/ScrollToTop";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="checkout/success" element={<CheckoutSuccess />} />
         </Route>
 
         <Route element={<AuthLayout />}>
