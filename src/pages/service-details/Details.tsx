@@ -108,18 +108,18 @@ const Details: React.FC = () => {
           />
         </div>
 
-        <div className="flex-1 min-w-0">
-          <h1 className="text-center md:text-left font-bricolage font-extrabold text-[20px] sm:text-[28px] md:text-[44px] lg:text-[58px] leading-tight px-2 sm:px-4 md:px-0 break-words">
+        <div className="flex-1 min-w-0 py-5">
+          <h1 className="text-center md:text-left font-bricolage font-extrabold heading-base px-2 sm:px-4 md:px-0 break-words">
             {service.title}
           </h1>
 
           <div
-            className="text-gray-600 mt-2 sm:mt-3 max-w-[600px] text-justify text-xs sm:text-sm md:text-base px-2 sm:px-4 md:px-0 break-words"
+            className="text-gray-600 mt-2 sm:mt-3 max-w-[600px] md:text-left text-center text-xs sm:text-sm md:text-base px-2 sm:px-4 md:px-0 break-words"
             dangerouslySetInnerHTML={{ __html: service.description_short }}
           />
 
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 md:gap-3 mt-3 sm:mt-4 px-2 sm:px-4 md:px-0">
-            <span className="text-base sm:text-xl md:text-2xl font-bold whitespace-nowrap">
+          <div className="flex flex-wrap items-center py-5">
+            <span className="text-[30px] font-bricolage font-extrabold whitespace-nowrap">
               € {service.price.toFixed(2)}
             </span>
 
