@@ -73,8 +73,18 @@
 @layer utilities {
   .main-heading {
     font-weight: 800 !important;
-    @apply text-[40px] leading-[38px] tracking-[-0.05em];
-    @apply md:text-[86px] md:leading-[73px];
+    font-size: clamp(32px, 8vw, 86px);
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+  }
+
+  @media (min-width: 765px) and (max-width: 1243px) {
+    .main-heading {
+      font-size: clamp(40px, 5.5vw, 70px);
+    }
+    .hero-image-container {
+      max-width: clamp(500px, 52vw, 620px) !important;
+    }
   }
   .heading-base {
     font-weight: 800 !important;
