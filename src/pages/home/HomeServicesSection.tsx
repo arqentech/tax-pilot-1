@@ -36,8 +36,8 @@ const ServicesSection = () => {
 
         <div className="text-center mb-10">
           <h2 className="heading-base font-bricolage mt-6 md:mt-2">
-            <span className="block md:inline">All Your Tax Needs,</span>{" "}
-            <span className="block md:inline">in One Place.</span>
+            <span className="block lg:inline">All Your Tax Needs,</span>{" "}
+            <span className="block lg:inline">in One Place.</span>
           </h2>
           <p className="text-base max-w-[660px] mt-4 mx-auto">
             Access over 150 certified CAF and patronage services, guided step by
