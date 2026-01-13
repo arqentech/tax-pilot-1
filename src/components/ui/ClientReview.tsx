@@ -28,8 +28,9 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
               </div>
             ))}
 
-            <div className="min-w-[300px] flex-shrink-0">
-              <div className="bg-black text-white rounded-[26px] h-[247px] flex flex-col justify-center items-center">
+            {/* Rating Card */}
+            <div className="flex-shrink-0 w-[414px] h-[300px]">
+              <div className="bg-black text-white rounded-[26px] w-full h-full flex flex-col justify-center items-center">
                 <h2 className="text-5xl font-bold">4.6</h2>
                 <p className="text-sm mt-2">Based on 456 reviews</p>
                 <div className="flex mt-4 space-x-1">
@@ -49,7 +50,7 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
             <ReviewCard key={idx} {...r} />
           ))}
 
-          <div className="bg-black text-white w-full max-w-[414px] h-[247px] rounded-[26px] flex flex-col justify-center items-center">
+          <div className="bg-black text-white w-full  h-[300px] rounded-[26px] flex flex-col justify-center items-center">
             <h2 className="text-5xl font-bold">4.6</h2>
             <p className="text-sm mt-2">Based on 456 reviews</p>
             <div className="flex mt-4 space-x-1">
