@@ -26,7 +26,7 @@ const WhatDefinesUs: React.FC = () => {
     <section className="w-full md:py-24">
       <div className="page-container">
         <div className="flex flex-col items-center md:grid md:grid-cols-2 gap-6 mb-12 text-center md:text-left">
-          <h2 className="heading-base">What defines us?</h2>
+          <h2 className="heading-base font-bricolage">What defines us?</h2>
           <p className="text-[18px] font-medium leading-[25px] lg:text-[20px]">
             Access over 150 certified CAF and patronage services, guided step by
             step by real experts, all from the comfort of your home.
