@@ -45,20 +45,22 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
   return (
     <div className="w-full md:max-w-[641px] rounded-2xl shadow-sm border border-[#E6E6E1] hover:shadow-md transition-shadow duration-200 overflow-hidden">
-      <div className="bg-[#F9F9F799] p-4 min-h-[200px]">
-        <h3 className="font-bricolage text-[20px] md:text-[24px] md:leading-tight font-extrabold">
-          {title}
-        </h3>
+      <div className="bg-[#F9F9F799] p-4 min-h-[200px] flex flex-col justify-between">
+        <div>
+          <h3 className="font-bricolage text-[24px] md:text-[26px] md:leading-tight font-extrabold">
+            {title}
+          </h3>
 
-        {descriptionText && (
-          <p className="text-[14px] md:text-[16px] mt-2 line-clamp-2 text-[#5F6057]">
-            {descriptionText}
-          </p>
-        )}
+          {descriptionText && (
+            <p className="text-[14px] md:text-[16px] mt-2 line-clamp-2 text-[#5F6057]">
+              {descriptionText}
+            </p>
+          )}
+        </div>
 
         <div className="mt-4 md:mt-6 flex items-center gap-2 md:gap-3 flex-wrap">
           {displayPrice && (
-            <span className="text-xl md:text-2xl font-semibold text-gray-900">
+            <span className="text-[26px] font-bricolage  md:text-[30px] font-bold text-gray-900">
               {displayPrice}
             </span>
           )}

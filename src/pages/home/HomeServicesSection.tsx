@@ -33,7 +33,9 @@ const ServicesSection = () => {
     <section className="w-full py-10">
       <div className="flex flex-col items-center text-center mb-12">
         <Badge text="Services" width="115px" />
-        <h2 className="heading-base mt-2 ">All Your Tax Needs, in One Place.</h2>
+        <h2 className="heading-base mt-6 md:mt-2 ">
+          All Your Tax Needs, in One Place.
+        </h2>
         <p className="text-base max-w-[660px] mt-4">
           Access over 150 certified CAF and patronage services, guided step by
           real experts, all from the comfort of your home.
@@ -48,10 +50,10 @@ const ServicesSection = () => {
         />
       </div>
 
-      <div className="block sm:hidden overflow-x-auto max-w-[300px] mx-auto">
-        <div className="flex gap-3">
+      <div className="w-full sm:hidden overflow-x-auto max-w-[300px] mx-auto ">
+        <div className="w-full flex gap-3">
           {displayServices.map((service: any) => (
-            <div key={service.id} className="min-w-[300px]">
+            <div key={service.id} className="min-w-[300px] ">
               <ServiceCard
                 title={service.title}
                 description_short={service.description_short}
@@ -65,7 +67,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
         {displayServices.map((service: any) => (
           <ServiceCard
             key={service.id}
