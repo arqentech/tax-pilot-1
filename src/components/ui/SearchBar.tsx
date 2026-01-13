@@ -23,13 +23,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <div
       className={`
-        flex items-center
-        bg-[#F9F9F7]
+        flex items-center bg-[#F9F9F7] gap-3
         border border-[#E6E6E1]
         rounded-3xl
         md:rounded-[48px]
         h-[50px] md:h-[64px]
-        px-3
+        px-4
         shadow-sm
         min-w-[50px]
         max-w-full

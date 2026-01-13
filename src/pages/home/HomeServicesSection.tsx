@@ -30,65 +30,68 @@ const ServicesSection = () => {
   }
 
   return (
-    <section className="w-full py-10">
-      <div className="flex flex-col items-center text-center mb-12">
-        <Badge text="Services" width="115px" />
-        <h2 className="heading-base font-bricolage mt-6 md:mt-2 ">
-          All Your Tax Needs, in One Place.
-        </h2>
-        <p className="text-base max-w-[660px] mt-4">
-          Access over 150 certified CAF and patronage services, guided step by
-          real experts, all from the comfort of your home.
-        </p>
-      </div>
+    <section className="w-full full-bleed bg-[#FBFBFA] py-16">
+      <div className="w-full max-w-[1320px] px-4 mx-auto flex flex-col items-center">
+        <Badge text="Services" width="115px" center />
 
-      <div className="flex justify-center px-4 mb-10">
-        <SearchBar
-          value={searchQuery}
-          onSearch={setSearchQuery}
-          wrapperClass="w-full max-w-[720px]"
-        />
-      </div>
+        <div className="text-center mb-10">
+          <h2 className="heading-base font-bricolage mt-6 md:mt-2">
+            All Your Tax Needs, in One Place.
+          </h2>
+          <p className="text-base max-w-[660px] mt-4 mx-auto">
+            Access over 150 certified CAF and patronage services, guided step by
+            real experts, all from the comfort of your home.
+          </p>
+        </div>
 
-      <div className="w-full sm:hidden overflow-x-auto max-w-[300px] mx-auto ">
-        <div className="w-full flex gap-3">
+        <div className="flex justify-center w-full mb-10">
+          <SearchBar
+            value={searchQuery}
+            onSearch={setSearchQuery}
+            wrapperClass="w-full max-w-[720px]"
+          />
+        </div>
+
+        <div className="md:hidden w-full overflow-x-auto ">
+          <div className="flex gap-4 justify-start">
+            {displayServices.map((service: any) => (
+              <div key={service.id} className="max-w-[300px] flex-shrink-0">
+                <ServiceCard
+                  title={service.title}
+                  description_short={service.description_short}
+                  description_long={service.description_long}
+                  price={service.price}
+                  advantages={service.advantages}
+                  identifier={service.identifier ?? service.id}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center mt-10 w-full">
           {displayServices.map((service: any) => (
-            <div key={service.id} className="min-w-[300px] ">
-              <ServiceCard
-                title={service.title}
-                description_short={service.description_short}
-                description_long={service.description_long}
-                price={service.price}
-                advantages={service.advantages}
-                identifier={service.identifier ?? service.id}
-              />
-            </div>
+            <ServiceCard
+              key={service.id}
+              title={service.title}
+              description_short={service.description_short}
+              description_long={service.description_long}
+              price={service.price}
+              advantages={service.advantages}
+              identifier={service.identifier ?? service.id}
+            />
           ))}
         </div>
-      </div>
 
-      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-        {displayServices.map((service: any) => (
-          <ServiceCard
-            key={service.id}
-            title={service.title}
-            description_short={service.description_short}
-            description_long={service.description_long}
-            price={service.price}
-            advantages={service.advantages}
-            identifier={service.identifier ?? service.id}
-          />
-        ))}
-      </div>
-
-      <div className="hidden md:flex justify-center">
-        <Link
-          to="/services"
-          className="text-[#0166FF] text-lg font-semibold hover:underline flex items-center gap-2"
-        >
-          Explore All Services
-          <ChevronRight size={18} />
-        </Link>
+        <div className="hidden md:flex justify-center mt-10">
+          <Link
+            to="/services"
+            className="text-[#0166FF] text-lg font-semibold hover:underline flex items-center gap-2"
+          >
+            Explore All Services
+            <ChevronRight size={18} />
+          </Link>
+        </div>
       </div>
     </section>
   );
