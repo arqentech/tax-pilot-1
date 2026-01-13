@@ -1,5 +1,6 @@
 import { ArrowRight, BadgeCheck } from "lucide-react";
 import { Link } from "react-router-dom";
+import PrimaryButton from "./PrimaryButton";
 
 export default function TaxPilotSection() {
   return (
@@ -10,7 +11,7 @@ export default function TaxPilotSection() {
             Ready to simplify your taxes with Tax Pilot?
           </h2>
 
-          <ul className="mt-4 space-y-3 text-[16px] lg:text-[20px] leading-[23px]">
+          <ul className="mt-4 py-5 text-[16px] lg:text-[20px] leading-[23px]">
             <li className="flex items-center gap-3">
               <BadgeCheck color="#0AD6A1" width={20} />
               <span>Upload. Done. Relax</span>
@@ -27,9 +28,7 @@ export default function TaxPilotSection() {
             </li>
           </ul>
           <Link to="/services">
-            <button className="mt-6 bg-[#007BFF] text-white rounded-full px-6 py-3 font-semibold flex items-center gap-2 shadow-lg hover:bg-[#0068d6] transition">
-              Explore Services <ArrowRight size={18} />
-            </button>
+            <PrimaryButton text="Explore Services" width="262px" />
           </Link>
         </div>
 
