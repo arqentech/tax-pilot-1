@@ -1,4 +1,5 @@
 import React from "react";
+import CommaSvg from "/svg/comma.svg"; // Path from public folder
 
 interface ReviewCardProps {
   name: string;
@@ -16,8 +17,9 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
   const parts = highlight ? review.split(highlight) : [review];
 
   return (
-    <div className="bg-[#F6F6F3] w-full max-w-[414px] h-[247px] rounded-[26px] p-6 flex flex-col justify-between">
-      <p className=" text-[18px] leading-relaxed">
+    <div className="bg-[#F6F6F3] w-full max-w-[414px] h-[247px] rounded-[26px] px-3 py-6 flex flex-col justify-between relative">
+      <p className="text-[18px] leading-relaxed relative md:pt-12 pt-8">
+        <img src={CommaSvg} alt="comma" className="absolute md:top-4 top-2 w-6 h-6" />
         {parts.map((part, idx) => (
           <React.Fragment key={idx}>
             {part}
