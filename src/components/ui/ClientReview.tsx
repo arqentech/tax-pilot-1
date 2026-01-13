@@ -14,7 +14,7 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
         {showBadge && <Badge text="Testimonials" width="146px" center />}
 
         <div className="text-center mb-10">
-          <h2 className="mt-2 heading-base mb-3">A word from our Clients.</h2>
+          <h2 className="mt-2 font-bricolage heading-base mb-3">A word from our Clients.</h2>
           <p className="mt-4 text-base max-w-[409px] mx-auto">
             Stories from people who turned complicated taxes into peace of mind.
           </p>
@@ -28,7 +28,6 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
               </div>
             ))}
 
-            {/* Rating Card */}
             <div className="flex-shrink-0 w-[414px] h-[300px]">
               <div className="bg-black text-white rounded-[26px] w-full h-full flex flex-col justify-center items-center">
                 <h2 className="text-5xl font-bold">4.6</h2>

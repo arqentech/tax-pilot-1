@@ -11,11 +11,11 @@ export default function HomeBlogSection() {
         <Badge text="Blog" width="78px" center />
 
         <h2 className="font-bricolage heading-base py-4">
-          Practical reads to help you move faster
+          Practical reads to help you move faster.
         </h2>
 
         <p className="text-base max-w-[660px] mx-auto">
-          Stories from people who turned complicated taxes into peace of mind
+          Stories from people who turned complicated taxes into peace of mind.
         </p>
 
         <div className="block sm:hidden overflow-x-auto mt-14">

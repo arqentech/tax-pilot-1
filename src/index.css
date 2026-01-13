@@ -78,12 +78,12 @@
   }
   .heading-base {
     font-weight: 800 !important;
-    @apply text-[38px] leading-[38px] tracking-[-0.07em];
+    @apply text-[38px] leading-[38px] tracking-[-0.06em];
     @apply md:text-[58px] md:leading-[73px];
   }
   .sub-heading {
     font-weight: 800 !important;
-    @apply text-[38px] leading-[38px] tracking-[-0.09em];
+    @apply text-[38px] leading-[38px] tracking-[-0.07em];
     @apply md:text-[58px] md:leading-[59px];
   }
 

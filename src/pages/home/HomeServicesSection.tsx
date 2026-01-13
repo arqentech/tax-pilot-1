@@ -33,7 +33,7 @@ const ServicesSection = () => {
     <section className="w-full py-10">
       <div className="flex flex-col items-center text-center mb-12">
         <Badge text="Services" width="115px" />
-        <h2 className="heading-base mt-6 md:mt-2 ">
+        <h2 className="heading-base font-bricolage mt-6 md:mt-2 ">
           All Your Tax Needs, in One Place.
         </h2>
         <p className="text-base max-w-[660px] mt-4">
