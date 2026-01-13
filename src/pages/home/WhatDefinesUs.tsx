@@ -23,7 +23,7 @@ const features = [
 
 const WhatDefinesUs: React.FC = () => {
   return (
-    <section className="w-full py-10">
+    <section className="w-full md:py-24">
       <div className="page-container">
         {/* Heading */}
         <div className="flex flex-col items-center md:grid md:grid-cols-2 gap-6 mb-12 text-center md:text-left">
@@ -34,8 +34,7 @@ const WhatDefinesUs: React.FC = () => {
           </p>
         </div>
 
-        {/* Features */}
-        {/* Desktop: single box */}
+       
         <div className="hidden lg:flex w-full bg-[#FBFBFA] rounded-[24px] border border-[#E6E6E1] justify-between p-12 gap-6">
           {features.map((feature, index) => (
             <div

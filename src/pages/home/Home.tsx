@@ -16,13 +16,13 @@ export default function Home() {
     <div className="flex flex-col">
       <HeroSection />
       <WhatDefinesUs />
-      <HowWeWork />
-      <ServicesSection />
-      <TeamCard />
-      <ClientReviews />
-      <HomePageFAQ />
-      <HomeBlogSection />
-      <TaxPilotSection />
+      {/* <HowWeWork /> */}
+      {/* <ServicesSection /> */}
+      {/* <TeamCard /> */}
+      {/* <ClientReviews /> */}
+      {/* <HomePageFAQ /> */}
+      {/* <HomeBlogSection /> */}
+      {/* <TaxPilotSection /> */}
     </div>
   );
 }

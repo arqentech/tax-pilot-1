@@ -32,7 +32,7 @@ export default function PrimaryButton({
         cursor: disabled ? "not-allowed" : "pointer",
         opacity: disabled ? 0.6 : 1,
       }}
-      className="mt-6 rounded-full px-6 font-semibold flex items-center justify-center gap-2 shadow-lg transition-all duration-200"
+      className="rounded-full font-bricolage  text-[22px] font-extrabold flex items-center justify-center gap-2 shadow-lg transition-all duration-200"
       onMouseEnter={(e) =>
         !disabled && (e.currentTarget.style.backgroundColor = hoverColor)
       }
@@ -42,7 +42,7 @@ export default function PrimaryButton({
       onClick={disabled ? undefined : onClick}
       disabled={disabled}
     >
-      {text} <ChevronRight size={18} />
+      {text} <ChevronRight size={22} strokeWidth={3} />
     </button>
   );
 }

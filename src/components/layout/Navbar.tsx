@@ -174,25 +174,23 @@ const Navbar = () => {
         }`}
       >
         <div
-          className={`container-main flex flex-col items-center gap-4  ${baseText}`}
+          className={`container-main flex flex-col items-center border border-[#E6E6E1] rounded-xl gap-4 py-6 mx-2 ${baseText}`}
         >
-          {navLinks.map(({ to, label }) => (
-            <Link
-              key={to}
-              to={to}
-              onClick={() => setIsOpen(false)}
-              className={linkStyle}
-            >
-              {label}
-            </Link>
+          {navLinks.map(({ to, label }, index) => (
+            <div key={to} className="w-full">
+              <Link
+                to={to}
+                onClick={() => setIsOpen(false)}
+                className={`${linkStyle} w-full block text-center py-3`}
+              >
+                {label}
+              </Link>
+
+              {index !== navLinks.length - 1 && (
+                <div className="mx-3 h-px bg-[#E6E6E1]" />
+              )}
+            </div>
           ))}
-          <Link
-            to="/contact-us"
-            onClick={() => setIsOpen(false)}
-            className={linkStyle}
-          >
-            Contact
-          </Link>
         </div>
       </div>
     </nav>
@@ -205,5 +203,5 @@ const navLinks = [
   { to: "/services", label: "Services" },
   { to: "/faq", label: "FAQ" },
   { to: "/blogs", label: "Blogs" },
+  // { to: "/contact-us", label: "Contact" },
 ];
-
