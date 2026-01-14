@@ -7,7 +7,7 @@ export default function TaxPilotSection() {
     <section className="w-full flex justify-center py-10 ">
       <div className="bg-[#FFC107] w-full lg:max-w-full rounded-[28px] p-6 flex flex-col justify-center lg:flex-row lg:items-center ">
         <div className="flex-1">
-          <h2 className="sub-heading ">
+          <h2 className="sub-heading md:font-bricolage font-degular">
             Ready to simplify your taxes with Tax Pilot?
           </h2>
 

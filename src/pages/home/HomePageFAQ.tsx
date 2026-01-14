@@ -8,7 +8,7 @@ function HomePageFAQ() {
       <div className="flex flex-col items-center ">
         <Badge text="FAQ" width="77px" center />
 
-        <h2 className="font-bricolage sub-heading mt-4 max-w-[489px] text-center">
+        <h2 className="font-bricolage sub-heading mt-4  text-center">
           <span className="block lg:inline">Your Tax Questions,</span>{" "}
           <span className="block lg:inline">answered Simply.</span>
         </h2>

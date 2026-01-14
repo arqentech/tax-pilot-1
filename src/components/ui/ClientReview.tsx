@@ -14,7 +14,7 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
         {showBadge && <Badge text="Testimonials" width="146px" center />}
 
         <div className="text-center mt-10 mb-10 ">
-          <h2 className="mt-2 font-bricolage heading mb-3">A word from our Clients.</h2>
+          <h2 className="mt-2 font-bricolage sub-heading mb-3">A word from our Clients.</h2>
           <p className="mt-4 text-base max-w-[409px] mx-auto">
             Stories from people who turned complicated taxes into peace of mind.
           </p>
