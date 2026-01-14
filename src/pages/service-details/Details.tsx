@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useServiceDetails } from "@/hooks/useServiceDetails";
 import ServicesFAQ from "./ServicesFAQ";
 import HowWeWork from "@/components/ui/HowWeWork";
+import Badge from "@/components/ui/Badge";
 
 const Loader = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -78,7 +79,9 @@ const Details: React.FC = () => {
       });
 
       alert(
-        result.added ? "Service added to cart!" : "Service already added to cart."
+        result.added
+          ? "Service added to cart!"
+          : "Service already added to cart."
       );
     } catch (error) {
       console.error("Error adding service to cart:", error);
@@ -125,14 +128,14 @@ const Details: React.FC = () => {
 
             {service.vatIncluded && (
               <span className="bg-[#EEFCD7] flex items-center gap-0.5 sm:gap-1 text-[#36500C] text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
-                <CircleCheck className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" /> 
+                <CircleCheck className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" />
                 <span className="whitespace-nowrap">VAT Included</span>
               </span>
             )}
 
             {service.hours && (
               <span className="flex items-center gap-0.5 sm:gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
-                <Clock className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" /> 
+                <Clock className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" />
                 <span className="whitespace-nowrap">{service.hours}</span>
               </span>
             )}
@@ -155,7 +158,7 @@ const Details: React.FC = () => {
           <h2 className="text-base sm:text-xl md:text-2xl font-semibold text-gray-900">
             In-depth analysis
           </h2>
-          <div className="md:col-span-2 text-gray-700 leading-relaxed whitespace-pre-line text-justify text-xs sm:text-sm md:text-base break-words">
+          <div className="md:col-span-2 text-gray-700 leading-relaxed whitespace-pre-line text-xs sm:text-sm md:text-base break-words">
             <div
               dangerouslySetInnerHTML={{ __html: service.description_long }}
             />
@@ -184,14 +187,18 @@ const Details: React.FC = () => {
       <HowWeWork />
 
       {service.faqs && service.faqs.length > 0 && (
-        <section className="grid gap-3 sm:gap-4 md:gap-2 grid-cols-1 md:grid-cols-3 mt-4 sm:mt-8 md:mt-12 md:space-x-7 px-2 sm:px-4 md:px-0">
+        <section className="grid gap-3 sm:gap-4 md:gap-2 grid-cols-1 md:grid-cols-3 mt-4 sm:mt-8 md:mt-12 md:space-x-7 md:px-0">
           <div>
-            <h1 className="sub-heading mt-2 sm:mt-4 md:mt-8">
-              <span className="block md:hidden text-center text-[24px] sm:text-[32px] leading-tight">
-                Your Tax Questions, answered Simply.
+            <Badge text="FAQ" width="86px" className="md:hidden flex" center />
+            <h1 className="sub-heading font-bricolage mt-2 sm:mt-4 md:mt-8">
+              <span className="block md:hidden text-center text-[38px] sm:text-[32px] ">
+                Your Tax Questions,
+              </span>
+              <span className="block md:hidden text-center text-[38px] sm:text-[32px] ">
+                answered Simply.
               </span>
               <span className="hidden md:block">
-                Frequently asked questions
+                Frequently asked questions.
               </span>
             </h1>
 

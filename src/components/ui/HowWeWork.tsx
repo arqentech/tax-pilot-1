@@ -11,7 +11,8 @@ export default function HowWeWork() {
             </span>
 
             <h2 className="mt-6 md:text-left text-center font-bricolage text-[38px] lg:text-[58px] lg:leading-[59px] font-extrabold leading-[38px] tracking-[-0.03em]">
-              We Simplify Taxes, Together.
+              <span className="block whitespace-nowrap">We Simplify</span>
+              <span className="block whitespace-nowrap">Taxes, Together.</span>
             </h2>
 
             <p className="mt-6 md:text-justify text-center text-[#BFDDFF] text-[18px] lg:text-[20px] leading-[25px]">

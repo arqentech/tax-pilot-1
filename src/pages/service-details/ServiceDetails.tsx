@@ -6,7 +6,7 @@ function ServiceDetails() {
   return (
     <div className="flex flex-col">
       <Details />
-      <ClientReviews showBadge={false} />
+      <ClientReviews  />
       <TaxPilotSection />
     </div>
   );
