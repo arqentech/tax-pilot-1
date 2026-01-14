@@ -2,7 +2,7 @@ import PrimaryButton from "@/components/ui/PrimaryButton";
 import { useCart } from "@/contexts/CartContext";
 import { CircleCheck, Clock } from "lucide-react";
 import Breadcrumbs from "./BreadCrumb";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useServiceDetails } from "@/hooks/useServiceDetails";
 import ServicesFAQ from "./ServicesFAQ";
 import HowWeWork from "@/components/ui/HowWeWork";
@@ -198,7 +198,7 @@ const Details: React.FC = () => {
               <span className="block md:hidden text-center text-[38px] sm:text-[32px] ">
                 answered Simply.
               </span>
-              <span className="hidden md:block">
+              <span className="hidden md:block max-w-[457px]">
                 Frequently asked questions.
               </span>
             </h1>
@@ -208,6 +208,12 @@ const Details: React.FC = () => {
               value that certifies the economic situation of a household in
               Italy.
             </p>
+            <div className="hidden md:flex text-[#04226B] items-center gap-1 text-[18px] mt-4 font-semibold">
+              <span>Still have questions?</span>
+              <Link to="/contact-us"  className="underline italic">
+                Chat with an expert
+              </Link>
+            </div>
           </div>
 
           <div className="md:col-span-2 space-y-2 sm:space-y-3">

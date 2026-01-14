@@ -35,7 +35,7 @@ export default function ContactUs() {
           </div>
         </CardHeader>
 
-        <CardContent className="flex flex-col ">
+        <CardContent className="flex flex-col">
           <ContactForm
             form={form}
             onChange={handleChange}

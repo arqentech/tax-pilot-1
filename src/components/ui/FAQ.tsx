@@ -52,7 +52,7 @@ export default function FAQ({ data }: FAQProps) {
         ))}
       </div>
 
-      <p className="hidden lg:block mt-8 text-[18px] leading-[25px]">
+      <p className="lg:hidden block mt-8 text-[18px] leading-[25px]">
         Still have questions?{" "}
         <Link to="/contact-us" className="underline font-medium italic">
           Chat with an expert
