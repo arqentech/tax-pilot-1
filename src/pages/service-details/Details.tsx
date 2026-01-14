@@ -190,7 +190,7 @@ const Details: React.FC = () => {
         <section className="grid gap-3 sm:gap-4 md:gap-2 grid-cols-1 md:grid-cols-3 mt-4 sm:mt-8 md:mt-12 md:space-x-7 md:px-0">
           <div>
             <Badge text="FAQ" width="86px" className="md:hidden flex" center />
-            <h1 className="sub-heading font-bricolage mt-2 sm:mt-4 md:mt-8">
+            <h1 className="sub-heading font-bricolage mt-8">
               <span className="block md:hidden text-center text-[38px] sm:text-[32px] ">
                 Your Tax Questions,
               </span>
