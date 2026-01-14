@@ -56,7 +56,7 @@ const ServicesSection = () => {
         <div className="md:hidden w-full overflow-x-auto ">
           <div className="flex gap-4 justify-start">
             {displayServices.map((service: any) => (
-              <div key={service.id} className="max-w-[300px] flex-shrink-0">
+              <div key={service.id} className="max-w-[310px] flex-shrink-0">
                 <ServiceCard
                   title={service.title}
                   description_short={service.description_short}
