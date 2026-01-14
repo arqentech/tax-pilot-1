@@ -9,16 +9,7 @@ export const useServiceDetails = (slug: string) => {
   return useQuery<Service>({
     queryKey: ["service", slug],
     queryFn: async () => {
-      const cachedServices = queryClient.getQueryData<Service[]>(["services"]);
-      if (cachedServices) {
-        const service = cachedServices.find(
-          (s) => s.identifier === slug || String(s.id) === slug
-        );
-        if (service) {
-          return service;
-        }
-      }
-
+     
       return getServiceDetails(slug);
     },
     enabled: !!slug,

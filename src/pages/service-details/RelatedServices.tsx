@@ -1,60 +1,89 @@
-import { useState } from "react";
-import { cardData } from "../../data/CardData";
+import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 import ServiceCard from "../../components/ui/ServiceCard";
 import Badge from "../../components/ui/Badge";
+import { useServiceDetails } from "../../hooks/useServiceDetails";
+import { RelatedServiceItem, Service } from "../../types/services";
 
 const RelatedServices = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const { slug } = useParams<{ slug: string }>();
+  const { data: serviceDetails, isLoading } = useServiceDetails(slug ?? "");
 
-  const filteredServices = cardData.filter(
-    (service) =>
-      service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      service.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const displayServices = useMemo(() => {
+    if (
+      serviceDetails?.related_services &&
+      serviceDetails.related_services.length > 0
+    ) {
+      const services = serviceDetails.related_services.map(
+        (item: RelatedServiceItem | Service) => {
+          if ("service" in item && item.service) {
+            return item.service;
+          }
+          return item as Service;
+        }
+      );
 
-  const displayServices = filteredServices.slice(0, 3);
+      return services.slice(0, 3);
+    }
+    return [];
+  }, [serviceDetails?.related_services]);
+
+  if (isLoading) {
+    return null;
+  }
+
+  if (!serviceDetails?.related_services || displayServices.length === 0) {
+    return null;
+  }
 
   return (
-    <section className="w-full py-10">
-      <div className="w-full">
-        <div className="w-full flex flex-col items-center justify-center text-center mb-12">
-          <Badge text="Services " width="115px" />
+    <section className="w-full full-bleed  py-16">
+      <div className="w-full max-w-[1320px] px-4 mx-auto flex flex-col items-center">
+        <Badge text="Services" width="115px" center />
 
-          <h2 className="font-bricolage heading-base">Related Services</h2>
-
-          <p className="text-base">
-            Access over 150 certified CAF and patronage services, guided step by
-            real experts, all from the comfort of your home.
-          </p>
+        <div className="text-center mb-5 mt-5">
+          <h2 className="heading-base font-bricolage mt-6 md:mt-2">
+            Related Services
+          </h2>
         </div>
 
-        <div className="block w-full sm:hidden overflow-x-auto mt-14 max-w-[300px] mx-auto">
-          <div className="flex gap-4 ">
-            {displayServices.map((service) => (
-              <div key={service.link} className="min-w-[300px]">
+        <div className="md:hidden w-full overflow-x-auto">
+          <div className="flex gap-4 justify-start">
+            {displayServices.map((service: any) => (
+              <div key={service.id} className="max-w-[300px] flex-shrink-0">
                 <ServiceCard
-                  title={service.title}
-                  description={service.description}
+                  title={service.title || ""}
+                  description_short={service.description_short}
+                  description_long={service.description_long}
                   price={service.price}
-                  vatIncluded={service.vatIncluded}
+                  vatIncluded={
+                    service.vatIncluded !== undefined
+                      ? service.vatIncluded
+                      : true
+                  }
                   hours={service.hours}
-                  link={service.link}
+                  advantages={service.advantages}
+                  identifier={service.identifier ?? service.id}
                 />
               </div>
             ))}
           </div>
         </div>
 
-        <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 mb-12">
-          {displayServices.map((service) => (
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center mt-10 w-full">
+          {displayServices.map((service: any) => (
             <ServiceCard
-              key={service.link}
-              title={service.title}
-              description={service.description}
+              key={service.id}
+              title={service.title || ""}
+              description_short={service.description_short}
+              description_long={service.description_long}
               price={service.price}
-              vatIncluded={service.vatIncluded}
+              vatIncluded={
+                service.vatIncluded !== undefined ? service.vatIncluded : true
+              }
               hours={service.hours}
-              link={service.link}
+              advantages={service.advantages}
+              identifier={service.identifier ?? service.id}
             />
           ))}
         </div>

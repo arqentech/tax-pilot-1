@@ -28,6 +28,15 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface RelatedServiceItem {
+  id: number;
+  service_id: number;
+  related_service_id: number;
+  created_at?: string;
+  updated_at?: string;
+  service: Service;
+}
+
 export interface Service {
   id: number;
   identifier: string;
@@ -48,7 +57,8 @@ export interface Service {
       title: string;
     };
   }[];
-  faqs?: FAQ[]; 
+  faqs?: FAQ[];
+  related_services?: RelatedServiceItem[] | Service[];
 }
 
 export interface ServiceCardProps {

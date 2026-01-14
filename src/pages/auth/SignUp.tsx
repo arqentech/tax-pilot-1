@@ -26,6 +26,7 @@ export default function SignUpPage() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
 
   const registerMutation = useRegister();
 
@@ -37,8 +38,49 @@ export default function SignUpPage() {
     }));
   };
 
+  const handlePhoneChange = (phone: string) => {
+    // Filter out dots and other invalid characters, keep only digits, spaces, +, and parentheses
+    const cleanedPhone = phone.replace(/[^\d+\s()]/g, "");
+    
+    setForm((prev) => ({ ...prev, mobile: cleanedPhone }));
+    setPhoneError("");
+
+    // Validate phone number if it's not empty
+    if (cleanedPhone.trim()) {
+      // Extract all digits from the phone number
+      const digitsOnly = cleanedPhone.replace(/\D/g, "");
+      
+      // Extract country code (digits after +, can be 1-4 digits)
+      const countryCodeMatch = cleanedPhone.match(/^\+\d{1,4}/);
+      const countryCodeLength = countryCodeMatch ? countryCodeMatch[0].length - 1 : 0;
+      
+      // Calculate national number length (total digits minus country code)
+      const nationalNumberLength = digitsOnly.length - countryCodeLength;
+      
+      // Validate that national number has at least 8 digits
+      if (nationalNumberLength > 0 && nationalNumberLength < 8) {
+        setPhoneError("Phone number must have at least 8 digits");
+      } else {
+        setPhoneError("");
+      }
+    }
+  };
+
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate phone number before submission
+    if (form.mobile.trim()) {
+      const digitsOnly = form.mobile.replace(/\D/g, "");
+      const countryCodeMatch = form.mobile.match(/^\+\d{1,4}/);
+      const countryCodeLength = countryCodeMatch ? countryCodeMatch[0].length - 1 : 0;
+      const nationalNumberLength = digitsOnly.length - countryCodeLength;
+      
+      if (nationalNumberLength < 8) {
+        setPhoneError("Phone number must have at least 8 digits");
+        return;
+      }
+    }
 
     const payload = {
       email: form.email,
@@ -144,13 +186,14 @@ export default function SignUpPage() {
               <PhoneInput
                 defaultCountry="it"
                 value={form.mobile}
-                onChange={(phone) =>
-                  setForm((prev) => ({ ...prev, mobile: phone }))
-                }
+                onChange={handlePhoneChange}
                 placeholder="Mobile number"
                 className="w-full !rounded-[14px] !border !border-[#E6E6E1] !bg-[#FBFBFA]"
                 inputClassName="!h-[60px] !text-[18px] !bg-[#FBFBFA] !border-none  placeholder:!text-[#9D9E98]"
               />
+              {phoneError && (
+                <p className="text-red-500 text-sm mt-1">{phoneError}</p>
+              )}
             </div>
 
             <div className="relative w-full">
@@ -178,8 +221,10 @@ export default function SignUpPage() {
               </button>
             </div>
 
-            {isError && (
-              <p className="text-red-500 text-center text-sm">{errorMessage}</p>
+            {(isError || phoneError) && (
+              <p className="text-red-500 text-center text-sm">
+                {phoneError || errorMessage}
+              </p>
             )}
           </CardContent>
 

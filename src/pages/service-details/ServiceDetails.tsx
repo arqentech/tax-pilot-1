@@ -8,7 +8,6 @@ function ServiceDetails() {
     <div className="flex flex-col">
       <Details />
       <ClientReviews />
-      {/* <RelatedServices /> */}
       <TaxPilotSection />
     </div>
   );

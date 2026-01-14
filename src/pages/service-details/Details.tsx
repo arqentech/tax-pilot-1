@@ -7,6 +7,7 @@ import { useServiceDetails } from "@/hooks/useServiceDetails";
 import ServicesFAQ from "./ServicesFAQ";
 import HowWeWork from "@/components/ui/HowWeWork";
 import Badge from "@/components/ui/Badge";
+import RelatedServices from "./RelatedServices";
 
 const Loader = () => (
   <div className="flex items-center justify-center min-h-[200px]">
@@ -183,7 +184,7 @@ const Details: React.FC = () => {
           </div>
         </section>
       )}
-
+      <RelatedServices />
       <HowWeWork />
 
       {service.faqs && service.faqs.length > 0 && (
