@@ -6,7 +6,7 @@ export const blogData = [
     title: "ISEE 2025: What It Is and How to Request It Online",
     description:
       "Learn what ISEE 2025 is, why it's important, and the quickest way to request it online.",
-    readTime: "5 min",
+    readTime: "5 Min read",
     inDepthAnalysis: `The ISEE (Indicatore della Situazione Economica Equivalente) is a financial indicator used to determine eligibility for social benefits, scholarships, and tax reductions. 
 The 2025 version introduces simplified digital submissions and better integration with national databases.  
 To request ISEE 2025 online, users must gather required documentation—such as tax returns, bank statements, and family details—and submit them through the INPS portal.  
@@ -28,7 +28,7 @@ The entire procedure can also be completed with assistance from authorized CAF c
     title: "Top Personal Finance Tips for 2025",
     description:
       "Smart strategies to grow your savings, manage expenses, and stay financially stable in 2025.",
-    readTime: "7 min",
+    readTime: "7 Min read",
     inDepthAnalysis: `With rising inflation and economic uncertainties, personal finance management has become more important than ever.  
 In 2025, experts recommend adopting strong budgeting habits, tracking spending using digital tools, prioritizing emergency savings, and diversifying investments.  
 People should also explore tax-saving opportunities, government incentives, and financial literacy programs to improve long-term planning.`,
@@ -49,7 +49,7 @@ People should also explore tax-saving opportunities, government incentives, and 
     title: "Understanding University ISEE",
     description:
       "A complete guide to University ISEE and how it impacts scholarships and tuition benefits.",
-    readTime: "6 min",
+    readTime: "6 Min read",
     inDepthAnalysis: `University ISEE is essential for students applying for scholarships, tuition waivers, and accommodation benefits.  
 It evaluates the family’s economic status and generates a score used by universities for financial eligibility.  
 Preparing for University ISEE requires tax documentation, residency proof, family composition details, and financial records.  
@@ -71,7 +71,7 @@ Submitting it early increases the chance of securing limited scholarships.`,
     title: "Freelancer Tax Guide 2025",
     description:
       "A beginner-friendly guide explaining taxes, deductions, and rules for freelancers in 2025.",
-    readTime: "8 min",
+    readTime: "8 Min read",
     inDepthAnalysis: `Freelancers face more complex taxation rules compared to salaried employees.  
 In 2025, freelancers must track all income sources, register for VAT if required, and maintain accurate expense logs.  
 Digital billing platforms simplify invoicing and tax reporting.  
@@ -93,7 +93,7 @@ Understanding deductible expenses—like equipment, workspaces, electricity, tra
     title: "Common Tax Mistakes Small Businesses Make",
     description:
       "Avoid these common tax errors to save time, money, and legal trouble for your business.",
-    readTime: "6 min",
+    readTime: "6 Min read",
     inDepthAnalysis: `Small businesses often make costly mistakes such as poor recordkeeping, missing deadlines, underreporting income, or claiming ineligible deductions.  
 In 2025, authorities are using more automated monitoring tools, making compliance essential.  
 Businesses should invest in proper accounting systems, hire professionals when needed, and stay updated on tax regulations.`,
@@ -114,7 +114,7 @@ Businesses should invest in proper accounting systems, hire professionals when n
     title: "VAT 2025: Updates You Should Know",
     description:
       "All important VAT changes coming in 2025 and how they impact businesses and consumers.",
-    readTime: "5 min",
+    readTime: "5 Min read",
     inDepthAnalysis: `The VAT system undergoes annual updates, and 2025 introduces new digital invoicing rules, revised rates for selected categories, and better fraud-detection systems.  
 Businesses are required to shift to real-time invoice reporting and adopt compliant billing software.  
 These changes aim to improve transparency and reduce tax evasion.`,
@@ -135,7 +135,7 @@ These changes aim to improve transparency and reduce tax evasion.`,
     title: "Maximizing Tax Deductions in 2025",
     description:
       "Learn how to legally reduce your tax liability with the latest 2025 deduction rules.",
-    readTime: "7 min",
+    readTime: "7 Min read",
     inDepthAnalysis: `Tax deductions play a crucial role in minimizing annual tax liability.  
 In 2025, new deductions include increased workplace-related claims, home-office allowances, and digital equipment write-offs.  
 Keeping receipts, maintaining logs, and using accounting apps help taxpayers claim the maximum allowable benefits.`,
@@ -156,7 +156,7 @@ Keeping receipts, maintaining logs, and using accounting apps help taxpayers cla
     title: "How to Request Proof of Income Documents",
     description:
       "Step-by-step guide on requesting official proof of income for banks, visas, or employers.",
-    readTime: "4 min",
+    readTime: "4 Min read",
     inDepthAnalysis: `Proof of income documents are required for loans, visa applications, rental agreements, and employment verification.  
 To request them, individuals can contact their employer, tax agency, or banking institution.  
 Digital portals now allow instant downloads of salary slips, tax returns, and income certificates.`,
@@ -177,7 +177,7 @@ Digital portals now allow instant downloads of salary slips, tax returns, and in
     title: "Beginner’s Guide to Filing Taxes",
     description:
       "A simple step-by-step guide for beginners to understand and file taxes correctly.",
-    readTime: "6 min",
+    readTime: "6 Min read",
     inDepthAnalysis: `Many first-time filers find taxes confusing, but with proper guidance, the process becomes stress-free.  
 The key steps include gathering financial documents, understanding income categories, using authorized tax portals, and reviewing claims before submission.  
 In 2025, tax platforms are more user-friendly, offering auto-filled forms and real-time data verification.`,
