@@ -18,7 +18,6 @@ export default function CheckoutPage() {
   const [error, setError] = useState<string | null>(null);
   const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
   
-  // Customer information form state
   const [customerInfo, setCustomerInfo] = useState({
     firstName: "",
     lastName: "",

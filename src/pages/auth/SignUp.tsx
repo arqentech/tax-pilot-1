@@ -39,25 +39,19 @@ export default function SignUpPage() {
   };
 
   const handlePhoneChange = (phone: string) => {
-    // Filter out dots and other invalid characters, keep only digits, spaces, +, and parentheses
     const cleanedPhone = phone.replace(/[^\d+\s()]/g, "");
     
     setForm((prev) => ({ ...prev, mobile: cleanedPhone }));
     setPhoneError("");
 
-    // Validate phone number if it's not empty
     if (cleanedPhone.trim()) {
-      // Extract all digits from the phone number
       const digitsOnly = cleanedPhone.replace(/\D/g, "");
       
-      // Extract country code (digits after +, can be 1-4 digits)
       const countryCodeMatch = cleanedPhone.match(/^\+\d{1,4}/);
       const countryCodeLength = countryCodeMatch ? countryCodeMatch[0].length - 1 : 0;
       
-      // Calculate national number length (total digits minus country code)
       const nationalNumberLength = digitsOnly.length - countryCodeLength;
       
-      // Validate that national number has at least 8 digits
       if (nationalNumberLength > 0 && nationalNumberLength < 8) {
         setPhoneError("Phone number must have at least 8 digits");
       } else {
@@ -69,7 +63,6 @@ export default function SignUpPage() {
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate phone number before submission
     if (form.mobile.trim()) {
       const digitsOnly = form.mobile.replace(/\D/g, "");
       const countryCodeMatch = form.mobile.match(/^\+\d{1,4}/);

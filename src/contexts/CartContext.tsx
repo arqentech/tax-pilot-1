@@ -281,7 +281,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       const { cartData, message } = await addItemToCart(itemWithId.service_id);
 
-      // cart_items is validated in the API function, but add safety check here too
       const fetchedCartItems = cartData?.cart_items || [];
       const backendItems = fetchedCartItems.map(mapCartItemFromBackend);
 
@@ -292,30 +291,22 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         cartToken: cartData.cart_token,
       });
 
-      // Determine final items: prioritize backend data, but preserve items if backend is empty
       let finalItems: CartItem[];
       
       if (backendItems.length > 0) {
-        // Backend has items, use them (this is the normal case)
         finalItems = backendItems;
         console.log("Using backend items:", finalItems);
       } else {
-        // Backend returned empty - this could be a timing issue or the item wasn't added
-        // Preserve previous items and ensure the optimistic item is included
         console.warn("Backend returned empty cart after adding item. Preserving existing items.");
         
-        // Check if the item we're adding exists in previous items
         const itemExistsInPrevious = previousItems.some(
           (item) => item.service_id === itemWithId.service_id
         );
         
         if (itemExistsInPrevious) {
-          // Item already in previous items, use them
           finalItems = previousItems;
           console.log("Item already exists, using previous items:", finalItems);
         } else {
-          // Item not in previous items, add it
-          // This handles both: new cart (previousItems empty) and existing cart
           finalItems = [...previousItems, optimisticItem];
           console.log("Final items (preserved + new):", finalItems);
         }
@@ -348,7 +339,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const removeFromCart = async (id: string): Promise<{ removed: boolean; message: string }> => {
-    // Find the item to remove
     const itemToRemove = cartItems.find((item) => item.id === id);
 
     if (!itemToRemove) {
@@ -359,10 +349,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       };
     }
 
-    // Need cart_token, cart_item_id, and service_id for the API call
     if (!cartToken) {
       console.error("Cart token is missing");
-      // Fallback to local removal
       setCartItemsState((prev) => {
         const newItems = prev.filter((item) => item.id !== id);
         saveCartToStorage(newItems, cartToken);
@@ -374,13 +362,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       };
     }
 
-    // Get cart_item_id (the backend item ID) and service_id
     const cartItemId = itemToRemove.cart_item_id;
     const serviceId = itemToRemove.service_id;
 
     if (!cartItemId || !serviceId || typeof cartItemId !== 'number' || typeof serviceId !== 'number') {
       console.error("Missing cart_item_id or service_id for item:", itemToRemove);
-      // Fallback to local removal
       setCartItemsState((prev) => {
         const newItems = prev.filter((item) => item.id !== id);
         saveCartToStorage(newItems, cartToken);
@@ -392,7 +378,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       };
     }
 
-    // Optimistic update - remove item immediately
     const previousItems = [...cartItems];
     const previousToken = cartToken;
 
@@ -409,7 +394,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         serviceId as number
       );
 
-      // Update cart with backend response
       const fetchedCartItems = cartData?.cart_items || [];
       const backendItems = fetchedCartItems.map(mapCartItemFromBackend);
 
@@ -425,7 +409,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     } catch (error) {
       console.error("Failed to remove item from cart:", error);
 
-      // Revert to previous state on error
       setCartItemsState(previousItems);
       setCartToken(previousToken);
       saveCartToStorage(previousItems, previousToken);

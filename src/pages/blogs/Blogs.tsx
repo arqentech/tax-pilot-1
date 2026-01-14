@@ -37,7 +37,8 @@ const Blogs: React.FC = () => {
         <div className="text-center mb-8">
           <h1 className="font-bricolage heading-base">The TaxPilot Blog .</h1>
           <p className="mt-2">
-            Tax news with TaxPilot: explore our blog for tips & insights.
+            Tax news with taxpilot: explore our blog for news, tips, and
+            insights on tax management.
           </p>
         </div>
 
