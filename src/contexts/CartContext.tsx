@@ -440,11 +440,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     setCartItemsState([]);
     localStorage.removeItem(CART_ITEMS_STORAGE_KEY);
     localStorage.removeItem(CART_DATA_STORAGE_KEY);
-  };
+  }, []);
 
   const setCartItems = (items: CartItem[]) => {
     setCartItemsState(items.map(ensureId));
