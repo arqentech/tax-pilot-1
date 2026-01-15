@@ -19,7 +19,7 @@ const Navbar = () => {
     : "relative w-full bg-white";
   const mobileMenuBg = isHome ? "bg-[#FBFBFA]" : "bg-white";
 
-  const baseText = "text-[#34352E] font-medium text-base md:text-lg";
+  const baseText = "text-[#34352E] font-medium text-[2px] md:text-lg";
   const linkStyle = "hover:text-[#0166FF] transition-colors duration-200";
 
   const handleLogout = () => {
@@ -39,9 +39,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <div
-          className={`hidden md:flex text-base items-center justify-center gap-8 ${baseText}`}
-        >
+        <div className="hidden md:flex text-[18px] text-[#34352E] items-center justify-center gap-8">
           {navLinks.map(({ to, label }) => (
             <Link key={to} to={to} className={linkStyle}>
               {label}
@@ -49,7 +47,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className={`hidden md:flex items-center gap-8 ${baseText}`}>
+        <div className="hidden md:flex items-center gap-8 text-[18px] text-[#34352E] ">
           <Link to="/contact-us" className={linkStyle}>
             Contact
           </Link>
@@ -145,7 +143,7 @@ const Navbar = () => {
                 ) : (
                   <DropdownMenu.Item
                     className={cn(
-                      "flex items-center gap-2 cursor-pointer select-none rounded-md px-3 py-2 text-sm text-[#34352E] hover:bg-gray-100 focus:bg-gray-100 outline-none"
+                      "flex items-center gap-2 cursor-pointer select-none rounded-md px-3 py-2 text-[18px] text-[#34352E] hover:bg-gray-100 focus:bg-gray-100 outline-none"
                     )}
                     onSelect={() => navigate("/login")}
                   >
