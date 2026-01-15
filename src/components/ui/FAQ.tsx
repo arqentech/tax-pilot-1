@@ -8,9 +8,11 @@ export interface FAQItem {
 
 interface FAQProps {
   data: FAQItem[];
+
+  hideChatOnWeb?: boolean;
 }
 
-export default function FAQ({ data }: FAQProps) {
+export default function FAQ({ data, hideChatOnWeb = false }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (index: number) => {
@@ -27,9 +29,10 @@ export default function FAQ({ data }: FAQProps) {
             onClick={() => toggle(index)}
           >
             <div className="flex justify-between items-center">
-              <p className="px-2 font-medium  text-[#34352E] text-[16px] lg:text-[18px] leading-[25px]">
+              <p className="px-2 font-medium text-[#34352E] text-[16px] lg:text-[18px] leading-[25px]">
                 {item.question}
               </p>
+
               <span
                 className={`transition-transform duration-200 text-3xl ${
                   openIndex === index ? "rotate-45" : "rotate-0"
@@ -51,8 +54,10 @@ export default function FAQ({ data }: FAQProps) {
           </div>
         ))}
       </div>
-
-      <p className="lg:hidden block mt-8 text-[18px] leading-[25px]">
+      <p
+        className={`mt-8 text-[18px] leading-[25px]
+          ${hideChatOnWeb ? "block md:hidden" : "block"}`}
+      >
         Still have questions?{" "}
         <Link to="/contact-us" className="underline font-medium italic">
           Chat with an expert

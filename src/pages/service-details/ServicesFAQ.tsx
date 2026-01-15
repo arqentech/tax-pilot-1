@@ -16,7 +16,7 @@ const ServicesFAQ: React.FC<ServicesFAQProps> = ({ faqs }) => {
       answer: f.response,
     }));
 
-  return <FAQ data={data} />;
+  return <FAQ data={data} hideChatOnWeb />;
 };
 
 export default ServicesFAQ;
