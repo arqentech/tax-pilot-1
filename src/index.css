@@ -73,7 +73,7 @@
   .main-heading {
     font-weight: 800 !important;
     font-size: clamp(32px, 8vw, 86px);
-    line-height: 1.1;
+    line-height: 0.8;
     letter-spacing: -0.07em;
     color: #34352e;
   }
@@ -108,13 +108,6 @@
     box-shadow: inset 0px -3px 3px #272822,
       inset 0px 5px 8px rgba(46, 47, 40, 0.62);
   }
-
-  /* .full-bleed {
-    position: relative;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-  } */
 
   .full-bleed {
     position: relative;
