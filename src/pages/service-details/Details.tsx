@@ -118,12 +118,12 @@ const Details: React.FC = () => {
           </h1>
 
           <div
-            className="text-[#5F6057] mt-2 sm:mt-3 max-w-[600px] md:text-left text-center text-xs sm:text-sm md:text-base px-2 sm:px-4 md:px-0 break-words"
+            className="text-[#5F6057] mt-2 sm:mt-3 max-w-[600px] md:text-left text-center text-base px-2 sm:px-4 md:px-0 break-words"
             dangerouslySetInnerHTML={{ __html: service.description_short }}
           />
 
           <div className="flex flex-wrap items-center py-5">
-            <span className="text-[30px] text-[#34352E]  font-bricolage font-extrabold whitespace-nowrap">
+            <span className="text-[30px] text-[#34352E] font-bricolage font-extrabold whitespace-nowrap">
               € {service.price.toFixed(2)}
             </span>
 
@@ -156,10 +156,10 @@ const Details: React.FC = () => {
 
       {service.description_long && (
         <section className="grid grid-cols-1 md:grid-cols-3  sm:mb-8 md:mb-12 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4 md:px-0">
-          <h2 className="text-[#34352E] font-bricolage sm:text-xl md:text-2xl font-extrabold ">
+          <h2 className="text-[#34352E] font-bricolage text-[28px] font-extrabold leading-[73px] md:leading-[30px] ">
             In-depth analysis
           </h2>
-          <div className="md:col-span-2 leading-relaxed text-[#5F6057] font-normal whitespace-pre-line text-xs sm:text-sm md:text-base break-words">
+          <div className="md:col-span-2 leading-[25px] text-[18px] text-[#5F6057] font-normal whitespace-pre-line break-words">
             <div
               dangerouslySetInnerHTML={{ __html: service.description_long }}
             />
@@ -169,14 +169,14 @@ const Details: React.FC = () => {
 
       {service.advantages && service.advantages.length > 0 && (
         <section className="grid grid-cols-1 md:grid-cols-3 mb-4 sm:mb-8 md:mb-12 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4 md:px-0">
-          <h2 className="text-[#34352E] font-bricolage sm:text-xl md:text-2xl font-extrabold">
+          <h2 className="text-[#34352E] font-bricolage text-[28px] font-extrabold leading-[73px] md:leading-[30px]">
             Advantages
           </h2>
           <div className="md:col-span-2 space-y-2 sm:space-y-3">
             {service.advantages.map((adv: string, index: number) => (
               <div
                 key={index}
-                className="bg-gray-50 border border-gray-200 text-[#5F6057] font-normal rounded-xl p-2 sm:p-3 md:p-4 text-gray-700 text-xs sm:text-sm md:text-base break-words"
+                className="bg-gray-50 border border-gray-200 text-[18px] text-[#5F6057] font-normal rounded-xl p-2 sm:p-3 md:p-4 texe break-words"
               >
                 {adv}
               </div>

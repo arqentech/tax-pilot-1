@@ -11,7 +11,7 @@ export default function IseeSection() {
             </p>
           </h2>
 
-          <ul className="mt-4 space-y-3 text-[#BFDDFF] text-[16px] lg:text-[20px] leading-[23px]">
+          <ul className="mt-4 space-y-3 text-[#BFDDFF] text-[16px] lg:text-[20px] leading-[25px]">
             <li className="flex items-center gap-3">
               <BadgeCheck color="#FFC107" width={20} />
               <span>Upload. Done. Relax</span>

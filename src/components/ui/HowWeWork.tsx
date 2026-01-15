@@ -6,17 +6,17 @@ export default function HowWeWork() {
     <section className="full-bleed-mobile py-10 ">
       <div>
         <div className="grid md:grid-cols-2 bg-[#037BFF] md:rounded-[32px] justify-center items-center text-white overflow-hidden shadow-xl relative">
-          <div className="flex flex-col md:items-start items-center justify-center px-8 lg:px-20 py-12 lg:py-24">
+          <div className="flex flex-col md:items-start items-center justify-center px-8 md:px-20 py-12 md:py-24">
             <span className="w-[156px] h-[34px] inline-flex items-center justify-center rounded-full bg-[#006ADE] font-medium backdrop-blur-md">
               How we work?
             </span>
 
-            <h2 className="mt-6 md:text-left text-center font-bricolage text-[38px] lg:text-[58px] lg:leading-[59px] font-extrabold leading-[38px] tracking-[-0.05em]">
+            <h2 className="mt-6 md:text-left text-center font-bricolage text-[38px] md:text-[58px] md:leading-[59px] font-extrabold leading-[38px] tracking-[-0.05em]">
               <span className="block whitespace-nowrap">We Simplify</span>
               <span className="block whitespace-nowrap">Taxes, Together.</span>
             </h2>
 
-            <p className="mt-6 md:text-justify text-center text-[#BFDDFF] text-[18px] lg:text-[20px] leading-[25px]">
+            <p className="mt-6 md:text-left text-center text-[#BFDDFF] text-[18px] md:text-[20px] leading-[25px]">
               With TaxPilot, you're never alone. Our digital platform keeps
               things simple while real professionals personally guide your
               entire process step by step.
@@ -50,7 +50,7 @@ export default function HowWeWork() {
                     <h3 className="text-[26px] md:text-[28px] font-extrabold font-bricolage mt-2">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-[#BFDDFF] font-semibold leading-relaxed">
+                    <p className="mt-2 text-[#BFDDFF] text-[18px] md:text-[20px] leading-[25px]">
                       {step.description}
                     </p>
                   </div>
