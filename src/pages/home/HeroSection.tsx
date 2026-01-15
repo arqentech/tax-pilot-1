@@ -33,7 +33,7 @@ const HeroSection = () => {
             loading="lazy"
           />
 
-          <div className="absolute md:top-[5%] md:right-[-3%] sm:top-[5%] sm:right-[15%] top-[5%] right-[7%] flex items-start gap-2">
+          <div className="absolute md:top-[5%] md:right-[3%] sm:top-[5%] sm:right-[15%] top-[5%] right-[7%] flex items-start gap-2">
             <motion.img
               src="/svg/home/hero-illustration-3.svg"
               alt="Dollar icon"
