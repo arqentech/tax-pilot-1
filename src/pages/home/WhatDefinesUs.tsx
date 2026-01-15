@@ -27,13 +27,12 @@ const WhatDefinesUs: React.FC = () => {
       <div className="page-container">
         <div className="flex flex-col items-center md:grid md:grid-cols-2 gap-6 mb-12 text-center md:text-left">
           <h2 className="heading-base font-bricolage">What defines us?</h2>
-          <p className="text-[18px] font-medium leading-[25px] lg:text-[20px]">
+          <p className="text-base">
             Access over 150 certified CAF and patronage services, guided step by
             step by real experts, all from the comfort of your home.
           </p>
         </div>
 
-       
         <div className="hidden lg:flex w-full bg-[#FBFBFA] rounded-[24px] border border-[#E6E6E1] justify-between p-12 gap-6">
           {features.map((feature, index) => (
             <div
@@ -49,10 +48,10 @@ const WhatDefinesUs: React.FC = () => {
                   className="w-20 h-20"
                 />
               </div>
-              <h3 className="font-bricolage tracking-[-0.09em] font-black text-[36px] leading-[73px]">
+              <h3 className="font-bricolage text-[#34352E] tracking-[-0.09em] font-extrabold text-[36px] leading-[73px]">
                 {feature.title}
               </h3>
-              <p className="text-[18px] leading-[25px] mt-2 text-[#555]">
+              <p className="text-[18px] text-[#5F6057] leading-[25px] mt-2 text-[#555]">
                 {feature.description}
               </p>
             </div>
@@ -73,10 +72,10 @@ const WhatDefinesUs: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <h3 className="font-bricolage tracking-[-0.09em] font-extrabold text-[26px] leading-[34px]">
+                <h3 className="font-bricolage text-[#34352E] tracking-[-0.09em] font-extrabold text-[26px] leading-[34px]">
                   {feature.title}
                 </h3>
-                <p className="text-[14px] leading-[20px] text-[#555]">
+                <p className="text-[14px] text-[#5F6057] leading-[20px] text-[#555]">
                   {feature.description}
                 </p>
               </div>

@@ -87,7 +87,7 @@ const ServicesSection = () => {
         <div className="hidden md:flex justify-center mt-10">
           <Link
             to="/services"
-            className="text-[#0166FF] text-lg font-semibold hover:underline flex items-center gap-2"
+            className="text-[24px] text-[#34352E] font-extrabold hover:underline hover:text-[#0166FF]  flex items-center gap-2"
           >
             Explore All Services
             <ChevronRight size={18} />

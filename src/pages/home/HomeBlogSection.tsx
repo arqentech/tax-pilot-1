@@ -11,7 +11,7 @@ export default function HomeBlogSection() {
         <Badge text="Blog" width="78px" center  bgColor="#FFFFFF" className="hidden md:flex "/>
         <Badge text="Insights" width="78px" center  bgColor="#FFFFFF" className="flex md:hidden"/>
 
-        <h2 className="font-bricolage heading-base py-4">
+        <h2 className="font-bricolage heading-base mt-6 md:mt-2">
           <span className="block lg:inline">Practical reads to</span>{" "}
           <span className="block lg:inline">help you move faster.</span>
         </h2>

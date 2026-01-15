@@ -9,12 +9,14 @@ interface ClientReviewsProps {
 
 const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
   return (
-    <section className="w-full full-bleed bg-[#FBFBFA] py-10">
+    <section className="w-full full-bleed bg-[#FBFBFA] py-16">
       <div className="w-full max-w-[1320px] px-4 mx-auto flex flex-col items-center">
         {showBadge && <Badge text="Testimonials" width="146px" center />}
 
-        <div className="text-center mt-10 mb-10 ">
-          <h2 className="mt-2 font-bricolage sub-heading mb-3">A word from our Clients.</h2>
+        <div className="text-center  mt-6 md:mt-2">
+          <h2 className="font-bricolage sub-heading">
+            A word from our Clients.
+          </h2>
           <p className="mt-4 text-base max-w-[409px] mx-auto">
             Stories from people who turned complicated taxes into peace of mind.
           </p>
@@ -29,16 +31,20 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
             ))}
 
             <div className="flex-shrink-0 w-[414px] h-[300px]">
-              <div className="bg-black text-white rounded-[26px] w-full h-full flex flex-col justify-center items-center">
-                <h2 className="text-5xl font-bold">4.6</h2>
-                <p className="text-sm mt-2">Based on 456 reviews</p>
-                <div className="flex mt-4 space-x-1">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-green-500 text-2xl">
-                      ★
-                    </span>
-                  ))}
-                </div>
+              <div className="bg-[#34352E] text-white rounded-[26px] w-full h-full flex flex-col justify-center items-center">
+                <h2 className="text-5xl font-bold text-[#ffffff] font-degular">
+                  4.6
+                </h2>
+                <p className="text-sm mt-2">
+                  Based on
+                  <span className="ml-1 underline">456 reviews</span>
+                </p>
+
+                <img
+                  src="/svg/Stars Combinations 2x.svg"
+                  alt="Stars"
+                  className="mt-6"
+                />
               </div>
             </div>
           </div>
@@ -49,16 +55,20 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
             <ReviewCard key={idx} {...r} />
           ))}
 
-          <div className="bg-black text-white w-full  h-[300px] rounded-[26px] flex flex-col justify-center items-center">
-            <h2 className="text-5xl font-bold">4.6</h2>
-            <p className="text-sm mt-2">Based on 456 reviews</p>
-            <div className="flex mt-4 space-x-1">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-green-500 text-2xl">
-                  ★
-                </span>
-              ))}
-            </div>
+          <div className="bg-[#34352E] text-white w-full h-[300px] rounded-[26px] flex flex-col justify-center items-center">
+            <h2 className="text-5xl font-bold text-[#ffffff] font-degular">
+              4.6
+            </h2>
+            <p className="text-sm mt-2 font-light">
+              Based on
+              <span className="ml-1 underline font-bold">456 reviews</span>
+            </p>
+
+            <img
+              src="/svg/Stars Combinations 2x.svg"
+              alt="Stars"
+              className="mt-6"
+            />
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ export default function HowWeWork() {
               How we work?
             </span>
 
-            <h2 className="mt-6 md:text-left text-center font-bricolage text-[38px] lg:text-[58px] lg:leading-[59px] font-extrabold leading-[38px] tracking-[-0.03em]">
+            <h2 className="mt-6 md:text-left text-center font-bricolage text-[38px] lg:text-[58px] lg:leading-[59px] font-extrabold leading-[38px] tracking-[-0.05em]">
               <span className="block whitespace-nowrap">We Simplify</span>
               <span className="block whitespace-nowrap">Taxes, Together.</span>
             </h2>
@@ -49,7 +49,7 @@ export default function HowWeWork() {
                     <h3 className="text-[26px] md:text-[28px] font-extrabold font-bricolage mt-2">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-[#D6E7FF] leading-relaxed">
+                    <p className="mt-2 text-[#BFDDFF] leading-relaxed">
                       {step.description}
                     </p>
                   </div>

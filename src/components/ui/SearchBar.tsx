@@ -41,7 +41,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         value={value ?? undefined}
         placeholder={placeholder ?? autoPlaceholder}
         className={`
-          flex-1 min-w-0 bg-transparent outline-none text-[#34352E] placeholder-[#A4A59F] md:text-base 
+          flex-1 min-w-0 bg-transparent outline-none text-[#34352E] placeholder-[#A4A59F] md:placeholder-[#5F6057] md:text-base 
           ${className}
         `}
       />

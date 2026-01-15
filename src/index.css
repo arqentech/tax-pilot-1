@@ -33,7 +33,6 @@
   body {
     font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
     background-color: #ffffff;
-    color: #34352e;
     font-size: 1rem;
     line-height: 1.5rem;
     font-weight: 500;
@@ -75,7 +74,8 @@
     font-weight: 800 !important;
     font-size: clamp(32px, 8vw, 86px);
     line-height: 1.1;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.07em;
+    color: #34352e;
   }
 
   @media (min-width: 765px) and (max-width: 1243px) {
@@ -88,17 +88,17 @@
   }
   .heading-base {
     font-weight: 800 !important;
-    @apply text-[38px] leading-[38px] tracking-[-0.06em];
+    @apply text-[38px] leading-[38px] tracking-[-0.06em] text-[#34352E];
     @apply md:text-[58px] md:leading-[73px];
   }
   .sub-heading {
     font-weight: 800 !important;
-    @apply text-[38px] leading-[38px] tracking-[-0.06em];
+    @apply text-[38px] leading-[38px] tracking-[-0.06em] text-[#34352E];
     @apply md:text-[58px] md:leading-[59px];
   }
 
   .text-base {
-    @apply text-[18px] leading-[25px] md:text-[20px];
+    @apply text-[18px] leading-[25px] md:text-[20px] text-[#5F6057];
   }
   .custom-box-shadow {
     background: linear-gradient(to bottom, #54564a, #34352e);

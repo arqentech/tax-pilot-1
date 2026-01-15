@@ -4,7 +4,7 @@ import PrimaryButton from "./PrimaryButton";
 
 export default function TaxPilotSection() {
   return (
-    <section className="w-full flex justify-center py-10 ">
+    <section className="w-full flex justify-center py-16 ">
       <div className="bg-[#FFC107] w-full lg:max-w-full rounded-[28px] p-6 flex flex-col justify-center lg:flex-row lg:items-center ">
         <div className="flex-1">
           <h2 className="sub-heading md:font-bricolage font-degular">

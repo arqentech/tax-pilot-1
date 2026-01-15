@@ -47,7 +47,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     <div className="w-full md:max-w-[641px] rounded-2xl shadow-sm border border-[#E6E6E1] hover:shadow-md transition-shadow duration-200 overflow-hidden">
       <div className="bg-[#F9F9F799] p-4 min-h-[200px] flex flex-col justify-between">
         <div>
-          <h3 className="font-bricolage text-[24px] md:text-[26px] md:leading-tight font-extrabold">
+          <h3 className="font-bricolage text-[#34352E] text-[24px] md:text-[26px] md:leading-tight font-extrabold">
             {title}
           </h3>
 
