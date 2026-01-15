@@ -96,7 +96,7 @@ const steps: Step[] = [
     icon: "/svg/consultation.svg",
     title: "Real-Time Consultation",
     description:
-      "Get your completed file right in your dashboard and email or WhatsApp — fast, simple, and secure.",
+      "Get your completed file right in your dashboard and email or WhatsApp fast, simple, and secure.",
     number: "03",
   },
 ];

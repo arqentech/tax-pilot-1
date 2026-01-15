@@ -15,7 +15,7 @@ const Feedback = ({
 
   return (
     <div className={`rounded-[26px] py-8 ${className}`}>
-      <h3 className="font-bricolage text-[22px] font-extrabold leading-[30px]">
+      <h3 className="font-bricolage text-[28px] font-extrabold leading-[30px]">
         {question}
       </h3>
 
@@ -31,7 +31,7 @@ const Feedback = ({
               className={`
                 flex h-[124px] max-w-[314px] flex-col items-center justify-center 
                 rounded-[28px] border px-6 text-center transition 
-                bg-[#FBFBFA] border-[#E6E6E1]
+                bg-[#F6F6F3] border-[#E6E6E1]
                 hover:border-[#0166FF] hover:bg-[#F0F6FF]
                 focus-visible:outline-none focus-visible:ring-2 
                 focus-visible:ring-[#0166FF] focus-visible:ring-offset-2
@@ -44,7 +44,7 @@ const Feedback = ({
                 className="h-14 w-14"
                 loading="lazy"
               />
-              <span className="mt-2 text-[16px] font-semibold text-[#34352E]">
+              <span className="mt-2 text-[22px] text-[#34352E] font-bricolage font-extrabold text-[#34352E]">
                 {option.label}
               </span>
             </button>
@@ -75,19 +75,19 @@ const defaultOptions: FeedbackOption[] = [
   {
     value: "yes",
     label: "Yes",
-    icon: "/svg/feedback/yes.svg",
+    icon: "/png/yes.png",
     iconAlt: "Happy face",
   },
   {
     value: "meh",
     label: "Meh",
-    icon: "/svg/feedback/meh.svg",
+    icon: "/png/meh.png",
     iconAlt: "Neutral face",
   },
   {
     value: "no",
     label: "No",
-    icon: "/svg/feedback/no.svg",
+    icon: "/png/no.png",
     iconAlt: "Concerned face",
   },
 ];

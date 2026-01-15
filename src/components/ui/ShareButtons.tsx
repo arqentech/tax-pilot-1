@@ -21,7 +21,9 @@ const shareLinks = [
 export default function ShareButtons() {
   return (
     <div className="">
-      <h3 className="text-[20px] font-semibold text-[#34352E] mb-3">Share</h3>
+      <h3 className="text-[20px] font-extrabold font-bricolage text-[#34352E] mb-3">
+        Share
+      </h3>
 
       <div className="flex items-center gap-3">
         {shareLinks.map(({ name, icon, href }) => (
