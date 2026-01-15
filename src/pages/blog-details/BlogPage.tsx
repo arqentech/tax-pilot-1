@@ -64,12 +64,12 @@ export default function BlogPage() {
         </div>
 
         <div className="w-full">
-          <h2 className="text-[26px] font-bold mb-3">In-depth analysis</h2>
-          <p className="text-[17px] text-justify text-[#4A4A4A] leading-[28px] whitespace-pre-line">
+          <h2 className="text-[26px] font-bricolage font-extrabold mb-3">In-depth analysis</h2>
+          <p className="text-[17px]  text-[#4A4A4A] leading-[28px] whitespace-pre-line">
             {blog.inDepthAnalysis}
           </p>
 
-          <h2 className="mt-10 font-bricolage text-justify text-[28px] font-extrabold">
+          <h2 className="mt-10 font-bricolage text-[28px] font-extrabold">
             Advantages
           </h2>
           <ul className="mt-3 space-y-2 text-[17px] text-[#555] leading-[28px]">

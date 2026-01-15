@@ -23,7 +23,7 @@ export default function ContactForm({
   isMobile = false,
 }: ContactFormProps) {
   return (
-    <form onSubmit={onSubmit} className={`space-y-${isMobile ? "3" : "4"} `}>
+    <form onSubmit={onSubmit} className={`space-y-${isMobile ? "3" : "6"} `}>
       <Input
         name="name"
         placeholder="Name"

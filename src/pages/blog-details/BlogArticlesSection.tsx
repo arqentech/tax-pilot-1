@@ -7,13 +7,7 @@ export default function BlogArticlesSection() {
       <div className="w-full text-center max-w-[1320px]">
         <Badge text="Blog" width="78px" center />
 
-        <h2 className="heading-base py-4">
-          Practical reads to help you move faster
-        </h2>
-
-        <p className="text-base">
-          Stories from people who turned complicated taxes into peace of mind
-        </p>
+        <h2 className="heading-base py-4">Related Article</h2>
 
         <div className="w-full mt-14">
           <BlogList />

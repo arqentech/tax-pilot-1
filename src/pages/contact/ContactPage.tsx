@@ -21,13 +21,13 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="w-full w-auto md:max-w-[874px] md:h-[817px] flex-col justify-center items-center py-10 mb-10">
-      <Card className="w-full p-6 md:p-10 shadow-lg rounded-[26px] border border-[#E6E6E1] bg-white">
+    <div className="w-full w-auto md:max-w-[874px] md:h-[817px] flex-col justify-center items-center py-12 mb-10">
+      <Card className="w-full px-6 py-3 shadow-lg rounded-[26px] border border-[#E6E6E1] bg-white">
         <CardHeader className="text-center ">
-          <CardTitle className="sub-heading ">
+          <CardTitle className="sub-heading font-bricolage">
             Do you need assistance?
           </CardTitle>
-          <div className="text-base mt-2 md:max-w-[595px] text-justify">
+          <div className="text-base mt-4 md:max-w-[595px] text-justify">
             <p>
               Our chat is available Monday to Friday for quick, clear support.
               Outside these hours, feel free to email us using the form below.
@@ -44,7 +44,7 @@ export default function ContactUs() {
           />
         </CardContent>
       </Card>
-      <ContactInfo isMobile={false} />
+      <ContactInfo />
     </div>
   );
 }
