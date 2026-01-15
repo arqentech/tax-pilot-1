@@ -3,7 +3,7 @@ import { ArrowRight, BadgeCheck } from "lucide-react";
 export default function IseeSection() {
   return (
     <section className="w-full flex justify-center py-10 px">
-      <div className="bg-[#037BFF] w-full rounded-[28px] p-6 flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-20 text-white">
+      <div className=" bg-[#037BFF] relative w-full rounded-[28px] p-6 flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-20 text-white">
         <div className="flex-1">
           <h2 className=" md:max-w-full font-bricolage leading-[38px] font-extrabold lg:text-[35px] lg:leading-[36px]">
             <p className="text-[33px]">
@@ -11,18 +11,18 @@ export default function IseeSection() {
             </p>
           </h2>
 
-          <ul className="mt-4 space-y-3 text-[16px] lg:text-[20px] leading-[23px]">
+          <ul className="mt-4 space-y-3 text-[#BFDDFF] text-[16px] lg:text-[20px] leading-[23px]">
             <li className="flex items-center gap-3">
               <BadgeCheck color="#FFC107" width={20} />
               <span>Upload. Done. Relax</span>
             </li>
 
-            <li className="flex items-center gap-3">
+            <li className="flex text-[#BFDDFF] items-center gap-3">
               <BadgeCheck color="#FFC107" width={20} />
               <span>Anytime, anywhere, any device</span>
             </li>
 
-            <li className="flex items-center gap-3">
+            <li className="flex text-[#BFDDFF] items-center gap-3">
               <BadgeCheck color="#FFC107" width={20} />
               <span>Your data protected by certified experts</span>
             </li>
@@ -40,11 +40,11 @@ export default function IseeSection() {
           </button>
         </div>
 
-        <div className="flex-1 flex w-full justify-end relative">
+        <div className="flex-1 flex w-full justify-end">
           <img
             src="/svg/isee-illustration.svg"
             alt="ISEE Illustration"
-            className="w-full  lg:max-w-[500px] mr-[30px]  lg:mr-[-60px]"
+            className="w-full lg:max-w-[400px] mr-[30px]  lg:mr-[-50px] lg:absolute lg:bottom-0"
           />
         </div>
       </div>
