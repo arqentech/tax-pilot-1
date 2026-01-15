@@ -44,13 +44,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
 
         <div className="absolute bottom-0 left-0 w-full h-[70%] bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
 
-        <span className="absolute top-4 right-4 bg-white text-[14px] font-medium px-3 py-1 rounded-full">
+        <span className="absolute top-4 text-[#34352E] right-4 bg-white text-[14px] font-medium px-3 py-1 rounded-full">
           {tag}
         </span>
       </div>
 
       <div className="flex flex-col px-4 py-5 flex-1">
-        <h3 className="text-[22px] md:text-[24px] font-bricolage font-extrabold leading-tight">
+        <h3 className="text-[22px] text-[#34352E] md:text-[24px] font-bricolage font-extrabold leading-tight">
           {title}
         </h3>
 
@@ -58,7 +58,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
           {description}
         </p>
 
-        <div className="mt-auto pt-6 text-[16px] md:text-[18px] flex items-center gap-2">
+        <div className="mt-auto pt-6 text-[#34352E] text-[16px] md:text-[18px] flex items-center gap-2">
           ● {readTime}
         </div>
       </div>

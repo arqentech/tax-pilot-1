@@ -60,7 +60,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
         <div className="mt-4 md:mt-6 flex items-center gap-2 md:gap-3 flex-wrap">
           {displayPrice && (
-            <span className="text-[26px] font-bricolage  md:text-[30px] font-bold text-gray-900">
+            <span className="text-[26px] text-[#34352E] font-bricolage  md:text-[30px] font-bold ">
               {displayPrice}
             </span>
           )}

@@ -11,18 +11,18 @@ export default function TaxPilotSection() {
             Ready to simplify your taxes with Tax Pilot?
           </h2>
 
-          <ul className="mt-4 py-5 text-[16px] lg:text-[20px] leading-[23px]">
-            <li className="flex items-center gap-3">
+          <ul className="mt-4 py-5 text-[16px] lg:text-[20px] leading-[23px] space-y-3">
+            <li className="flex text-[#34352E] items-center gap-3">
               <BadgeCheck color="#0AD6A1" width={20} />
               <span>Upload. Done. Relax</span>
             </li>
 
-            <li className="flex items-center gap-3">
+            <li className="flex text-[#34352E] items-center gap-3">
               <BadgeCheck color="#0AD6A1" width={20} />
               <span>Anytime, anywhere, any device</span>
             </li>
 
-            <li className="flex items-center gap-3">
+            <li className="flex text-[#34352E] items-center gap-3">
               <BadgeCheck color="#0AD6A1" width={20} />
               <span>Data protected by certified experts</span>
             </li>

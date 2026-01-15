@@ -9,8 +9,8 @@ function HomePageFAQ() {
         <Badge text="FAQ" width="77px" center />
 
         <h2 className="font-bricolage sub-heading mt-6 md:mt-2 text-center">
-          <span className="block lg:inline">Your Tax Questions,</span>{" "}
-          <span className="block lg:inline">answered Simply.</span>
+          <span className="block ">Your Tax Questions,</span>{" "}
+          <span className="block ">answered Simply.</span>
         </h2>
       </div>
       <div className="max-w-2xl mx-auto ">

@@ -23,7 +23,7 @@ const Breadcrumbs: React.FC<GenericBreadcrumbsProps> = ({
 }) => {
   return (
     <div
-      className={`bg-[#F6F6F3] hidden  md:h-[50px] md:flex justify-center items-center rounded-xl ${className}`}
+      className={`bg-[#F6F6F3] hidden text-[#A9AAA5] md:h-[50px] md:flex justify-center items-center rounded-xl ${className}`}
     >
       <Breadcrumb>
         <BreadcrumbList>

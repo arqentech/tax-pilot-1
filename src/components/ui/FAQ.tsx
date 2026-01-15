@@ -27,7 +27,7 @@ export default function FAQ({ data }: FAQProps) {
             onClick={() => toggle(index)}
           >
             <div className="flex justify-between items-center">
-              <p className="px-2 font-medium text-[16px] lg:text-[18px] leading-[25px]">
+              <p className="px-2 font-medium  text-[#34352E] text-[16px] lg:text-[18px] leading-[25px]">
                 {item.question}
               </p>
               <span
