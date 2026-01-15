@@ -159,7 +159,7 @@ const Details: React.FC = () => {
           <h2 className="text-[#34352E] font-bricolage sm:text-xl md:text-2xl font-extrabold ">
             In-depth analysis
           </h2>
-          <div className="md:col-span-2 leading-relaxed font-normal whitespace-pre-line text-xs sm:text-sm md:text-base break-words">
+          <div className="md:col-span-2 leading-relaxed text-[#5F6057] font-normal whitespace-pre-line text-xs sm:text-sm md:text-base break-words">
             <div
               dangerouslySetInnerHTML={{ __html: service.description_long }}
             />
@@ -176,7 +176,7 @@ const Details: React.FC = () => {
             {service.advantages.map((adv: string, index: number) => (
               <div
                 key={index}
-                className="bg-gray-50 border border-gray-200 font-normal rounded-xl p-2 sm:p-3 md:p-4 text-gray-700 text-xs sm:text-sm md:text-base break-words"
+                className="bg-gray-50 border border-gray-200 text-[#5F6057] font-normal rounded-xl p-2 sm:p-3 md:p-4 text-gray-700 text-xs sm:text-sm md:text-base break-words"
               >
                 {adv}
               </div>
