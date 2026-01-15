@@ -50,7 +50,7 @@ export default function HowWeWork() {
                     <h3 className="text-[26px] md:text-[28px] font-extrabold font-bricolage mt-2">
                       {step.title}
                     </h3>
-                    <p className="mt-2 text-[#BFDDFF] leading-relaxed">
+                    <p className="mt-2 text-[#BFDDFF] font-semibold leading-relaxed">
                       {step.description}
                     </p>
                   </div>
