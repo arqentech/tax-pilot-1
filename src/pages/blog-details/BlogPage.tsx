@@ -67,14 +67,14 @@ export default function BlogPage() {
           <h2 className="text-[28px] text-[#34352E] font-bricolage font-extrabold mb-3">
             In-depth analysis
           </h2>
-          <p className="text-[18px] text-[#4A4A4A] leading-[28px] whitespace-pre-line">
+          <p className="text-[18px] font-normal text-[#4A4A4A] leading-[28px] whitespace-pre-line">
             {blog.inDepthAnalysis}
           </p>
 
           <h2 className="mt-10 font-bricolage text-[#34352E] text-[28px] font-extrabold">
             Advantages
           </h2>
-          <ul className="mt-3 space-y-2 text-[18px] text-[#555] leading-[28px]">
+          <ul className="mt-3 space-y-2 font-normal text-[18px] text-[#555] leading-[28px]">
             {blog.advantages.map((item, index) => (
               <li key={index} className="flex gap-2">
                 <span>•</span> {item}
@@ -82,7 +82,7 @@ export default function BlogPage() {
             ))}
           </ul>
 
-          <h2 className="mt-10 text-[#34352E] font-bricolage text-[28px] font-extrabold">
+          <h2 className="mt-10 text-[#34352E] font-normal font-bricolage text-[28px] font-extrabold">
             Conclusion
           </h2>
           <p className="mt-3 text-[18px] text-[#4A4A4A] leading-[28px]">
@@ -97,8 +97,15 @@ export default function BlogPage() {
             <BlogsFaq />
           </div>
 
-          <IseeSection />
-          <Feedback />
+          <div className="flex flex-col">
+            <div className="order-2 lg:order-1">
+              <IseeSection />
+            </div>
+
+            <div className="order-1 lg:order-2">
+              <Feedback />
+            </div>
+          </div>
         </div>
       </div>
     </div>
