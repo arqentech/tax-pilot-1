@@ -47,7 +47,7 @@ export default function HowWeWork() {
                   />
 
                   <div className="flex flex-col justify-between text-left">
-                    <h3 className="text-[26px] md:text-[28px] font-extrabold font-bricolage mt-2">
+                    <h3 className="text-[26px] md:text-[28px] font-extrabold font-bricolage mt-2 leading-[30px]">
                       {step.title}
                     </h3>
                     <p className="mt-2 text-[#BFDDFF] text-[18px] md:text-[20px] leading-[25px]">

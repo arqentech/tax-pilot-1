@@ -176,7 +176,7 @@ const Details: React.FC = () => {
             {service.advantages.map((adv: string, index: number) => (
               <div
                 key={index}
-                className="bg-gray-50 border border-gray-200 text-[18px] text-[#5F6057] font-normal rounded-xl p-2 sm:p-3 md:p-4 texe break-words"
+                className="bg-gray-50 border border-gray-200 text-[18px] text-[#5F6057] font-normal rounded-xl p-2 sm:p-3 md:p-4 break-words"
               >
                 {adv}
               </div>

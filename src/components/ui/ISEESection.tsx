@@ -29,7 +29,7 @@ export default function IseeSection() {
           </ul>
 
           <button
-            className="mt-6 flex items-center gap-2 rounded-full px-6 py-3 font-semibold text-white border border-[#34352E47] bg-[linear-gradient(180deg,#54564A_0%,#34352E_44.72%)] shadow-[0px_6px_10px_0px_#34352E26] hover:opacity-90 transition
+            className="mt-6 flex items-center gap-2 rounded-full px-8 py-4 font-semibold text-white border border-[#34352E47] bg-[linear-gradient(180deg,#54564A_0%,#34352E_44.72%)] shadow-[0px_6px_10px_0px_#34352E26] hover:opacity-90 transition
   "
             style={{
               boxShadow:

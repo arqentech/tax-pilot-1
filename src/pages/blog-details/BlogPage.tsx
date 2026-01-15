@@ -6,6 +6,7 @@ import Feedback from "@/components/ui/Feedback";
 import BlogsFaq from "./BlogsFaq";
 import ShareButtons from "@/components/ui/ShareButtons";
 import IseeSection from "@/components/ui/ISEESection";
+import { Clock } from "lucide-react";
 
 export default function BlogPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -36,12 +37,12 @@ export default function BlogPage() {
             26, Oct, 2025
           </span>
 
-          <span className="flex items-center bg-[#E7D8FB] text-[#3C0D6D] border border-[#D2BDE9] w-auto px-3 py-1 rounded-full text-sm font-medium">
-            <img src="/svg/funnel.svg" className="w-4" /> {blog.tag}
+          <span className="flex items-center gap-x-1 bg-[#E7D8FB] text-[#3C0D6D] border border-[#D2BDE9] w-auto px-3 py-1 rounded-full text-sm font-medium">
+            <img src="/svg/funnel.svg" className="w-4 " /> {blog.tag}
           </span>
 
-          <span className="bg-[#34352E1C] w-[109px] border border-[#34352E2E] text-[#3C0D6D]px-3 py-1 rounded-full text-sm font-medium">
-            {blog.readTime}
+          <span className="flex items-center bg-[#E7D8FB] gap-x-1 text-[#3C0D6D] border border-[#D2BDE9] w-auto px-4 py-1 rounded-full text-sm font-medium">
+            <Clock className="w-3 " /> {blog.readTime}
           </span>
         </div>
 
@@ -64,14 +65,14 @@ export default function BlogPage() {
         </div>
 
         <div className="w-full">
-          <h2 className="text-[28px] text-[#34352E] font-bricolage font-extrabold mb-3">
+          <h2 className="text-[28px] text-[#34352E] font-bricolage font-extrabold mb-3 leading-[30px]">
             In-depth analysis
           </h2>
           <p className="text-[18px] font-normal text-[#5F6057] leading-[25px] whitespace-pre-line">
             {blog.inDepthAnalysis}
           </p>
 
-          <h2 className="mt-10 font-bricolage text-[#34352E] text-[28px] font-extrabold">
+          <h2 className="mt-10 font-bricolage text-[#34352E] text-[28px] font-extrabold leading-[30px]">
             Advantages
           </h2>
           <ul className="mt-3 space-y-2 font-normal text-[#5F6057] text-[18px] text-[#555] leading-[25px]">
@@ -82,10 +83,10 @@ export default function BlogPage() {
             ))}
           </ul>
 
-          <h2 className="mt-10 text-[#5F6057] font-bricolage text-[28px] font-extrabold">
+          <h2 className="mt-10 text-[#5F6057] font-bricolage text-[28px] font-extrabold leading-[30px]">
             Conclusion
           </h2>
-          <p className="mt-3 text-[18px] text-[#4A4A4A] leading-[25px]">
+          <p className="mt-3 text-[18px] font-normal text-[#5F6057] leading-[25px] ">
             {blog.conclusion}
           </p>
 

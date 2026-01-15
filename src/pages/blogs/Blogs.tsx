@@ -36,7 +36,7 @@ const Blogs: React.FC = () => {
       <div className="w-full flex flex-col items-center">
         <div className="text-center mb-8">
           <h1 className="font-bricolage heading-base">The TaxPilot Blog .</h1>
-          <p className="mt-2 text-[#5F6057]">
+          <p className="mt-2 text-[#5F6057] text-[18px] md:text-[20px]">
             Tax news with taxpilot: explore our blog for news, tips, and
             insights on tax management.
           </p>
