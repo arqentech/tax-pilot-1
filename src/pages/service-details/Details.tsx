@@ -122,17 +122,17 @@ const Details: React.FC = () => {
             dangerouslySetInnerHTML={{ __html: service.description_short }}
           />
 
-          <div className="flex flex-wrap items-center py-5">
-            <span className="text-[30px] text-[#34352E] font-bricolage font-extrabold whitespace-nowrap">
+          <div className="flex flex-wrap items-center py-5 gap-2">
+            <span className="text-[30px] text-[#34352E] leading-[30px] font-bricolage font-extrabold whitespace-nowrap">
               € {service.price.toFixed(2)}
             </span>
 
-            {service.vatIncluded && (
-              <span className="bg-[#EEFCD7] flex items-center gap-0.5 sm:gap-1 text-[#36500C] text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
+            {/* {service.vatIncluded && ( */}
+              <span className="bg-[#EEFCD7] flex items-center gap-0.5 sm:gap-1 text-[#36500C] text-[14px] leading-[14px] font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
                 <CircleCheck className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" />
                 <span className="whitespace-nowrap">VAT Included</span>
               </span>
-            )}
+            {/* )} */}
 
             {service.hours && (
               <span className="flex items-center gap-0.5 sm:gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
