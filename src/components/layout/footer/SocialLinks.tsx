@@ -1,32 +1,5 @@
 import { Link } from "react-router-dom";
 
-const socialLinks = [
-  {
-    name: "Linkedin",
-    icon: "/svg/footer/linkedin.svg",
-    href: "https://www.linkedin.com/",
-    alt: "Linkedin Logo",
-  },
-  {
-    name: "Instagram",
-    icon: "/svg/footer/instagram.svg",
-    href: "https://www.instagram.com/",
-    alt: "Instagram Logo",
-  },
-  {
-    name: "Facebook",
-    icon: "/svg/footer/facebook.svg",
-    href: "https://www.facebook.com/",
-    alt: "Facebook Logo",
-  },
-  {
-    name: "TikTok",
-    icon: "/svg/footer/tiktok.svg",
-    href: "https://www.tiktok.com/",
-    alt: "TikTok Logo",
-  },
-];
-
 export default function SocialLinks() {
   return (
     <div className="w-full border-t border-b border-[#999999] mt-5">
@@ -53,3 +26,29 @@ export default function SocialLinks() {
     </div>
   );
 }
+const socialLinks = [
+  {
+    name: "Linkedin",
+    icon: "/svg/footer/linkedin.svg",
+    href: "https://www.linkedin.com/",
+    alt: "Linkedin Logo",
+  },
+  {
+    name: "Instagram",
+    icon: "/svg/footer/instagram.svg",
+    href: "https://www.instagram.com/",
+    alt: "Instagram Logo",
+  },
+  {
+    name: "Facebook",
+    icon: "/svg/footer/facebook.svg",
+    href: "https://www.facebook.com/",
+    alt: "Facebook Logo",
+  },
+  {
+    name: "TikTok",
+    icon: "/svg/footer/tiktok.svg",
+    href: "https://www.tiktok.com/",
+    alt: "TikTok Logo",
+  },
+];

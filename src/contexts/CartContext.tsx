@@ -61,6 +61,38 @@ const ensureId = (item: CartItem) => ({
  * Map backend cart item to frontend CartItem format
  */
 const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
+  // Extract hours and vatIncluded from service object or metadata
+  let hours: string | undefined;
+  let vatIncluded: boolean | undefined;
+
+  // First try to get from service object
+  if (item.service.hours) {
+    hours = item.service.hours;
+  }
+  if (item.service.vatIncluded !== undefined) {
+    vatIncluded = item.service.vatIncluded;
+  }
+
+  // If not found in service, check metadata
+  if (!hours || vatIncluded === undefined) {
+    if (item.metadata && Array.isArray(item.metadata)) {
+      const metadataObj = item.metadata.find((m) => typeof m === "object" && m !== null);
+      if (metadataObj) {
+        if (!hours && metadataObj.hours) {
+          hours = metadataObj.hours;
+        }
+        if (vatIncluded === undefined && metadataObj.vatIncluded !== undefined) {
+          vatIncluded = metadataObj.vatIncluded;
+        }
+      }
+    }
+  }
+
+  // Default vatIncluded to true if not found (maintain backward compatibility)
+  if (vatIncluded === undefined) {
+    vatIncluded = true;
+  }
+
   return {
     id: String(item.id),
     cart_item_id: item.id,
@@ -69,7 +101,8 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
     price: item.price,
     description: item.service.description_short,
     link: `/services/${item.service.identifier}`,
-    vatIncluded: true,
+    hours,
+    vatIncluded,
   };
 };
 

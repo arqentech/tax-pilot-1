@@ -18,6 +18,8 @@ export interface CartService {
   active: number;
   created_at: string;
   updated_at: string;
+  hours?: string;
+  vatIncluded?: boolean;
 }
 
 export interface CartItemResponse {

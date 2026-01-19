@@ -19,7 +19,7 @@ const Navbar = () => {
     : "relative w-full bg-white";
   const mobileMenuBg = isHome ? "bg-[#FBFBFA]" : "bg-white";
 
-  const baseText = "text-[#34352E] font-medium text-[2px] md:text-lg";
+  const baseText = "text-[#34352E] font-medium text-[18px] md:text-lg";
   const linkStyle = "hover:text-[#0166FF] transition-colors duration-200";
 
   const handleLogout = () => {

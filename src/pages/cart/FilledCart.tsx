@@ -173,7 +173,7 @@ export default function FilledCart({ items }: FilledCartProps) {
                       <Link to="/login">
                         <PrimaryButton
                           text="Login to your Account "
-                          width="291px"
+                          width="235px"
                         />
                       </Link>
                       <p className="text-[14px] text-[#5F6057]">
