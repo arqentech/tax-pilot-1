@@ -82,7 +82,7 @@ const Details: React.FC = () => {
       alert(
         result.added
           ? "Service added to cart!"
-          : "Service already added to cart."
+          : "Service already added to cart.",
       );
     } catch (error) {
       console.error("Error adding service to cart:", error);
@@ -128,10 +128,10 @@ const Details: React.FC = () => {
             </span>
 
             {/* {service.vatIncluded && ( */}
-              <span className="bg-[#EEFCD7] flex items-center gap-0.5 sm:gap-1 text-[#36500C] text-[14px] leading-[14px] font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
-                <CircleCheck className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" />
-                <span className="whitespace-nowrap">VAT Included</span>
-              </span>
+            <span className="bg-[#EEFCD7] border border-t border-[1px] border-[#D9E6C0] w-[127px] h-[26px]  flex items-center gap-0.5 sm:gap-1 text-[#36500C] text-[14px] leading-[24px] font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
+              <CircleCheck className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" />
+              <span className="whitespace-nowrap">VAT Included</span>
+            </span>
             {/* )} */}
 
             {service.hours && (
