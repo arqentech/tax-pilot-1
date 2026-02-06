@@ -17,10 +17,14 @@ const UserDropdown = () => {
     <DropdownMenu.Root modal={false}>
       <DropdownMenu.Trigger asChild>
         <button
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-[#34352E] hover:bg-gray-300 transition-colors"
+          className="flex items-center justify-center w-10 h-10 rounded-full text-[#34352E] hover:bg-gray-100 transition-colors"
           aria-label="User menu"
         >
-          <User className="h-5 w-5" />
+          <img
+            src="/svg/profile-home/home/user.svg"
+            alt="user"
+            className="h-5 w-5"
+          />
         </button>
       </DropdownMenu.Trigger>
 

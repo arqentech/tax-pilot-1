@@ -16,7 +16,8 @@ import CartPage from "./pages/cart/Cart";
 import CheckoutPage from "./pages/checkout/Checkout";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import ScrollToTop from "./components/layout/ScrollToTop";
-import HomePage from "./pages/profile/Dashboard";
+import HomePage from "./pages/profile/HomePage";
+import Documents from "./pages/profile/Documents";
 
 function App() {
   return (
@@ -29,13 +30,14 @@ function App() {
           <Route path="services/:slug" element={<ServiceDetails />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="/blogs/:slug" element={<BlogDetail />} />
-          <Route path="profile-home" element={<HomePage />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="checkout/success" element={<CheckoutSuccess />} />
+          <Route path="profile-home" element={<HomePage />} />
+          <Route path="profile-documents" element={<Documents />} />
         </Route>
 
         <Route element={<AuthLayout />}>
