@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchBar from "@/components/ui/SearchBar";
 import FAQ, { FAQItem } from "@/components/ui/FAQ";
 import { generalFaqData, homeFaqData } from "@/data/FAQData";
-import SimpleDropdown from "@/components/ui/dropdown-menu";
+import SimpleDropdown from "@/components/ui/DropdownMenu";
 
 const faqOptions = [
   "General",

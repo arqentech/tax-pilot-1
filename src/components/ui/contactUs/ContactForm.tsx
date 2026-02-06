@@ -1,5 +1,5 @@
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/Input";
+import { Textarea } from "@/components/ui/TextArea";
 import { Button } from "@/components/ui/button";
 
 interface ContactFormProps {
@@ -10,7 +10,7 @@ interface ContactFormProps {
     message: string;
   };
   onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   onSubmit: (e: React.FormEvent) => void;
   isMobile?: boolean;

@@ -5,7 +5,7 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -40,18 +40,20 @@ export default function SignUpPage() {
 
   const handlePhoneChange = (phone: string) => {
     const cleanedPhone = phone.replace(/[^\d+\s()]/g, "");
-    
+
     setForm((prev) => ({ ...prev, mobile: cleanedPhone }));
     setPhoneError("");
 
     if (cleanedPhone.trim()) {
       const digitsOnly = cleanedPhone.replace(/\D/g, "");
-      
+
       const countryCodeMatch = cleanedPhone.match(/^\+\d{1,4}/);
-      const countryCodeLength = countryCodeMatch ? countryCodeMatch[0].length - 1 : 0;
-      
+      const countryCodeLength = countryCodeMatch
+        ? countryCodeMatch[0].length - 1
+        : 0;
+
       const nationalNumberLength = digitsOnly.length - countryCodeLength;
-      
+
       if (nationalNumberLength > 0 && nationalNumberLength < 8) {
         setPhoneError("Phone number must have at least 8 digits");
       } else {
@@ -66,9 +68,11 @@ export default function SignUpPage() {
     if (form.mobile.trim()) {
       const digitsOnly = form.mobile.replace(/\D/g, "");
       const countryCodeMatch = form.mobile.match(/^\+\d{1,4}/);
-      const countryCodeLength = countryCodeMatch ? countryCodeMatch[0].length - 1 : 0;
+      const countryCodeLength = countryCodeMatch
+        ? countryCodeMatch[0].length - 1
+        : 0;
       const nationalNumberLength = digitsOnly.length - countryCodeLength;
-      
+
       if (nationalNumberLength < 8) {
         setPhoneError("Phone number must have at least 8 digits");
         return;
@@ -265,4 +269,3 @@ export default function SignUpPage() {
     </div>
   );
 }
-

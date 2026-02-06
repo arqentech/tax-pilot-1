@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useCart } from "@/contexts/CartContext";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
@@ -17,7 +17,7 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
-  
+
   const [customerInfo, setCustomerInfo] = useState({
     firstName: "",
     lastName: "",
@@ -28,61 +28,68 @@ export default function CheckoutPage() {
   const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
   const servicesLabel = cartItems.length === 1 ? "service" : "services";
 
-  const initializePaymentIntent = useCallback(async (showLoading = true) => {
-    if (!import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY) {
-      setError(
-        "Stripe is not configured. Please add VITE_STRIPE_PUBLISHABLE_KEY to your .env file."
-      );
-      if (showLoading) setLoading(false);
-      return;
-    }
-
-    if (cartLoading) {
-      return;
-    }
-
-    const tokenToUse = cartToken || localStorage.getItem("cartToken");
-
-    if (!tokenToUse || cartItems.length === 0) {
-      if (showLoading) setLoading(false);
-      if (!tokenToUse && !cartLoading) {
-        setError("Cart token is missing. Please wait a moment or add items to cart.");
+  const initializePaymentIntent = useCallback(
+    async (showLoading = true) => {
+      if (!import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY) {
+        setError(
+          "Stripe is not configured. Please add VITE_STRIPE_PUBLISHABLE_KEY to your .env file.",
+        );
+        if (showLoading) setLoading(false);
+        return;
       }
-      return;
-    }
 
-    try {
-      if (showLoading) {
-        setLoading(true);
+      if (cartLoading) {
+        return;
       }
-      setError(null);
 
-      const result = await createPaymentIntent({
-        cart_token: tokenToUse,
-        customer_info: customerInfo.email ? {
-          first_name: customerInfo.firstName || undefined,
-          last_name: customerInfo.lastName || undefined,
-          email: customerInfo.email || undefined,
-          phone: customerInfo.phone || undefined,
-        } : undefined,
-      });
+      const tokenToUse = cartToken || localStorage.getItem("cartToken");
 
-      setClientSecret(result.client_secret);
-      if (result.payment_intent_id) {
-        setPaymentIntentId(result.payment_intent_id);
+      if (!tokenToUse || cartItems.length === 0) {
+        if (showLoading) setLoading(false);
+        if (!tokenToUse && !cartLoading) {
+          setError(
+            "Cart token is missing. Please wait a moment or add items to cart.",
+          );
+        }
+        return;
       }
-    } catch (err) {
-      const errorMsg =
-        err instanceof Error
-          ? err.message
-          : "Failed to initialize payment. Please check your backend API endpoint.";
-      setError(errorMsg);
-    } finally {
-      if (showLoading) {
-        setLoading(false);
+
+      try {
+        if (showLoading) {
+          setLoading(true);
+        }
+        setError(null);
+
+        const result = await createPaymentIntent({
+          cart_token: tokenToUse,
+          customer_info: customerInfo.email
+            ? {
+                first_name: customerInfo.firstName || undefined,
+                last_name: customerInfo.lastName || undefined,
+                email: customerInfo.email || undefined,
+                phone: customerInfo.phone || undefined,
+              }
+            : undefined,
+        });
+
+        setClientSecret(result.client_secret);
+        if (result.payment_intent_id) {
+          setPaymentIntentId(result.payment_intent_id);
+        }
+      } catch (err) {
+        const errorMsg =
+          err instanceof Error
+            ? err.message
+            : "Failed to initialize payment. Please check your backend API endpoint.";
+        setError(errorMsg);
+      } finally {
+        if (showLoading) {
+          setLoading(false);
+        }
       }
-    }
-  }, [cartToken, cartItems.length, cartLoading, customerInfo]);
+    },
+    [cartToken, cartItems.length, cartLoading, customerInfo],
+  );
 
   useEffect(() => {
     if (cartLoading) {
@@ -148,7 +155,10 @@ export default function CheckoutPage() {
               <div className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="firstName" className="text-[14px] font-medium text-[#5F6057]">
+                    <Label
+                      htmlFor="firstName"
+                      className="text-[14px] font-medium text-[#5F6057]"
+                    >
                       First Name
                     </Label>
                     <Input
@@ -158,12 +168,18 @@ export default function CheckoutPage() {
                       className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
                       value={customerInfo.firstName}
                       onChange={(e) =>
-                        setCustomerInfo({ ...customerInfo, firstName: e.target.value })
+                        setCustomerInfo({
+                          ...customerInfo,
+                          firstName: e.target.value,
+                        })
                       }
                     />
                   </div>
                   <div>
-                    <Label htmlFor="lastName" className="text-[14px] font-medium text-[#5F6057]">
+                    <Label
+                      htmlFor="lastName"
+                      className="text-[14px] font-medium text-[#5F6057]"
+                    >
                       Last Name
                     </Label>
                     <Input
@@ -173,13 +189,19 @@ export default function CheckoutPage() {
                       className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
                       value={customerInfo.lastName}
                       onChange={(e) =>
-                        setCustomerInfo({ ...customerInfo, lastName: e.target.value })
+                        setCustomerInfo({
+                          ...customerInfo,
+                          lastName: e.target.value,
+                        })
                       }
                     />
                   </div>
                 </div>
                 <div>
-                  <Label htmlFor="email" className="text-[14px] font-medium text-[#5F6057]">
+                  <Label
+                    htmlFor="email"
+                    className="text-[14px] font-medium text-[#5F6057]"
+                  >
                     Email
                   </Label>
                   <Input
@@ -189,13 +211,19 @@ export default function CheckoutPage() {
                     className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
                     value={customerInfo.email}
                     onChange={(e) =>
-                      setCustomerInfo({ ...customerInfo, email: e.target.value })
+                      setCustomerInfo({
+                        ...customerInfo,
+                        email: e.target.value,
+                      })
                     }
                     required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="phone" className="text-[14px] font-medium text-[#5F6057]">
+                  <Label
+                    htmlFor="phone"
+                    className="text-[14px] font-medium text-[#5F6057]"
+                  >
                     Phone Number
                   </Label>
                   <Input
@@ -205,7 +233,10 @@ export default function CheckoutPage() {
                     className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
                     value={customerInfo.phone}
                     onChange={(e) =>
-                      setCustomerInfo({ ...customerInfo, phone: e.target.value })
+                      setCustomerInfo({
+                        ...customerInfo,
+                        phone: e.target.value,
+                      })
                     }
                   />
                 </div>
@@ -223,11 +254,13 @@ export default function CheckoutPage() {
                   </div>
                 )}
 
-                {(loading || cartLoading) ? (
+                {loading || cartLoading ? (
                   <div className="rounded-[14px] border border-[#E6E6E1] bg-white p-8 min-h-[200px] flex items-center justify-center">
                     <div className="text-center space-y-2">
                       <p className="text-[16px] text-[#9D9E98]">
-                        {cartLoading ? "Loading cart..." : "Loading payment form..."}
+                        {cartLoading
+                          ? "Loading cart..."
+                          : "Loading payment form..."}
                       </p>
                       {cartLoading && (
                         <p className="text-[12px] text-[#9D9E98]">
@@ -261,11 +294,15 @@ export default function CheckoutPage() {
                   <div className="rounded-[14px] border border-[#E6E6E1] bg-white p-8 min-h-[200px] flex items-center justify-center">
                     <div className="text-center space-y-2 w-full">
                       <p className="text-[16px] text-[#9D9E98]">
-                        {error ? "Unable to load payment form" : "Loading payment form..."}
+                        {error
+                          ? "Unable to load payment form"
+                          : "Loading payment form..."}
                       </p>
                       {error && (
                         <div className="mt-4 p-4 rounded-[14px] border border-red-200 bg-red-50">
-                          <p className="text-[14px] text-red-600 font-medium mb-1">Error:</p>
+                          <p className="text-[14px] text-red-600 font-medium mb-1">
+                            Error:
+                          </p>
                           <p className="text-[12px] text-red-600">{error}</p>
                         </div>
                       )}
@@ -296,7 +333,9 @@ export default function CheckoutPage() {
                         className="flex items-center justify-between text-[14px] text-[#5F6057]"
                       >
                         <span className="truncate pr-2">{item.title}</span>
-                        <span className="font-semibold">€ {item.price.toFixed(2)}</span>
+                        <span className="font-semibold">
+                          € {item.price.toFixed(2)}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -338,4 +377,3 @@ export default function CheckoutPage() {
     </section>
   );
 }
-

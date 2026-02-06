@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import { CircleCheck, Clock, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
@@ -47,12 +47,12 @@ export default function FilledCart({ items }: FilledCartProps) {
                   {item.link ? (
                     <Link
                       to={item.link}
-                      className="font-bricolage text-[24px] md:text-[26px] font-extrabold leading-[25px] text-[#34352E] hover:underline"
+                      className="font-bricolage text-[24px] md:text-[24px] font-extrabold leading-[25px] text-[#1F201B] hover:underline"
                     >
                       {item.title}
                     </Link>
                   ) : (
-                    <h2 className="font-bricolage text-[24px] md:text-[26px] font-extrabold leading-[25px] text-[#34352E]">
+                    <h2 className="font-bricolage text-[24px] md:text-[24px] font-extrabold leading-[25px] text-[#1F201B]">
                       {item.title}
                     </h2>
                   )}
@@ -68,7 +68,7 @@ export default function FilledCart({ items }: FilledCartProps) {
                         {item.hours}
                       </span>
                     ) : null}
-                    <span className="font-bricolage text-[30px] font-bold leading-[30px] text-[#34352E]">
+                    <span className="font-bricolage text-[24px] font-extrabold leading-[28px] text-[#1F201B]">
                       € {item.price.toFixed(2)}
                     </span>
                     <button
@@ -83,16 +83,13 @@ export default function FilledCart({ items }: FilledCartProps) {
                 </header>
 
                 <div className="px-4 py-4 md:px-6 md:py-5 bg-[#FBFBFA]">
-                  <p className="text-[16px] md:text-[18px] leading-[20px] text-[#5F6057]">
+                  <p className="text-[16px] leading-[24px] text-[#5F6057]">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="block md:hidden px-4 py-4 bg-[#FBFBFA] ">
+                <div className="block md:hidden px-4 py-4 bg-[#FBFBFA] border-t border-[#E6E6E1]">
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-bricolage text-[26px] font-bold leading-[30px] text-[#34352E]">
-                      € {item.price.toFixed(2)}
-                    </span>
                     <span className="inline-flex items-center gap-2 rounded-full bg-[#EEFCD7] px-3 py-1 text-xs font-semibold text-[#36500C]">
                       <CircleCheck className="h-4 w-4" />
                       VAT Included
@@ -103,6 +100,9 @@ export default function FilledCart({ items }: FilledCartProps) {
                         {item.hours}
                       </span>
                     ) : null}
+                    <span className="font-bricolage text-[24px] font-extrabold leading-[28px] text-[#1F201B]">
+                      € {item.price.toFixed(2)}
+                    </span>
                   </div>
                 </div>
 
@@ -122,7 +122,7 @@ export default function FilledCart({ items }: FilledCartProps) {
           <aside className="w-full md:w-[360px] ">
             <div className="flex flex-col rounded-[20px] border border-[#E6E6E1] bg-[#FBFBFA] ">
               <header className="border-b border-[#E6E6E1] px-6 py-5">
-                <h3 className="font-bricolage text-[24px] md:text-[26px] font-extrabold leading-[30px] text-[#34352E]">
+                <h3 className="font-bricolage text-[20px] font-extrabold leading-[24px] text-[#1F201B]">
                   Summary
                 </h3>
               </header>
@@ -131,7 +131,7 @@ export default function FilledCart({ items }: FilledCartProps) {
                 <div className="space-y-3">
                   <label
                     htmlFor="promo-code"
-                    className="text-[18px] leading-[24px] text-[#5F6057]"
+                    className="text-[14px] font-medium text-[#5F6057]"
                   >
                     Have a discount code?
                   </label>
@@ -139,20 +139,20 @@ export default function FilledCart({ items }: FilledCartProps) {
                     <Input
                       id="promo-code"
                       placeholder="Enter promo code"
-                      className="h-[46px] rounded-[14px] placeholder:text-[#9D9E98] border-[#E6E6E1] bg-[#E6E6E1] text-[16px]"
+                      className="h-[46px] rounded-[14px] border-[#E6E6E1] bg-[#FBFBFA] text-[16px]"
                     />
-                    <Button className="h-[46px] rounded-[14px] bg-[#E6E6E1] px-5 text-[16px] font-semibold text-[#5F6057] hover:bg-[#EDEDE8]">
+                    <Button className="h-[46px] rounded-[14px] bg-[#F6F6F3] px-5 text-[16px] font-semibold text-[#5F6057] hover:bg-[#EDEDE8]">
                       Apply
                     </Button>
                   </div>
                 </div>
 
-                <div className="space-y-3 border-t border-[#E6E6E1] pt-4 text-[18px] leading-[24px] text-[#5F6057]">
+                <div className="space-y-3 border-t border-[#E6E6E1] pt-4 text-[16px] text-[#5F6057]">
                   <div className="flex items-center justify-between">
                     <span>Sub total</span>
                     <span>€ {subtotal.toFixed(2)}</span>
                   </div>
-                  <div className="flex items-center justify-between ">
+                  <div className="flex items-center justify-between font-semibold text-[#1F201B]">
                     <span>Total</span>
                     <span>€ {subtotal.toFixed(2)}</span>
                   </div>
@@ -173,7 +173,7 @@ export default function FilledCart({ items }: FilledCartProps) {
                       <Link to="/login">
                         <PrimaryButton
                           text="Login to your Account "
-                          width="235px"
+                          width="291px"
                         />
                       </Link>
                       <p className="text-[14px] text-[#5F6057]">

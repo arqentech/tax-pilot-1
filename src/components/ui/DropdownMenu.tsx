@@ -18,7 +18,7 @@ const DropdownMenuContent = forwardRef<
       sideOffset={sideOffset}
       className={cn(
         "rounded-[32px] border border-[#E6E6E1] bg-[#FFFFFF] p-1 shadow-md",
-        className
+        className,
       )}
       {...props}
     />
@@ -34,7 +34,7 @@ const DropdownMenuItem = forwardRef<
     ref={ref}
     className={cn(
       "cursor-pointer select-none rounded-md px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-100",
-      className
+      className,
     )}
     {...props}
   >

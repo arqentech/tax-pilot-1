@@ -1,31 +1,32 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Handbag, Menu, X, User, LogOut } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { Handbag, Menu, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
-import { useAuth, logout } from "@/utils/auth";
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { cn } from "@/lib/utils";
+import UserDropdown from "../ui/UserDropdown";
+
+const navLinks = [
+  { to: "/", label: "How it works" },
+  { to: "/services", label: "Services" },
+  { to: "/faq", label: "FAQ" },
+  { to: "/blogs", label: "Blogs" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const { cartItems } = useCart();
-  const { isAuthenticated } = useAuth();
+
   const cartCount = cartItems.length;
   const isHome = pathname === "/";
+
   const navWrapperClass = isHome
     ? "full-bleed relative bg-[#FBFBFA]"
     : "relative w-full bg-white";
+
   const mobileMenuBg = isHome ? "bg-[#FBFBFA]" : "bg-white";
 
   const baseText = "text-[#34352E] font-medium text-[18px] md:text-lg";
   const linkStyle = "hover:text-[#0166FF] transition-colors duration-200";
-
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-  };
 
   return (
     <nav className={`${navWrapperClass} z-50`}>
@@ -47,49 +48,13 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-8 text-[18px] text-[#34352E] ">
+        <div className="hidden md:flex items-center gap-8 text-[18px] text-[#34352E]">
           <Link to="/contact-us" className={linkStyle}>
             Contact
           </Link>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger asChild>
-              <button
-                className={`${linkStyle} flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-[#34352E] hover:bg-gray-300 transition-colors`}
-                aria-label="User menu"
-              >
-                <User className="h-5 w-5" />
-              </button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Portal>
-              <DropdownMenu.Content
-                className="min-w-[180px] rounded-[12px] border border-[#E6E6E1] bg-white p-1 shadow-md z-50"
-                sideOffset={8}
-                align="end"
-              >
-                {isAuthenticated ? (
-                  <DropdownMenu.Item
-                    className={cn(
-                      "flex items-center gap-2 cursor-pointer select-none rounded-md px-3 py-2 text-sm text-[#34352E] hover:bg-gray-100 focus:bg-gray-100 outline-none"
-                    )}
-                    onSelect={handleLogout}
-                  >
-                    <LogOut className="h-4 w-4" />
-                    Logout
-                  </DropdownMenu.Item>
-                ) : (
-                  <DropdownMenu.Item
-                    className={cn(
-                      "flex items-center gap-2 cursor-pointer select-none rounded-md px-3 py-2 text-sm text-[#34352E] hover:bg-gray-100 focus:bg-gray-100 outline-none"
-                    )}
-                    onSelect={() => navigate("/login")}
-                  >
-                    <User className="h-4 w-4" />
-                    Login
-                  </DropdownMenu.Item>
-                )}
-              </DropdownMenu.Content>
-            </DropdownMenu.Portal>
-          </DropdownMenu.Root>
+
+          <UserDropdown />
+
           <Link
             to="/cart"
             className={`${linkStyle} relative flex items-center`}
@@ -110,50 +75,14 @@ const Navbar = () => {
           >
             <Handbag className="h-5 w-5" />
             {cartCount > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#007BFF]  px-1 text-xs font-semibold text-white">
+              <span className="absolute -right-2 -top-2 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[#007BFF] px-1 text-xs font-semibold text-white">
                 {cartCount}
               </span>
             )}
           </Link>
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger asChild>
-              <button
-                className={`${linkStyle} flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-[#34352E] hover:bg-gray-300 transition-colors`}
-                aria-label="User menu"
-              >
-                <User className="h-5 w-5" />
-              </button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Portal>
-              <DropdownMenu.Content
-                className="min-w-[180px] rounded-[12px] border border-[#E6E6E1] bg-white p-1 shadow-md z-50"
-                sideOffset={8}
-                align="end"
-              >
-                {isAuthenticated ? (
-                  <DropdownMenu.Item
-                    className={cn(
-                      "flex items-center gap-2 cursor-pointer select-none rounded-md px-3 py-2 text-sm text-[#34352E] hover:bg-gray-100 focus:bg-gray-100 outline-none"
-                    )}
-                    onSelect={handleLogout}
-                  >
-                    <LogOut className="h-4 w-4" />
-                    Logout
-                  </DropdownMenu.Item>
-                ) : (
-                  <DropdownMenu.Item
-                    className={cn(
-                      "flex items-center gap-2 cursor-pointer select-none rounded-md px-3 py-2 text-[18px] text-[#34352E] hover:bg-gray-100 focus:bg-gray-100 outline-none"
-                    )}
-                    onSelect={() => navigate("/login")}
-                  >
-                    <User className="h-4 w-4" />
-                    Login
-                  </DropdownMenu.Item>
-                )}
-              </DropdownMenu.Content>
-            </DropdownMenu.Portal>
-          </DropdownMenu.Root>
+
+          <UserDropdown />
+
           <button
             onClick={() => setIsOpen((prev) => !prev)}
             className="text-[#34352E] hover:text-[#0166FF] transition-colors"
@@ -196,9 +125,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-const navLinks = [
-  { to: "/", label: "How it works" },
-  { to: "/services", label: "Services" },
-  { to: "/faq", label: "FAQ" },
-  { to: "/blogs", label: "Blogs" },
-];
