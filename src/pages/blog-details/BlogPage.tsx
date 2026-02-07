@@ -1,6 +1,6 @@
 import { blogData } from "@/data/BlogData";
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Breadcrumbs from "../service-details/BreadCrumb";
 import Feedback from "@/components/ui/Feedback";
 import BlogsFaq from "./BlogsFaq";

@@ -6,7 +6,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeClosed } from "lucide-react";
@@ -104,7 +104,16 @@ export default function SignUpPage() {
   const getErrorMessage = () => {
     if (!isError) return "";
 
-    const error = registerMutation.error as any;
+    interface ErrorResponse {
+      response?: {
+        status?: number;
+        data?: {
+          message?: string;
+        };
+      };
+    }
+
+    const error = registerMutation.error as ErrorResponse | undefined;
     const errorResponse = error?.response;
     const statusCode = errorResponse?.status;
     const backendMessage = errorResponse?.data?.message?.toLowerCase() || "";

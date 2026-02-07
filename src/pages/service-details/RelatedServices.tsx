@@ -49,7 +49,7 @@ const RelatedServices = () => {
 
         <div className="md:hidden w-full overflow-x-auto">
           <div className="flex gap-4 justify-start">
-            {displayServices.map((service: any) => (
+            {displayServices.map((service: Service) => (
               <div key={service.id} className="max-w-[300px] flex-shrink-0">
                 <ServiceCard
                   title={service.title || ""}
@@ -71,7 +71,7 @@ const RelatedServices = () => {
         </div>
 
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center mt-10 w-full">
-          {displayServices.map((service: any) => (
+          {displayServices.map((service: Service) => (
             <ServiceCard
               key={service.id}
               title={service.title || ""}

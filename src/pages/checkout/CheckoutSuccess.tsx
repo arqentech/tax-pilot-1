@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CheckCircle2 } from "lucide-react";
 import PrimaryButton from "@/components/ui/PrimaryButton";
-import { useCart } from "@/contexts/CartContext";
+import { useCart } from "@/hooks/useCart";
 
 export default function CheckoutSuccess() {
   const location = useLocation();

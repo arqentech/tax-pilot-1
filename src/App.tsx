@@ -18,6 +18,7 @@ import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import HomePage from "./pages/profile/HomePage";
 import Documents from "./pages/profile/Documents";
+import PersonalInfo from "./pages/profile/personal-info/PersonalInfo";
 
 function App() {
   return (
@@ -36,8 +37,9 @@ function App() {
           <Route path="cart" element={<CartPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="checkout/success" element={<CheckoutSuccess />} />
-          <Route path="profile-home" element={<HomePage />} />
-          <Route path="profile-documents" element={<Documents />} />
+          <Route path="dashboard-home" element={<HomePage />} />
+          <Route path="dashboard-documents" element={<Documents />} />
+          <Route path="dashboard-personal-info" element={<PersonalInfo />} />
         </Route>
 
         <Route element={<AuthLayout />}>

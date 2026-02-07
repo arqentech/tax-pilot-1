@@ -22,12 +22,18 @@ export interface CartService {
   vatIncluded?: boolean;
 }
 
+export interface CartItemMetadata {
+  hours?: string;
+  vatIncluded?: boolean;
+  [key: string]: unknown;
+}
+
 export interface CartItemResponse {
   id: number;
   cart_id: number;
   service_id: number;
   price: number;
-  metadata: any[];
+  metadata: CartItemMetadata[];
   created_at: string;
   updated_at: string;
   service: CartService;

@@ -1,5 +1,5 @@
 import PrimaryButton from "@/components/ui/PrimaryButton";
-import { useCart } from "@/contexts/CartContext";
+import { useCart } from "@/hooks/useCart";
 import { CircleCheck, Clock } from "lucide-react";
 import Breadcrumbs from "./BreadCrumb";
 import { Link, useParams } from "react-router-dom";

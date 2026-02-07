@@ -14,7 +14,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   const sidebarItems = [
     {
       label: "Home",
-      path: "/profile-home",
+      path: "/dashboard-home",
       icon: (
         <img
           src="/svg/profile-home/home/home.svg"
@@ -25,7 +25,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     },
     {
       label: "Personal information",
-      path: "/dashboard/personal-info",
+      path: "/dashboard-personal-info",
       icon: (
         <img
           src="/svg/profile-home/home/user.svg"
@@ -36,7 +36,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     },
     {
       label: "Documents",
-      path: "/profile-documents",
+      path: "/dashboard-documents",
       icon: (
         <img
           src="/svg/profile-home/home/folder.svg"
@@ -47,7 +47,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     },
     {
       label: "Requests",
-      path: "/dashboard/requests",
+      path: "/dashboard-requests",
       icon: (
         <img
           src="/svg/profile-home/home/announcement.svg"

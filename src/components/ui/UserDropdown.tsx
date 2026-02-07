@@ -40,7 +40,7 @@ const UserDropdown = () => {
                 className={cn(
                   "flex items-center gap-2 cursor-pointer select-none rounded-md px-3 py-2 text-sm text-[#34352E] hover:bg-gray-100 focus:bg-gray-100 outline-none",
                 )}
-                onSelect={() => navigate("/profile-home")}
+                onSelect={() => navigate("/dashboard-home")}
               >
                 <User className="h-4 w-4" />
                 Profile

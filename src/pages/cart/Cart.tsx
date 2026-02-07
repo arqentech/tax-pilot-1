@@ -1,4 +1,4 @@
-import { useCart } from "@/contexts/CartContext";
+import { useCart } from "@/hooks/useCart";
 import EmptyCart from "./EmptyCart";
 import FilledCart from "./FilledCart";
 

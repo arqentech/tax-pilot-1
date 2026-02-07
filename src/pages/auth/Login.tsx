@@ -35,7 +35,10 @@ export default function LoginPage() {
     loginMutation.mutate(payload, {
       onSuccess: (data) => {
         const token = data.results.access_token;
+        const user = data.results.user;
+
         localStorage.setItem("authToken", token);
+        localStorage.setItem("userData", JSON.stringify(user)); // store real user data
         window.dispatchEvent(new Event("auth-changed"));
         navigate("/");
       },

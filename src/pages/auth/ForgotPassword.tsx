@@ -6,7 +6,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { useState } from "react";
 
 export default function ForgotPassword() {

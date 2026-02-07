@@ -11,8 +11,8 @@ export const getServiceDetails = async (slug: string): Promise<Service> => {
 
   let relatedServices: RelatedServiceItem[] | Service[] = [];
   
-  if ((service as any).related_services) {
-    relatedServices = (service as any).related_services;
+  if (service.related_services) {
+    relatedServices = service.related_services;
   } else if (res.data.results?.related_services) {
     relatedServices = res.data.results.related_services;
   } else if (res.data.related_services) {

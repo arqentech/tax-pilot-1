@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useCart } from "@/contexts/CartContext";
+import { useCart } from "@/hooks/useCart";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";

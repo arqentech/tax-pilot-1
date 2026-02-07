@@ -5,6 +5,7 @@ import SearchBar from "../../components/ui/SearchBar";
 import Badge from "../../components/ui/Badge";
 import { ChevronRight } from "lucide-react";
 import { useServices } from "../../hooks/useServices";
+import { Service } from "../../types/services";
 
 const ServicesSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -13,7 +14,7 @@ const ServicesSection = () => {
   const filteredServices = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
     return services.filter(
-      (service: any) =>
+      (service) =>
         service.title.toLowerCase().includes(query) ||
         service.description_short?.toLowerCase().includes(query)
     );
@@ -55,7 +56,7 @@ const ServicesSection = () => {
 
         <div className="md:hidden w-full overflow-x-auto ">
           <div className="flex gap-4 justify-start">
-            {displayServices.map((service: any) => (
+            {displayServices.map((service) => (
               <div key={service.id} className="max-w-[300px] flex-shrink-0">
                 <ServiceCard
                   title={service.title}
@@ -71,7 +72,7 @@ const ServicesSection = () => {
         </div>
 
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center mt-10 w-full">
-          {displayServices.map((service: any) => (
+          {displayServices.map((service) => (
             <ServiceCard
               key={service.id}
               title={service.title}

@@ -1,0 +1,139 @@
+import React, { useEffect, useState } from "react";
+import FormInputField from "@/components/ui/profile/FormInputField";
+import FormSelectField from "@/components/ui/profile/FormSelectField";
+import { FormFieldConfig, formFields, PersonalInfoFormData } from "./FormField";
+import { ChevronRight } from "lucide-react";
+import { DashboardLayout } from "../DashboardLayout";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+
+const PersonalInfoPage: React.FC = () => {
+  const [formData, setFormData] = useState<PersonalInfoFormData>({
+    name: "",
+    surname: "",
+    email: "",
+    taxId: "",
+    phone: "",
+    dateOfBirth: "",
+    placeOfBirth: "",
+    address: "",
+    zipCode: "",
+    city: "",
+    citizenship: "",
+  });
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("userData");
+    if (savedUser) {
+      const user = JSON.parse(savedUser);
+      setFormData({
+        name: user.name || "",
+        surname: user.surname || "",
+        email: user.email || "",
+        taxId: user.fiscal_code || "",
+        phone: user.phone || "",
+        dateOfBirth: user.dob_date || "",
+        placeOfBirth: user.dob_city || "",
+        address: user.address || "",
+        zipCode: "",
+        city: "",
+        citizenship: user.citizenship || "",
+      });
+    }
+  }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const commonFieldStyle =
+    "w-[439px] h-[60px] text-[#9D9E98] font-normal text-[18px] border border-[#E6E6E1] bg-[#FBFBFA] placeholder:!text-[#9D9E98]";
+
+  const renderField = (field: FormFieldConfig) => {
+    const wrapperClass = field.colSpan === "full" ? "md:col-span-2" : "";
+
+    if (field.name === "phone") {
+      return (
+        <div key={field.name} className={wrapperClass}>
+          <PhoneInput
+            value={formData.phone || ""}
+            onChange={(phone) => setFormData((prev) => ({ ...prev, phone }))}
+            placeholder="Mobile number"
+            className="w-full !rounded-[14px] !border !border-[#E6E6E1] !bg-[#FBFBFA]"
+            inputClassName="!h-[60px] !text-[18px] !bg-[#FBFBFA] !border-none placeholder:!text-[#9D9E98]"
+            disabled
+            
+          />
+        </div>
+      );
+    }
+
+    if (field.type === "input") {
+      return (
+        <div key={field.name} className={wrapperClass}>
+          <FormInputField
+            label={field.label}
+            name={field.name}
+            type={field.inputType || "text"}
+            placeholder={field.placeholder}
+            value={formData[field.name]}
+            onChange={handleInputChange}
+            disabled={field.disabled}
+            className={commonFieldStyle}
+          />
+        </div>
+      );
+    }
+
+    if (field.type === "select") {
+      return (
+        <div key={field.name} className={wrapperClass}>
+          <FormSelectField
+            label={field.label}
+            name={field.name}
+            placeholder={field.placeholder}
+            value={formData[field.name]}
+            onChange={handleSelectChange}
+            disabled={field.disabled}
+            className={commonFieldStyle}
+          />
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  const handleUpdate = () => {
+    localStorage.setItem("userData", JSON.stringify(formData));
+    alert("Information updated successfully!");
+  };
+
+  return (
+    <DashboardLayout>
+      <div className="rounded-[16px] border border-[#F0F0ED] p-8 w-full max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {formFields.map(renderField)}
+        </div>
+
+        <div className="mt-8">
+          <button
+            onClick={handleUpdate}
+            className="bg-[#34352E] text-[#F1F1EC] text-[18px] px-6 py-3 rounded-full flex items-center gap-2 hover:opacity-90"
+          >
+            Update Information
+            <ChevronRight width={18} />
+          </button>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+};
+
+export default PersonalInfoPage;

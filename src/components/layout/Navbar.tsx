@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Handbag, Menu, X } from "lucide-react";
-import { useCart } from "@/contexts/CartContext";
+import { useCart } from "@/hooks/useCart";
 import UserDropdown from "../ui/UserDropdown";
 
 const navLinks = [

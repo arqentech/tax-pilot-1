@@ -34,7 +34,13 @@ export default function StripeCheckoutForm({
     setErrorMessage(null);
 
     try {
-      const secret = clientSecret || (elements as any).options?.clientSecret;
+      interface ElementsWithOptions {
+        options?: {
+          clientSecret?: string;
+        };
+      }
+      const elementsWithOptions = elements as ElementsWithOptions | null;
+      const secret = clientSecret || elementsWithOptions?.options?.clientSecret;
       
       if (!secret) {
         throw new Error("Client secret not found");

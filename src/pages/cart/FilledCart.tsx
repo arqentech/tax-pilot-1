@@ -1,11 +1,11 @@
 import { Input } from "@/components/ui/Input";
 import { CircleCheck, Clock, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useCart } from "@/contexts/CartContext";
+import { useCart } from "@/hooks/useCart";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import { useAuth } from "@/utils/auth";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 interface FilledCartProps {
   items: {

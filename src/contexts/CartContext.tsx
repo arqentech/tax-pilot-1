@@ -32,13 +32,15 @@ type CartContextType = {
   isLoading: boolean;
   cartToken: string | null;
   addToCart: (item: CartItem) => Promise<{ added: boolean; message: string }>;
-  removeFromCart: (id: string) => Promise<{ removed: boolean; message: string }>;
+  removeFromCart: (
+    id: string,
+  ) => Promise<{ removed: boolean; message: string }>;
   clearCart: () => void;
   setCartItems: (items: CartItem[]) => void;
   refreshCart: (force?: boolean) => Promise<void>;
 };
 
-const CartContext = createContext<CartContextType | null>(null);
+export const CartContext = createContext<CartContextType | null>(null);
 
 const CART_ITEMS_STORAGE_KEY = "cartItems";
 const CART_DATA_STORAGE_KEY = "cartData";
@@ -76,12 +78,17 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
   // If not found in service, check metadata
   if (!hours || vatIncluded === undefined) {
     if (item.metadata && Array.isArray(item.metadata)) {
-      const metadataObj = item.metadata.find((m) => typeof m === "object" && m !== null);
+      const metadataObj = item.metadata.find(
+        (m) => typeof m === "object" && m !== null,
+      );
       if (metadataObj) {
         if (!hours && metadataObj.hours) {
           hours = metadataObj.hours;
         }
-        if (vatIncluded === undefined && metadataObj.vatIncluded !== undefined) {
+        if (
+          vatIncluded === undefined &&
+          metadataObj.vatIncluded !== undefined
+        ) {
           vatIncluded = metadataObj.vatIncluded;
         }
       }
@@ -184,11 +191,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
         const localItems = loadCartFromStorage();
         const backendServiceIds = new Set(
-          backendItems.map((item) => item.service_id)
+          backendItems.map((item) => item.service_id),
         );
 
         const localOnlyItems = localItems.filter(
-          (item) => item.service_id && !backendServiceIds.has(item.service_id)
+          (item) => item.service_id && !backendServiceIds.has(item.service_id),
         );
 
         const mergedItems = [...backendItems, ...localOnlyItems];
@@ -216,7 +223,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         setIsLoading(false);
       }
     },
-    [cartToken]
+    [cartToken],
   );
 
   useEffect(() => {
@@ -241,15 +248,15 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
             try {
               const cartData = await getCart(existingToken);
               const backendItems = cartData.cart_items.map(
-                mapCartItemFromBackend
+                mapCartItemFromBackend,
               );
 
               const backendServiceIds = new Set(
-                backendItems.map((item) => item.service_id)
+                backendItems.map((item) => item.service_id),
               );
               const localOnlyItems = localItems.filter(
                 (item) =>
-                  item.service_id && !backendServiceIds.has(item.service_id)
+                  item.service_id && !backendServiceIds.has(item.service_id),
               );
 
               const mergedItems = [...backendItems, ...localOnlyItems];
@@ -287,7 +294,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
     const localExists = cartItems.some(
       (existing) =>
-        itemWithId.service_id && existing.service_id === itemWithId.service_id
+        itemWithId.service_id && existing.service_id === itemWithId.service_id,
     );
 
     if (localExists) {
@@ -325,17 +332,19 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       });
 
       let finalItems: CartItem[];
-      
+
       if (backendItems.length > 0) {
         finalItems = backendItems;
         console.log("Using backend items:", finalItems);
       } else {
-        console.warn("Backend returned empty cart after adding item. Preserving existing items.");
-        
-        const itemExistsInPrevious = previousItems.some(
-          (item) => item.service_id === itemWithId.service_id
+        console.warn(
+          "Backend returned empty cart after adding item. Preserving existing items.",
         );
-        
+
+        const itemExistsInPrevious = previousItems.some(
+          (item) => item.service_id === itemWithId.service_id,
+        );
+
         if (itemExistsInPrevious) {
           finalItems = previousItems;
           console.log("Item already exists, using previous items:", finalItems);
@@ -371,7 +380,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const removeFromCart = async (id: string): Promise<{ removed: boolean; message: string }> => {
+  const removeFromCart = async (
+    id: string,
+  ): Promise<{ removed: boolean; message: string }> => {
     const itemToRemove = cartItems.find((item) => item.id === id);
 
     if (!itemToRemove) {
@@ -398,8 +409,16 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     const cartItemId = itemToRemove.cart_item_id;
     const serviceId = itemToRemove.service_id;
 
-    if (!cartItemId || !serviceId || typeof cartItemId !== 'number' || typeof serviceId !== 'number') {
-      console.error("Missing cart_item_id or service_id for item:", itemToRemove);
+    if (
+      !cartItemId ||
+      !serviceId ||
+      typeof cartItemId !== "number" ||
+      typeof serviceId !== "number"
+    ) {
+      console.error(
+        "Missing cart_item_id or service_id for item:",
+        itemToRemove,
+      );
       setCartItemsState((prev) => {
         const newItems = prev.filter((item) => item.id !== id);
         saveCartToStorage(newItems, cartToken);
@@ -424,7 +443,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       const { cartData, message } = await removeItemFromCart(
         cartToken,
         cartItemId as number,
-        serviceId as number
+        serviceId as number,
       );
 
       const fetchedCartItems = cartData?.cart_items || [];
@@ -447,7 +466,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       saveCartToStorage(previousItems, previousToken);
 
       const errorMessage =
-        error instanceof Error ? error.message : "Failed to remove item from cart";
+        error instanceof Error
+          ? error.message
+          : "Failed to remove item from cart";
 
       return {
         removed: false,
@@ -482,10 +503,4 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
     </CartContext.Provider>
   );
-};
-
-export const useCart = () => {
-  const ctx = useContext(CartContext);
-  if (!ctx) throw new Error("useCart must be used within CartProvider");
-  return ctx;
 };
