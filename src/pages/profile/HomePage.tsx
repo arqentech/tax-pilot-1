@@ -16,11 +16,13 @@ const HomePage: React.FC = () => {
         { label: "in progress", count: 2 },
         { label: "completed", count: 10 },
       ]);
+
       setUser({
         name: "Ali Sher Khan",
         initials: "AS",
         profileCompletion: 80,
       });
+
       setLoading(false);
     }, 500);
 
@@ -37,43 +39,51 @@ const HomePage: React.FC = () => {
 
   return (
     <DashboardLayout>
-      {user && (
-        <div className="bg-[#FBFBFA] w-full border border-[#F0F0ED] rounded-[16px] shadow p-6 flex justify-between items-center mb-10">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full text-[#34352E] bg-[#FFFFFF] flex items-center justify-center text-[18px]">
-              {user.initials}
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-0 py-6">
+        {/* User Profile Card */}
+        {user && (
+          <div className="bg-[#FBFBFA] w-full border border-[#F0F0ED] rounded-[16px] shadow p-4 sm:p-6 md:p-6 flex flex-col md:flex-row justify-between items-center mb-6 md:mb-10 gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full text-[#34352E] bg-[#FFFFFF] flex items-center justify-center text-[18px]">
+                {user.initials}
+              </div>
+              <div>
+                <p className="font-bold text-[18px] text-[#5F6057]">
+                  {user.name}
+                </p>
+                <p className="text-[16px] sm:text-[18px] text-[#9D9E98]">
+                  Profile {user.profileCompletion}% complete
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="font-bold text-[18px] text-[#5F6057]">
-                {user.name}
-              </p>
-              <p className="text-[18px] text-[#9D9E98]">
-                Profile {user.profileCompletion}% complete
-              </p>
-            </div>
+            <button className="bg-[#34352E] text-[#F1F1EC] h-[48px] text-[16px] sm:text-[18px] px-4 sm:px-5 py-2 rounded-full hover:bg-gray-500 flex items-center justify-center gap-2">
+              Complete now
+              <ChevronRight width={18} />
+            </button>
           </div>
-          <button className="bg-[#34352E] text-[#F1F1EC] h-[48px] max-w-[185px] leading-[25px] text-[18px] px-5 py-2 rounded-full hover:bg-gray-500 flex items-center justify-center gap-2">
-            Complete now
-            <ChevronRight width={18} />
-          </button>
-        </div>
-      )}
+        )}
 
-      <h3 className="font-extrabold font-bricolage text-[22px] leading-[30px] text-[#34352E] mb-4">
-        Your Procedures
-      </h3>
+        {/* Procedures Section */}
+        <h3 className="font-extrabold font-bricolage text-[22px] sm:text-[24px] lg:text-[26px] leading-[30px] text-[#34352E] mb-4">
+          Your Procedures
+        </h3>
 
-      <div className="flex flex-col w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8 w-full">
-          {stats.map((stat) => (
-            <StatCard key={stat.label} count={stat.count} label={stat.label} />
-          ))}
-        </div>
+        <div className="flex flex-col w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8 w-full">
+            {stats.map((stat) => (
+              <StatCard
+                key={stat.label}
+                count={stat.count}
+                label={stat.label}
+              />
+            ))}
+          </div>
 
-        <div className="w-full flex justify-center">
-          <Link to="/services">
-            <PrimaryButton text="Explore Services" width="262px" />
-          </Link>
+          <div className="w-full flex justify-center">
+            <Link to="/services">
+              <PrimaryButton text="Explore Services" width="262px" />
+            </Link>
+          </div>
         </div>
       </div>
     </DashboardLayout>
@@ -87,9 +97,13 @@ const StatCard: React.FC<{ count: number; label: string }> = ({
   label,
 }) => {
   return (
-    <div className="bg-[#FBFBFA] rounded-[16px] p-6 text-center">
-      <p className="text-[26px] font-bold text-[#5F6057] mb-2">{count}</p>
-      <p className="text-[18px] text-[#9D9E98]">{label}</p>
+    <div className="bg-[#FBFBFA] rounded-[16px] p-4 sm:p-6 text-center w-full max-w-full hover:shadow-md transition">
+      <p className="text-[26px] sm:text-[28px] font-bold text-[#5F6057] mb-2">
+        {count}
+      </p>
+      <p className="text-[18px] sm:text-[18px] text-[#9D9E98] capitalize">
+        {label}
+      </p>
     </div>
   );
 };

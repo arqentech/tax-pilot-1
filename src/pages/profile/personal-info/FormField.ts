@@ -1,13 +1,13 @@
-type FieldType = "input" | "select";
+type FieldType = "input" | "select" | "phone";
 
 export interface FormFieldConfig {
-  name: keyof PersonalInfoFormData;
   label: string;
+  name: keyof PersonalInfoFormData;
   type: FieldType;
-  placeholder?: string;
   inputType?: string;
-  colSpan?: "full";
+  placeholder?: string;
   disabled?: boolean;
+  colSpan?: "full";
 }
 
 export interface PersonalInfoFormData {
@@ -66,7 +66,6 @@ export const formFields: FormFieldConfig[] = [
     name: "dateOfBirth",
     label: "Date of birth",
     type: "input",
-    // inputType: "date",
     placeholder: "mm/dd/yyyy",
     disabled: true,
   },

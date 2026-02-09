@@ -68,7 +68,6 @@ const PersonalInfoPage: React.FC = () => {
             className="w-full !rounded-[14px] !border !border-[#E6E6E1] !bg-[#FBFBFA]"
             inputClassName="!h-[60px] !text-[18px] !bg-[#FBFBFA] !border-none placeholder:!text-[#9D9E98]"
             disabled
-            
           />
         </div>
       );
@@ -117,8 +116,8 @@ const PersonalInfoPage: React.FC = () => {
 
   return (
     <DashboardLayout>
-      <div className="rounded-[16px] border border-[#F0F0ED] p-8 w-full max-w-5xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="rounded-[16px] border border-[#F0F0ED] p-8 w-full max-w-[985px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
           {formFields.map(renderField)}
         </div>
 

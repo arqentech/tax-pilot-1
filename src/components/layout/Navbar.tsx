@@ -25,22 +25,22 @@ const Navbar = () => {
 
   const mobileMenuBg = isHome ? "bg-[#FBFBFA]" : "bg-white";
 
-  const baseText = "text-[#34352E] font-medium text-[18px] md:text-lg";
+  const baseText = "text-[#34352E] font-medium text-[18px] lg:text-lg";
   const linkStyle = "hover:text-[#0166FF] transition-colors duration-200";
 
   return (
     <nav className={`${navWrapperClass} z-50`}>
-      <div className="global-container flex items-center justify-between md:py-4">
+      <div className="global-container flex items-center justify-between lg:py-4">
         <Link to="/" className="flex items-center flex-shrink-0">
           <img
             src="/svg/header-logo.svg"
             alt="TaxPilot logo"
-            className="h-[70px] w-[130px] md:h-[42px] md:w-[193.59px]"
+            className="h-[70px] w-[130px] lg:h-[42px] lg:w-[193.59px]"
             loading="lazy"
           />
         </Link>
 
-        <div className="hidden md:flex text-[18px] text-[#34352E] items-center justify-center gap-8">
+        <div className="hidden lg:flex text-[18px] text-[#34352E] items-center justify-center gap-8">
           {navLinks.map(({ to, label }) => (
             <Link key={to} to={to} className={linkStyle}>
               {label}
@@ -48,7 +48,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-8 text-[18px] text-[#34352E]">
+        <div className="hidden lg:flex items-center gap-8 text-[18px] text-[#34352E]">
           <Link to="/contact-us" className={linkStyle}>
             Contact
           </Link>
@@ -68,7 +68,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-4 lg:hidden">
           <Link
             to="/cart"
             className={`${linkStyle} relative flex items-center`}
@@ -94,7 +94,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`absolute left-0 w-full ${mobileMenuBg} md:hidden transform transition-all duration-300 origin-top ${
+        className={`absolute left-0 w-full ${mobileMenuBg} lg:hidden transform transition-all duration-300 origin-top ${
           isOpen
             ? "opacity-100 scale-y-100 pointer-events-auto"
             : "opacity-0 scale-y-0 pointer-events-none"

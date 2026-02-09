@@ -15,8 +15,8 @@ const Documents: React.FC = () => {
             icon: (
               <img
                 src="/svg/profile-home/documents/certificates.svg"
-                alt="certificates "
-                className="w-10 h-10"
+                alt="certificates"
+                className="w-8 h-8 sm:w-10 sm:h-10"
               />
             ),
           },
@@ -27,7 +27,7 @@ const Documents: React.FC = () => {
               <img
                 src="/svg/profile-home/documents/certificates.svg"
                 alt="certificates"
-                className="w-10 h-10"
+                className="w-8 h-8 sm:w-10 sm:h-10"
               />
             ),
           },
@@ -38,7 +38,7 @@ const Documents: React.FC = () => {
               <img
                 src="/svg/profile-home/documents/family.svg"
                 alt="family"
-                className="w-10 h-10"
+                className="w-8 h-8 sm:w-10 sm:h-10"
               />
             ),
           },
@@ -49,7 +49,7 @@ const Documents: React.FC = () => {
               <img
                 src="/svg/profile-home/home/user.svg"
                 alt="user"
-                className="w-10 h-10"
+                className="w-8 h-8 sm:w-10 sm:h-10"
               />
             ),
           },
@@ -60,7 +60,7 @@ const Documents: React.FC = () => {
               <img
                 src="/svg/profile-home/documents/glasses.svg"
                 alt="glasses"
-                className="w-10 h-10"
+                className="w-8 h-8 sm:w-10 sm:h-10"
               />
             ),
           },
@@ -86,29 +86,33 @@ const Documents: React.FC = () => {
   }
 
   return (
-    <DashboardLayout>
-      <div className="w-full">
-        <div className="min-w-[985px] border border-[#F0F0ED] mx-auto rounded-[16px] p-6 ">
-          <h2 className="text-[22px] leading-[30px] font-bricolage font-extrabold mb-1">
-            My documents
-          </h2>
-          <p className="text-[18px] text-[#9D9E98] mb-6">
-            In this section you can view uploaded documents or upload new ones.
-          </p>
+    <div className="">
+      <DashboardLayout>
+        <div className="w-full">
+          <div className=" md:p-10 w-full mx-auto md:border border-[#F0F0ED] rounded-[16px]">
+            <h2 className="max-w-[350px] text-lg sm:text-xl lg:text-[22px] leading-[30px] font-bricolage font-extrabold mb-1">
+              My documents
+            </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
-            {documents.map((doc) => (
-              <DocumentCard
-                key={doc.label}
-                label={doc.label}
-                count={doc.count}
-                icon={doc.icon}
-              />
-            ))}
+            <p className="text-sm sm:text-base lg:text-[18px] text-[#9D9E98] mb-6">
+              In this section you can view uploaded documents or upload new
+              ones.
+            </p>
+
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:py-4 justify-items-center gap-6 md:gap-6">
+              {documents.map((doc) => (
+                <DocumentCard
+                  key={doc.label}
+                  label={doc.label}
+                  count={doc.count}
+                  icon={doc.icon}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </div>
   );
 };
 
@@ -128,11 +132,14 @@ interface DocumentCardProps {
 
 const DocumentCard: React.FC<DocumentCardProps> = ({ label, count, icon }) => {
   return (
-    <div className="flex flex-col w-full max-w-[286px] items-center justify-center bg-[#FBFBFA] border border-[#F0F0ED] rounded-[16px] p-6 text-center hover:shadow-md transition">
+    <div className="flex flex-col w-full gap-1 sm:max-w-[400px] md:max-w-[300px] items-center justify-center bg-[#FBFBFA] border border-[#F0F0ED] rounded-[16px] p-10 text-center hover:shadow-md transition">
       <div className="mb-3">{icon}</div>
 
-      <p className="text-[18px] text-[#9D9E98]">{label}</p>
-      <p className="text-[26px] font-bold text-[#5F6057]">{count}</p>
+      <span className="text-[18px] text-[#9D9E98]  whitespace-nowrap">
+        {label}
+      </span>
+
+      <p className=" text-[26px] font-bold text-[#5F6057]">{count}</p>
     </div>
   );
 };
