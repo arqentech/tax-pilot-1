@@ -12,45 +12,43 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   const location = useLocation();
 
   return (
-    <div className="w-full">
-      {/* Mobile Tabs */}
-      <div className="lg:hidden w-full border-b border-[#E6E6E1] mb-6">
-        <nav className="flex">
-          {sidebarItems.map((item) => (
-            <Link
-              key={item.label}
-              to={item.path}
-              className={`flex-1 text-center py-3 border-b-2 ${
-                location.pathname === item.path
-                  ? "text-[#0166FF] border-[#0166FF]"
-                  : "text-[#9D9E98] border-transparent"
-              }`}
-            >
-              {item.label.split(" ")[0]}
-            </Link>
-          ))}
-        </nav>
-      </div>
-
-      {/* Desktop Layout */}
-      <div className="flex flex-col lg:flex-row gap-6 py-8">
-        {/* Sidebar */}
-        <aside className="hidden lg:block w-[291px] flex-shrink-0">
-          <nav className="flex flex-col">
+    <div className="-mx-[1.5rem] px-4 md:px-0">
+      <div className="w-full ">
+        <div className="lg:hidden w-full border-b border-[#E6E6E1] mb-6">
+          <nav className="flex">
             {sidebarItems.map((item) => (
-              <Link key={item.label} to={item.path}>
-                <SidebarItem
-                  label={item.label}
-                  icon={item.icon}
-                  active={location.pathname === item.path}
-                />
+              <Link
+                key={item.label}
+                to={item.path}
+                className={`flex-1 text-center py-3 border-b-2 ${
+                  location.pathname === item.path
+                    ? "text-[#0166FF] border-[#0166FF]"
+                    : "text-[#9D9E98] border-transparent"
+                }`}
+              >
+                {item.label.split(" ")[0]}
               </Link>
             ))}
           </nav>
-        </aside>
+        </div>
 
-        {/* Main */}
-        <main className="flex-1 min-w-0">{children}</main>
+        <div className="w-full flex flex-col lg:flex-row gap-6 py-8">
+          <aside className="hidden lg:block w-[291px] ">
+            <nav className="flex flex-col">
+              {sidebarItems.map((item) => (
+                <Link key={item.label} to={item.path}>
+                  <SidebarItem
+                    label={item.label}
+                    icon={item.icon}
+                    active={location.pathname === item.path}
+                  />
+                </Link>
+              ))}
+            </nav>
+          </aside>
+
+          <main className="flex-1 ">{children}</main>
+        </div>
       </div>
     </div>
   );

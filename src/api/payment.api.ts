@@ -1,5 +1,15 @@
 import { api } from "./axios";
 
+interface ApiError {
+  response?: {
+    status?: number;
+    data?: {
+      message?: string;
+    };
+  };
+  message?: string;
+}
+
 export interface CreatePaymentIntentRequest {
   cart_token: string;
   customer_info?: {
@@ -43,15 +53,16 @@ export const createPaymentIntent = async (
     }
 
     throw new Error(response.data.message || "Failed to initialize payment");
-  } catch (error: any) {
-    if (error.response?.status === 401) {
+  } catch (error) {
+    const apiError = error as ApiError;
+    if (apiError.response?.status === 401) {
       throw new Error(
         "Authentication required. Please ensure you're logged in or the cart token is valid."
       );
     }
     throw new Error(
-      error.response?.data?.message ||
-      error.message ||
+      apiError.response?.data?.message ||
+      apiError.message ||
       "Failed to initialize payment. Please check your backend API endpoint."
     );
   }

@@ -1,6 +1,5 @@
 import {
   createContext,
-  useContext,
   useState,
   useEffect,
   useCallback,
@@ -279,6 +278,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     initializeCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addToCart = async (item: CartItem) => {

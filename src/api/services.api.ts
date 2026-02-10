@@ -1,4 +1,21 @@
 import { api } from "./axios";
+import { Service } from "../types/services";
+
+interface ApiError {
+  response?: {
+    status?: number;
+    data?: {
+      message?: string;
+    };
+  };
+  request?: unknown;
+  message?: string;
+}
+
+interface FetchServicesParams {
+  search?: string;
+  category?: string;
+}
 
 export const getAllServices = async () => {
   try {
@@ -18,24 +35,25 @@ export const getAllServices = async () => {
     }
 
     return response.data.results.data;
-  } catch (error: any) {
-    if (error.response) {
-      const responseData = error.response.data;
+  } catch (error) {
+    const apiError = error as ApiError;
+    if (apiError.response) {
+      const responseData = apiError.response.data;
       if (
         typeof responseData === "string" &&
         responseData.includes("<!DOCTYPE")
       ) {
         throw new Error(
-          `API returned HTML error page (Status: ${error.response.status}). ` +
+          `API returned HTML error page (Status: ${apiError.response.status}). ` +
             `The proxy may not be working. Check if dev server was restarted and proxy is configured correctly.`
         );
       }
 
       throw new Error(
-        error.response.data?.message ||
-          `Failed to fetch services: ${error.response.status}`
+        apiError.response.data?.message ||
+          `Failed to fetch services: ${apiError.response.status}`
       );
-    } else if (error.request) {
+    } else if (apiError.request) {
       throw new Error(
         "Network error: Could not reach the server. Make sure dev server is running."
       );
@@ -48,8 +66,8 @@ export const getAllServices = async () => {
 export const fetchServices = async (
   search: string,
   category: string | null
-) => {
-  const params: any = {};
+): Promise<Service[]> => {
+  const params: FetchServicesParams = {};
   if (search) params.search = search;
   if (category) params.category = category;
 

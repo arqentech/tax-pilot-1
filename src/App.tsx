@@ -19,6 +19,7 @@ import ScrollToTop from "./components/layout/ScrollToTop";
 import HomePage from "./pages/profile/HomePage";
 import Documents from "./pages/profile/Documents";
 import PersonalInfo from "./pages/profile/personal-info/PersonalInfo";
+import Requests from "./pages/profile/Requests";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="dashboard-home" element={<HomePage />} />
           <Route path="dashboard-documents" element={<Documents />} />
           <Route path="dashboard-personal-info" element={<PersonalInfo />} />
+          <Route path="dashboard-requests" element={<Requests />} />
         </Route>
 
         <Route element={<AuthLayout />}>

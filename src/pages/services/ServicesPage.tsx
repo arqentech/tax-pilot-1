@@ -4,6 +4,7 @@ import ServiceCard from "../../components/ui/ServiceCard";
 import FilterButton from "../../components/ui/FilterButton";
 import Categories, { CategoryOption } from "./Categories";
 import { useServices } from "../../hooks/useServices";
+import { Service } from "../../types/services";
 
 const ServicesPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -14,8 +15,8 @@ const ServicesPage: React.FC = () => {
 
   const availableCategories = useMemo<CategoryOption[]>(() => {
     const map = new Map<string, string>();
-    services.forEach((service: any) => {
-      service.categories?.forEach((entry: any) => {
+    services.forEach((service: Service) => {
+      service.categories?.forEach((entry) => {
         const id = entry.category?.identifier;
         const title = entry.category?.title;
         if (id && title && !map.has(id)) map.set(id, title);
@@ -29,11 +30,11 @@ const ServicesPage: React.FC = () => {
 
   const filteredServices = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
-    return services.filter((service: any) => {
+    return services.filter((service: Service) => {
       const matchesCategory =
         !selectedCategory ||
         service.categories?.some(
-          (c: any) => c.category.identifier === selectedCategory
+          (c) => c.category.identifier === selectedCategory,
         );
       const matchesSearch =
         !query || service.title.toLowerCase().includes(query);
@@ -58,20 +59,26 @@ const ServicesPage: React.FC = () => {
     );
 
   if (isError) {
-    const errorMessage = error instanceof Error 
-      ? error.message 
-      : "Failed to load services. Please check the console for details.";
-    
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "Failed to load services. Please check the console for details.";
+
     return (
       <div className="text-center mt-10 px-4">
-        <p className="text-red-600 font-semibold mb-2">Failed to load services</p>
+        <p className="text-red-600 font-semibold mb-2">
+          Failed to load services
+        </p>
         <p className="text-gray-600 text-sm">{errorMessage}</p>
-        <p className="text-gray-500 text-xs mt-2">Check browser console (F12) for more details</p>
+        <p className="text-gray-500 text-xs mt-2">
+          Check browser console (F12) for more details
+        </p>
       </div>
     );
   }
 
   return (
+    // <DashboardLayout>
     <div className="w-full py-16">
       <div className="flex flex-col items-center min-h-screen md:pb-16">
         <div className="mb-8 text-center">
@@ -99,7 +106,7 @@ const ServicesPage: React.FC = () => {
         <div className="mt-6 w-full">
           <div className="grid grid-cols-1 gap-6 overflow-y-auto max-h-[calc(100vh-20px)] md:grid-cols-2 lg:grid-cols-2 pb-4">
             {filteredServices.length > 0 ? (
-              filteredServices.map((service: any) => (
+              filteredServices.map((service: Service) => (
                 <ServiceCard
                   key={service.id}
                   title={
@@ -123,6 +130,7 @@ const ServicesPage: React.FC = () => {
         </div>
       </div>
     </div>
+    // {/* </DashboardLayout> */}
   );
 };
 
@@ -137,7 +145,7 @@ function highlightText(text: string, query: string) {
           </span>
         ) : (
           part
-        )
+        ),
       )}
     </>
   );
