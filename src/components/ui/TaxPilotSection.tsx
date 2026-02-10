@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck } from "lucide-react";
+import { BadgeCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import PrimaryButton from "./PrimaryButton";
 

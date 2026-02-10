@@ -36,47 +36,53 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <DashboardLayout>
-      {user && (
-        <div className="bg-[#FBFBFA] w-full border border-[#F0F0ED] rounded-[16px] shadow p-6 flex justify-between items-center mb-10">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full text-[#34352E] bg-[#FFFFFF] flex items-center justify-center text-[18px]">
-              {user.initials}
+    <div className="w-[80vw]">
+      <DashboardLayout>
+        {user && (
+          <div className="bg-[#FBFBFA]  border border-[#F0F0ED] rounded-[16px] shadow p-6 flex flex-col md:flex-row justify-between items-center mb-10">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 rounded-full text-[#34352E] bg-[#FFFFFF] flex items-center justify-center text-[18px] ">
+                {user.initials}
+              </div>
+              <div>
+                <p className="font-bold text-[18px] text-[#5F6057]">
+                  {user.name}
+                </p>
+                <p className="text-[18px] text-[#9D9E98]">
+                  Profile {user.profileCompletion}% complete
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="font-bold text-[18px] text-[#5F6057]">
-                {user.name}
-              </p>
-              <p className="text-[18px] text-[#9D9E98]">
-                Profile {user.profileCompletion}% complete
-              </p>
-            </div>
+            <button className="bg-[#34352E] text-[#F1F1EC] h-[48px] max-w-[185px] leading-[25px] text-[18px] px-5 rounded-full hover:bg-gray-500 flex items-center justify-center gap-2">
+              Complete now
+              <ChevronRight width={18} />
+            </button>
           </div>
-          <button className="bg-[#34352E] text-[#F1F1EC] h-[48px] max-w-[185px] leading-[25px] text-[18px] px-5 py-2 rounded-full hover:bg-gray-500 flex items-center justify-center gap-2">
-            Complete now
-            <ChevronRight width={18} />
-          </button>
-        </div>
-      )}
+        )}
 
-      <h3 className="font-extrabold font-bricolage text-[22px] leading-[30px] text-[#34352E] mb-4">
-        Your Procedures
-      </h3>
+        <h3 className="font-extrabold font-bricolage text-[22px] leading-[30px] text-[#34352E] mb-4">
+          Your Procedures
+        </h3>
 
-      <div className="flex flex-col w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8 w-full">
-          {stats.map((stat) => (
-            <StatCard key={stat.label} count={stat.count} label={stat.label} />
-          ))}
-        </div>
+        <div className="flex flex-col w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8 w-full">
+            {stats.map((stat) => (
+              <StatCard
+                key={stat.label}
+                count={stat.count}
+                label={stat.label}
+              />
+            ))}
+          </div>
 
-        <div className="w-full flex justify-center">
-          <Link to="/services">
-            <PrimaryButton text="Explore Services" width="262px" />
-          </Link>
+          <div className="w-full flex justify-center">
+            <Link to="/services">
+              <PrimaryButton text="Explore Services" width="262px" />
+            </Link>
+          </div>
         </div>
-      </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </div>
   );
 };
 

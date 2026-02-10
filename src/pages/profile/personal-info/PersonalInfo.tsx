@@ -119,27 +119,25 @@ const PersonalInfoPage: React.FC = () => {
   };
 
   return (
-    <DashboardLayout>
-      <div className="w-full px-4 md:px-0">
-        <div className=" py-8 md:py-12">
-          <div className="rounded-[16px] border border-[#F0F0ED] p-6 md:p-8 lg:p-12 w-full ">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {formFields.map(renderField)}
-            </div>
+    <div className="w-[80vw]">
+      <DashboardLayout>
+        <div className="rounded-[16px] border border-[#F0F0ED] p-6 md:p-8 lg:p-12 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {formFields.map(renderField)}
+          </div>
 
-            <div className="mt-8">
-              <button
-                onClick={handleUpdate}
-                className="bg-[#34352E] text-[#F1F1EC] text-[18px] px-6 py-3 rounded-full flex items-center gap-2 hover:opacity-90"
-              >
-                Update Information
-                <ChevronRight width={18} />
-              </button>
-            </div>
+          <div className="mt-8">
+            <button
+              onClick={handleUpdate}
+              className="bg-[#34352E] text-[#F1F1EC] text-[18px] px-6 py-3 rounded-full flex items-center gap-2 hover:opacity-90"
+            >
+              Update Information
+              <ChevronRight width={18} />
+            </button>
           </div>
         </div>
-      </div>
-    </DashboardLayout>
+      </DashboardLayout>
+    </div>
   );
 };
 
