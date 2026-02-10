@@ -1,6 +1,6 @@
+import { TextArea } from "@/components/ui/TextArea";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { TextArea } from "../TextArea";
 
 interface ContactFormProps {
   form: {
