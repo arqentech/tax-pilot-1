@@ -1,4 +1,4 @@
-import { TextArea } from "@/components/ui/textarea";
+import { TextArea } from "@/components/ui/TextAreaField";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/InputField";
 
