@@ -40,7 +40,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <div className="hidden md:flex text-[18px] text-[#34352E] items-center justify-center gap-8">
+        <div className="hidden md:flex text-[18px] text-[#34352E] items-center justify-center md:gap-6">
           {navLinks.map(({ to, label }) => (
             <Link key={to} to={to} className={linkStyle}>
               {label}
@@ -48,7 +48,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-8 text-[18px] text-[#34352E]">
+        <div className="hidden md:flex items-center gap-4 text-[18px] text-[#34352E]">
           <Link to="/contact-us" className={linkStyle}>
             Contact
           </Link>
