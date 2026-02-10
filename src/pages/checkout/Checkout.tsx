@@ -167,7 +167,7 @@ export default function CheckoutPage() {
                       placeholder="Enter first name"
                       className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
                       value={customerInfo.firstName}
-                      onChange={(e) =>
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setCustomerInfo({
                           ...customerInfo,
                           firstName: e.target.value,
@@ -188,7 +188,7 @@ export default function CheckoutPage() {
                       placeholder="Enter last name"
                       className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
                       value={customerInfo.lastName}
-                      onChange={(e) =>
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setCustomerInfo({
                           ...customerInfo,
                           lastName: e.target.value,
@@ -210,7 +210,7 @@ export default function CheckoutPage() {
                     placeholder="Enter email address"
                     className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
                     value={customerInfo.email}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setCustomerInfo({
                         ...customerInfo,
                         email: e.target.value,
@@ -232,7 +232,7 @@ export default function CheckoutPage() {
                     placeholder="Enter phone number"
                     className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
                     value={customerInfo.phone}
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setCustomerInfo({
                         ...customerInfo,
                         phone: e.target.value,

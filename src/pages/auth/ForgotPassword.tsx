@@ -35,7 +35,7 @@ export default function ForgotPassword() {
               type="email"
               placeholder="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
               required
               className="w-full h-[60px] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] text-[18px] leading-[24px] font-normal placeholder-[#9D9E98]"
             />
