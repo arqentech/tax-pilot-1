@@ -157,7 +157,6 @@ const Documents: React.FC = () => {
             if (modalState === "empty") {
               setModalState("select-type");
             } else if (modalState === "select-type") {
-              // Simulate file upload
               const newFile: UploadedFile = {
                 id: Date.now().toString(),
                 name: "Tax-certificate.pdf",
@@ -216,7 +215,7 @@ const DocumentCard: React.FC<DocumentCardProps> = ({
     >
       <div className="mb-3">{icon}</div>
 
-      <span className="text-[18px] text-[#9D9E98]  whitespace-nowrap">
+      <span className="text-[18px] text-[#9D9E98] truncate lg:whitespace-nowrap">
         {label}
       </span>
 

@@ -88,9 +88,8 @@ export const FileManagementModal: React.FC<FileManagementModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-      <div className="bg-white rounded-[16px] w-full max-w-[650px] h-auto md:h-[607px] max-h-[90vh] md:max-h-[607px] shadow-lg flex flex-col">
-        {/* Header */}
-        <div className="relative flex items-center justify-center p-4 md:p-6 border-b border-[#E6E6E1] h-auto md:h-[106px] min-h-[80px] md:min-h-[106px]">
+      <div className="bg-[#FFFFFF] rounded-[16px] w-full max-w-[650px] h-auto md:h-[607px] max-h-[90vh] md:max-h-[607px] shadow-lg flex flex-col">
+        <div className="relative flex items-center justify-center p-4 md:p-6 border-b border-[#E6E6E1] bg-[#FBFBFA] rounded-t-[16px] h-auto md:h-[106px] min-h-[80px] md:min-h-[106px]">
           <div className="flex flex-col items-center justify-center px-8 md:px-0">
             <h2 className="text-[18px] md:text-[22px] font-bricolage font-extrabold leading-[24px] md:leading-[30px] text-[#34352E] text-center">
               File Management
@@ -167,7 +166,7 @@ export const FileManagementModal: React.FC<FileManagementModalProps> = ({
           )}
         </div>
 
-        <div className="p-4 md:p-6 border-t border-[#E6E6E1] h-auto md:h-[106px] min-h-[80px] md:min-h-[106px] flex items-center justify-center">
+        <div className="p-4 md:p-6 border-t border-[#E6E6E1] bg-[#FBFBFA] rounded-b-[16px] h-auto md:h-[106px] min-h-[80px] md:min-h-[106px] flex items-center justify-center">
           {state === "files-uploaded" ? (
             <button
               onClick={onAddMore}

@@ -12,14 +12,15 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   const location = useLocation();
 
   return (
-    <div className="w-full  ">
-      <div className="lg:hidden w-full border-b border-[#E6E6E1] mb-4 lg:mb-6">
-        <nav className="flex justify-between gap-1">
+    <div className="w-full">
+      {/* Mobile Tabs */}
+      <div className="lg:hidden w-full border-b border-[#E6E6E1] mb-6">
+        <nav className="flex">
           {sidebarItems.map((item) => (
             <Link
               key={item.label}
               to={item.path}
-              className={`flex-1 text-center py-3 font-medium border-b-2 transition-colors ${
+              className={`flex-1 text-center py-3 border-b-2 ${
                 location.pathname === item.path
                   ? "text-[#0166FF] border-[#0166FF]"
                   : "text-[#9D9E98] border-transparent"
@@ -31,8 +32,10 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         </nav>
       </div>
 
-      <div className="flex flex-col lg:flex-row min-h-[80vh] py-4 lg:py-10 gap-6 w-full">
-        <aside className="hidden lg:block w-full max-w-[291px]">
+      {/* Desktop Layout */}
+      <div className="flex flex-col lg:flex-row gap-6 py-8">
+        {/* Sidebar */}
+        <aside className="hidden lg:block w-[291px] flex-shrink-0">
           <nav className="flex flex-col">
             {sidebarItems.map((item) => (
               <Link key={item.label} to={item.path}>
@@ -40,16 +43,14 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                   label={item.label}
                   icon={item.icon}
                   active={location.pathname === item.path}
-                  className="text-left"
                 />
               </Link>
             ))}
           </nav>
         </aside>
 
-        <main className=" w-full min-w-0 lg:max-w-[999px] mx-auto lg:mx-0">
-          {children}
-        </main>
+        {/* Main */}
+        <main className="flex-1 min-w-0">{children}</main>
       </div>
     </div>
   );
@@ -59,45 +60,23 @@ const sidebarItems = [
   {
     label: "Home",
     path: "/dashboard-home",
-    icon: (
-      <img
-        src="/svg/profile-home/home/home.svg"
-        alt="home"
-        className="w-5 h-5"
-      />
-    ),
+    icon: <img src="/svg/profile-home/home/home.svg" className="w-5 h-5" />,
   },
   {
     label: "Personal information",
     path: "/dashboard-personal-info",
-    icon: (
-      <img
-        src="/svg/profile-home/home/user.svg"
-        alt="user"
-        className="w-5 h-5"
-      />
-    ),
+    icon: <img src="/svg/profile-home/home/user.svg" className="w-5 h-5" />,
   },
   {
     label: "Documents",
     path: "/dashboard-documents",
-    icon: (
-      <img
-        src="/svg/profile-home/home/folder.svg"
-        alt="documents"
-        className="w-5 h-5"
-      />
-    ),
+    icon: <img src="/svg/profile-home/home/folder.svg" className="w-5 h-5" />,
   },
   {
     label: "Requests",
     path: "/dashboard-requests",
     icon: (
-      <img
-        src="/svg/profile-home/home/announcement.svg"
-        alt="announcement"
-        className="w-5 h-5"
-      />
+      <img src="/svg/profile-home/home/announcement.svg" className="w-5 h-5" />
     ),
   },
 ];
