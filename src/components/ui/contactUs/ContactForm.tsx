@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { Textarea } from "../TextArea";
+import { TextArea } from "../TextArea";
 
 interface ContactFormProps {
   form: {
@@ -46,7 +46,7 @@ export default function ContactForm({
         className="bg-[#FBFBFA] rounded-[14px] h-[60px] border border-[#FBFBFA] !text-[18px] placeholder:!text-[#9D9E98]"
       />
 
-      <Textarea
+      <TextArea
         name="message"
         placeholder="Message"
         className={`${
