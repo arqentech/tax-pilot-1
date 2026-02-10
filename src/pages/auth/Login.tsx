@@ -5,7 +5,7 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { useState } from "react";
@@ -75,7 +75,9 @@ export default function LoginPage() {
               type="email"
               placeholder="Email"
               value={email}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
               required
               className="w-full h-[60px] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] !text-[18px] placeholder:!text-[#9D9E98]"
             />
@@ -86,7 +88,9 @@ export default function LoginPage() {
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 value={password}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPassword(e.target.value)
+                }
                 required
                 className="h-[60px] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] !text-[18px] pr-12 placeholder:!text-[#9D9E98]"
               />
@@ -109,7 +113,9 @@ export default function LoginPage() {
                 <Checkbox
                   id="remember"
                   checked={remember}
-                  onCheckedChange={(val: boolean | "indeterminate") => setRemember(!!val)}
+                  onCheckedChange={(val: boolean | "indeterminate") =>
+                    setRemember(!!val)
+                  }
                 />
                 <Label
                   htmlFor="remember"

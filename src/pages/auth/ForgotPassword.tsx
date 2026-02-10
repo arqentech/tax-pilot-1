@@ -5,7 +5,7 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/Button";
 import { useState } from "react";
 
@@ -35,7 +35,9 @@ export default function ForgotPassword() {
               type="email"
               placeholder="Email"
               value={email}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
               required
               className="w-full h-[60px] bg-[#FBFBFA] rounded-[14px] border border-[#E6E6E1] text-[18px] leading-[24px] font-normal placeholder-[#9D9E98]"
             />
