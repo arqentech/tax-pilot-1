@@ -7,6 +7,18 @@ import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { DashboardLayout } from "../DashboardLayout";
 
+interface StoredUserData {
+  name?: string;
+  surname?: string;
+  email?: string;
+  fiscal_code?: string;
+  phone?: string;
+  dob_date?: string;
+  dob_city?: string;
+  address?: string;
+  citizenship?: string;
+}
+
 const PersonalInfoPage: React.FC = () => {
   const [formData, setFormData] = useState<PersonalInfoFormData>({
     name: "",
@@ -25,7 +37,7 @@ const PersonalInfoPage: React.FC = () => {
   useEffect(() => {
     const savedUser = localStorage.getItem("userData");
     if (savedUser) {
-      const user = JSON.parse(savedUser);
+      const user = JSON.parse(savedUser) as StoredUserData;
       setFormData({
         name: user.name || "",
         surname: user.surname || "",

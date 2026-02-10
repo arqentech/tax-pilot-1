@@ -6,7 +6,7 @@ interface ApiError {
     status?: number;
     data?: {
       message?: string;
-    };
+    } | string;
   };
   request?: unknown;
   message?: string;
@@ -49,8 +49,12 @@ export const getAllServices = async () => {
         );
       }
 
+      const errorMessage =
+        typeof responseData === "object" && responseData !== null
+          ? responseData.message
+          : undefined;
       throw new Error(
-        apiError.response.data?.message ||
+        errorMessage ||
           `Failed to fetch services: ${apiError.response.status}`
       );
     } else if (apiError.request) {
