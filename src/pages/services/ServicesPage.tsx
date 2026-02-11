@@ -78,7 +78,6 @@ const ServicesPage: React.FC = () => {
   }
 
   return (
-    // <DashboardLayout>
     <div className="w-full py-16">
       <div className="flex flex-col items-center min-h-screen md:pb-16">
         <div className="mb-8 text-center">
@@ -130,7 +129,6 @@ const ServicesPage: React.FC = () => {
         </div>
       </div>
     </div>
-    // {/* </DashboardLayout> */}
   );
 };
 

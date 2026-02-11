@@ -11,7 +11,7 @@ import {
   addItemToCart,
   removeItemFromCart,
 } from "@/api/cart.api";
-import { CartItemResponse } from "@/types/cart";
+import { CartItemResponse, CartItemMetadata } from "@/types/cart";
 
 export interface CartItem {
   id?: string;
@@ -78,7 +78,7 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
   if (!hours || vatIncluded === undefined) {
     if (item.metadata && Array.isArray(item.metadata)) {
       const metadataObj = item.metadata.find(
-        (m) => typeof m === "object" && m !== null,
+        (m): m is CartItemMetadata => typeof m === "object" && m !== null,
       );
       if (metadataObj) {
         if (!hours && metadataObj.hours) {
@@ -130,13 +130,13 @@ const loadCartFromStorage = (): CartItem[] => {
   try {
     const storedData = localStorage.getItem(CART_DATA_STORAGE_KEY);
     if (storedData) {
-      const data: StoredCartData = JSON.parse(storedData);
+      const data: StoredCartData = JSON.parse(storedData) as StoredCartData;
       return data.items;
     }
 
     const stored = localStorage.getItem(CART_ITEMS_STORAGE_KEY);
     if (stored) {
-      return JSON.parse(stored);
+      return JSON.parse(stored) as CartItem[];
     }
   } catch (error) {
     console.error("Failed to load cart from localStorage:", error);
@@ -149,7 +149,7 @@ const isCartDataStale = (): boolean => {
     const storedData = localStorage.getItem(CART_DATA_STORAGE_KEY);
     if (!storedData) return true;
 
-    const data: StoredCartData = JSON.parse(storedData);
+    const data: StoredCartData = JSON.parse(storedData) as StoredCartData;
     const age = Date.now() - data.timestamp;
     return age > CART_SYNC_INTERVAL;
   } catch (error) {
@@ -161,7 +161,7 @@ const getStoredCartTokenFromData = (): string | null => {
   try {
     const storedData = localStorage.getItem(CART_DATA_STORAGE_KEY);
     if (storedData) {
-      const data: StoredCartData = JSON.parse(storedData);
+      const data: StoredCartData = JSON.parse(storedData) as StoredCartData;
       return data.cartToken || null;
     }
   } catch (error) {}

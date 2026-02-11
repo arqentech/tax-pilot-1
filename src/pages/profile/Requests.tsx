@@ -1,11 +1,8 @@
 import React, { useState, useMemo } from "react";
 import { DashboardLayout } from "./DashboardLayout";
 import SearchBar from "@/components/ui/SearchBar";
-import { Flag, Clock, CheckCircle2, ChevronDown } from "lucide-react";
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { cn } from "@/lib/utils";
-
-type RequestStatus = "Pending" | "In Progress" | "Completed";
+import RequestsFilterDropdown from "@/components/ui/profile/RequestsFilterDropdown";
 
 interface Request {
   id: string;
@@ -15,102 +12,40 @@ interface Request {
   status: RequestStatus;
 }
 
-const mockRequests: Request[] = [
-  {
-    id: "1",
-    practicleId: "01",
-    service: "ISEE Form for Minors",
-    price: "€ 29.99",
-    status: "Pending",
-  },
-  {
-    id: "2",
-    practicleId: "02",
-    service: "Signing a Rental Agreement",
-    price: "€ 12.99",
-    status: "In Progress",
-  },
-  {
-    id: "3",
-    practicleId: "02",
-    service: "Land registry search",
-    price: "€ 12.99",
-    status: "Completed",
-  },
-];
+type RequestStatus = "Pending" | "In Progress" | "Completed";
 
-const StatusBadge: React.FC<{ status: RequestStatus }> = ({ status }) => {
-  const statusConfig = {
-    Pending: {
-      bg: "bg-[#F6F6F3]",
-      text: "text-[#5F6057]",
-      icon: Flag,
-      iconColor: "text-[#5F6057]",
-    },
-    "In Progress": {
-      bg: "bg-[#F3F0FF]",
-      text: "text-[#6B46C1]",
-      icon: Clock,
-      iconColor: "text-[#6B46C1]",
-    },
-    Completed: {
-      bg: "bg-[#F0FDF4]",
-      text: "text-[#16A34A]",
-      icon: CheckCircle2,
-      iconColor: "text-[#16A34A]",
-    },
-  };
+interface StatusBadgeProps {
+  status: RequestStatus;
+}
 
-  const config = statusConfig[status];
-  const Icon = config.icon;
+interface StatusBadgeConfig {
+  icon: string;
+  textColor: string;
+  borderColor: string;
+  bgColor: string;
+  width: string;
+  textSize: string;
+}
+
+export const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
+  const config = STATUS_CONFIG[status];
 
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-2 px-3 py-1.5 rounded-full",
-        config.bg,
-        config.text
+        "inline-flex items-center gap-[5px] rounded-[21px] border h-[26px] px-3 py-1.5",
+        config.width,
+        config.textSize,
       )}
+      style={{
+        color: config.textColor,
+        borderColor: config.borderColor,
+        backgroundColor: config.bgColor,
+      }}
     >
-      <Icon className={cn("w-4 h-4", config.iconColor)} />
-      <span className="text-sm font-medium">{status}</span>
+      <img src={config.icon} alt="" className="w-4 h-4 flex-shrink-0" />
+      <span>{status}</span>
     </div>
-  );
-};
-
-const FilterDropdown: React.FC<{
-  selectedFilter: string;
-  onFilterChange: (filter: string) => void;
-}> = ({ selectedFilter, onFilterChange }) => {
-  const filters = ["All", "Pending", "In Progress", "Completed"];
-
-  return (
-    <DropdownMenuPrimitive.Root>
-      <DropdownMenuPrimitive.Trigger className="inline-flex items-center justify-center gap-2 rounded-full bg-[#34352E] text-[#F1F1EC] px-4 py-2 h-[48px] hover:bg-[#2E2E2E] transition-colors">
-        <span className="text-sm font-medium">{selectedFilter}</span>
-        <ChevronDown className="w-4 h-4" />
-      </DropdownMenuPrimitive.Trigger>
-
-      <DropdownMenuPrimitive.Portal>
-        <DropdownMenuPrimitive.Content
-          sideOffset={8}
-          className="rounded-[12px] border border-[#E6E6E1] bg-[#FFFFFF] p-1 shadow-md min-w-[150px]"
-        >
-          {filters.map((filter) => (
-            <DropdownMenuPrimitive.Item
-              key={filter}
-              onClick={() => onFilterChange(filter)}
-              className={cn(
-                "cursor-pointer select-none rounded-md px-3 py-2 text-sm text-[#34352E] hover:bg-[#F6F6F3] focus:bg-[#F6F6F3] outline-none",
-                selectedFilter === filter && "bg-[#F6F6F3] font-medium"
-              )}
-            >
-              {filter}
-            </DropdownMenuPrimitive.Item>
-          ))}
-        </DropdownMenuPrimitive.Content>
-      </DropdownMenuPrimitive.Portal>
-    </DropdownMenuPrimitive.Root>
   );
 };
 
@@ -124,20 +59,26 @@ const RequestsTable: React.FC<{ requests: Request[] }> = ({ requests }) => {
   }
 
   return (
-    <div className="w-full overflow-x-auto">
-      <table className="w-full border-collapse">
+    <div className="w-full rounded-[16px] ">
+      <table className="w-full ">
         <thead>
-          <tr className="border-b border-[#E6E6E1]">
-            <th className="text-left py-4 px-4 text-sm font-medium text-[#9D9E98]">
+          <tr
+            className="border bg-[#F0F0ED]"
+            style={{
+              width: "895px",
+              height: "54px",
+            }}
+          >
+            <th className="text-left py-4 px-4 text-[18px] font-medium text-[#9D9E98]">
               Practicle ID
             </th>
-            <th className="text-left py-4 px-4 text-sm font-medium text-[#9D9E98]">
+            <th className="text-left py-4 px-4 text-[18px] font-medium text-[#9D9E98]">
               Service
             </th>
-            <th className="text-left py-4 px-4 text-sm font-medium text-[#9D9E98]">
+            <th className="text-left py-4 px-4 text-[18px] font-medium text-[#9D9E98]">
               Price
             </th>
-            <th className="text-left py-4 px-4 text-sm font-medium text-[#9D9E98]">
+            <th className="text-left py-4 px-4 text-[18px] font-medium text-[#9D9E98]">
               Status
             </th>
           </tr>
@@ -175,19 +116,15 @@ function Requests() {
   const filteredRequests = useMemo(() => {
     let filtered = mockRequests;
 
-    // Filter by status
     if (selectedFilter !== "All") {
-      filtered = filtered.filter(
-        (req) => req.status === selectedFilter
-      );
+      filtered = filtered.filter((req) => req.status === selectedFilter);
     }
 
-    // Filter by search query
     if (searchQuery.trim()) {
       filtered = filtered.filter(
         (req) =>
           req.service.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          req.practicleId.toLowerCase().includes(searchQuery.toLowerCase())
+          req.practicleId.toLowerCase().includes(searchQuery.toLowerCase()),
       );
     }
 
@@ -196,36 +133,36 @@ function Requests() {
 
   return (
     <DashboardLayout>
-      <div className="w-full min-w-0">
-        {/* Header Section */}
-        <div className="mb-6 md:mb-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-            <h1 className="font-bricolage font-extrabold text-[22px] md:text-[28px] text-[#34352E] flex-shrink-0">
-              All Requests
-            </h1>
+      <div className="w-[60vw] min-w-0">
+        <div className="border border-[#F0F0ED] rounded-[16px] p-10">
+          <div className="mb-6 md:mb-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+              <h1 className="font-bricolage font-extrabold text-[28px] md:text-[22px] text-[#34352E] flex-shrink-0">
+                All Requests
+              </h1>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:gap-4 flex-1 sm:max-w-none md:max-w-[600px] lg:max-w-[700px]">
-              <div className="flex-1 min-w-0">
+              <div className="flex flex gap-2 items-center overflow-hidden">
                 <SearchBar
                   onSearch={setSearchQuery}
                   value={searchQuery}
                   placeholder="Search"
-                  wrapperClass="h-[48px] w-full"
+                  wrapperClass="h-[48px] w-[296px] md:w-[352px] !placeholder:text-[#A4A59F] text-[#A4A59F]"
                 />
-              </div>
-              <div className="flex-shrink-0">
-                <FilterDropdown
-                  selectedFilter={selectedFilter}
-                  onFilterChange={setSelectedFilter}
-                />
+
+                <div className="relative flex-shrink-0">
+                  <RequestsFilterDropdown
+                    items={["All", "Pending", "In Progress", "Completed"]}
+                    onSelect={(item) => setSelectedFilter(item)}
+                    triggerClass="text-[18px] h-[48px] w-[90px]"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Table Section */}
-        <div className="bg-white rounded-[16px] border border-[#F0F0ED] p-4 md:p-6 w-full">
-          <RequestsTable requests={filteredRequests} />
+          <div className="bg-white rounded-[16px] p-4 md:p-6 w-full">
+            <RequestsTable requests={filteredRequests} />
+          </div>
         </div>
       </div>
     </DashboardLayout>
@@ -233,3 +170,54 @@ function Requests() {
 }
 
 export default Requests;
+
+const mockRequests: Request[] = [
+  {
+    id: "1",
+    practicleId: "01",
+    service: "ISEE Form for Minors",
+    price: "€ 29.99",
+    status: "Pending",
+  },
+  {
+    id: "2",
+    practicleId: "02",
+    service: "Signing a Rental Agreement",
+    price: "€ 12.99",
+    status: "In Progress",
+  },
+  {
+    id: "3",
+    practicleId: "02",
+    service: "Land registry search",
+    price: "€ 12.99",
+    status: "Completed",
+  },
+];
+
+const STATUS_CONFIG: Record<RequestStatus, StatusBadgeConfig> = {
+  Pending: {
+    icon: "/svg/profile-home/requests/flag.svg.svg",
+    textColor: "#34352E",
+    borderColor: "#34352E2E",
+    bgColor: "#34352E1C",
+    width: "w-[96px]",
+    textSize: "text-[14px]",
+  },
+  "In Progress": {
+    icon: "/svg/profile-home/requests/progress.svg",
+    textColor: "#3C0D6D",
+    borderColor: "#D2BDE9",
+    bgColor: "#E7D8FB",
+    width: "w-[116px]",
+    textSize: "text-[12px]",
+  },
+  Completed: {
+    icon: "/svg/profile-home/requests/completed.svg",
+    textColor: "#36500C",
+    borderColor: "#D9E6C0",
+    bgColor: "#EEFCD7",
+    width: "w-[116px]",
+    textSize: "text-[14px]",
+  },
+};

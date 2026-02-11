@@ -28,7 +28,7 @@ export default function FAQPage() {
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(firstCategoryKey);
   const [selectedFaq, setSelectedFaq] = useState<FAQItem[]>(
-    faqMap[firstCategoryKey]
+    faqMap[firstCategoryKey],
   );
 
   const handleSelect = (key: string) => {
@@ -41,7 +41,7 @@ export default function FAQPage() {
   const filteredFaqs = selectedFaq.filter(
     (faq) =>
       faq.question.toLowerCase().includes(query.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(query.toLowerCase())
+      faq.answer.toLowerCase().includes(query.toLowerCase()),
   );
 
   return (

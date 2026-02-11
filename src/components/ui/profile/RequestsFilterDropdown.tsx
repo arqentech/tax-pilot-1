@@ -3,10 +3,11 @@ import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface DropdownProps {
+interface RequestsFilterDropdownProps {
   items: string[];
   onSelect: (key: string) => void;
   wrapperClass?: string;
+  triggerClass?: string;
 }
 
 const DropdownMenuContent = forwardRef<
@@ -17,8 +18,13 @@ const DropdownMenuContent = forwardRef<
     <DropdownMenuPrimitive.Content
       ref={ref}
       sideOffset={sideOffset}
+      align="start"
+      side="bottom"
+      alignOffset={0}
+      avoidCollisions={true}
+      collisionPadding={8}
       className={cn(
-        "rounded-[32px] border border-[#E6E6E1] bg-[#FFFFFF] p-1 shadow-md",
+        "rounded-[32px] border border-[#E6E6E1] bg-[#FFFFFF] p-1 shadow-md z-50 min-w-[90px]",
         className,
       )}
       {...props}
@@ -44,7 +50,12 @@ const DropdownMenuItem = forwardRef<
 ));
 DropdownMenuItem.displayName = "DropdownMenuItem";
 
-export default function SimpleDropdown({ items, onSelect, wrapperClass }: DropdownProps) {
+export default function RequestsFilterDropdown({
+  items,
+  onSelect,
+  wrapperClass,
+  triggerClass,
+}: RequestsFilterDropdownProps) {
   const [selectedItem, setSelectedItem] = useState<string>(items[0]);
 
   const handleSelect = (item: string) => {
@@ -55,25 +66,23 @@ export default function SimpleDropdown({ items, onSelect, wrapperClass }: Dropdo
   return (
     <div className={cn(wrapperClass)}>
       <DropdownMenuPrimitive.Root>
-        <DropdownMenuPrimitive.Trigger className="inline-flex items-center justify-center rounded-[48px] bg-[#34352E] w-[45px] h-[45px] md:w-[64px] lg:w-[144px] md:h-[64px]  text-[#F1F1EC]">
-        <img
-          src="/svg/filter-funnel.svg"
-          alt="Filter"
-          className="w-5 h-5 lg:hidden"
-        />
+        <DropdownMenuPrimitive.Trigger
+          className={cn(
+            "inline-flex items-center justify-center rounded-[48px] bg-[#34352E] text-[#F1F1EC] px-4",
+            triggerClass
+          )}
+        >
+          <span>{selectedItem}</span>
+          <ChevronDown className="ml-1 h-4 w-4" />
+        </DropdownMenuPrimitive.Trigger>
 
-        <span className="hidden lg:inline ml-2">{selectedItem}</span>
-
-        <ChevronDown className="hidden lg:inline ml-1 h-4 w-4" />
-      </DropdownMenuPrimitive.Trigger>
-
-      <DropdownMenuContent>
-        {items.map((item) => (
-          <DropdownMenuItem key={item} onClick={() => handleSelect(item)}>
-            {item}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
+        <DropdownMenuContent>
+          {items.map((item) => (
+            <DropdownMenuItem key={item} onClick={() => handleSelect(item)}>
+              {item}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
       </DropdownMenuPrimitive.Root>
     </div>
   );

@@ -14,20 +14,8 @@ const Documents: React.FC = () => {
 
   const handleCardClick = (label: string) => {
     setOpenModal(label);
-    const doc = documents.find((d) => d.label === label);
-    if (doc && doc.count > 0) {
-      setUploadedFiles([
-        {
-          id: "1",
-          name: "Tax-certificate.pdf",
-          date: "04.03.2024 PM",
-        },
-      ]);
-      setModalState("files-uploaded");
-    } else {
-      setModalState("empty");
-      setUploadedFiles([]);
-    }
+    setModalState("empty");
+    setUploadedFiles([]);
   };
 
   useEffect(() => {
