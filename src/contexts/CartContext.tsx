@@ -58,15 +58,11 @@ const ensureId = (item: CartItem) => ({
     (item.cart_item_id ? String(item.cart_item_id) : crypto.randomUUID()),
 });
 
-/**
- * Map backend cart item to frontend CartItem format
- */
+
 const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
-  // Extract hours and vatIncluded from service object or metadata
   let hours: string | undefined;
   let vatIncluded: boolean | undefined;
 
-  // First try to get from service object
   if (item.service.hours) {
     hours = item.service.hours;
   }
@@ -74,7 +70,6 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
     vatIncluded = item.service.vatIncluded;
   }
 
-  // If not found in service, check metadata
   if (!hours || vatIncluded === undefined) {
     if (item.metadata && Array.isArray(item.metadata)) {
       const metadataObj = item.metadata.find(
@@ -94,7 +89,6 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
     }
   }
 
-  // Default vatIncluded to true if not found (maintain backward compatibility)
   if (vatIncluded === undefined) {
     vatIncluded = true;
   }
@@ -278,7 +272,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     initializeCart();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addToCart = async (item: CartItem) => {

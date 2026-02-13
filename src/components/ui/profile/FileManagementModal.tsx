@@ -55,7 +55,6 @@ export const FileManagementModal: React.FC<FileManagementModalProps> = ({
     if (state === "select-type" && selectedFileType) {
       onUpload?.();
     } else if (state === "empty") {
-      // Transition to select-type state
       onUpload?.();
     }
   };

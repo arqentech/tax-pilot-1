@@ -5,7 +5,7 @@ interface BadgeProps {
   width?: string;
   center?: boolean;
   bgColor?: string;
-  className?: string; // accept extra classes
+  className?: string; 
 }
 
 const Badge: React.FC<BadgeProps> = ({

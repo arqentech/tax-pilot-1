@@ -53,10 +53,10 @@ const HomePage: React.FC = () => {
                 </p>
               </div>
             </div>
-            <button className="bg-[#34352E] text-[#F1F1EC] h-[48px] max-w-[185px] leading-[25px] text-[18px] px-5 rounded-full hover:bg-gray-500 flex items-center justify-center gap-2">
-              Complete now
+            <div className="bg-[#34352E] text-[#F1F1EC] h-[48px] max-w-[185px] leading-[25px] text-[18px] px-5 rounded-full hover:bg-gray-500 flex items-center justify-center gap-2">
+              <Link to="/dashboard-personal-info">Complete now</Link>
               <ChevronRight width={18} />
-            </button>
+            </div>
           </div>
         )}
 
