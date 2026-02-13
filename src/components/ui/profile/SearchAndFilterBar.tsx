@@ -23,17 +23,17 @@ export const SearchAndFilterBar: React.FC<SearchAndFilterBarProps> = ({
   filterTriggerClass = "text-[18px] h-[48px] w-[90px]",
 }) => {
   return (
-    <div className="flex flex-row gap-2 items-center w-full">
-      <div className="flex-1 min-w-0">
+    <div className="flex flex-row gap-2 items-center justify-end overflow-hidden">
+      <div className="min-w-0 overflow-hidden max-w-[352px]">
         <SearchBar
           onSearch={onSearchChange}
           value={searchQuery}
           placeholder={searchPlaceholder}
-          wrapperClass={`h-[48px] w-full !placeholder:text-[#A4A59F] text-[#A4A59F] ${searchBarClassName || ""}`}
+          wrapperClass={`h-[48px] w-full max-w-[352px] !placeholder:text-[#A4A59F] text-[#A4A59F] ${searchBarClassName || ""}`}
         />
       </div>
 
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 relative z-10">
         <RequestsFilterDropdown
           items={filterItems}
           onSelect={onFilterChange}

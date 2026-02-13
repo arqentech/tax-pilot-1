@@ -145,15 +145,17 @@ function Requests() {
               All Requests
             </h1>
 
-            <SearchAndFilterBar
-              searchQuery={searchQuery}
-              onSearchChange={setSearchQuery}
-              searchPlaceholder="Search"
-              filterItems={["All", "Pending", "In Progress", "Completed"]}
-              selectedFilter={selectedFilter}
-              onFilterChange={setSelectedFilter}
-              filterTriggerClass="text-[18px] h-[48px] w-[90px]"
-            />
+            <div className="w-full md:w-auto flex justify-end">
+              <SearchAndFilterBar
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
+                searchPlaceholder="Search"
+                filterItems={["All", "Pending", "In Progress", "Completed"]}
+                selectedFilter={selectedFilter}
+                onFilterChange={setSelectedFilter}
+                filterTriggerClass="text-[18px] h-[48px] w-[90px] "
+              />
+            </div>
           </div>
 
           <div className="hidden md:block">
@@ -169,7 +171,7 @@ function Requests() {
             <DataCardList
               data={filteredRequests}
               renderCard={({ item }) => (
-                <div className="border border-[#E6E6E1] rounded-[15px] p-6 bg-[#FBFBFA]">
+                <div className="border border-[#E6E6E1] rounded-[15px] p-6 bg-[#F9F9F799]">
                   <div className="flex items-center justify-between mb-8">
                     <span className="text-[#04226B] font-extrabold text-[18px]">
                       #{item.practicleId}

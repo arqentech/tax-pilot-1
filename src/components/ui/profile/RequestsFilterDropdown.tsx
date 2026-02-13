@@ -68,8 +68,8 @@ export default function RequestsFilterDropdown({
       <DropdownMenuPrimitive.Root>
         <DropdownMenuPrimitive.Trigger
           className={cn(
-            "inline-flex items-center justify-center rounded-[48px] bg-[#34352E] text-[#F1F1EC] px-4",
-            triggerClass
+            "inline-flex items-center justify-center rounded-[48px] bg-[#34352E] text-[#F1F1EC] ",
+            triggerClass,
           )}
         >
           <span>{selectedItem}</span>
