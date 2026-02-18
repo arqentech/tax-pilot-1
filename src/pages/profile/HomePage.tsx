@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <div className="w-[80vw]">
+    <div className="md:min-h-[80vh] w-[90vw] max-w-[1250px]">
       <DashboardLayout>
         {user && (
           <div className="bg-[#FBFBFA]  border border-[#F0F0ED] rounded-[16px] shadow p-6 flex flex-col md:flex-row justify-between items-center mb-10">
@@ -48,7 +48,7 @@ const HomePage: React.FC = () => {
                 <p className="font-bold text-[18px] text-[#5F6057]">
                   {user.name}
                 </p>
-                <p className="text-[18px] text-[#9D9E98]">
+                <p className="text-[18px] font-normal  text-[#9D9E98]">
                   Profile {user.profileCompletion}% complete
                 </p>
               </div>
@@ -93,9 +93,9 @@ const StatCard: React.FC<{ count: number; label: string }> = ({
   label,
 }) => {
   return (
-    <div className="bg-[#FBFBFA] rounded-[16px] p-6 text-center">
+    <div className="bg-[#FBFBFA] border border-[#F0F0ED] rounded-[16px] p-6 text-center">
       <p className="text-[26px] font-bold text-[#5F6057] mb-2">{count}</p>
-      <p className="text-[18px] text-[#9D9E98]">{label}</p>
+      <p className="text-[18px] font-normal text-[#9D9E98]">{label}</p>
     </div>
   );
 };
