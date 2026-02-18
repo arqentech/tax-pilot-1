@@ -30,7 +30,7 @@ export const SearchAndFilterBar: React.FC<SearchAndFilterBarProps> = ({
           value={searchQuery}
           placeholder={searchPlaceholder}
           wrapperClass={`h-[48px] w-full max-w-[352px] bg-[#ffffff] border border-[#E6E6E1] ${searchBarClassName || ""}`}
-          className="text-[18px] text-[#A4A59F] placeholder:text-[#A4A59F]"
+          className="text-[18px] text-[#A4A59F] !placeholder:text-[#A4A59F]"
         />
       </div>
 

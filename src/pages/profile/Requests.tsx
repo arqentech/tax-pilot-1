@@ -153,7 +153,7 @@ function Requests() {
                 filterItems={["All", "Pending", "In Progress", "Completed"]}
                 selectedFilter={selectedFilter}
                 onFilterChange={setSelectedFilter}
-                filterTriggerClass="text-[18px] h-[48px] w-[90px] "
+                filterTriggerClass="text-[18px] h-[48px] min-w-[90px]"
               />
             </div>
           </div>

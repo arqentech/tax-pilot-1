@@ -68,12 +68,12 @@ export default function RequestsFilterDropdown({
       <DropdownMenuPrimitive.Root>
         <DropdownMenuPrimitive.Trigger
           className={cn(
-            "inline-flex items-center justify-center rounded-[48px] bg-[#34352E] text-[#F1F1EC] ",
+            "inline-flex items-center justify-center gap-1.5 rounded-[48px] bg-[#34352E] text-[#F1F1EC] px-4 py-0 whitespace-nowrap",
             triggerClass,
           )}
         >
           <span>{selectedItem}</span>
-          <ChevronDown className="ml-1 h-4 w-4" />
+          <ChevronDown className="h-4 w-4 flex-shrink-0" />
         </DropdownMenuPrimitive.Trigger>
 
         <DropdownMenuContent>
