@@ -139,13 +139,13 @@ function Requests() {
   return (
     <div className="md:min-h-[80vh] w-[90vw] max-w-[1250px]">
       <DashboardLayout>
-        <div className="border border-[#F0F0ED] rounded-[16px] py-4 md:p-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-            <h1 className="font-bricolage font-extrabold text-[28px] md:text-[22px] text-[#34352E]">
+        <div className="md:border border-[#F0F0ED] rounded-[16px] py-4 md:p-8">
+          <div className="flex flex-col md:flex-row  md:items-center items-right md:justify-between gap-4 mb-6">
+            <h1 className="font-bricolage text-[#34352E] font-extrabold text-[28px] md:text-[22px]">
               All Requests
             </h1>
 
-            <div className="w-full md:w-auto flex justify-end">
+            <div className="w-full md:w-auto flex justify-start">
               <SearchAndFilterBar
                 searchQuery={searchQuery}
                 onSearchChange={setSearchQuery}

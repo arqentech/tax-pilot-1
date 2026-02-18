@@ -103,7 +103,7 @@ const Documents: React.FC = () => {
       <DashboardLayout>
         <div className="w-full">
           <div className=" md:p-12 w-full mx-auto md:border border-[#F0F0ED] rounded-[16px]">
-            <h2 className="max-w-[350px] text-lg sm:text-xl lg:text-[22px] leading-[30px] font-bricolage font-extrabold mb-1">
+            <h2 className="max-w-[350px] text-[28px] text-[#34352E] lg:text-[22px] leading-[30px] font-bricolage font-extrabold mb-1">
               My documents
             </h2>
 

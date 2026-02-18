@@ -133,7 +133,10 @@ const PersonalInfoPage: React.FC = () => {
   return (
     <div className="md:min-h-[80vh] w-[90vw] max-w-[1250px]">
       <DashboardLayout>
-        <div className="md:rounded-[16px] md:border border-[#F0F0ED] px-2 py-6 md:p-8 lg:p-12 w-full">
+        <h2 className="md:hidden inline text-[28px] font-bricolage text-[#34352E] font-extrabold leading-[30px]">
+          Personal Information
+        </h2>
+        <div className="md:rounded-[16px] md:border border-[#F0F0ED] pr-2 py-6 md:p-8 lg:p-12 w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-items-center md:justify-items-stretch">
             {formFields.map(renderField)}
           </div>

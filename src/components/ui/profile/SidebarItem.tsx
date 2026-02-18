@@ -14,7 +14,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   const mobileLabel = label.split(" ").slice(0, 1).join(" ");
   return (
     <div
-      className={`flex w-full mr-7 items-center text-[18px] justify-center rounded-[11px] lg:justify-start gap-4 p-5 cursor-pointer ${
+      className={`flex mb-2 w-full mr-7 items-center text-[18px] justify-center rounded-[11px] lg:justify-start gap-4 p-5 cursor-pointer ${
         active
           ? "lg:bg-[#F6F6F3] lg:text-[#34352E] text-[#007BFF]"
           : "hover:bg-[#F6F6F3]"
