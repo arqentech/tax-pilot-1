@@ -131,10 +131,10 @@ const PersonalInfoPage: React.FC = () => {
   };
 
   return (
-    <div className="w-[80vw]">
+    <div className="md:min-h-[80vh] w-[90vw] max-w-[1250px]">
       <DashboardLayout>
-        <div className="rounded-[16px] border border-[#F0F0ED] p-6 md:p-8 lg:p-12 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="md:rounded-[16px] md:border border-[#F0F0ED] px-2 py-6 md:p-8 lg:p-12 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 justify-items-center md:justify-items-stretch">
             {formFields.map(renderField)}
           </div>
 
