@@ -42,7 +42,7 @@ export default function LoginPage() {
         const user = data.results.user;
 
         localStorage.setItem("authToken", token);
-        localStorage.setItem("userData", JSON.stringify(user)); // store real user data
+        localStorage.setItem("userData", JSON.stringify(user));
         window.dispatchEvent(new Event("auth-changed"));
         navigate(redirectTo);
       },
