@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/InputField";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/CheckboxComponent";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Eye, EyeClosed } from "lucide-react";
 import { useLogin } from "@/hooks/useLogin";
 import { useGoogleLogin } from "@react-oauth/google";
@@ -21,6 +21,10 @@ export default function LoginPage() {
   const [remember, setRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const rawRedirect = searchParams.get("redirect");
+  const redirectTo =
+    rawRedirect && rawRedirect.startsWith("/") ? rawRedirect : "/";
 
   const loginMutation = useLogin();
 
@@ -40,7 +44,7 @@ export default function LoginPage() {
         localStorage.setItem("authToken", token);
         localStorage.setItem("userData", JSON.stringify(user)); // store real user data
         window.dispatchEvent(new Event("auth-changed"));
-        navigate("/");
+        navigate(redirectTo);
       },
       onError: () => {},
     });
@@ -54,7 +58,7 @@ export default function LoginPage() {
     onSuccess: (tokenResponse) => {
       localStorage.setItem("authToken", tokenResponse.access_token);
       window.dispatchEvent(new Event("auth-changed"));
-      navigate("/");
+      navigate(redirectTo);
     },
     onError: () => {
       console.log("Google login failed");

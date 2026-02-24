@@ -20,6 +20,7 @@ import HomePage from "./pages/profile/HomePage";
 import Documents from "./pages/profile/Documents";
 import PersonalInfo from "./pages/profile/personal-info/PersonalInfo";
 import Requests from "./pages/profile/Requests";
+import Sitemap from "./pages/site-map/sitemap";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="dashboard-documents" element={<Documents />} />
           <Route path="dashboard-personal-info" element={<PersonalInfo />} />
           <Route path="dashboard-requests" element={<Requests />} />
+          <Route path="sitemap" element={<Sitemap />} />
         </Route>
 
         <Route element={<AuthLayout />}>

@@ -1,14 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { useCart } from "@/hooks/useCart";
-import { Input } from "@/components/ui/InputField";
-import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Elements } from "@stripe/react-stripe-js";
 import { stripePromise } from "@/stripe";
 import StripeCheckoutForm from "@/components/ui/StripeCheckoutForm";
 import { createPaymentIntent } from "@/api/payment.api";
-import PrimaryButton from "@/components/ui/PrimaryButton";
 
 export default function CheckoutPage() {
   const { cartItems, cartToken, isLoading: cartLoading } = useCart();
@@ -17,13 +14,6 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
-
-  const [customerInfo, setCustomerInfo] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-  });
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
   const servicesLabel = cartItems.length === 1 ? "service" : "services";
@@ -62,14 +52,6 @@ export default function CheckoutPage() {
 
         const result = await createPaymentIntent({
           cart_token: tokenToUse,
-          customer_info: customerInfo.email
-            ? {
-                first_name: customerInfo.firstName || undefined,
-                last_name: customerInfo.lastName || undefined,
-                email: customerInfo.email || undefined,
-                phone: customerInfo.phone || undefined,
-              }
-            : undefined,
         });
 
         setClientSecret(result.client_secret);
@@ -88,7 +70,7 @@ export default function CheckoutPage() {
         }
       }
     },
-    [cartToken, cartItems.length, cartLoading, customerInfo],
+    [cartToken, cartItems.length, cartLoading],
   );
 
   useEffect(() => {
@@ -137,7 +119,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <section className="pb-16">
+    <section className="py-10 ">
       <div className="flex flex-col gap-10">
         <div className="text-center space-y-3">
           <h1 className="font-bricolage heading-base">Checkout</h1>
@@ -148,101 +130,6 @@ export default function CheckoutPage() {
 
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="flex-1 space-y-8">
-            <div className="rounded-[20px] border border-[#E6E6E1] bg-[#FBFBFA] p-6">
-              <h2 className="font-bricolage text-[24px] font-extrabold leading-[28px] text-[#1F201B] mb-6">
-                Customer Information
-              </h2>
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label
-                      htmlFor="firstName"
-                      className="text-[14px] font-medium text-[#5F6057]"
-                    >
-                      First Name
-                    </Label>
-                    <Input
-                      id="firstName"
-                      type="text"
-                      placeholder="Enter first name"
-                      className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
-                      value={customerInfo.firstName}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setCustomerInfo({
-                          ...customerInfo,
-                          firstName: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                  <div>
-                    <Label
-                      htmlFor="lastName"
-                      className="text-[14px] font-medium text-[#5F6057]"
-                    >
-                      Last Name
-                    </Label>
-                    <Input
-                      id="lastName"
-                      type="text"
-                      placeholder="Enter last name"
-                      className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
-                      value={customerInfo.lastName}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setCustomerInfo({
-                          ...customerInfo,
-                          lastName: e.target.value,
-                        })
-                      }
-                    />
-                  </div>
-                </div>
-                <div>
-                  <Label
-                    htmlFor="email"
-                    className="text-[14px] font-medium text-[#5F6057]"
-                  >
-                    Email
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter email address"
-                    className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
-                    value={customerInfo.email}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setCustomerInfo({
-                        ...customerInfo,
-                        email: e.target.value,
-                      })
-                    }
-                    required
-                  />
-                </div>
-                <div>
-                  <Label
-                    htmlFor="phone"
-                    className="text-[14px] font-medium text-[#5F6057]"
-                  >
-                    Phone Number
-                  </Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="Enter phone number"
-                    className="mt-2 h-[50px] rounded-[14px] border-[#E6E6E1] bg-white text-[16px]"
-                    value={customerInfo.phone}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setCustomerInfo({
-                        ...customerInfo,
-                        phone: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-
             <div className="rounded-[20px] border border-[#E6E6E1] bg-[#FBFBFA] p-6">
               <h2 className="font-bricolage text-[24px] font-extrabold leading-[28px] text-[#1F201B] mb-6">
                 Payment Information
@@ -292,21 +179,9 @@ export default function CheckoutPage() {
                   </Elements>
                 ) : (
                   <div className="rounded-[14px] border border-[#E6E6E1] bg-white p-8 min-h-[200px] flex items-center justify-center">
-                    <div className="text-center space-y-2 w-full">
-                      <p className="text-[16px] text-[#9D9E98]">
-                        {error
-                          ? "Unable to load payment form"
-                          : "Loading payment form..."}
-                      </p>
-                      {error && (
-                        <div className="mt-4 p-4 rounded-[14px] border border-red-200 bg-red-50">
-                          <p className="text-[14px] text-red-600 font-medium mb-1">
-                            Error:
-                          </p>
-                          <p className="text-[12px] text-red-600">{error}</p>
-                        </div>
-                      )}
-                    </div>
+                    <p className="text-[16px] text-[#9D9E98] text-center">
+                      {error ? "Unable to load payment form" : "Loading payment form..."}
+                    </p>
                   </div>
                 )}
               </div>
@@ -345,10 +220,6 @@ export default function CheckoutPage() {
                   <div className="flex items-center justify-between">
                     <span>Subtotal</span>
                     <span>€ {subtotal.toFixed(2)}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>Tax</span>
-                    <span>€ 0.00</span>
                   </div>
                   <div className="flex items-center justify-between font-semibold text-[#1F201B] text-[18px] pt-2 border-t border-[#E6E6E1]">
                     <span>Total</span>
