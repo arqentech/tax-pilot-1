@@ -59,7 +59,7 @@ const Sitemap: React.FC = () => {
         )}
 
         <div
-          className="flex flex-col items-start justify-end md:grid md:items-stretch grid-cols-1 md:grid-cols-3 md:gap-10 min-w-0 w-full text-left"
+          className="flex flex-col items-start justify-end md:grid md:items-stretch grid-cols-1 md:grid-cols-3 md:gap-8 min-w-0 w-full text-left"
           style={{ textAlign: "left" }}
         >
           {columns.map((column, colIndex) => (
