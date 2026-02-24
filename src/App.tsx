@@ -20,7 +20,7 @@ import HomePage from "./pages/profile/HomePage";
 import Documents from "./pages/profile/Documents";
 import PersonalInfo from "./pages/profile/personal-info/PersonalInfo";
 import Requests from "./pages/profile/Requests";
-import Sitemap from "./pages/site-map/sitemap";
+import Sitemap from "./pages/site-map/Sitemap";
 
 function App() {
   return (
