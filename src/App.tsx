@@ -21,6 +21,9 @@ import Documents from "./pages/profile/Documents";
 import PersonalInfo from "./pages/profile/personal-info/PersonalInfo";
 import Requests from "./pages/profile/Requests";
 import Sitemap from "./pages/site-map/Sitemap";
+import CookiePolicy from "./pages/cookies/CookiePolicy";
+import TermsOfUse from "./pages/terms of use/TermsOfUse";
+import GeneralTerms from "./pages/general terms and conditions/GeneralTerms";
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
           <Route path="blogs" element={<Blogs />} />
           <Route path="/blogs/:slug" element={<BlogDetail />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="cookie-policy" element={<CookiePolicy />} />
+          <Route path="terms-of-use" element={<TermsOfUse />} />
+          <Route path="general-terms-of-purchase" element={<GeneralTerms />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="cart" element={<CartPage />} />

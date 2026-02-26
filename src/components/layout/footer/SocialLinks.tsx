@@ -30,25 +30,25 @@ const socialLinks = [
   {
     name: "Linkedin",
     icon: "/svg/footer/linkedin.svg",
-    href: "https://www.linkedin.com/",
+    href: "https://www.linkedin.com/company/taxpilot-it/",
     alt: "Linkedin Logo",
   },
   {
     name: "Instagram",
     icon: "/svg/footer/instagram.svg",
-    href: "https://www.instagram.com/",
+    href: "https://www.instagram.com/taxpilot.it/",
     alt: "Instagram Logo",
   },
   {
     name: "Facebook",
     icon: "/svg/footer/facebook.svg",
-    href: "https://www.facebook.com/",
+    href: "https://www.facebook.com/TaxPilot.it/",
     alt: "Facebook Logo",
   },
   {
     name: "TikTok",
     icon: "/svg/footer/tiktok.svg",
-    href: "https://www.tiktok.com/",
+    href: "https://www.tiktok.com/@taxpilot.it",
     alt: "TikTok Logo",
   },
 ];

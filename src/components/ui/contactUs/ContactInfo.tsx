@@ -3,7 +3,7 @@ interface ContactInfoProps {}
 export default function ContactInfo({}: ContactInfoProps) {
   const items = [
     { icon: "/svg/phone.svg", title: "Call Us", desc: "+39 000 111 2222" },
-    { icon: "/svg/email.svg", title: "Email Us", desc: "support@staxpilot.it" },
+    { icon: "/svg/email.svg", title: "Email Us", desc: "support@taxpilot.it" },
     {
       icon: "/svg/location.svg",
       title: "Address",

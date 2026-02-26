@@ -59,6 +59,6 @@ const legalLinks = [
   { label: "Privacy policy", path: "/privacy-policy" },
   { label: "Cookie policy", path: "/cookie-policy" },
   { label: "Terms of use", path: "/terms-of-use" },
-  { label: "General use cases", path: "/use-cases" },
+  { label: "General use cases", path: "/general-terms-of-purchase" },
   { label: "Sitemap ", path: "/sitemap" },
 ];
