@@ -1,69 +1,119 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import SearchBar from "../../components/ui/SearchBar";
 import FilterButton from "../../components/ui/FilterButton";
 import BlogCard from "@/components/ui/blogs/BlogCard";
-import { blogData } from "@/data/BlogData";
-import Categories from "../services/Categories";
+import Categories from "@/components/ui/Categories";
+import { useQuery } from "@tanstack/react-query";
+import { getBlogs } from "@/api/blogs";
+import { CategoryOption } from "@/types/blogs";
 
 const Blogs: React.FC = () => {
   const [query, setQuery] = useState("");
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const toggleFilter = () => {
-    setIsFilterOpen((prev) => {
-      if (prev) setSelectedCategory(null);
-      return !prev;
-    });
+    if (isFilterOpen) {
+      setSelectedCategory(null); 
+    }
+    setIsFilterOpen((prev) => !prev);
   };
 
-  const handleCategorySelect = (category: string | null) => {
-    setSelectedCategory(category);
+  const handleCategorySelect = (categoryId: string) => {
+    setSelectedCategory((prev) => (prev === categoryId ? null : categoryId));
   };
 
-  const filteredBlogs = blogData.filter((blog) => {
-    const matchesSearch = blog.title
-      .toLowerCase()
-      .includes(query.toLowerCase());
-    const matchesCategory = selectedCategory
-      ? blog.tag === selectedCategory
-      : true;
-    return matchesSearch && matchesCategory;
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["blogs"],
+    queryFn: getBlogs,
+    refetchOnWindowFocus: false,
+    staleTime: 5 * 60 * 1000,
   });
+
+  const blogs = data?.results?.data || [];
+
+  const transformedBlogs = useMemo(() => {
+    return blogs.map((blog) => {
+      const text = blog.description_short || blog.description_long;
+      const wordCount = text.split(/\s+/).length;
+      const readTime = Math.ceil(wordCount / 200);
+      return {
+        tag: blog.category.name,
+        image: blog.image.url,
+        title: blog.title,
+        description: text,
+        readTime: `${readTime} min read`,
+        slug: blog.identifier,
+        categoryId: blog.category.identifier,
+      };
+    });
+  }, [blogs]);
+
+  // Derive categories from loaded blogs so filter always has options (no separate API needed)
+  const availableCategories: CategoryOption[] = useMemo(() => {
+    const seen = new Map<string, CategoryOption>();
+    blogs.forEach((blog) => {
+      const cat = blog.category;
+      if (cat && !seen.has(cat.identifier)) {
+        seen.set(cat.identifier, {
+          id: cat.id,
+          identifier: cat.identifier,
+          name: cat.name,
+        });
+      }
+    });
+    return Array.from(seen.values());
+  }, [blogs]);
+
+  const filteredBlogs = useMemo(() => {
+    const lowerQuery = query.toLowerCase().trim();
+    return transformedBlogs.filter((blog) => {
+      const matchesCategory =
+        !selectedCategory || blog.categoryId === selectedCategory;
+      const matchesSearch =
+        !lowerQuery || blog.title.toLowerCase().includes(lowerQuery);
+      return matchesCategory && matchesSearch;
+    });
+  }, [transformedBlogs, selectedCategory, query]);
+
+  if (isLoading) return <p className="text-center mt-6">Loading blogs...</p>;
+  if (error)
+    return (
+      <p className="text-center mt-6 text-red-500">Failed to load blogs</p>
+    );
 
   return (
     <div className="py-10 mt-4 sm:mt-5 md:mt-6 flex justify-center min-h-screen ">
       <div className="w-full flex flex-col items-center">
         <div className="text-center mb-8">
-          <h1 className="font-bricolage heading-base">The TaxPilot Blog .</h1>
+          <h1 className="font-bricolage heading-base">The TaxPilot Blog.</h1>
           <p className="mt-2 text-[#5F6057] text-[18px] md:text-[20px]">
-            Tax news with taxpilot: explore our blog for news, tips, and
-            insights on tax management.
+            Tax news with TaxPilot: explore our blog for news, tips, and
+            insights.
           </p>
         </div>
 
         <div className="flex w-full items-center gap-3 justify-center md:gap-4">
           <div className="w-full md:max-w-[720px]">
-            <SearchBar onSearch={setQuery} />
+            <SearchBar onSearch={setQuery} value={query} />
           </div>
           <FilterButton onFilterClick={toggleFilter} />
         </div>
-        {/* <div className="mb-5">
+
+        <div className="mt-5 w-full max-w-[980px]">
           <Categories
+            categories={availableCategories}
             onSelect={handleCategorySelect}
             searchValue={query}
             isOpen={isFilterOpen}
             selectedCategory={selectedCategory}
+            isLoading={isLoading}
           />
-        </div> */}
+        </div>
 
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center w-full pt-4">
           {filteredBlogs.length > 0 ? (
-            filteredBlogs.map((blog, index) => (
-              <div key={index}>
-                <BlogCard {...blog} />
-              </div>
-            ))
+            filteredBlogs.map((blog) => <BlogCard key={blog.slug} {...blog} />)
           ) : (
             <div className="col-span-full text-center mt-6">
               <p className="text-base">No blog found</p>

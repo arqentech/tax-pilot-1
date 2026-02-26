@@ -1,40 +1,48 @@
 import React from "react";
 
-export interface CategoryOption {
+export interface GenericCategoryItem {
+  id?: number | string;
   identifier: string;
-  title: string;
+  name?: string;
+  title?: string;
 }
 
 interface CategoriesProps {
-  categories: CategoryOption[];
-  onSelect: (categoryIdentifier: string) => void;
-  searchValue: string;
-  isOpen: boolean;
+  categories: GenericCategoryItem[];
   selectedCategory: string | null;
+  onSelect: (categoryIdentifier: string) => void;
+  isOpen: boolean;
+  searchValue?: string;
+  isLoading?: boolean;
 }
 
 const Categories: React.FC<CategoriesProps> = ({
   categories,
-  onSelect,
-  searchValue,
-  isOpen,
   selectedCategory,
+  onSelect,
+  isOpen,
+  searchValue = "",
+  isLoading = false,
 }) => {
   if (!isOpen) return null;
 
   const normalizedSearch = searchValue.trim().toLowerCase();
-  const filtered = categories.filter((cat) =>
-    cat.title.toLowerCase().includes(normalizedSearch)
-  );
+  const filtered = categories.filter((cat) => {
+    const label = (cat.title ?? cat.name ?? cat.identifier).toLowerCase();
+    return !normalizedSearch || label.includes(normalizedSearch);
+  });
 
   return (
     <div className="w-full max-w-[874px] border border-[#E6E6E1] rounded-[32px] p-4 flex flex-wrap gap-3 mt-4">
-      {filtered.length === 0 ? (
+      {isLoading ? (
+        <p className="text-gray-500 text-sm">Loading categories...</p>
+      ) : filtered.length === 0 ? (
         <p className="text-gray-500 text-sm">No category found</p>
       ) : (
         filtered.map((cat) => (
           <button
-            key={cat.identifier}
+            key={cat.id ?? cat.identifier}
+            type="button"
             onClick={() => onSelect(cat.identifier)}
             className={`
               px-4 py-2 rounded-full text-sm transition
@@ -45,7 +53,7 @@ const Categories: React.FC<CategoriesProps> = ({
               }
             `}
           >
-            {cat.title}
+            {cat.name ?? cat.title ?? cat.identifier}
           </button>
         ))
       )}

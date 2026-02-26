@@ -2,7 +2,8 @@ import React, { useMemo, useState } from "react";
 import SearchBar from "../../components/ui/SearchBar";
 import ServiceCard from "../../components/ui/ServiceCard";
 import FilterButton from "../../components/ui/FilterButton";
-import Categories, { CategoryOption } from "./Categories";
+import Categories from "@/components/ui/Categories";
+import type { GenericCategoryItem } from "@/components/ui/Categories";
 import { useServices } from "../../hooks/useServices";
 import { Service } from "../../types/services";
 
@@ -13,7 +14,7 @@ const ServicesPage: React.FC = () => {
 
   const { data: services = [], isLoading, isError, error } = useServices();
 
-  const availableCategories = useMemo<CategoryOption[]>(() => {
+  const availableCategories = useMemo<GenericCategoryItem[]>(() => {
     const map = new Map<string, string>();
     services.forEach((service: Service) => {
       service.categories?.forEach((entry) => {
