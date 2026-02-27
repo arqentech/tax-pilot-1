@@ -14,7 +14,7 @@ const Blogs: React.FC = () => {
 
   const toggleFilter = () => {
     if (isFilterOpen) {
-      setSelectedCategory(null); 
+      setSelectedCategory(null);
     }
     setIsFilterOpen((prev) => !prev);
   };
@@ -33,19 +33,25 @@ const Blogs: React.FC = () => {
   const blogs = data?.results?.data ?? [];
   const safeBlogs = Array.isArray(blogs) ? blogs : [];
 
+  function stripHtml(html: string | undefined): string {
+    if (!html) return "";
+    return html
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
   const transformedBlogs = useMemo(() => {
     return safeBlogs
       .filter((blog) => blog && (blog.identifier || blog.id))
       .map((blog) => {
-        const text =
-          blog.description_short ?? blog.description_long ?? "";
-        const wordCount = (text || "").split(/\s+/).filter(Boolean).length;
+        const text = stripHtml(blog.description_short ?? blog.description_long);
+        const wordCount = text.split(" ").length;
         const readTime = Math.max(1, Math.ceil(wordCount / 200));
         return {
           tag: blog.category?.name ?? "",
           image: blog.image?.url ?? "",
           title: blog.title ?? "",
-          description: text,
+          description: text, // now cleaned
           readTime: `${readTime} min read`,
           slug: blog.identifier ?? String(blog.id ?? ""),
           categoryId: blog.category?.identifier ?? "",

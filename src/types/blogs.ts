@@ -29,7 +29,6 @@ export interface CategoryOption {
   identifier: string;
   name: string;
 }
-
 export interface BlogPost {
   id: number;
   identifier: string;

@@ -75,10 +75,18 @@ function fromApi(api: Record<string, unknown>) {
     (api.conclusion_title as string) ??
     (api.conclusionHeading as string) ??
     "";
+  const rawAuthor = api.author as
+    | {
+        full_name?: string;
+        authorname?: string;
+      }
+    | undefined;
+  const author = rawAuthor?.full_name ?? rawAuthor?.authorname ?? "Unknown";
 
   return {
     title: (api.title as string) ?? "",
     tag: cat?.name ?? "",
+    author,
     image: img?.url ?? "",
     readTime: `${Math.max(1, Math.ceil(words / 200))} min read`,
     inDepthAnalysis: text,
@@ -151,6 +159,9 @@ export default function BlogPage() {
 
       <div className="w-full mx-auto py-10 text-center">
         <div className="w-full flex flex-wrap items-center justify-center gap-4 mb-4">
+          <span className="flex items-center gap-x-1 bg-[#FBFBFA] text-[#000000] text-[20px] border border-[#EFEFEB] w-auto px-3 py-1 rounded-full text-sm font-medium">
+            <img src="/svg/write.svg" className="w-4 " alt="" /> {blog.author}
+          </span>
           <span className="bg-[#EEFCD7] text-[#36500C] border border-[#D9E6C0] px-4 py-1 rounded-full text-sm font-medium flex items-center gap-2">
             <img src="/svg/calendar.svg" className="w-4" alt="" />
             {blog.date}
@@ -158,7 +169,7 @@ export default function BlogPage() {
           <span className="flex items-center gap-x-1 bg-[#E7D8FB] text-[#3C0D6D] border border-[#D2BDE9] w-auto px-3 py-1 rounded-full text-sm font-medium">
             <img src="/svg/funnel.svg" className="w-4" alt="" /> {blog.tag}
           </span>
-          <span className="flex items-center bg-[#E7D8FB] gap-x-1 text-[#3C0D6D] border border-[#D2BDE9] w-auto px-4 py-1 rounded-full text-sm font-medium">
+          <span className="flex items-center bg-[#34352E1C] gap-x-1 text-[#34352E] border border-[#34352E2E] w-auto px-4 py-1 rounded-full text-sm font-medium">
             <Clock className="w-3" /> {blog.readTime}
           </span>
         </div>
