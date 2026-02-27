@@ -29,3 +29,22 @@ export interface CategoryOption {
   identifier: string;
   name: string;
 }
+
+export interface BlogPost {
+  id: number;
+  identifier: string;
+  title: string;
+  description_long: string;
+  created_at: string;
+
+  category: BlogCategory;
+  author: BlogAuthor;
+  image?: BlogImage;
+}
+
+export interface ApiResponse<T> {
+  status: string;
+  code: number;
+  message: string;
+  results: T;
+}

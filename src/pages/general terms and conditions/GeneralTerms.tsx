@@ -18,7 +18,7 @@ export default function GeneralTerms() {
               {section.content.map((para: string, idx: number) => (
                 <p
                   key={idx}
-                  className="text-[18px]  text-[#5F6057] font-normal leading-[25px] mb-4 text-justify"
+                  className="text-[18px] text-[#5F6057] font-normal leading-[25px] mb-4 text-justify"
                 >
                   {para}
                 </p>

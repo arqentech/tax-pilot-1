@@ -35,7 +35,7 @@ function App() {
           <Route path="services" element={<ServicesPage />} />
           <Route path="services/:slug" element={<ServiceDetails />} />
           <Route path="blogs" element={<Blogs />} />
-          <Route path="/blogs/:slug" element={<BlogDetail />} />
+          <Route path="blogs/*" element={<BlogDetail />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="cookie-policy" element={<CookiePolicy />} />
           <Route path="terms-of-use" element={<TermsOfUse />} />

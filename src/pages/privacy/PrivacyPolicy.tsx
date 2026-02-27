@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
 
           {policyData.sections.map((section, index) => (
             <div key={index} className="mb-10">
-              <h2 className="font-bricolage font-extrabold text-[#34352E] text-[28px] leading-[30px] py-2 md:py-4 ">
+              <h2 className="font-bricolage font-extrabold text-[#34352E] text-[28px] leading-[30px]  py-2 md:py-4 ">
                 {section.heading}
               </h2>
               {section.content.map((para, idx) => (

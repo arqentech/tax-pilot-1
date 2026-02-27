@@ -1,11 +1,25 @@
-import { blogData } from "../../../data/BlogData";
 import BlogCard from "./BlogCard";
 
-export default function BlogList() {
+export interface BlogListItem {
+  tag: string;
+  image: string;
+  title: string;
+  description: string;
+  readTime: string;
+  slug: string;
+}
+
+interface BlogListProps {
+  blogs: BlogListItem[];
+}
+
+export default function BlogList({ blogs }: BlogListProps) {
+  if (!blogs?.length) return null;
+
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 overflow-x-auto scrollbar-hide">
-      {blogData.slice(0, 3).map((item, index) => (
-        <BlogCard key={index} {...item} slug={item.slug} />
+      {blogs.map((item, index) => (
+        <BlogCard key={item.slug || index} {...item} slug={item.slug} />
       ))}
     </div>
   );

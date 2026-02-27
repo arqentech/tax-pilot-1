@@ -30,40 +30,45 @@ const Blogs: React.FC = () => {
     staleTime: 5 * 60 * 1000,
   });
 
-  const blogs = data?.results?.data || [];
+  const blogs = data?.results?.data ?? [];
+  const safeBlogs = Array.isArray(blogs) ? blogs : [];
 
   const transformedBlogs = useMemo(() => {
-    return blogs.map((blog) => {
-      const text = blog.description_short || blog.description_long;
-      const wordCount = text.split(/\s+/).length;
-      const readTime = Math.ceil(wordCount / 200);
-      return {
-        tag: blog.category.name,
-        image: blog.image.url,
-        title: blog.title,
-        description: text,
-        readTime: `${readTime} min read`,
-        slug: blog.identifier,
-        categoryId: blog.category.identifier,
-      };
-    });
-  }, [blogs]);
+    return safeBlogs
+      .filter((blog) => blog && (blog.identifier || blog.id))
+      .map((blog) => {
+        const text =
+          blog.description_short ?? blog.description_long ?? "";
+        const wordCount = (text || "").split(/\s+/).filter(Boolean).length;
+        const readTime = Math.max(1, Math.ceil(wordCount / 200));
+        return {
+          tag: blog.category?.name ?? "",
+          image: blog.image?.url ?? "",
+          title: blog.title ?? "",
+          description: text,
+          readTime: `${readTime} min read`,
+          slug: blog.identifier ?? String(blog.id ?? ""),
+          categoryId: blog.category?.identifier ?? "",
+        };
+      });
+  }, [safeBlogs]);
 
-  // Derive categories from loaded blogs so filter always has options (no separate API needed)
-  const availableCategories: CategoryOption[] = useMemo(() => {
+  const derivedCategories: CategoryOption[] = useMemo(() => {
     const seen = new Map<string, CategoryOption>();
-    blogs.forEach((blog) => {
+    safeBlogs.forEach((blog) => {
       const cat = blog.category;
-      if (cat && !seen.has(cat.identifier)) {
+      if (cat?.identifier && !seen.has(cat.identifier)) {
         seen.set(cat.identifier, {
-          id: cat.id,
+          id: cat.id ?? 0,
           identifier: cat.identifier,
-          name: cat.name,
+          name: cat.name ?? cat.identifier,
         });
       }
     });
     return Array.from(seen.values());
-  }, [blogs]);
+  }, [safeBlogs]);
+
+  const availableCategories: CategoryOption[] = derivedCategories;
 
   const filteredBlogs = useMemo(() => {
     const lowerQuery = query.toLowerCase().trim();

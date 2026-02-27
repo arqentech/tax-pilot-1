@@ -1,13 +1,15 @@
-import FAQ from '@/components/ui/FAQ'
-import { blogsFaqData } from '@/data/FAQData'
-import React from 'react'
+import FAQ, { FAQItem } from "@/components/ui/FAQ";
 
-function BlogsFaq() {
-  return (
-    <div className='w-full'>
-        <FAQ data={blogsFaqData}/>
-    </div>
-  )
+interface BlogsFaqProps {
+  faqs: FAQItem[];
 }
 
-export default BlogsFaq
+function BlogsFaq({ faqs }: BlogsFaqProps) {
+  return (
+    <div className="w-full">
+      <FAQ data={faqs} />
+    </div>
+  );
+}
+
+export default BlogsFaq;
