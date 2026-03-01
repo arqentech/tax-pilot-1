@@ -1,8 +1,10 @@
+import { useState } from "react";
 import PrimaryButton from "@/components/ui/PrimaryButton";
+import MinimumRequirementsModal from "@/components/ui/MinimumRequirementsModal";
 import { useCart } from "@/hooks/useCart";
 import { CircleCheck, Clock } from "lucide-react";
 import Breadcrumbs from "./BreadCrumb";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useServiceDetails } from "@/hooks/useServiceDetails";
 import ServicesFAQ from "./ServicesFAQ";
 import HowWeWork from "@/components/ui/HowWeWork";
@@ -18,6 +20,8 @@ const Loader = () => (
 const Details: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { addToCart } = useCart();
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
   const {
     data: service,
@@ -67,9 +71,14 @@ const Details: React.FC = () => {
   const formatLabel = (value: string | undefined) =>
     value?.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 
-  const handleRequestService = async () => {
+  const handleRequestService = () => {
+    setShowModal(true);
+  };
+
+  const handleModalComplete = async () => {
+    setShowModal(false);
     try {
-      const result = await addToCart({
+      await addToCart({
         service_id: service.id,
         title: service.title,
         price: service.price,
@@ -78,16 +87,10 @@ const Details: React.FC = () => {
         link: `/services/${service.identifier}`,
         vatIncluded: !!service.vatIncluded,
       });
-
-      alert(
-        result.added
-          ? "Service added to cart!"
-          : "Service already added to cart.",
-      );
     } catch (error) {
       console.error("Error adding service to cart:", error);
-      alert("Failed to add service to cart. Please try again.");
     }
+    navigate("/cart");
   };
 
   return (
@@ -220,6 +223,14 @@ const Details: React.FC = () => {
             <ServicesFAQ faqs={service.faqs} />
           </div>
         </section>
+      )}
+
+      {showModal && service && (
+        <MinimumRequirementsModal
+          serviceId={service.id}
+          onComplete={handleModalComplete}
+          onClose={() => setShowModal(false)}
+        />
       )}
     </div>
   );
