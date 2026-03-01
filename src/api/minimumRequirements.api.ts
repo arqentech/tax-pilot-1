@@ -5,7 +5,7 @@ export interface MinimumRequirementForm {
   service_id: number;
   label: string;
   type: "yes_or_no" | "text" | "select" | string;
-  options: string[];
+  options: string[] | { label: string; value: string }[];
   step_order: number;
   is_required: number;
   is_terminal: number;

@@ -207,18 +207,20 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
           </div>
         ) : (
           <div className="space-y-4">
-            <div>
-              <label className="block text-[14px] font-archivo font-medium text-[#34352E] mb-1.5">
-                Label
-              </label>
-              <input
-                type="text"
-                value={textAnswer}
-                onChange={(e) => setTextAnswer(e.target.value)}
-                placeholder="Field placeholder"
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[#34352E] font-archivo text-[16px] focus:outline-none focus:ring-2 focus:ring-[#007BFF] placeholder:text-[#9D9E98]"
-              />
-            </div>
+            {form.type === "text" && (
+              <div>
+                <label className="block text-[14px] font-archivo font-medium text-[#34352E] mb-1.5">
+                  Label
+                </label>
+                <input
+                  type="text"
+                  value={textAnswer}
+                  onChange={(e) => setTextAnswer(e.target.value)}
+                  placeholder="Place your answer here"
+                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-[#34352E] font-archivo text-[16px] focus:outline-none focus:ring-2 focus:ring-[#007BFF] placeholder:text-[#9D9E98]"
+                />
+              </div>
+            )}
 
             {form.options && form.options.length > 0 && (
               <div>
@@ -231,12 +233,16 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
                     onChange={(e) => setSelectAnswer(e.target.value)}
                     className="w-full appearance-none border border-gray-200 rounded-xl px-4 py-3 text-[#34352E] font-archivo text-[16px] focus:outline-none focus:ring-2 focus:ring-[#007BFF] bg-white"
                   >
-                    <option value="">Field placeholder</option>
-                    {form.options.map((opt, i) => (
-                      <option key={i} value={opt}>
-                        {opt}
-                      </option>
-                    ))}
+                    <option value="">Select an option</option>
+                    {form.options.map((opt, i) => {
+                      const label = typeof opt === "string" ? opt : opt.label;
+                      const value = typeof opt === "string" ? opt : opt.value;
+                      return (
+                        <option key={i} value={value}>
+                          {label}
+                        </option>
+                      );
+                    })}
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
                     <svg
