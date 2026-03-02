@@ -209,9 +209,6 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
           <div className="space-y-4">
             {form.type === "text" && (
               <div>
-                <label className="block text-[14px] font-archivo font-medium text-[#34352E] mb-1.5">
-                  Label
-                </label>
                 <input
                   type="text"
                   value={textAnswer}
