@@ -4,6 +4,7 @@ import MinimumRequirementsModal from "@/components/ui/MinimumRequirementsModal";
 import AddToCartSuccessDialog from "@/components/ui/AddToCartSuccessDialog";
 import { useCart } from "@/hooks/useCart";
 import { CircleCheck, Clock } from "lucide-react";
+import { stripHtml } from "@/lib/utils";
 import Breadcrumbs from "./BreadCrumb";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useServiceDetails } from "@/hooks/useServiceDetails";
@@ -84,7 +85,7 @@ const Details: React.FC = () => {
         service_id: service.id,
         title: service.title,
         price: service.price,
-        description: service.description_short,
+        description: stripHtml(service.description_short),
         hours: service.hours ?? "",
         link: `/services/${service.identifier}`,
         vatIncluded: !!service.vatIncluded,

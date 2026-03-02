@@ -12,6 +12,7 @@ import {
   removeItemFromCart,
 } from "@/api/cart.api";
 import { CartItemResponse, CartItemMetadata } from "@/types/cart";
+import { stripHtml } from "@/lib/utils";
 
 export interface CartItem {
   id?: string;
@@ -58,11 +59,15 @@ const ensureId = (item: CartItem) => ({
     (item.cart_item_id ? String(item.cart_item_id) : crypto.randomUUID()),
 });
 
-
+/**
+ * Map backend cart item to frontend CartItem format
+ */
 const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
+  // Extract hours and vatIncluded from service object or metadata
   let hours: string | undefined;
   let vatIncluded: boolean | undefined;
 
+  // First try to get from service object
   if (item.service.hours) {
     hours = item.service.hours;
   }
@@ -70,6 +75,7 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
     vatIncluded = item.service.vatIncluded;
   }
 
+  // If not found in service, check metadata
   if (!hours || vatIncluded === undefined) {
     if (item.metadata && Array.isArray(item.metadata)) {
       const metadataObj = item.metadata.find(
@@ -89,6 +95,7 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
     }
   }
 
+  // Default vatIncluded to true if not found (maintain backward compatibility)
   if (vatIncluded === undefined) {
     vatIncluded = true;
   }
@@ -99,7 +106,7 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
     service_id: item.service_id,
     title: item.service.title,
     price: item.price,
-    description: item.service.description_short,
+    description: stripHtml(item.service.description_short),
     link: `/services/${item.service.identifier}`,
     hours,
     vatIncluded,
@@ -272,6 +279,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     initializeCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addToCart = async (item: CartItem) => {

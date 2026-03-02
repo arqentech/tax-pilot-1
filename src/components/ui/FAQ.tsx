@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { stripHtml } from "@/lib/utils";
 
 export interface FAQItem {
   question: string;
@@ -49,7 +50,7 @@ export default function FAQ({ data, hideChatOnWeb = false }: FAQProps) {
             >
               <div className="overflow-hidden">
                 <p className="px-2 pt-2 font-normal text-[#5F6057] text-[16px] lg:text-[18px] leading-[25px]">
-                  {item.answer}
+                  {stripHtml(item.answer)}
                 </p>
               </div>
             </div>

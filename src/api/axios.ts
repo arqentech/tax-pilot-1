@@ -24,3 +24,22 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("userData");
+      localStorage.removeItem("tokenTimestamp");
+      window.dispatchEvent(new Event("auth-changed"));
+      
+      if (window.location.pathname !== "/login" && window.location.pathname !== "/sign-up") {
+        window.location.href = "/login?redirect=" + encodeURIComponent(window.location.pathname);
+      }
+    }
+    return Promise.reject(error);
+  }
+);

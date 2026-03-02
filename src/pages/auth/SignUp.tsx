@@ -137,6 +137,7 @@ export default function SignUpPage() {
   const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       localStorage.setItem("authToken", tokenResponse.access_token);
+      localStorage.setItem("tokenTimestamp", Date.now().toString());
       window.dispatchEvent(new Event("auth-changed"));
       navigate("/");
     },

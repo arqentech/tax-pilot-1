@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/InputField";
 import { CircleCheck, Clock, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { stripHtml } from "@/lib/utils";
 import { useCart } from "@/hooks/useCart";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import { useAuth } from "@/utils/auth";
@@ -84,7 +85,7 @@ export default function FilledCart({ items }: FilledCartProps) {
 
                 <div className="px-4 py-4 md:px-6 md:py-5 bg-[#FBFBFA]">
                   <p className="text-[16px] leading-[24px] text-[#5F6057]">
-                    {item.description}
+                    {stripHtml(item.description)}
                   </p>
                 </div>
 

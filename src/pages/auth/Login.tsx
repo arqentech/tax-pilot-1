@@ -43,6 +43,7 @@ export default function LoginPage() {
 
         localStorage.setItem("authToken", token);
         localStorage.setItem("userData", JSON.stringify(user));
+        localStorage.setItem("tokenTimestamp", Date.now().toString());
         window.dispatchEvent(new Event("auth-changed"));
         navigate(redirectTo);
       },
@@ -57,6 +58,7 @@ export default function LoginPage() {
   const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       localStorage.setItem("authToken", tokenResponse.access_token);
+      localStorage.setItem("tokenTimestamp", Date.now().toString());
       window.dispatchEvent(new Event("auth-changed"));
       navigate(redirectTo);
     },

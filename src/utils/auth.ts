@@ -32,6 +32,8 @@ export const useAuth = () => {
 
 export const logout = (): void => {
   localStorage.removeItem("authToken");
+  localStorage.removeItem("userData");
+  localStorage.removeItem("tokenTimestamp");
   window.dispatchEvent(new Event("auth-changed"));
 };
 
