@@ -13,7 +13,7 @@ interface FAQProps {
 }
 
 export default function FAQ({ data, hideChatOnWeb = false }: FAQProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -25,16 +25,16 @@ export default function FAQ({ data, hideChatOnWeb = false }: FAQProps) {
         {data.map((item, index) => (
           <div
             key={index}
-            className="border border-gray-200 rounded-xl p-4 cursor-pointer text-left"
+            className="border border-gray-200 rounded-xl p-4 cursor-pointer text-left min-h-[72px] w-full"
             onClick={() => toggle(index)}
           >
-            <div className="flex justify-between items-center">
-              <p className="px-2 font-medium text-[#34352E] text-[16px] lg:text-[18px] leading-[25px]">
+            <div className="flex justify-between items-center gap-3">
+              <p className="px-2 font-medium text-[#34352E] text-[16px] lg:text-[18px] leading-[25px] min-h-[28px] flex-1">
                 {item.question}
               </p>
 
               <span
-                className={`transition-transform duration-200 text-3xl ${
+                className={`flex-shrink-0 transition-transform duration-200 text-3xl leading-none ${
                   openIndex === index ? "rotate-45" : "rotate-0"
                 }`}
               >
@@ -43,13 +43,15 @@ export default function FAQ({ data, hideChatOnWeb = false }: FAQProps) {
             </div>
 
             <div
-              className={`overflow-hidden transition-all duration-300 ${
-                openIndex === index ? "max-h-[1000px] mt-2" : "max-h-0"
+              className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+                openIndex === index ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
               }`}
             >
-              <p className="px-2 font-normal text-[#5F6057] text-[16px] lg:text-[18px] leading-[25px]">
-                {item.answer}
-              </p>
+              <div className="overflow-hidden">
+                <p className="px-2 pt-2 font-normal text-[#5F6057] text-[16px] lg:text-[18px] leading-[25px]">
+                  {item.answer}
+                </p>
+              </div>
             </div>
           </div>
         ))}

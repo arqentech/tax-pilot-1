@@ -7,6 +7,8 @@ import PrivacyPolicy from "./pages/privacy/PrivacyPolicy";
 import AuthLayout from "./pages/auth/Auth";
 import LoginPage from "./pages/auth/Login";
 import FAQ from "./pages/faq/FAQPage";
+import FAQQuestionsPage from "./pages/faq/FAQQuestionsPage";
+import FAQDetailPage from "./pages/faq/FAQDetailPage";
 import ContactUs from "./pages/contact/ContactPage";
 import SignUpPage from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
@@ -41,6 +43,8 @@ function App() {
           <Route path="terms-of-use" element={<TermsOfUse />} />
           <Route path="general-terms-of-purchase" element={<GeneralTerms />} />
           <Route path="faq" element={<FAQ />} />
+          <Route path="faq/:category/:slug" element={<FAQDetailPage />} />
+          <Route path="faq/:category" element={<FAQQuestionsPage />} />
           <Route path="contact-us" element={<ContactUs />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="checkout" element={<CheckoutPage />} />

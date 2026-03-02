@@ -17,8 +17,11 @@ const DropdownMenuContent = forwardRef<
     <DropdownMenuPrimitive.Content
       ref={ref}
       sideOffset={sideOffset}
+      side="bottom"
+      align="end"
+      collisionPadding={16}
       className={cn(
-        "rounded-[32px] border border-[#E6E6E1] bg-[#FFFFFF] p-1 shadow-md",
+        "rounded-[32px] border border-[#E6E6E1] bg-[#FFFFFF] p-1 shadow-md max-h-[min(60vh,400px)] overflow-y-auto min-w-[var(--radix-dropdown-menu-trigger-width)] max-w-[min(280px,90vw)]",
         className,
       )}
       {...props}
@@ -53,18 +56,20 @@ export default function SimpleDropdown({ items, onSelect, wrapperClass }: Dropdo
   };
 
   return (
-    <div className={cn(wrapperClass)}>
+    <div className={cn("flex-shrink-0", wrapperClass)}>
       <DropdownMenuPrimitive.Root>
-        <DropdownMenuPrimitive.Trigger className="inline-flex items-center justify-center rounded-[48px] bg-[#34352E] w-[45px] h-[45px] md:w-[64px] lg:w-[144px] md:h-[64px]  text-[#F1F1EC]">
+        <DropdownMenuPrimitive.Trigger className="inline-flex items-center justify-center rounded-[48px] bg-[#34352E] w-[45px] h-[45px] md:w-[64px] lg:w-[144px] lg:min-w-[144px] md:h-[64px] text-[#F1F1EC] overflow-hidden">
         <img
           src="/svg/filter-funnel.svg"
           alt="Filter"
-          className="w-5 h-5 lg:hidden"
+          className="w-5 h-5 flex-shrink-0 lg:hidden"
         />
 
-        <span className="hidden lg:inline ml-2">{selectedItem}</span>
+        <span className="hidden lg:inline ml-2 truncate min-w-0 text-left">
+          {selectedItem}
+        </span>
 
-        <ChevronDown className="hidden lg:inline ml-1 h-4 w-4" />
+        <ChevronDown className="hidden lg:inline ml-1 h-4 w-4 flex-shrink-0" />
       </DropdownMenuPrimitive.Trigger>
 
       <DropdownMenuContent>

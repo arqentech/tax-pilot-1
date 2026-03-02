@@ -1,82 +1,60 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getFaqTopics } from "@/api/faq";
+import { useQuery } from "@tanstack/react-query";
+import { FaqTopic } from "@/types/faq";
 import SearchBar from "@/components/ui/SearchBar";
-import FAQ, { FAQItem } from "@/components/ui/FAQ";
-import { generalFaqData, homeFaqData } from "@/data/FAQData";
-import SimpleDropdown from "@/components/ui/DropdownMenu";
-
-const faqOptions = [
-  "General",
-  "Profile",
-  "Bonuses and services",
-  "Orders",
-  "Required Practices",
-  "Documents",
-];
-
-const faqMap: Record<string, FAQItem[]> = {
-  General: generalFaqData,
-  Profile: generalFaqData,
-  "Bonuses and services": homeFaqData,
-  Orders: generalFaqData,
-  "Required practices": generalFaqData,
-  Documents: generalFaqData,
-};
 
 export default function FAQPage() {
-  const firstCategoryKey = Object.keys(faqMap)[0];
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const [query, setQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(firstCategoryKey);
-  const [selectedFaq, setSelectedFaq] = useState<FAQItem[]>(
-    faqMap[firstCategoryKey],
-  );
+  const { data: topics = [] } = useQuery<FaqTopic[]>({
+    queryKey: ["faq-topics"],
+    queryFn: getFaqTopics,
+  });
 
-  const handleSelect = (key: string) => {
-    setSelectedCategory(key);
-    setSelectedFaq(faqMap[key] || []);
-  };
-
-  const handleSearch = (value: string) => setQuery(value);
-
-  const filteredFaqs = selectedFaq.filter(
-    (faq) =>
-      faq.question.toLowerCase().includes(query.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(query.toLowerCase()),
-  );
+  const filteredTopics = useMemo(() => {
+    if (!searchQuery.trim()) return topics;
+    const q = searchQuery.toLowerCase().trim();
+    return topics.filter((t) => t.topic.toLowerCase().includes(q));
+  }, [topics, searchQuery]);
 
   return (
-    <section className="w-full  py-16">
-      <div className=" flex flex-col items-center gap-6">
-        <span className="sub-heading text-center">FAQs</span>
+    <section className="w-full py-16">
+      <div className="flex flex-col items-center gap-6 px-4 w-full">
+        <h1 className="sub-heading text-center text-[#3F403A]">FAQS</h1>
         <p className="text-base text-center text-[#5F6057]">
-          Frequently asked questions about our services.
+          Le domande più frequenti dei nostri servizi
         </p>
 
-        <div className="flex w-full  items-center gap-3 flex-row justify-center md:gap-4">
-          {" "}
-          <div className="w-full md:max-w-[720px]">
-            <SearchBar
-              onSearch={handleSearch}
-              placeholder="Search query"
-              wrapperClass="w-full"
-            />
-          </div>
-          <div>
-            <SimpleDropdown items={faqOptions} onSelect={handleSelect} />
-          </div>
+        <div className="w-full max-w-[725px]">
+          <SearchBar
+            onSearch={setSearchQuery}
+            value={searchQuery}
+            placeholder="Chiedi qualcosa..."
+            wrapperClass="w-full"
+          />
         </div>
 
-        <div className="w-full max-w-[874px]">
-          {filteredFaqs.length > 0 ? (
-            <FAQ data={filteredFaqs} />
-          ) : (
-            <p className="w-full text-center">
-              {query
-                ? "No FAQs match your search."
-                : "Select a category to see FAQs."}
-            </p>
-          )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-[874px] mt-6">
+          {filteredTopics.map((topic) => (
+            <button
+              key={topic.slug_topic}
+              type="button"
+              onClick={() => navigate(`/faq/${topic.slug_topic}`)}
+              className="flex items-center justify-center min-h-[120px] rounded-xl bg-white border border-[#E6E6E1] shadow-sm text-[#3F403A] font-semibold text-center transition hover:shadow-md hover:border-[#D1D1D1]"
+            >
+              {topic.topic}
+            </button>
+          ))}
         </div>
+
+        {filteredTopics.length === 0 && (
+          <p className="text-[#5F6057] text-center mt-8">
+            Nessuna categoria trovata.
+          </p>
+        )}
       </div>
     </section>
   );
