@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import MinimumRequirementsModal from "@/components/ui/MinimumRequirementsModal";
+import AddToCartSuccessDialog from "@/components/ui/AddToCartSuccessDialog";
 import { useCart } from "@/hooks/useCart";
 import { CircleCheck, Clock } from "lucide-react";
 import Breadcrumbs from "./BreadCrumb";
@@ -22,6 +23,7 @@ const Details: React.FC = () => {
   const { addToCart } = useCart();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
   const {
     data: service,
@@ -87,9 +89,14 @@ const Details: React.FC = () => {
         link: `/services/${service.identifier}`,
         vatIncluded: !!service.vatIncluded,
       });
+      setShowSuccessDialog(true);
     } catch (error) {
       console.error("Error adding service to cart:", error);
     }
+  };
+
+  const handleSuccessDialogClose = () => {
+    setShowSuccessDialog(false);
     navigate("/cart");
   };
 
@@ -232,6 +239,10 @@ const Details: React.FC = () => {
           onClose={() => setShowModal(false)}
         />
       )}
+      <AddToCartSuccessDialog
+        open={showSuccessDialog}
+        onClose={handleSuccessDialogClose}
+      />
     </div>
   );
 };
