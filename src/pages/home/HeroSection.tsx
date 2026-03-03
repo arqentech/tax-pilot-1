@@ -21,11 +21,11 @@ const HeroSection = () => {
               Con TaxPilot risolvi le tue pratiche fiscali online, ma con
               persone vere al tuo fianco.
             </p>
-            <p className="text-base leading-relaxed w-full">
+            <span className="text-base leading-relaxed w-full">
               Niente linguaggio incomprensibile, niente rimbalzi tra uffici:
               carichi i documenti e un professionista ti segue fino alla
               consegna.
-            </p>
+            </span>
           </div>
           <Link to="/services">
             <PrimaryButton text="Esplora i servizi" width="262px" />
