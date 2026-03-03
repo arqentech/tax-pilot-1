@@ -11,14 +11,14 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
   return (
     <section className="w-full full-bleed bg-[#FBFBFA] py-16">
       <div className="w-full max-w-[1320px] px-4 mx-auto flex flex-col items-center">
-        {showBadge && <Badge text="Testimonials" width="146px" center />}
+        {showBadge && <Badge text="Testimonianze" width="146px" center />}
 
         <div className="text-center  mt-6 md:mt-2">
           <h2 className="font-bricolage sub-heading">
-            A word from our Clients.
+         Cosa dicono di noi
           </h2>
           <p className="mt-4 text-base max-w-[409px] mx-auto">
-            Stories from people who turned complicated taxes into peace of mind.
+           Ogni giorno supportiamo centinaia di persone ad orientarsi nel noioso mondo burocratico.
           </p>
         </div>
 

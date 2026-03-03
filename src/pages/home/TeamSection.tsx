@@ -5,7 +5,7 @@ import Badge from "../../components/ui/Badge";
 
 const TeamSection = () => {
   const [activeMember, setActiveMember] = useState<string | null>(
-    teamMembers[0]?.name
+    teamMembers[0]?.name,
   );
 
   const [lead, ...others] = teamMembers;
@@ -16,20 +16,28 @@ const TeamSection = () => {
     <section className="w-full py-16 px-3 full-bleed-mobile bg-[#F6F6F3] md:bg-transparent">
       <div className="flex w-full flex-col items-center text-center lg:flex-row lg:items-start lg:justify-center lg:gap-12 lg:text-left">
         <div className="flex flex-col items-center gap-2 lg:items-start">
-          <Badge text="Team" width="86px" className="hidden md:flex" />
+          <Badge text="Chi siamo" className="hidden md:flex" />
           <Badge
-            text="Team"
-            width="86px"
+            text="Chi siamo"
             bgColor="#FFFFFF"
             className="flex md:hidden"
           />
           <h2 className=" mt-6 md:mt-2 font-bricolage text-[38px] text-[#34352E] font-extrabold leading-[38px] md:leading-[73px] tracking-[-0.07em] md:text-[58px]">
-            The TaxPilot Team .
+            <p>Non un semplice </p>
+            <p>portale.</p>
+            <p>Siamo un Team.</p>
           </h2>
-          <p className="mt-4 mb-4 w-full text-centr text-[18px] font-medium text-[#5F6057] md:text-[20px]">
-            Our professionals bring years of CAF experience and fiscal expertise
-            to ensure precision, compliance, and total peace of mind.
-          </p>
+
+          <h1 className="mt-4 mb-4 w-full text-centr text-[18px] font-medium text-[#5F6057] md:text-[20px]">
+            <p>
+              TaxPilot nasce dall’esperienza di professionisti che lavorano ogni
+              giorno con pratiche CAF e Patronato.
+            </p>
+            <p>
+              Abbiamo digitalizzato il processo, ma non abbiamo eliminato la
+              parte più importante: il controllo umano.
+            </p>
+          </h1>
         </div>
 
         <div className="w-full md:flex justify-center mt-5">

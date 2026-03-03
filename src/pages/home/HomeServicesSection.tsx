@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import ServiceCard from "../../components/ui/ServiceCard";
 import SearchBar from "../../components/ui/SearchBar";
 import Badge from "../../components/ui/Badge";
-import { ChevronRight } from "lucide-react";
 import { useServices } from "../../hooks/useServices";
 import { Service } from "../../types/services";
+import PrimaryButton from "@/components/ui/PrimaryButton";
 
 const ServicesSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,7 +16,7 @@ const ServicesSection = () => {
     return services.filter(
       (service: Service) =>
         service.title.toLowerCase().includes(query) ||
-        service.description_short?.toLowerCase().includes(query)
+        service.description_short?.toLowerCase().includes(query),
     );
   }, [services, searchQuery]);
 
@@ -33,16 +33,16 @@ const ServicesSection = () => {
   return (
     <section className="w-full full-bleed bg-[#FBFBFA] py-16">
       <div className="w-full max-w-[1320px] px-4 mx-auto flex flex-col items-center">
-        <Badge text="Services" width="115px" center />
+        <Badge text="Servizi" width="115px" center />
 
         <div className="text-center mb-10">
           <h2 className="heading-base font-bricolage mt-6 md:mt-2">
-            <span className="block lg:inline">All Your Tax Needs,</span>{" "}
-            <span className="block lg:inline">in One Place.</span>
+            <span className="block lg:inline">I nostri servizi</span>
           </h2>
           <p className="text-base max-w-[660px] mt-4 mx-auto">
-            Access over 150 certified CAF and patronage services, guided step by
-            real experts, all from the comfort of your home.
+            Scopri le agevolazioni a cui hai diritto e completa le tue pratiche
+            online. Un operatore dedicato ti segue in ogni fase, dall’ISEE al
+            730, fino a NASpI e altri servizi.
           </p>
         </div>
 
@@ -86,12 +86,8 @@ const ServicesSection = () => {
         </div>
 
         <div className="hidden md:flex justify-center mt-10">
-          <Link
-            to="/services"
-            className="text-[24px] text-[#34352E] font-extrabold hover:underline hover:text-[#0166FF]  flex items-center gap-2"
-          >
-            Explore All Services
-            <ChevronRight size={18} />
+          <Link to="/services">
+            <PrimaryButton text="Esplora i servizi" width="262px" />
           </Link>
         </div>
       </div>

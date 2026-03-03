@@ -9,19 +9,26 @@ const HeroSection = () => {
       <div className="global-container grid md:grid-cols-2 gap-2 md:gap-16 items-center py-10">
         <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6 py-10">
           <h1 className="font-bricolage main-heading max-w-full -mt-10">
-            <span className="block whitespace-nowrap">Online taxes made</span>
             <span className="block whitespace-nowrap">
-              Simple with Tax Pilot.
+              La burocrazia non deve
+            </span>
+            <span className="block whitespace-nowrap">
+              complicarti la vita.
             </span>
           </h1>
-
-          <p className="text-base leading-relaxed w-full">
-            Access over 150 certified CAF and patronage services, guided step by
-            step by real experts, all from the comfort of your home.
-          </p>
-
+          <div>
+            <p className="text-base leading-relaxed w-full">
+              Con TaxPilot risolvi le tue pratiche fiscali online, ma con
+              persone vere al tuo fianco.
+            </p>
+            <p className="text-base leading-relaxed w-full">
+              Niente linguaggio incomprensibile, niente rimbalzi tra uffici:
+              carichi i documenti e un professionista ti segue fino alla
+              consegna.
+            </p>
+          </div>
           <Link to="/services">
-            <PrimaryButton text="Explore Services" width="262px" />
+            <PrimaryButton text="Esplora i servizi" width="262px" />
           </Link>
         </div>
 

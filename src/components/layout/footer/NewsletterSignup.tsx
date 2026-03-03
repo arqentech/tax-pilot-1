@@ -23,7 +23,8 @@ export default function NewsletterSignup() {
         </Link>
       </div>
       <p className="mt-2 text-[18px] font-normal w-full">
-        Get exclusive Tax filing updates straight to your inbox
+        Iscrivendoti accetti la nostra Informativa sulla privacy e acconsenti a
+        ricevere info su bonus e/o promozioni.
       </p>
     </div>
   );

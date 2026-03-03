@@ -2,21 +2,21 @@ import React from "react";
 
 const features = [
   {
-    title: "Effortless",
+    title: "Semplice",
     description:
-      "File your taxes and upload documents in just a few clicks—our experts handle the rest.",
+      "Puoi gestire le tue pratiche in comodità, ovunque tu sia e in pochi click.",
     icon: "/svg/effortless.svg",
   },
   {
-    title: "Convenient",
+    title: "Veloce",
     description:
-      "Access over 150 CAF and patronage services anytime, anywhere, directly from your phone or computer.",
+      "Più veloci di un razzo! Prenderemo in carica la tua pratica in mendo di 24 ore.",
     icon: "/svg/convenient.svg",
   },
   {
-    title: "Secured",
+    title: "Sicuro",
     description:
-      "Your data is encrypted, verified, and processed only by professionals—privacy and accuracy guaranteed.",
+      "Ti sarà assegnato un operatore personale a cui potrai scrivere via chat per qualsiasi domanda!",
     icon: "/svg/secured.svg",
   },
 ];
@@ -26,11 +26,18 @@ const WhatDefinesUs: React.FC = () => {
     <section className="w-full md:py-24">
       <div className="page-container">
         <div className="flex flex-col items-center md:grid md:grid-cols-2 gap-6 mb-12 text-center md:text-left">
-          <h2 className="heading-base font-bricolage">What defines us?</h2>
-          <p className="text-base">
-            Access over 150 certified CAF and patronage services, guided step by
-            step by real experts, all from the comfort of your home.
-          </p>
+          <h2 className="heading-base font-bricolage block whitespace-nowrap">
+            Perché farlo con TaxPilot
+          </h2>
+          <div>
+            <p className="text-base text-right">
+              Con noi puoi usufruire di oltre 150 servizi forniti da CAF e
+            </p>
+            <p className="text-base text-right">
+              patronato, ricevendoli comodamente in formato digitale
+            </p>
+            <p className="text-base text-right">senza dover uscire di casa.</p>
+          </div>
         </div>
 
         <div className="hidden lg:flex w-full bg-[#FBFBFA] rounded-[24px] border border-[#E6E6E1] justify-between p-12 gap-6">

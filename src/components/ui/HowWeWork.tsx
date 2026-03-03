@@ -8,25 +8,26 @@ export default function HowWeWork() {
         <div className="grid md:grid-cols-2 bg-[#037BFF] md:rounded-[32px] justify-center items-center text-white overflow-hidden shadow-xl relative">
           <div className="flex flex-col md:items-start items-center justify-center px-8 md:px-20 py-12 md:py-24">
             <span className="w-[156px] h-[34px] inline-flex items-center justify-center rounded-full bg-[#006ADE] font-medium backdrop-blur-md">
-              How we work?
+              Come funziona
             </span>
 
             <h2 className="mt-6 md:text-left text-center font-bricolage text-[38px] md:text-[58px] md:leading-[59px] font-extrabold leading-[38px] tracking-[-0.05em]">
-              <span className="block whitespace-nowrap">We Simplify</span>
-              <span className="block whitespace-nowrap">Taxes, Together.</span>
+              <span className="block whitespace-nowrap">La burocrazia,</span>
+              <span className="block whitespace-nowrap"> affrontata </span>
+              <span className="block whitespace-nowrap"> insieme.</span>
             </h2>
 
             <p className="mt-6 md:text-left text-center text-[#BFDDFF] text-[18px] md:text-[20px] leading-[25px]">
-              With TaxPilot, you're never alone. Our digital platform keeps
-              things simple while real professionals personally guide your
-              entire process step by step.
+              Una piattaforma digitale con il supporto di professionisti
+              esperti.Carichi i documenti, noi ci occupiamo del resto, con
+              controllo umano e gestione accurata.
             </p>
 
             <Link
               to="/services"
               className="hidden lg:inline-flex font-bricolage mt-10 leading-[100%] w-[262px] h-[62px] items-center justify-center gap-2 rounded-full bg-gradient-to-b from-[#FFDD77] to-[#FFC107] font-extrabold text-[#34352E] text-[24px] shadow-[0_6px_18px_rgba(0,0,0,0.12)] hover:brightness-105 transition duration-200"
             >
-              Explore Services
+              Inizia ora
               <ChevronRight size={22} strokeWidth={4} />
             </Link>
           </div>
@@ -80,23 +81,23 @@ type Step = {
 const steps: Step[] = [
   {
     icon: "/svg/bulb.svg",
-    title: "Compare and Choose",
+    title: "Scegli il servizio",
     description:
-      "Select your service and upload your documents securely. No paperwork or queues — just a few clicks.",
+      "Acquista il servizio di cui hai bisogno e carica i documenti in modo sicuro.",
     number: "01",
   },
   {
     icon: "/svg/analysis.svg",
-    title: "Personalized Analysis",
+    title: "Carica i documenti",
     description:
-      "Our certified experts review your data carefully and handle every detail for accurate results.",
+      "Un operatore controlla tutto, ti contatta se serve un’integrazione e verifica che ogni dato sia corretto.",
     number: "02",
   },
   {
     icon: "/svg/consultation.svg",
-    title: "Real-Time Consultation",
+    title: "Ricevi il risultato",
     description:
-      "Get your completed file right in your dashboard and email or WhatsApp fast, simple, and secure.",
+      "Ti consegniamo la documentazione completa nella tua area personale e via email. Se hai dubbi, sai sempre a chi scrivere.",
     number: "03",
   },
 ];

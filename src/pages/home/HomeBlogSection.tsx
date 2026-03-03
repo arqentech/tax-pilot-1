@@ -54,12 +54,12 @@ export default function HomeBlogSection() {
         />
 
         <h2 className="font-bricolage heading-base mt-6 md:mt-2">
-          <span className="block lg:inline">Practical reads to</span>{" "}
-          <span className="block lg:inline">help you move faster.</span>
+          <span className="block lg:inline">Il Blog di TaxPilot</span>{" "}
         </h2>
 
         <p className="text-base max-w-[660px] mx-auto">
-          Stories from people who turned complicated taxes into peace of mind.
+          Cronache fiscali con taxpilot: esplora il nostro blog per scoprire
+          novità, consigli e insight sulla gestione fiscale.
         </p>
 
         <div className="block sm:hidden overflow-x-auto mt-14">

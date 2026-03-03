@@ -8,27 +8,27 @@ export default function TaxPilotSection() {
       <div className="bg-[#FFC107] relative w-full lg:max-w-full rounded-[28px] p-6 flex flex-col justify-center lg:flex-row lg:items-center ">
         <div className="flex-1 py-5">
           <h2 className="sub-heading md:font-bricolage font-degular">
-            Ready to simplify your taxes with Tax Pilot?
+            La burocrazia, finalmente semplice.
           </h2>
 
           <ul className="mt-4 py-5 text-[16px] lg:text-[20px] leading-[23px] space-y-3">
             <li className="flex text-[#34352E] items-center gap-3">
               <BadgeCheck color="#0AD6A1" width={20} />
-              <span>Upload. Done. Relax</span>
+              <span>Carica i documenti. Al resto pensiamo noi.</span>
             </li>
 
             <li className="flex text-[#34352E] items-center gap-3">
               <BadgeCheck color="#0AD6A1" width={20} />
-              <span>Anytime, anywhere, any device</span>
+              <span>Ovunque ti trovi, da qualsiasi dispositivo.</span>
             </li>
 
             <li className="flex text-[#34352E] items-center gap-3">
               <BadgeCheck color="#0AD6A1" width={20} />
-              <span>Data protected by certified experts</span>
+              <span>I tuoi documenti verificati da professionisti reali.</span>
             </li>
           </ul>
           <Link to="/services">
-            <PrimaryButton text="Explore Services" width="262px" />
+            <PrimaryButton text="Esplora i servizi" width="262px" />
           </Link>
         </div>
 
