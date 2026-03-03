@@ -33,11 +33,11 @@ const Footer = () => {
 
         <div className="text-center mt-8 text-[#999999] text-[14px] font-archivo leading-relaxed">
           <p>
-            ©2025 - All rights reserved. Taxpilot® is a trademark of Adventure
-            Business Consulting Srl
+            ©2026 - Tutti i diiritti riservati. Taxpilot® è un marchio di
+            Adventure Business Consulting Srl |
           </p>
           <p>
-            | Melegnano (MI) 20077 – Via B. Miracoli, 14 VAT: 08923661212 | PEC
+            Melegnano (MI) 20077 – Via B. Miracoli, 14 VAT: 08923661212 | PEC
             adventurebc@pec.it
           </p>
         </div>
@@ -49,16 +49,16 @@ const Footer = () => {
 export default Footer;
 const quickLinks = [
   { label: "How it works", path: "/" },
-  { label: "Services", path: "/services" },
+  { label: "Servizi", path: "/services" },
   { label: "Blogs", path: "/blogs" },
   { label: "FAQ", path: "/faq" },
-  { label: "Contact us", path: "/contact-us" },
+  { label: "Contatti", path: "/contact-us" },
 ];
 
 const legalLinks = [
   { label: "Privacy policy", path: "/privacy-policy" },
   { label: "Cookie policy", path: "/cookie-policy" },
-  { label: "Terms of use", path: "/terms-of-use" },
+  { label: "Termini e Condizioni", path: "/terms-of-use" },
   { label: "General use cases", path: "/general-terms-of-purchase" },
   { label: "Sitemap ", path: "/sitemap" },
 ];

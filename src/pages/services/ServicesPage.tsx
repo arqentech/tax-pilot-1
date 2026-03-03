@@ -88,7 +88,7 @@ const ServicesPage: React.FC = () => {
 
         <div className="flex w-full items-center gap-3 justify-center md:gap-4">
           <div className="w-full md:max-w-[720px]">
-            <SearchBar onSearch={setSearchQuery} value={searchQuery} />
+            <SearchBar onSearch={setSearchQuery} placeholder="Cerca un servizio" value={searchQuery} />
           </div>
           <FilterButton onFilterClick={toggleFilter} />
         </div>

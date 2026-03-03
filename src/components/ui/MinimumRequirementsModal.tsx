@@ -74,7 +74,7 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
     try {
       const results = await validateMinimumRequirementStep(
         currentStep.stepId,
-        answer
+        answer,
       );
       if (results.next_step === false) {
         setIsComplete(true);
@@ -123,12 +123,12 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
         <div className="bg-white rounded-2xl px-10 py-12 max-w-[490px] w-full text-center shadow-xl">
           <p className="text-[#34352E] font-archivo text-[18px] leading-[28px] font-medium">
-            We're analyzing your requirements so we can offer you the service
-            you've chosen. In a few seconds, you'll be redirected to the payment
-            page to complete your request.
+            Stiamo analizzando le tue esigenze per poterti offrire il servizio
+            che hai scelto. Tra pochi secondi verrai reindirizzato alla pagina
+            di pagamento per completare la tua richiesta.
           </p>
           <p className="mt-6 text-[#04226B] font-bricolage font-semibold text-[18px]">
-            Redirecting in {countdown}s
+            Reindirizzamento in {countdown}s
           </p>
         </div>
       </div>

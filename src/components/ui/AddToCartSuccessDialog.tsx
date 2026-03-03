@@ -46,10 +46,10 @@ export default function AddToCartSuccessDialog({
           id="add-to-cart-success-title"
           className="text-[22px] font-bricolage font-extrabold text-[#34352E] mb-2"
         >
-          Thank you
+          Grazie
         </h2>
         <p className="text-[#5F6057] text-base mb-6">
-          The service is added to cart.
+          Il servizio viene aggiunto al carrello.
         </p>
         <button
           type="button"

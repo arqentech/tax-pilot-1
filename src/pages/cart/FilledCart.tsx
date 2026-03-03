@@ -22,7 +22,7 @@ interface FilledCartProps {
 
 export default function FilledCart({ items }: FilledCartProps) {
   const subtotal = items.reduce((acc, item) => acc + item.price, 0);
-  const servicesLabel = items.length === 1 ? "service" : "services";
+  const servicesLabel = items.length === 1 ? "servizio" : "servizi";
   const { removeFromCart } = useCart();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
@@ -31,9 +31,9 @@ export default function FilledCart({ items }: FilledCartProps) {
     <section className=" pb-16">
       <div className=" flex flex-col gap-10">
         <div className="text-center space-y-3">
-          <h1 className="font-bricolage heading-base">Cart</h1>
+          <h1 className="font-bricolage heading-base">Carrello</h1>
           <p className="text-base text-[#5F6057]">
-            You have {items.length} {servicesLabel} in your cart
+            Hai {items.length} {servicesLabel} nel tuo carrello
           </p>
         </div>
 
@@ -61,7 +61,7 @@ export default function FilledCart({ items }: FilledCartProps) {
                   <div className="hidden md:flex md:flex-wrap md:items-center md:gap-3 md:gap-4 md:justify-end">
                     <span className="inline-flex items-center gap-2 rounded-full bg-[#EEFCD7] px-3 py-1 text-xs font-semibold text-[#36500C]">
                       <CircleCheck className="h-4 w-4" />
-                      VAT Included
+                     IVA inclusa
                     </span>
                     {item.hours ? (
                       <span className="inline-flex items-center gap-2 rounded-full bg-[#E9E3FF] px-3 py-1 text-xs font-semibold text-[#4C3A9A] ">
@@ -93,7 +93,7 @@ export default function FilledCart({ items }: FilledCartProps) {
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="inline-flex items-center gap-2 rounded-full bg-[#EEFCD7] px-3 py-1 text-xs font-semibold text-[#36500C]">
                       <CircleCheck className="h-4 w-4" />
-                      VAT Included
+                      IVA inclusa
                     </span>
                     {item.hours ? (
                       <span className="inline-flex items-center gap-2 rounded-full bg-[#E9E3FF] px-3 py-1 text-xs font-semibold text-[#4C3A9A] ">
@@ -124,7 +124,7 @@ export default function FilledCart({ items }: FilledCartProps) {
             <div className="flex flex-col rounded-[20px] border border-[#E6E6E1] bg-[#FBFBFA] ">
               <header className="border-b border-[#E6E6E1] px-6 py-5">
                 <h3 className="font-bricolage text-[20px] font-extrabold leading-[24px] text-[#1F201B]">
-                  Summary
+                  Riepilogo
                 </h3>
               </header>
 
@@ -134,27 +134,27 @@ export default function FilledCart({ items }: FilledCartProps) {
                     htmlFor="promo-code"
                     className="text-[14px] font-medium text-[#5F6057]"
                   >
-                    Have a discount code?
+                    Hai un codice sconto?
                   </label>
                   <div className="flex items-center gap-2">
                     <Input
                       id="promo-code"
-                      placeholder="Enter promo code"
-                      className="h-[46px] rounded-[14px] border-[#E6E6E1] bg-[#FBFBFA] text-[16px]"
+                      placeholder="Inserisci codice"
+                      className="h-[46px] rounded-[14px] placeholder:text-[#9D9E98] border-[#E6E6E1] bg-[#FBFBFA] text-[16px]"
                     />
                     <Button className="h-[46px] rounded-[14px] bg-[#F6F6F3] px-5 text-[16px] font-semibold text-[#5F6057] hover:bg-[#EDEDE8]">
-                      Apply
+                      Applica
                     </Button>
                   </div>
                 </div>
 
                 <div className="space-y-3 border-t border-[#E6E6E1] pt-4 text-[16px] text-[#5F6057]">
                   <div className="flex items-center justify-between">
-                    <span>Sub total</span>
+                    <span>Sub totale</span>
                     <span>€ {subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex items-center justify-between font-semibold text-[#1F201B]">
-                    <span>Total</span>
+                    <span>Totale</span>
                     <span>€ {subtotal.toFixed(2)}</span>
                   </div>
                 </div>
@@ -169,18 +169,18 @@ export default function FilledCart({ items }: FilledCartProps) {
                   ) : (
                     <>
                       <p className="text-[14px] font-medium text-[#5F6057]">
-                        To continue you need to
+                        Per continuare
                       </p>
                       <Link to="/login?redirect=/cart">
                         <PrimaryButton
-                          text="Login to your Account "
+                          text="Accedi al tuo Account "
                           width="291px"
                         />
                       </Link>
                       <p className="text-[14px] text-[#5F6057]">
-                        New user?{" "}
+                        Nuovo utente?{" "}
                         <Link to="/sign-up" className="underline">
-                          Create account
+                          Crea un account
                         </Link>
                       </p>
                     </>

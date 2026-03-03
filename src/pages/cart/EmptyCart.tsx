@@ -1,4 +1,3 @@
-import { Handbag } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Link } from "react-router-dom";
 
@@ -13,9 +12,7 @@ export default function EmptyCart() {
         />
       </div>
 
-      <h1 className="text-[20px] font-normal text-[#5F6057]">
-        Your cart is empty
-      </h1>
+      <h1 className="text-[20px] font-normal text-[#5F6057]">Carrello vuoto</h1>
 
       <Link to="/services" className="w-full flex justify-center">
         <Button
@@ -30,7 +27,7 @@ export default function EmptyCart() {
             hover:opacity-90
           "
         >
-          Choose a Service
+          Scegli un servizio
         </Button>
       </Link>
     </div>

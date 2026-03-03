@@ -38,20 +38,7 @@ export default function HomeBlogSection() {
   return (
     <section className="w-full full-bleed bg-[#FBFBFA] flex flex-col items-center py-16">
       <div className="w-full text-center max-w-[1320px] px-4">
-        <Badge
-          text="Blog"
-          width="78px"
-          center
-          bgColor="#FFFFFF"
-          className="hidden md:flex "
-        />
-        <Badge
-          text="Insights"
-          width="78px"
-          center
-          bgColor="#FFFFFF"
-          className="flex md:hidden"
-        />
+        <Badge text="Blog" width="78px" center bgColor="#FFFFFF" />
 
         <h2 className="font-bricolage heading-base mt-6 md:mt-2">
           <span className="block lg:inline">Il Blog di TaxPilot</span>{" "}

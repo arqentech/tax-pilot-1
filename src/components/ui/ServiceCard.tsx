@@ -68,7 +68,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           {vatIncluded && (
             <span className="bg-[#EEFCD7] flex items-center gap-1 text-[#36500C] text-xs font-medium px-2 py-1 rounded-full">
               <CircleCheck className="w-3 h-3" />
-              VAT Included
+              IVA inclusa
             </span>
           )}
 
@@ -87,11 +87,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             to={serviceLink!}
             className="text-[#04226B] text-sm font-semibold hover:underline flex items-center gap-1"
           >
-            <span className="block md:hidden text-[18px] font-extrabold leading-[25px]">
-              Get this service
-            </span>
-            <span className="hidden md:block text-[18px] font-extrabold leading-[25px]">
-              Go to the service
+            <span className=" text-[18px] font-extrabold leading-[25px]">
+              Vai al servizio
             </span>
             <ChevronRight size={18} />
           </Link>

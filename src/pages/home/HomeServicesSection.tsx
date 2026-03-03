@@ -51,6 +51,7 @@ const ServicesSection = () => {
             value={searchQuery}
             onSearch={setSearchQuery}
             wrapperClass="w-full max-w-[720px]"
+            placeholder="cerca un servizio"
           />
         </div>
 
