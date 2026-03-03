@@ -34,7 +34,7 @@ export default function AddToCartSuccessDialog({
       aria-labelledby="add-to-cart-success-title"
     >
       <div
-        className="bg-white rounded-xl shadow-lg p-6 sm:p-8 max-w-sm w-full text-center"
+        className="bg-[#fbfbfa] rounded-xl shadow-lg p-6 sm:p-8 max-w-sm w-full text-center"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-center mb-4">

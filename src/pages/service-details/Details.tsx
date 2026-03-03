@@ -112,7 +112,7 @@ const Details: React.FC = () => {
       />
 
       <section className="flex flex-col-reverse md:flex-row justify-center py-3 sm:py-6 md:py-10 gap-3 sm:gap-6 md:gap-10 pb-3 sm:pb-6 mb-4 sm:mb-8 md:mb-10">
-        <div className="py-2 sm:py-4 md:py-6 rounded-2xl flex-shrink-0 w-full md:w-auto px-2 sm:px-4 md:px-0">
+        <div className=" sm:py-4 flex-shrink-0 w-full md:w-auto px-2 sm:px-4 md:px-0">
           <img
             src={
               service.image?.url ||
@@ -138,12 +138,10 @@ const Details: React.FC = () => {
               € {service.price.toFixed(2)}
             </span>
 
-            {/* {service.vatIncluded && ( */}
             <span className="bg-[#EEFCD7] border border-t border-[1px] border-[#D9E6C0] w-[127px] h-[26px]  flex items-center gap-0.5 sm:gap-1 text-[#36500C] text-[14px] leading-[24px] font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
               <CircleCheck className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" />
               <span className="whitespace-nowrap">VAT Included</span>
             </span>
-            {/* )} */}
 
             {service.hours && (
               <span className="flex items-center gap-0.5 sm:gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
