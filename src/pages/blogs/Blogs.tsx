@@ -6,6 +6,7 @@ import Categories from "@/components/ui/Categories";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogs } from "@/api/blogs";
 import { CategoryOption } from "@/types/blogs";
+import { stripHtml } from "@/lib/utils";
 
 const Blogs: React.FC = () => {
   const [query, setQuery] = useState("");
@@ -33,18 +34,11 @@ const Blogs: React.FC = () => {
   const blogs = data?.results?.data ?? [];
   const safeBlogs = Array.isArray(blogs) ? blogs : [];
 
-  function stripHtml(html: string | undefined): string {
-    if (!html) return "";
-    return html
-      .replace(/<[^>]*>/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
   const transformedBlogs = useMemo(() => {
     return safeBlogs
       .filter((blog) => blog && (blog.identifier || blog.id))
       .map((blog) => {
-        const text = stripHtml(blog.description_short ?? blog.description_long);
+        const text = stripHtml(blog.description_short ?? blog.description_long ?? "");
         const wordCount = text.split(" ").length;
         const readTime = Math.max(1, Math.ceil(wordCount / 200));
         return {

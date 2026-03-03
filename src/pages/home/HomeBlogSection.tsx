@@ -3,6 +3,7 @@ import BlogCard from "@/components/ui/blogs/BlogCard";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogs } from "@/api/blogs";
 import { useMemo } from "react";
+import { stripHtml } from "@/lib/utils";
 
 export default function HomeBlogSection() {
   const visibleBlogs = 3;
@@ -21,14 +22,15 @@ export default function HomeBlogSection() {
       .filter((blog) => blog && (blog.identifier || blog.id))
       .slice(0, visibleBlogs)
       .map((blog) => {
-        const text = blog.description_short ?? blog.description_long ?? "";
-        const wordCount = (text || "").split(/\s+/).filter(Boolean).length;
+        const rawText = blog.description_short ?? blog.description_long ?? "";
+        const cleanText = stripHtml(rawText);
+        const wordCount = cleanText.split(/\s+/).filter(Boolean).length;
         const readTime = Math.max(1, Math.ceil(wordCount / 200));
         return {
           tag: blog.category?.name ?? "",
           image: blog.image?.url ?? "",
           title: blog.title ?? "",
-          description: text,
+          description: cleanText,
           readTime: `${readTime} min read`,
           slug: blog.identifier ?? String(blog.id ?? ""),
         };
