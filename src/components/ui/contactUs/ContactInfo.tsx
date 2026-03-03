@@ -2,12 +2,12 @@ interface ContactInfoProps {}
 
 export default function ContactInfo({}: ContactInfoProps) {
   const items = [
-    { icon: "/svg/phone.svg", title: "Call Us", desc: "+39 000 111 2222" },
+    { icon: "/svg/phone.svg", title: "Telefono", desc: "+39 000 111 2222" },
     { icon: "/svg/email.svg", title: "Email Us", desc: "support@taxpilot.it" },
     {
       icon: "/svg/location.svg",
-      title: "Address",
-      desc: "Corso Italia 10, Roma",
+      title: "Indirizzo",
+      desc: "Via Miracoli, Melegnano",
     },
   ];
 
@@ -27,7 +27,7 @@ export default function ContactInfo({}: ContactInfoProps) {
             <p className="text-[22px] font-bricolage font-extrabold">
               {item.title}
             </p>
-            <p className="text-[16px] leading-[24px]">{item.desc}</p>
+            <p className="text-[16px] text-[#BFDDFF] leading-[24px]">{item.desc}</p>
           </div>
           {i < items.length - 1 && (
             <div className="hidden md:block border-r border-white h-10 absolute right-0 top-1/2 -translate-y-1/2" />

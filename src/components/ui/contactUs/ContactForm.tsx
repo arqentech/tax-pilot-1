@@ -26,21 +26,21 @@ export default function ContactForm({
     <form onSubmit={onSubmit} className={`space-y-${isMobile ? "3" : "6"} `}>
       <Input
         name="name"
-        placeholder="Name"
+        placeholder="Nome"
         value={form.name}
         onChange={onChange}
         className="bg-[#FBFBFA] rounded-[14px] !text-[18px] h-[60px] border border-[#FBFBFA] placeholder:!text-[#9D9E98]"
       />
       <Input
         name="surname"
-        placeholder="Surname"
+        placeholder="Cognome"
         value={form.surname}
         onChange={onChange}
         className="bg-[#FBFBFA] rounded-[14px] h-[60px] border border-[#FBFBFA] !text-[18px] placeholder:!text-[#9D9E98]"
       />
       <Input
         name="email"
-        placeholder="Email address"
+        placeholder="Indirizzo email"
         value={form.email}
         onChange={onChange}
         className="bg-[#FBFBFA] rounded-[14px] h-[60px] border border-[#FBFBFA] !text-[18px] placeholder:!text-[#9D9E98]"
@@ -48,7 +48,7 @@ export default function ContactForm({
 
       <TextArea
         name="message"
-        placeholder="Message"
+        placeholder="Messaggio"
         className={`${
           isMobile ? "h-24" : "h-28"
         } bg-[#FBFBFA] rounded-[14px] border border-[#FBFBFA] placeholder:!text-[#9D9E98] !text-[18px]`}
@@ -60,7 +60,7 @@ export default function ContactForm({
         type="submit"
         className="w-full h-[60px] rounded-full bg-[linear-gradient(180deg,#54564A_0%,#34352E_44.72%)] text-[24px] text-white font-bricolage "
       >
-        Send
+        Invia
       </Button>
     </form>
   );

@@ -25,12 +25,11 @@ export default function ContactUs() {
       <Card className="w-full px-6 py-3 shadow-lg rounded-[26px] border border-[#E6E6E1] bg-white">
         <CardHeader className="text-center ">
           <CardTitle className="sub-heading font-bricolage">
-            Do you need assistance?
+           Hai bisogno di supporto?
           </CardTitle>
-          <div className="text-base mt-4 md:max-w-[595px] text-justify">
-            <p>
-              Our chat is available Monday to Friday for quick, clear support.
-              Outside these hours, feel free to email us using the form below.
+          <div className="text-base  mt-4 md:max-w-[595px] text-justify">
+            <p className="text-center">
+            Il nostro supporto è attivo dal lunedì al venerdì. Puoi contattarci tramite chat o compilare il modulo per ricevere assistenza.
             </p>
           </div>
         </CardHeader>
