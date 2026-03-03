@@ -111,51 +111,51 @@ const Details: React.FC = () => {
         ]}
       />
 
-      <section className="flex flex-col-reverse md:flex-row justify-center py-3 sm:py-6 md:py-10 gap-3 sm:gap-6 md:gap-10 pb-3 sm:pb-6 mb-4 sm:mb-8 md:mb-10">
-        <div className=" sm:py-4 flex-shrink-0 w-full md:w-auto px-2 sm:px-4 md:px-0">
-          <img
-            src={
-              service.image?.url ||
-              "/svg/client-calls-customer-care-for-support.svg"
-            }
-            alt={service.title}
-            className="w-full max-w-full md:w-[493px] md:h-[542px] h-auto object-contain rounded-xl mx-auto md:mx-0"
-          />
-        </div>
-
-        <div className="flex-1 min-w-0 py-5">
-          <h1 className="text-center text-[#34352E] md:text-left font-bricolage font-extrabold heading-base px-2 sm:px-4 md:px-0 break-words">
-            {service.title}
-          </h1>
-
-          <div
-            className="text-[#5F6057] mt-2 sm:mt-3 max-w-[600px] md:text-left text-center text-base px-2 sm:px-4 md:px-0 break-words"
-            dangerouslySetInnerHTML={{ __html: service.description_short }}
-          />
-
-          <div className="flex flex-wrap items-center py-5 gap-2">
-            <span className="text-[30px] text-[#34352E] leading-[30px] font-bricolage font-extrabold whitespace-nowrap">
-              € {service.price.toFixed(2)}
-            </span>
-
-            <span className="bg-[#EEFCD7] border border-t border-[1px] border-[#D9E6C0] w-[127px] h-[26px]  flex items-center gap-0.5 sm:gap-1 text-[#36500C] text-[14px] leading-[24px] font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
-              <CircleCheck className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" />
-              <span className="whitespace-nowrap">IVA inclusa</span>
-            </span>
-
-            {service.hours && (
-              <span className="flex items-center gap-0.5 sm:gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-[10px] sm:text-xs font-medium px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
-                <Clock className="w-2.5 sm:w-3 h-2.5 sm:h-3 flex-shrink-0" />
-                <span className="whitespace-nowrap">{service.hours}</span>
-              </span>
-            )}
+      <section className="w-full bg-[#FBFBFA] py-10">
+        <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-12 px-4">
+          <div className="w-full md:w-1/2 flex justify-center md:-translate-y-16">
+            <img
+              src={
+                service.image?.url ||
+                "/svg/client-calls-customer-care-for-support.svg"
+              }
+              alt={service.title}
+              className="w-full max-w-[480px] object-contain"
+            />
           </div>
 
-          <div className="mt-3 sm:mt-5 px-2 sm:px-4 md:px-0">
-            <div className="w-full max-w-full sm:max-w-[257px]">
+          <div className="w-full md:w-1/2 text-center md:text-left">
+            <h1 className="text-[#34352E] font-bricolage font-extrabold text-[42px] leading-[1.1]">
+              {service.title}
+            </h1>
+
+            <div
+              className="text-[#5F6057] mt-4 text-base max-w-[520px] mx-auto md:mx-0"
+              dangerouslySetInnerHTML={{ __html: service.description_short }}
+            />
+
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-6">
+              <span className="text-[28px] font-extrabold text-[#34352E]">
+                € {service.price.toFixed(2)}
+              </span>
+
+              <span className="flex items-center gap-1 bg-[#EEFCD7] border border-[#D9E6C0] text-[#36500C] text-sm px-3 py-1 rounded-full">
+                <CircleCheck className="w-4 h-4" />
+                IVA inclusa
+              </span>
+
+              {service.hours && (
+                <span className="flex items-center gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-sm px-3 py-1 rounded-full">
+                  <Clock className="w-4 h-4" />
+                  {service.hours}
+                </span>
+              )}
+            </div>
+
+            <div className="mt-8 flex justify-center md:justify-start">
               <PrimaryButton
                 text="Request Service"
-                width="100%"
+                width="220px"
                 onClick={handleRequestService}
               />
             </div>
