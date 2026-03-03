@@ -2,6 +2,7 @@ import {
   FaqTopic,
   FaqTopicResponse,
   FaqDetailResponse,
+  FaqSearchResult,
 } from "@/types/faq";
 import { api } from "./axios";
 
