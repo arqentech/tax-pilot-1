@@ -23,15 +23,15 @@ export default function FAQQuestionsPage() {
         slug: f.slug,
         question: f.question,
       })) ?? [],
-    [data]
+    [data],
   );
 
   const filtered = useMemo(
     () =>
       questions.filter((q) =>
-        q.question.toLowerCase().includes(query.toLowerCase())
+        q.question.toLowerCase().includes(query.toLowerCase()),
       ),
-    [questions, query]
+    [questions, query],
   );
 
   const breadcrumbItems = useMemo(
@@ -39,7 +39,7 @@ export default function FAQQuestionsPage() {
       { label: "FAQs", href: "/faq" },
       ...(data?.title ? [{ label: data.title, href: null }] : []),
     ],
-    [data?.title]
+    [data?.title],
   );
 
   return (
@@ -50,7 +50,7 @@ export default function FAQQuestionsPage() {
           Le domande più frequenti dei nostri servizi
         </p>
 
-        <div className="w-full max-w-[725px]">
+        <div className="w-[40vw]">
           <SearchBar
             onSearch={setQuery}
             value={query}
@@ -62,18 +62,18 @@ export default function FAQQuestionsPage() {
         {data && (
           <div className="w-full max-w-[874px]">
             <Breadcrumbs items={breadcrumbItems} className="mb-4" />
-            <h2 className="text-xl font-semibold text-[#3F403A]">
+            <h2 className="text-center text-[24px] font-bricolage md:text-left font-extrabold text-[#3F403A]">
               {data.title}
             </h2>
           </div>
         )}
 
-        <div className="w-full max-w-[874px] space-y-4 mt-2">
+        <div className=" w-[40vw] space-y-4 mt-2">
           {filtered.map((item) => (
             <div
               key={item.slug}
               onClick={() => navigate(`/faq/${category}/${item.slug}`)}
-              className="bg-[#F6F6F3] rounded-xl p-5 cursor-pointer text-[#3F403A] transition hover:shadow-md"
+              className="bg-[#F6F6F3] rounded-xl p-5 cursor-pointer text-[18px] text-[#3F403A] transition hover:shadow-md"
             >
               {item.question}
             </div>

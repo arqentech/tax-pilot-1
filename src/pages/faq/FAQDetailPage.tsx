@@ -27,7 +27,7 @@ export default function FAQDetailPage() {
             { label: data.faq.question, href: null },
           ]
         : [],
-    [data?.faq]
+    [data?.faq],
   );
 
   const relatedQuestions = useMemo(
@@ -35,9 +35,9 @@ export default function FAQDetailPage() {
       data?.others?.filter(
         (item) =>
           !query.trim() ||
-          item.question.toLowerCase().includes(query.toLowerCase())
+          item.question.toLowerCase().includes(query.toLowerCase()),
       ) ?? [],
-    [data?.others, query]
+    [data?.others, query],
   );
 
   if (isLoading) {
@@ -87,7 +87,7 @@ export default function FAQDetailPage() {
         </div>
 
         <div className="w-full max-w-[874px] bg-white border border-[#E6E6E1] rounded-xl shadow-sm p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-semibold text-[#3F403A] mb-4">
+          <h2 className="text-xl md:text-2xl font-extrabold text-[#3F403A] mb-4">
             {faq.question}
           </h2>
           {faq.response && (
@@ -100,7 +100,7 @@ export default function FAQDetailPage() {
 
         {data.others?.length > 0 && (
           <div className="w-full max-w-[874px] mt-8">
-            <h3 className="text-xl font-semibold text-[#3F403A] mb-4">
+            <h3 className="text-[24px] font-bricolage font-extrabold text-[#3F403A] mb-4">
               Altre domande su {faq.topic}
             </h3>
             <ul className="list-disc list-inside space-y-2 text-[#5F6057]">

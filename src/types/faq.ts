@@ -35,3 +35,13 @@ export interface FaqDetailResponse {
   faq: FaqDetailItem;
   others: FaqItem[];
 }
+
+export interface FaqSearchResult {
+  id: number;
+  topic: string;
+  slug_topic: string;
+  slug: string;
+  question: string;
+  response: string;
+  highlight?: string;
+}
