@@ -82,8 +82,8 @@ const ServicesPage: React.FC = () => {
     <div className="w-full py-16">
       <div className="flex flex-col items-center min-h-screen md:pb-16">
         <div className="mb-8 text-center">
-          <h1 className="font-bricolage heading-base">All Services.</h1>
-          <p className="mt-2 text-base">Below are our Services and Bonuses.</p>
+          <h1 className="font-bricolage heading-base">Tutti i Servizi</h1>
+          <p className="mt-2 text-base">Scegli tra gli oltre 150 servizi e bonus disponibili.</p>
         </div>
 
         <div className="flex w-full items-center gap-3 justify-center md:gap-4">

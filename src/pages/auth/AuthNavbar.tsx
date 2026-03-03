@@ -24,7 +24,7 @@ const AuthNavbar = () => {
           <Link
             to="/"
             className="flex items-center text-[#34352E] text-[18px] font-medium hover:text-[#0166FF] transition-colors"
-          > Back to Home
+          > Ritorna alla Home
             <Undo2 className="h-6 w-6 ml-2" />
            
           </Link>

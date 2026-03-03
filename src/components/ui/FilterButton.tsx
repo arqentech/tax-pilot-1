@@ -24,7 +24,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({
         className="w-5 h-5 lg:w-6 lg:h-6"
       />
       <span className="text-[20px] leading-[25px] text-[#F1F1EC] font-medium hidden lg:inline ml-2">
-        Filter
+       Filtri
       </span>
     </button>
   );

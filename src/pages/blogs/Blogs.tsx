@@ -97,16 +97,16 @@ const Blogs: React.FC = () => {
     <div className="py-10 mt-4 sm:mt-5 md:mt-6 flex justify-center min-h-screen ">
       <div className="w-full flex flex-col items-center">
         <div className="text-center mb-8">
-          <h1 className="font-bricolage heading-base">The TaxPilot Blog.</h1>
+          <h1 className="font-bricolage heading-base">Il blog di TaxPilot</h1>
           <p className="mt-2 text-[#5F6057] text-[18px] md:text-[20px]">
-            Tax news with TaxPilot: explore our blog for news, tips, and
-            insights.
+            Cronache fiscali con taxpilot: esplora il nostro blog per scoprire
+            novità, consigli e insight sulla gestione fiscale.
           </p>
         </div>
 
         <div className="flex w-full items-center gap-3 justify-center md:gap-4">
           <div className="w-full md:max-w-[720px]">
-            <SearchBar onSearch={setQuery} value={query} />
+            <SearchBar onSearch={setQuery} placeholder="Cerca" value={query} />
           </div>
           <FilterButton onFilterClick={toggleFilter} />
         </div>

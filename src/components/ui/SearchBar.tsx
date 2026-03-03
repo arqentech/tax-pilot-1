@@ -1,5 +1,6 @@
 import React from "react";
 import { Search, X } from "lucide-react";
+import { useMediaQuery } from "react-responsive";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -16,9 +17,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
   value = "",
   className = "",
   wrapperClass = "",
+  placeholder,
   showClear = false,
   shortcutHint,
 }) => {
+  const isLargeScreen = useMediaQuery({ minWidth: 1024 });
+  const autoPlaceholder = isLargeScreen ? "Search" : "Search for a service";
   const hasValue = value.length > 0;
 
   return (
@@ -30,8 +34,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
         type="text"
         onChange={(e) => onSearch(e.target.value)}
         value={value}
-        placeholder="cerca un servizio"
-        className={`flex-1 min-w-0 bg-transparent outline-none text-[#34352E] placeholder:text-[#A4A59F] md:placeholder-[#5F6057] md:text-base ${className}`}
+        placeholder={placeholder ?? autoPlaceholder}
+        className={`flex-1 min-w-0 bg-transparent outline-none text-[#34352E]placeholder:text-[#A4A59F]  md:text-base ${className}`}
       />
       {showClear && hasValue && (
         <button

@@ -127,7 +127,7 @@ export default function LoginPage() {
                   htmlFor="remember"
                   className="ml-2 text-[14px] md:text-[16px]"
                 >
-                  Remember me
+                  Ricordami
                 </Label>
               </div>
 
@@ -135,7 +135,7 @@ export default function LoginPage() {
                 to="/forgot-password"
                 className="text-[14px] md:text-[16px] text-[#04226B] hover:underline"
               >
-                Forgot your password
+                Password Dimenticata?
               </Link>
             </div>
 
@@ -150,12 +150,12 @@ export default function LoginPage() {
               disabled={isLoading}
               className="w-full h-[60px] md:w-[466px] font-bricolage font-extrabold rounded-full text-[#FFFFFF] text-[24px] custom-box-shadow hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? "Logging in..." : "Continue"}
+              {isLoading ? "Accesso..." : "Continua"}
             </Button>
 
             <div className="flex items-center gap-3 text-[#9D9E98]">
               <hr className="flex-1 border-t border-[#E6E6E1]" />
-              <span className="text-[20px] leading-[25px]">or</span>
+              <span className="text-[20px] leading-[25px]">o</span>
               <hr className="flex-1 border-t border-[#E6E6E1]" />
             </div>
 
@@ -170,16 +170,16 @@ export default function LoginPage() {
                 alt="Google"
                 className="w-5 h-5"
               />
-              Login With Google
+              Login con Google
             </Button>
 
             <p className="text-center text-[18px] leading-[25px]">
-              New user?{" "}
+              Nuovo utente?{" "}
               <Link
                 to="/sign-up"
                 className="italic hover:text-blue-500 underline font-medium"
               >
-                Create account
+                Crea un account
               </Link>
             </p>
           </CardFooter>

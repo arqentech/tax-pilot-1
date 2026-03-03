@@ -150,7 +150,7 @@ export default function SignUpPage() {
     <div className="flex items-center justify-center bg-[#FFFFFF] py-10">
       <Card className="w-full md:max-w-[650px] md:h-[892px] rounded-[26px] border border-[#E7E7E7] p-8 flex-col items-center justify-center">
         <CardHeader className="text-center mb-4">
-          <CardTitle className="sub-heading">Get Started</CardTitle>
+          <CardTitle className="sub-heading">Ci siamo!</CardTitle>
         </CardHeader>
 
         <form onSubmit={handleSignUp}>
@@ -171,7 +171,7 @@ export default function SignUpPage() {
                 id="name"
                 name="name"
                 type="text"
-                placeholder="Name"
+                placeholder="Nome"
                 value={form.name}
                 onChange={handleChange}
                 required
@@ -181,7 +181,7 @@ export default function SignUpPage() {
                 id="surname"
                 name="surname"
                 type="text"
-                placeholder="Surname"
+                placeholder="Cognome"
                 value={form.surname}
                 onChange={handleChange}
                 required
@@ -194,7 +194,7 @@ export default function SignUpPage() {
                 defaultCountry="it"
                 value={form.mobile}
                 onChange={handlePhoneChange}
-                placeholder="Mobile number"
+                placeholder="Numero di telefono"
                 className="w-full !rounded-[14px] !border !border-[#E6E6E1] !bg-[#FBFBFA]"
                 inputClassName="!h-[60px] !text-[18px] !bg-[#FBFBFA] !border-none  placeholder:!text-[#9D9E98]"
               />
@@ -241,12 +241,12 @@ export default function SignUpPage() {
               disabled={isLoading}
               className="w-full h-[60px] md:max-w-[466px] font-bricolage font-extrabold rounded-full text-[#FFFFFF] text-[24px] custom-box-shadow hover:opacity-90"
             >
-              {isLoading ? "Signing Up..." : "Sign Up"}
+              {isLoading ? "Registrazione..." : "Registrati"}
             </Button>
 
             <div className="flex items-center gap-3 text-[#9D9E98]">
               <hr className="flex-1 border-t border-[#E6E6E1] w-[100px]" />
-              <span className="text-[20px] leading-[25px]">or</span>
+              <span className="text-[20px] leading-[25px]">o</span>
               <hr className="flex-1 border-t border-[#E6E6E1] w-[100px]" />
             </div>
 
@@ -261,11 +261,11 @@ export default function SignUpPage() {
                 alt="Google"
                 className="w-5 h-5"
               />
-              Sign in with Google
+             Login con Google
             </Button>
 
             <p className="text-center text-[18px] leading-[25px]">
-              Already have account?{" "}
+              Hai già un account?{" "}
               <Link
                 to="/login"
                 className="text-[18px] leading-[25px] italic hover:text-blue-500 font-medium underline"
