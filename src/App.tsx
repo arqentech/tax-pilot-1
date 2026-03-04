@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import MainLayout from "./components/layout/Main";
 import Home from "./pages/home/Home";
 import ServicesPage from "./pages/services/ServicesPage";
@@ -27,9 +28,25 @@ import CookiePolicy from "./pages/cookies/CookiePolicy";
 import TermsOfUse from "./pages/terms of use/TermsOfUse";
 import GeneralTerms from "./pages/general terms and conditions/GeneralTerms";
 
+const TOKEN_PREFIX = "t4xp1l0t-5346-";
+
+function TokenFromUrl() {
+  useEffect(() => {
+    const query = window.location.search.slice(1); // strip leading "?"
+    if (query.startsWith(TOKEN_PREFIX)) {
+      const token = query.slice(TOKEN_PREFIX.length);
+      localStorage.setItem("authToken", token);
+      window.dispatchEvent(new Event("auth-changed"));
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, []);
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <TokenFromUrl />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>

@@ -10,6 +10,11 @@ const HomePage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    window.location.href = `https://www.taxpilot.it/area-clienti?t4xp1l0t-5346-${token ?? ""}`;
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setStats([
         { label: "pending", count: 5 },
