@@ -1,9 +1,4 @@
-import {
-  createContext,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   getCartToken,
   getCart,
@@ -13,34 +8,7 @@ import {
 } from "@/api/cart.api";
 import { CartItemResponse, CartItemMetadata } from "@/types/cart";
 import { stripHtml } from "@/lib/utils";
-
-export interface CartItem {
-  id?: string;
-  service_id?: number;
-  cart_item_id?: number;
-  title: string;
-  price: number;
-  description: string;
-  hours?: string;
-  link?: string;
-  vatIncluded?: boolean;
-  quantity?: number;
-}
-
-type CartContextType = {
-  cartItems: CartItem[];
-  isLoading: boolean;
-  cartToken: string | null;
-  addToCart: (item: CartItem) => Promise<{ added: boolean; message: string }>;
-  removeFromCart: (
-    id: string,
-  ) => Promise<{ removed: boolean; message: string }>;
-  clearCart: () => void;
-  setCartItems: (items: CartItem[]) => void;
-  refreshCart: (force?: boolean) => Promise<void>;
-};
-
-export const CartContext = createContext<CartContextType | null>(null);
+import { CartContext, type CartItem } from "./cart-state";
 
 const CART_ITEMS_STORAGE_KEY = "cartItems";
 const CART_DATA_STORAGE_KEY = "cartData";
@@ -95,7 +63,6 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
     }
   }
 
-  // Default vatIncluded to true if not found (maintain backward compatibility)
   if (vatIncluded === undefined) {
     vatIncluded = true;
   }
@@ -242,7 +209,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (needsSync) {
         try {
-          const existingToken = storedToken || getStoredCartToken();
+          const existingToken =
+            storedToken ?? getStoredCartToken();
           if (existingToken) {
             setCartToken(existingToken);
             try {
