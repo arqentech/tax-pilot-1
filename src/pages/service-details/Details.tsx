@@ -106,12 +106,12 @@ const Details: React.FC = () => {
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
-          { label: "Services", href: "/servizi" },
+          { label: "Servizi", href: "/servizi" },
           { label: formatLabel(slug) ?? "", href: null },
         ]}
       />
 
-      <section className="w-full bg-[#FBFBFA] py-10">
+      <section className="w-full  py-10">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-12 px-4">
           <div className="w-full md:w-1/2 flex justify-center md:-translate-y-16">
             <img
@@ -166,7 +166,7 @@ const Details: React.FC = () => {
       {service.description_long && (
         <section className="grid grid-cols-1 md:grid-cols-3  sm:mb-8 md:mb-12 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4 md:px-0">
           <h2 className="text-[#34352E] font-bricolage text-[28px] font-extrabold leading-[73px] md:leading-[30px] ">
-            In-depth analysis
+            Analisi approfondita
           </h2>
           <div className="md:col-span-2 leading-[25px] text-[18px] text-[#5F6057] font-normal whitespace-pre-line break-words">
             <div
@@ -179,7 +179,7 @@ const Details: React.FC = () => {
       {service.advantages && service.advantages.length > 0 && (
         <section className="grid grid-cols-1 md:grid-cols-3 mb-4 sm:mb-8 md:mb-12 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4 md:px-0">
           <h2 className="text-[#34352E] font-bricolage text-[28px] font-extrabold leading-[73px] md:leading-[30px]">
-            Advantages
+            Vantaggi
           </h2>
           <div className="md:col-span-2 space-y-2 sm:space-y-3">
             {service.advantages.map((adv: string, index: number) => (
@@ -218,9 +218,9 @@ const Details: React.FC = () => {
               Italy.
             </p>
             <div className="hidden md:flex text-[#04226B] items-center gap-1 text-[18px] mt-4 font-semibold">
-              <span>Still have questions?</span>
+              <span>Hai ancora domande?</span>
               <Link to="/contatti" className="underline italic">
-                Chat with an expert
+                Chattare con un esperto
               </Link>
             </div>
           </div>
