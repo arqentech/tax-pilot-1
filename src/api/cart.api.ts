@@ -65,7 +65,6 @@ function normalizeCartResponse(
   throw new Error("Invalid cart response");
 }
 
-/** Get or create a cart token (for refresh/init when no token yet). */
 const getCartToken = async (forceNew: boolean = false): Promise<string> => {
   if (!forceNew) {
     const existing = getStoredCartToken();
