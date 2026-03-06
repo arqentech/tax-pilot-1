@@ -29,6 +29,7 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
   const [isValidating, setIsValidating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isComplete, setIsComplete] = useState(false);
+  const [countdown, setCountdown] = useState(10);
   const [textAnswer, setTextAnswer] = useState("");
   const [selectAnswer, setSelectAnswer] = useState("");
 
@@ -56,6 +57,16 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
     init();
   }, [serviceId]);
 
+  useEffect(() => {
+    if (!isComplete) return;
+    if (countdown <= 0) {
+      onComplete();
+      return;
+    }
+    const timer = setTimeout(() => setCountdown((c) => c - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [isComplete, countdown, onComplete]);
+
   const handleAnswer = async (answer: string) => {
     if (!currentStep || isValidating) return;
     setIsValidating(true);
@@ -66,7 +77,7 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
         answer,
       );
       if (results.next_step === false) {
-        onComplete();
+        setIsComplete(true);
       } else {
         const nextStep: StepState = {
           stepId: results.next_step.id,
@@ -105,11 +116,24 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
     );
   }
 
-  if (isComplete) {
-    return null;
-  }
-
   if (!currentStep) return null;
+
+  if (isComplete) {
+    return (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-2xl px-10 py-12 max-w-[490px] w-full text-center shadow-xl">
+          <p className="text-[#34352E] font-archivo text-[18px] leading-[28px] font-medium">
+            Stiamo analizzando le tue esigenze per poterti offrire il servizio
+            che hai scelto. Tra pochi secondi verrai reindirizzato alla pagina
+            di pagamento per completare la tua richiesta.
+          </p>
+          <p className="mt-6 text-[#04226B] font-bricolage font-semibold text-[18px]">
+            Reindirizzamento in {countdown}s
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const { form, stepId, lastStepId } = currentStep;
   const showProgressBar = lastStepId > 1;
@@ -119,6 +143,7 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl px-8 pt-6 pb-8 max-w-[490px] w-full shadow-xl">
+        {/* Header row */}
         <div className="flex items-center gap-3 mb-6">
           <div className="w-5 flex-shrink-0">
             {showBackButton && (
@@ -152,6 +177,7 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
           </button>
         </div>
 
+        {/* Question */}
         <div className="text-center mb-8">
           <h2 className="text-[#34352E] font-bricolage font-extrabold text-[22px] leading-[30px] mb-2">
             {form.label}
@@ -161,6 +187,7 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
           </p>
         </div>
 
+        {/* Answer area */}
         {form.type === "yes_or_no" ? (
           <div className="flex justify-center gap-4">
             <button
@@ -205,12 +232,10 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
                   >
                     <option value="">Select an option</option>
                     {form.options.map((opt, i) => {
-                      const label: string =
-                        typeof opt === "string" ? opt : opt.label;
-                      const val: string =
-                        typeof opt === "string" ? opt : opt.value;
+                      const label = typeof opt === "string" ? opt : opt.label;
+                      const value = typeof opt === "string" ? opt : opt.value;
                       return (
-                        <option key={i} value={val}>
+                        <option key={i} value={value}>
                           {label}
                         </option>
                       );
@@ -247,6 +272,7 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
           </div>
         )}
 
+        {/* Error message */}
         {error && (
           <p className="text-red-500 font-archivo text-[14px] text-center mt-4 font-medium">
             {error}
