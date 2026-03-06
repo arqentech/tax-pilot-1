@@ -28,31 +28,25 @@ import CookiePolicy from "./pages/cookies/CookiePolicy";
 import TermsOfUse from "./pages/terms of use/TermsOfUse";
 import GeneralTerms from "./pages/general terms and conditions/GeneralTerms";
 
-const AUTH_PARAM = "t4xp1l0t-5346-token";
-const CART_PARAM = "cart_token";
+const TOKEN_PREFIX = "t4xp1l0t-5346-token=";
+const CART_TOKEN = "cart_token=";
 
 function TokenFromUrl() {
-  // const navigate = useNavigate();
-
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    const query = window.location.search.slice(1);
 
-    const authToken = params.get(AUTH_PARAM);
-    const cartToken = params.get(CART_PARAM);
-
-    if (authToken) {
-      localStorage.setItem("auth_token", authToken);
-      console.log("Auth Token Saved:", authToken);
+    if (query.includes(TOKEN_PREFIX)) {
+      const token = query.split(TOKEN_PREFIX)[1].split("&")[0];
+      localStorage.setItem("authToken", token);
     }
 
-    if (cartToken) {
-      localStorage.setItem("cart_token", cartToken);
-      console.log("Cart Token Saved:", cartToken);
+    if (query.includes(CART_TOKEN)) {
+      const cartToken = query.split(CART_TOKEN)[1].split("&")[0];
+      localStorage.setItem("cartToken", cartToken);
     }
 
-    if (authToken || cartToken) {
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
+    window.dispatchEvent(new Event("auth-changed"));
+    window.history.replaceState({}, "", window.location.pathname);
   }, []);
 
   return null;
