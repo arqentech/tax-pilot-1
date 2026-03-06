@@ -59,6 +59,8 @@ export interface Service {
   }[];
   faqs?: FAQ[];
   related_services?: RelatedServiceItem[] | Service[];
+  /** When true, user must complete minimum-requirements wizard before adding to cart. */
+  has_minimum_requirement?: boolean;
 }
 
 export interface ServiceCardProps {

@@ -147,7 +147,7 @@ const addItemToCart = async (
   const response = await api.put<CartResponse | CartAvailableResponse>(
     `/customer/cart/${cartId}/item`,
     {
-      quotationId: String(serviceId), // API expects service_id as string
+      quotationId: String(serviceId),
     },
     { params: { customer_id: cartToken } },
   );
@@ -158,7 +158,11 @@ const addItemToCart = async (
   if ((data as CartAvailableResponse).cart != null) {
     cartData = normalizeCartResponse(data as CartAvailableResponse, cartToken);
   } else if ((data as { results?: { cart?: unknown } }).results?.cart != null) {
-    const raw = data as unknown as { results: { cart: NonNullable<CartAvailableResponse["cart"]> } };
+    const raw: {
+      results: { cart: NonNullable<CartAvailableResponse["cart"]> };
+    } = data as unknown as {
+      results: { cart: NonNullable<CartAvailableResponse["cart"]> };
+    };
     cartData = normalizeCartResponse({ cart: raw.results.cart }, cartToken);
   } else if ((data as CartResponse).results != null) {
     cartData = (data as CartResponse).results;
