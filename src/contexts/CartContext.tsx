@@ -290,43 +290,32 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       const { cartData, message } = await addItemToCart(itemWithId.service_id);
 
-      const fetchedCartItems = cartData?.cart_items || [];
-      const backendItems = fetchedCartItems.map(mapCartItemFromBackend);
-
-      console.log("Cart update after adding item:", {
-        fetchedCartItemsCount: fetchedCartItems.length,
-        backendItemsCount: backendItems.length,
-        previousItemsCount: previousItems.length,
-        cartToken: cartData.cart_token,
-      });
+      const fetchedCartItems = cartData?.cart_items ?? [];
+      let backendItems: CartItem[] = [];
+      try {
+        backendItems = fetchedCartItems.map(mapCartItemFromBackend);
+      } catch (mapError) {
+        console.warn("Could not map backend cart items, keeping optimistic cart:", mapError);
+      }
 
       let finalItems: CartItem[];
 
       if (backendItems.length > 0) {
         finalItems = backendItems;
-        console.log("Using backend items:", finalItems);
       } else {
-        console.warn(
-          "Backend returned empty cart after adding item. Preserving existing items.",
-        );
-
         const itemExistsInPrevious = previousItems.some(
-          (item) => item.service_id === itemWithId.service_id,
+          (p) => p.service_id === itemWithId.service_id,
         );
-
-        if (itemExistsInPrevious) {
-          finalItems = previousItems;
-          console.log("Item already exists, using previous items:", finalItems);
-        } else {
-          finalItems = [...previousItems, optimisticItem];
-          console.log("Final items (preserved + new):", finalItems);
-        }
+        finalItems = itemExistsInPrevious
+          ? previousItems
+          : [...previousItems, optimisticItem];
       }
 
       setCartItemsState(finalItems);
-      setCartToken(cartData.cart_token);
-
-      saveCartToStorage(finalItems, cartData.cart_token);
+      if (cartData.cart_token) {
+        setCartToken(cartData.cart_token);
+      }
+      saveCartToStorage(finalItems, cartData.cart_token ?? cartToken);
 
       return {
         added: true,

@@ -153,10 +153,16 @@ const addItemToCart = async (
   );
 
   const data = response.data as CartResponse | CartAvailableResponse;
-  const cartData =
-    (data as CartAvailableResponse).cart != null
-      ? normalizeCartResponse(data as CartAvailableResponse, cartToken)
-      : (data as CartResponse).results;
+  let cartData: CartResponse["results"] | undefined;
+
+  if ((data as CartAvailableResponse).cart != null) {
+    cartData = normalizeCartResponse(data as CartAvailableResponse, cartToken);
+  } else if ((data as { results?: { cart?: unknown } }).results?.cart != null) {
+    const raw = data as unknown as { results: { cart: NonNullable<CartAvailableResponse["cart"]> } };
+    cartData = normalizeCartResponse({ cart: raw.results.cart }, cartToken);
+  } else if ((data as CartResponse).results != null) {
+    cartData = (data as CartResponse).results;
+  }
 
   if (!cartData) {
     throw new Error(
