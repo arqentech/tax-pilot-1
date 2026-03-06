@@ -27,22 +27,20 @@ export const getCartToken = async (
     localStorage.removeItem(CART_ID_KEY);
   }
 
-  // Use the /customer/cart/available endpoint to create or fetch a cart,
-  // then return the cart_token from the response.
-  const customerId = getCustomerId();
-  const response = await api.get<CartResponse>("/customer/cart/available", {
-    params: { customer_id: customerId },
-  });
+  // Dedicated cart-token endpoint returns a cart_token (no cart id).
+  const response = await api.get<{
+    status: string;
+    results: { token?: string };
+  }>("/customer/cart/cart-token");
 
-  if (response.data.status === "success") {
-    const results = response.data.results;
-    if (results.id != null) {
-      localStorage.setItem(CART_ID_KEY, String(results.id));
-    }
-    if (results.cart_token) {
-      localStorage.setItem(CART_TOKEN_KEY, results.cart_token);
-      return results.cart_token;
-    }
+  if (
+    response.data.status === "success" &&
+    response.data.results &&
+    response.data.results.token
+  ) {
+    const token = response.data.results.token;
+    localStorage.setItem(CART_TOKEN_KEY, token);
+    return token;
   }
 
   throw new Error("Failed to get cart token");
