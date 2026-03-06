@@ -62,7 +62,7 @@ export default function CheckoutSuccess() {
               onClick={() => navigate("/")}
             />
             <Link
-              to="/services"
+              to="/servizi"
               className="block text-center text-[14px] text-[#0166FF] hover:underline"
             >
               Browse More Services

@@ -40,7 +40,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   }, [price]);
 
   const serviceLink =
-    link ?? (identifier ? `/services/${identifier}` : undefined);
+    link ?? (identifier ? `/servizi/${identifier}` : undefined);
   const showLink = Boolean(serviceLink);
 
   return (

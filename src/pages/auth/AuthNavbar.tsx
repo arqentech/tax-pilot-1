@@ -73,9 +73,9 @@ const AuthNavbar = () => {
 export default AuthNavbar;
 const navLinks = [
   { to: "/", label: "How it works" },
-  { to: "/services", label: "Services" },
+  { to: "/servizi", label: "Services" },
   { to: "/faq", label: "FAQ" },
-  { to: "/blogs", label: "Blogs" },
+  { to: "/blog", label: "Blogs" },
 ];
 
-const actionLinks = [{ to: "/contact-us", label: "Contact" }];
+const actionLinks = [{ to: "/contatti", label: "Contact" }];

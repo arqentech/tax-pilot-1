@@ -44,8 +44,18 @@ export const createPaymentIntent = async (
   }
 
   try {
+    // Get customer_id from stored user data or generate if needed
+    const userData = localStorage.getItem("userData");
+    const customerId = userData ? JSON.parse(userData).id : "guest";
+    
     const response = await api.get<CreatePaymentIntentResponse>(
-      `/cart/stripe/generate-client-secret`
+      `/customer/cart/stripe/generate-client-secret`,
+      {
+        params: { 
+          customer_id: customerId,
+          cart_token: data.cart_token 
+        }
+      }
     );
 
     if (response.data.status === "success" && response.data.results.client_secret) {

@@ -22,7 +22,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
 
   return (
     <article
-      onClick={() => navigate(`/blogs/${slug}`)}
+      onClick={() => navigate(`/blog/${slug}`)}
       className="
         group cursor-pointer
         h-full

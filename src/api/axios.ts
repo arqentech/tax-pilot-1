@@ -1,13 +1,12 @@
 import axios from "axios";
 
-
-const baseURL = import.meta.env.DEV 
-  ? "/api" 
-  : (import.meta.env.VITE_API_BASE_URL || "https://api.stage.taxpilot.it/v1"); 
+const baseURL = import.meta.env.DEV
+  ? "/api"
+  : import.meta.env.VITE_API_BASE_URL || "https://stage-api.taxpilot.it/api";
 
 export const api = axios.create({
   baseURL,
-  timeout: 30000, 
+  timeout: 30000,
 });
 
 api.interceptors.request.use(
@@ -22,8 +21,34 @@ api.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
+
+const PUBLIC_PATHS = [
+  "/",
+  "/servizi",
+  "/blog",
+  "/privacy-policy",
+  "/cookie-policy",
+  "/terms-of-use",
+  "/general-terms-of-purchase",
+  "/faq",
+  "/contatti",
+  "/cart",
+  "/sitemap",
+];
+
+const isPublicPath = (pathname: string): boolean => {
+  if (pathname === "/login" || pathname === "/sign-up") return true;
+  if (PUBLIC_PATHS.includes(pathname)) return true;
+  if (
+    pathname.startsWith("/servizi/") ||
+    pathname.startsWith("/blog") ||
+    pathname.startsWith("/faq/")
+  )
+    return true;
+  return false;
+};
 
 api.interceptors.response.use(
   (response) => {
@@ -35,11 +60,14 @@ api.interceptors.response.use(
       localStorage.removeItem("userData");
       localStorage.removeItem("tokenTimestamp");
       window.dispatchEvent(new Event("auth-changed"));
-      
-      if (window.location.pathname !== "/login" && window.location.pathname !== "/sign-up") {
-        window.location.href = "/login?redirect=" + encodeURIComponent(window.location.pathname);
+
+      const pathname = window.location.pathname;
+      const onPublicPage = isPublicPath(pathname);
+      if (!onPublicPage) {
+        window.location.href =
+          "/login?redirect=" + encodeURIComponent(pathname);
       }
     }
     return Promise.reject(error);
-  }
+  },
 );

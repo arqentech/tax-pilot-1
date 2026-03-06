@@ -6,16 +6,16 @@ import ServicesPage from "./pages/services/ServicesPage";
 import ServiceDetails from "./pages/service-details/ServiceDetails";
 import PrivacyPolicy from "./pages/privacy/PrivacyPolicy";
 import AuthLayout from "./pages/auth/Auth";
-import LoginPage from "./pages/auth/Login";
+// import LoginPage from "./pages/auth/Login";
 import FAQ from "./pages/faq/FAQPage";
 import FAQQuestionsPage from "./pages/faq/FAQQuestionsPage";
 import FAQDetailPage from "./pages/faq/FAQDetailPage";
 import ContactUs from "./pages/contact/ContactPage";
-import SignUpPage from "./pages/auth/SignUp";
+// import SignUpPage from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import Blogs from "./pages/blogs/Blogs";
 import BlogDetail from "./pages/blog-details/BlogDetails";
-import CartPage from "./pages/cart/Cart";
+// import CartPage from "./pages/cart/Cart";
 import CheckoutPage from "./pages/checkout/Checkout";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import ScrollToTop from "./components/layout/ScrollToTop";
@@ -51,10 +51,10 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
-          <Route path="services" element={<ServicesPage />} />
-          <Route path="services/:slug" element={<ServiceDetails />} />
-          <Route path="blogs" element={<Blogs />} />
-          <Route path="blogs/*" element={<BlogDetail />} />
+          <Route path="servizi" element={<ServicesPage />} />
+          <Route path="servizi/:slug" element={<ServiceDetails />} />
+          <Route path="blog" element={<Blogs />} />
+          <Route path="blog/*" element={<BlogDetail />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="cookie-policy" element={<CookiePolicy />} />
           <Route path="terms-of-use" element={<TermsOfUse />} />
@@ -62,8 +62,8 @@ function App() {
           <Route path="faq" element={<FAQ />} />
           <Route path="faq/:category/:slug" element={<FAQDetailPage />} />
           <Route path="faq/:category" element={<FAQQuestionsPage />} />
-          <Route path="contact-us" element={<ContactUs />} />
-          <Route path="cart" element={<CartPage />} />
+          <Route path="contatti" element={<ContactUs />} />
+          <Route path="cart" element={<CartRedirect />} />
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="checkout/success" element={<CheckoutSuccess />} />
           <Route path="dashboard-home" element={<HomePage />} />
@@ -74,8 +74,8 @@ function App() {
         </Route>
 
         <Route element={<AuthLayout />}>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/login" element={<LoginRedirect />} />
+          <Route path="/sign-up" element={<RegisterRedirect />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Route>
       </Routes>
@@ -84,3 +84,30 @@ function App() {
 }
 
 export default App;
+
+const LoginRedirect = () => {
+  useEffect(() => {
+    const url = import.meta.env.VITE_TAXPILOT_STAGING_LOGIN_URL;
+    if (url) window.location.replace(url);
+  }, []);
+
+  return <div>Redirecting to TaxPilot login...</div>;
+};
+
+const RegisterRedirect = () => {
+  useEffect(() => {
+    const url = import.meta.env.VITE_TAXPILOT_STAGING_REGISTER_URL;
+    if (url) window.location.replace(url);
+  }, []);
+
+  return <div>Redirecting to TaxPilot registration...</div>;
+};
+
+const CartRedirect = () => {
+  useEffect(() => {
+    const url = import.meta.env.VITE_TAXPILOT_STAGING_CART_URL;
+    if (url) window.location.replace(url);
+  }, []);
+
+  return <div>Redirecting to TaxPilot cart...</div>;
+};

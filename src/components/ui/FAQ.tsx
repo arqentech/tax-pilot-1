@@ -62,7 +62,7 @@ export default function FAQ({ data, hideChatOnWeb = false }: FAQProps) {
           ${hideChatOnWeb ? "block md:hidden" : "block"}`}
       >
         Hai ancora domande?{" "}
-        <Link to="/contact-us" className="underline font-medium italic">
+        <Link to="/contatti" className="underline font-medium italic">
           Chatta con un esperto di TaxPilot
         </Link>
       </p>

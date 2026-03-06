@@ -81,7 +81,7 @@ const HomePage: React.FC = () => {
           </div>
 
           <div className="w-full flex justify-center">
-            <Link to="/services">
+            <Link to="/servizi">
               <PrimaryButton text="Explore Services" width="262px" />
             </Link>
           </div>

@@ -10,7 +10,7 @@ const TopBar = () => {
         </span>
 
         <Link
-          to="/services"
+          to="/servizi"
           className="group inline-flex items-center gap-1 no-underline hover:text-gray-200 transition-colors font-medium text-sm leading-[20px] md:text-[18px] md:leading-[25px]"
         >
           explore now

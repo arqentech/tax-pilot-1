@@ -87,7 +87,7 @@ const Details: React.FC = () => {
         price: service.price,
         description: stripHtml(service.description_short),
         hours: service.hours ?? "",
-        link: `/services/${service.identifier}`,
+        link: `/servizi/${service.identifier}`,
         vatIncluded: !!service.vatIncluded,
       });
       setShowSuccessDialog(true);
@@ -106,7 +106,7 @@ const Details: React.FC = () => {
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
+          { label: "Services", href: "/servizi" },
           { label: formatLabel(slug) ?? "", href: null },
         ]}
       />
@@ -136,7 +136,7 @@ const Details: React.FC = () => {
 
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-6">
               <span className="text-[28px] font-extrabold text-[#34352E]">
-                € {service.price.toFixed(2)}
+                € {Number(service.price ?? 0).toFixed(2)}
               </span>
 
               <span className="flex items-center gap-1 bg-[#EEFCD7] border border-[#D9E6C0] text-[#36500C] text-sm px-3 py-1 rounded-full">
@@ -219,7 +219,7 @@ const Details: React.FC = () => {
             </p>
             <div className="hidden md:flex text-[#04226B] items-center gap-1 text-[18px] mt-4 font-semibold">
               <span>Still have questions?</span>
-              <Link to="/contact-us" className="underline italic">
+              <Link to="/contatti" className="underline italic">
                 Chat with an expert
               </Link>
             </div>

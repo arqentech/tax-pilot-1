@@ -87,7 +87,7 @@ const ServicesSection = () => {
         </div>
 
         <div className="hidden md:flex justify-center mt-10">
-          <Link to="/services">
+          <Link to="/servizi">
             <PrimaryButton text="Esplora i servizi" width="262px" />
           </Link>
         </div>

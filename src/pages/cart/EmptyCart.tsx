@@ -14,7 +14,7 @@ export default function EmptyCart() {
 
       <h1 className="text-[20px] font-normal text-[#5F6057]">Carrello vuoto</h1>
 
-      <Link to="/services" className="w-full flex justify-center">
+      <Link to="/servizi" className="w-full flex justify-center">
         <Button
           className="
             custom-box-shadow 

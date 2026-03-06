@@ -107,7 +107,7 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
     title: item.service.title,
     price: item.price,
     description: stripHtml(item.service.description_short),
-    link: `/services/${item.service.identifier}`,
+    link: `/servizi/${item.service.identifier}`,
     hours,
     vatIncluded,
   };

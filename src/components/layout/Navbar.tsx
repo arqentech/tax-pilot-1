@@ -6,9 +6,9 @@ import UserDropdown from "../ui/UserDropdown";
 
 const navLinks = [
   { to: "/", label: "Chi siamo" },
-  { to: "/services", label: "Servizi" },
+  { to: "/servizi", label: "Servizi" },
   { to: "/faq", label: "FAQ" },
-  { to: "/blogs", label: "Blogs" },
+  { to: "/blog", label: "Blogs" },
 ];
 
 const Navbar = () => {
@@ -49,7 +49,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-4 text-[18px] text-[#34352E]">
-          <Link to="/contact-us" className={linkStyle}>
+          <Link to="/contatti" className={linkStyle}>
             Contatti
           </Link>
 

@@ -13,7 +13,7 @@ export const getCartToken = async (
     }
   }
 
-  const response = await api.post<CartTokenResponse>("/cart/cart-token");
+  const response = await api.post<CartTokenResponse>("/customer/cart/cart-token");
 
   if (response.data.status === "success" && response.data.results.token) {
     const token = response.data.results.token;
@@ -27,7 +27,13 @@ export const getCartToken = async (
 export const getCart = async (
   cartToken: string
 ): Promise<CartResponse["results"]> => {
-  const response = await api.get<CartResponse>(`/cart/${cartToken}`);
+  // Get customer_id from stored user data or generate if needed
+  const userData = localStorage.getItem("userData");
+  const customerId = userData ? JSON.parse(userData).id : "guest";
+  
+  const response = await api.get<CartResponse>(`/customer/cart/${cartToken}`, {
+    params: { customer_id: customerId }
+  });
 
   if (response.data.status === "success") {
     return response.data.results;
@@ -42,11 +48,23 @@ export const addItemToCart = async (
   cartData: CartResponse["results"];
   message: string;
 }> => {
-  const response = await api.post<CartResponse>("/cart/cart-token", {
-    item: {
-      service_id: serviceId,
+  // Get or create cart token
+  const cartToken = await getCartToken();
+  
+  // Get customer_id from stored user data or generate if needed
+  const userData = localStorage.getItem("userData");
+  const customerId = userData ? JSON.parse(userData).id : "guest";
+  
+  const response = await api.post<CartResponse>(`/customer/cart/${cartToken}/item`, 
+    {
+      item: {
+        service_id: serviceId,
+      },
     },
-  });
+    {
+      params: { customer_id: customerId }
+    }
+  );
 
   if (response.data.status === "success") {
     const cartData = response.data.results;
@@ -127,9 +145,14 @@ export const removeItemFromCart = async (
   cartData: CartResponse["results"];
   message: string;
 }> => {
+  // Get customer_id from stored user data or generate if needed
+  const userData = localStorage.getItem("userData");
+  const customerId = userData ? JSON.parse(userData).id : "guest";
+  
   const response = await api.delete<CartResponse>(
-    `/cart/${cartToken}/${itemId}`,
+    `/customer/cart/${cartToken}/item/${itemId}`,
     {
+      params: { customer_id: customerId },
       data: {
         item: {
           service_id: serviceId,

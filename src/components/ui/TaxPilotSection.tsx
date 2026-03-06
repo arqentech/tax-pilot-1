@@ -27,7 +27,7 @@ export default function TaxPilotSection() {
               <span>I tuoi documenti verificati da professionisti reali.</span>
             </li>
           </ul>
-          <Link to="/services">
+          <Link to="/servizi">
             <PrimaryButton text="Esplora i servizi" width="262px" />
           </Link>
         </div>
