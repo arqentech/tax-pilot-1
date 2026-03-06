@@ -123,12 +123,12 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
         <div className="bg-white rounded-2xl px-10 py-12 max-w-[490px] w-full text-center shadow-xl">
           <p className="text-[#34352E] font-archivo text-[18px] leading-[28px] font-medium">
-            Stiamo analizzando le tue esigenze per poterti offrire il servizio
-            che hai scelto. Tra pochi secondi verrai reindirizzato alla pagina
-            di pagamento per completare la tua richiesta.
+            We're analyzing your requirements so we can offer you the service
+            you've chosen. In a few seconds, you'll be redirected to the payment
+            page to complete your request.
           </p>
           <p className="mt-6 text-[#04226B] font-bricolage font-semibold text-[18px]">
-            Reindirizzamento in {countdown}s
+            Redirecting in {countdown}s
           </p>
         </div>
       </div>
@@ -232,10 +232,10 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
                   >
                     <option value="">Select an option</option>
                     {form.options.map((opt, i) => {
-                      const label = typeof opt === "string" ? opt : opt.label;
-                      const value = typeof opt === "string" ? opt : opt.value;
+                      const label: string = typeof opt === "string" ? opt : opt.label;
+                      const val: string = typeof opt === "string" ? opt : opt.value;
                       return (
-                        <option key={i} value={value}>
+                        <option key={i} value={val}>
                           {label}
                         </option>
                       );

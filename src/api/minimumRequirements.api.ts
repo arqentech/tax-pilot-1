@@ -36,44 +36,25 @@ interface ValidateResponse {
   };
 }
 
-/** No-op result when minimum requirement endpoint is missing (e.g. 404) so add-to-cart can proceed. */
-const NO_REQUIREMENT_RESULT: StartResponse["results"] = {
-  step_id: 0,
-  form: null,
-  last_step_id: 0,
-};
-
 export const startMinimumRequirement = async (
-  serviceId: number
+  serviceId: number,
 ): Promise<StartResponse["results"]> => {
-  const paths = [
-    `/services/${serviceId}/minimum_requirement/start`,
+  const response = await api.get<StartResponse>(
     `/services/id/${serviceId}/minimum_requirement/start`,
-  ];
-  for (const path of paths) {
-    try {
-      const response = await api.get<StartResponse>(path);
-      if (response.data.status === "success") {
-        return response.data.results;
-      }
-    } catch (err) {
-      const status = (err as { response?: { status?: number } })?.response?.status;
-      if (status === 404) {
-        return NO_REQUIREMENT_RESULT;
-      }
-      throw err instanceof Error ? err : new Error("Failed to start wizard");
-    }
+  );
+  if (response.data.status === "success") {
+    return response.data.results;
   }
-  return NO_REQUIREMENT_RESULT;
+  throw new Error(response.data.message || "Failed to start wizard");
 };
 
 export const validateMinimumRequirementStep = async (
   stepId: number,
-  answers: string
+  answers: string,
 ): Promise<ValidateResponse["results"]> => {
   const response = await api.post<ValidateResponse>(
     `/services/validate/minimum_requirement/step/${stepId}`,
-    { answers }
+    { answers },
   );
   if (response.data.status === "success") {
     return response.data.results;
