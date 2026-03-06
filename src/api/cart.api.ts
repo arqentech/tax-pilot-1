@@ -13,269 +13,57 @@ function getCustomerId(): string {
   }
 }
 
-export const getCartToken = async (
-  forceNew: boolean = false,
-): Promise<string> => {
-  if (!forceNew) {
-    const existingToken = localStorage.getItem(CART_TOKEN_KEY);
-    if (existingToken) {
-      return existingToken;
-    }
-  } else {
-    // When forcing a new cart, clear any stored token/id so backend can create a fresh cart
-    localStorage.removeItem(CART_TOKEN_KEY);
-    localStorage.removeItem(CART_ID_KEY);
-  }
+function getStoredCartToken(): string {
+  const token = localStorage.getItem(CART_TOKEN_KEY);
+  if (!token) throw new Error("No cart token in localStorage");
+  return token;
+}
 
-  // Dedicated cart-token endpoint returns a cart_token (no cart id).
-  const response = await api.get<{
-    status: string;
-    results: { token?: string };
-  }>("/customer/cart/cart-token");
-
-  if (
-    response.data.status === "success" &&
-    response.data.results &&
-    response.data.results.token
-  ) {
-    const token = response.data.results.token;
-    localStorage.setItem(CART_TOKEN_KEY, token);
-    return token;
-  }
-
-  throw new Error("Failed to get cart token");
-};
-
-/**
- * Get cart by cart_token. Returns cart data and stores cart_id for add/remove.
- */
-export const getCart = async (
-  cartToken: string,
-): Promise<CartResponse["results"]> => {
-  const customerId = getCustomerId();
-  const response = await api.get<CartResponse>("/customer/cart/available", {
-    params: { cart_token: cartToken, customer_id: customerId },
-  });
-
-  if (response.data.status === "success") {
-    const results = response.data.results;
-    if (results.id != null) {
-      localStorage.setItem(CART_ID_KEY, String(results.id));
-    }
-    if (results.cart_token) {
-      localStorage.setItem(CART_TOKEN_KEY, results.cart_token);
-    }
-    return results;
-  }
-
-  throw new Error("Failed to fetch cart");
-};
-
-/**
- * Resolve cart_id from storage or by fetching cart with cart_token.
- */
 export const getCartId = async (cartToken: string): Promise<number> => {
   const stored = localStorage.getItem(CART_ID_KEY);
   if (stored) {
     const id = parseInt(stored, 10);
     if (!Number.isNaN(id)) return id;
   }
-  const cartData = await getCart(cartToken);
-  if (cartData.id == null) throw new Error("Cart has no id");
-  return cartData.id;
+
+  const customerId = getCustomerId();
+  const response = await api.get<CartResponse>("/customer/cart/available", {
+    params: { cart_token: cartToken, customer_id: customerId },
+  });
+
+  if (response.data.status === "success" && response.data.results.id != null) {
+    const cartId = response.data.results.id;
+    localStorage.setItem(CART_ID_KEY, String(cartId));
+    return cartId;
+  }
+
+  throw new Error("Failed to fetch cart ID");
 };
 
 export const addItemToCart = async (
   serviceId: number,
-): Promise<{
-  cartData: CartResponse["results"];
-  message: string;
-}> => {
-  // Get or create cart token
-  const cartToken = await getCartToken();
-  const customerId = getCustomerId();
+): Promise<{ cartData: CartResponse["results"]; message: string }> => {
+  const cartToken = getStoredCartToken();
   const cartId = await getCartId(cartToken);
+  const customerId = getCustomerId();
 
   const response = await api.post<CartResponse>(
     `/customer/cart/${cartId}/item`,
-    {
-      item: {
-        service_id: serviceId,
-      },
-    },
-    {
-      params: { customer_id: customerId },
-    },
+    { item: { service_id: serviceId } },
+    { params: { customer_id: customerId } },
   );
 
-  if (response.data.status === "success") {
-    const cartData = response.data.results;
-
-    if (!cartData) {
-      console.error("Cart data is missing from response:", response.data);
-      throw new Error("Invalid response: cart data is missing");
-    }
-
-    if (!cartData.cart_items || !Array.isArray(cartData.cart_items)) {
-      console.log("cart_items missing in response, fetching full cart data...");
-
-      if (cartData.cart_token) {
-        localStorage.setItem(CART_TOKEN_KEY, cartData.cart_token);
-
-        try {
-          await new Promise((resolve) => setTimeout(resolve, 500));
-
-          let fullCartData = await getCart(cartData.cart_token);
-
-          if (
-            !fullCartData.cart_items ||
-            fullCartData.cart_items.length === 0
-          ) {
-            console.log("Cart still empty after first fetch, retrying...");
-            await new Promise((resolve) => setTimeout(resolve, 500));
-            fullCartData = await getCart(cartData.cart_token);
-          }
-
-          console.log("Fetched cart data:", fullCartData);
-
-          return {
-            cartData: {
-              ...cartData,
-              cart_items: fullCartData.cart_items || [],
-            },
-            message: response.data.message || "Item added to cart successfully",
-          };
-        } catch (fetchError) {
-          console.error("Failed to fetch cart after adding item:", fetchError);
-
-          return {
-            cartData: {
-              ...cartData,
-              cart_items: [],
-            },
-            message: response.data.message || "Item added to cart successfully",
-          };
-        }
-      } else {
-        return {
-          cartData: {
-            ...cartData,
-            cart_items: [],
-          },
-          message: response.data.message || "Item added to cart successfully",
-        };
-      }
-    }
-
-    if (cartData.cart_token) {
-      localStorage.setItem(CART_TOKEN_KEY, cartData.cart_token);
-    }
-    return {
-      cartData,
-      message: response.data.message || "Item added to cart successfully",
-    };
+  if (response.data.status !== "success") {
+    throw new Error(response.data.message || "Failed to add item to cart");
   }
 
-  throw new Error(response.data.message || "Failed to add item to cart");
-};
+  const cartData = response.data.results;
 
-export const removeItemFromCart = async (
-  cartToken: string,
-  itemId: number,
-  serviceId: number,
-): Promise<{
-  cartData: CartResponse["results"];
-  message: string;
-}> => {
-  const customerId = getCustomerId();
-  const cartId = await getCartId(cartToken);
+  if (cartData.cart_token)
+    localStorage.setItem(CART_TOKEN_KEY, cartData.cart_token);
 
-  const response = await api.delete<CartResponse>(
-    `/customer/cart/${cartId}/item/${itemId}`,
-    {
-      params: { customer_id: customerId },
-      data: {
-        item: {
-          service_id: serviceId,
-        },
-      },
-    },
-  );
-
-  if (response.data.status === "success") {
-    const cartData = response.data.results;
-
-    if (!cartData) {
-      console.error("Cart data is missing from response:", response.data);
-      throw new Error("Invalid response: cart data is missing");
-    }
-
-    if (!cartData.cart_items || !Array.isArray(cartData.cart_items)) {
-      console.log(
-        "cart_items missing in delete response, fetching full cart data...",
-      );
-
-      if (cartData.cart_token) {
-        localStorage.setItem(CART_TOKEN_KEY, cartData.cart_token);
-
-        try {
-          await new Promise((resolve) => setTimeout(resolve, 300));
-
-          const fullCartData = await getCart(cartData.cart_token);
-
-          console.log("Fetched cart data after delete:", fullCartData);
-
-          return {
-            cartData: {
-              ...cartData,
-              cart_items: fullCartData.cart_items || [],
-            },
-            message:
-              response.data.message || "Item removed from cart successfully",
-          };
-        } catch (fetchError) {
-          console.error(
-            "Failed to fetch cart after deleting item:",
-            fetchError,
-          );
-          return {
-            cartData: {
-              ...cartData,
-              cart_items: [],
-            },
-            message:
-              response.data.message || "Item removed from cart successfully",
-          };
-        }
-      } else {
-        return {
-          cartData: {
-            ...cartData,
-            cart_items: [],
-          },
-          message:
-            response.data.message || "Item removed from cart successfully",
-        };
-      }
-    }
-
-    if (cartData.cart_token) {
-      localStorage.setItem(CART_TOKEN_KEY, cartData.cart_token);
-    }
-
-    return {
-      cartData,
-      message: response.data.message || "Item removed from cart successfully",
-    };
-  }
-
-  throw new Error(response.data.message || "Failed to remove item from cart");
-};
-
-export const clearCartToken = (): void => {
-  localStorage.removeItem(CART_TOKEN_KEY);
-};
-
-export const getStoredCartToken = (): string | null => {
-  return localStorage.getItem(CART_TOKEN_KEY);
+  return {
+    cartData,
+    message: response.data.message || "Item added to cart successfully",
+  };
 };
