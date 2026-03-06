@@ -145,7 +145,7 @@ const addItemToCart = async (
   const cartToken = getStoredCartToken() ?? (await getCartToken());
   const cartId = await getCartId(cartToken);
 
-  const response = await api.post<CartResponse | CartAvailableResponse>(
+  const response = await api.put<CartResponse | CartAvailableResponse>(
     `/customer/cart/${cartId}/item`,
     { item: { service_id: serviceId } },
     { params: { customer_id: cartToken } },
