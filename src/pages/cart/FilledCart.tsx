@@ -1,8 +1,7 @@
 import { Input } from "@/components/ui/InputField";
-import { CircleCheck, Clock, Trash2 } from "lucide-react";
+import { CircleCheck, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { stripHtml } from "@/lib/utils";
-import { useCart } from "@/hooks/useCart";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import { useAuth } from "@/utils/auth";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +22,6 @@ interface FilledCartProps {
 export default function FilledCart({ items }: FilledCartProps) {
   const subtotal = items.reduce((acc, item) => acc + item.price, 0);
   const servicesLabel = items.length === 1 ? "servizio" : "servizi";
-  const { removeFromCart } = useCart();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -72,14 +70,6 @@ export default function FilledCart({ items }: FilledCartProps) {
                     <span className="font-bricolage text-[24px] font-extrabold leading-[28px] text-[#1F201B]">
                       € {item.price.toFixed(2)}
                     </span>
-                    <button
-                      type="button"
-                      aria-label="Remove service from cart"
-                      className="hidden  p-2 text-[#5F6057] transition hover:text-red-500 md:inline-flex"
-                      onClick={() => item.id && removeFromCart(item.id)}
-                    >
-                      <Trash2 className="h-5 w-5" />
-                    </button>
                   </div>
                 </header>
 
@@ -106,16 +96,6 @@ export default function FilledCart({ items }: FilledCartProps) {
                     </span>
                   </div>
                 </div>
-
-                <button
-                  type="button"
-                  className="block w-full rounded-b-[18px] border-t border-[#E6E6E1] bg-[#FBFBFA] py-3 text-center text-[16px] font-semibold text-[#FF3B30] transition hover:bg-[#F7F7F2] md:hidden"
-                  aria-label="Remove service from cart"
-                  onClick={() => item.id && removeFromCart(item.id)}
-                >
-                  Remove{" "}
-                  <Trash2 className="ml-2 inline-block h-4 w-4 align-middle" />
-                </button>
               </article>
             ))}
           </div>
