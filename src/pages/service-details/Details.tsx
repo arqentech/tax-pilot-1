@@ -75,11 +75,7 @@ const Details: React.FC = () => {
     value?.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 
   const handleRequestService = () => {
-    if (service.has_minimum_requirement) {
-      setShowModal(true);
-    } else {
-      handleModalComplete();
-    }
+    setShowModal(true);
   };
 
   const handleModalComplete = async () => {
