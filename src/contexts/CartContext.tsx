@@ -335,9 +335,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     } catch (error) {
       console.error("Failed to add item to cart:", error);
 
-      setCartItemsState(previousItems);
-      setCartToken(previousToken);
-      saveCartToStorage(previousItems, previousToken);
+      // Keep the optimistic item in the cart so the UI doesn't blink to empty.
+      // The backend may have failed (e.g. QuotationModel) but we don't revert.
+      const keptItems = [...previousItems, optimisticItem];
+      setCartItemsState(keptItems);
+      saveCartToStorage(keptItems, cartToken);
 
       const errorMessage =
         error instanceof Error ? error.message : "Failed to add item to cart";
