@@ -28,25 +28,44 @@ import CookiePolicy from "./pages/cookies/CookiePolicy";
 import TermsOfUse from "./pages/terms of use/TermsOfUse";
 import GeneralTerms from "./pages/general terms and conditions/GeneralTerms";
 
-const TOKEN_PREFIX = "t4xp1l0t-5346-token=";
-const CART_TOKEN = "cart_token=";
+const TOKEN_PREFIX = "t4xp1l0t-5346-";
 
 function TokenFromUrl() {
   useEffect(() => {
-    const query = window.location.search.slice(1);
+    const search = window.location.search;
+    const params = new URLSearchParams(search);
+    let didStore = false;
 
-    if (query.includes(TOKEN_PREFIX)) {
-      const token = query.split(TOKEN_PREFIX)[1].split("&")[0];
+    const prefixedToken = params.get("t4xp1l0t-5346-token");
+    const token = prefixedToken ?? params.get("token");
+    if (token) {
       localStorage.setItem("authToken", token);
+      window.dispatchEvent(new Event("auth-changed"));
+      didStore = true;
+    } else {
+      const query = search.slice(1);
+      if (query.startsWith(TOKEN_PREFIX)) {
+        const value = query
+          .slice(TOKEN_PREFIX.length)
+          .split("&")[0]
+          .replace(/^token=/, "");
+        if (value) {
+          localStorage.setItem("authToken", value);
+          window.dispatchEvent(new Event("auth-changed"));
+          didStore = true;
+        }
+      }
     }
 
-    if (query.includes(CART_TOKEN)) {
-      const cartToken = query.split(CART_TOKEN)[1].split("&")[0];
+    const cartToken = params.get("cart_token");
+    if (cartToken) {
       localStorage.setItem("cartToken", cartToken);
+      didStore = true;
     }
 
-    window.dispatchEvent(new Event("auth-changed"));
-    window.history.replaceState({}, "", window.location.pathname);
+    if (didStore) {
+      window.history.replaceState({}, "", window.location.pathname);
+    }
   }, []);
 
   return null;
