@@ -4,7 +4,7 @@
 # Replace YOUR_DOMAIN with your actual production domain
 
 YOUR_DOMAIN="https://yourdomain.com"
-API_URL="https://api.stage.taxpilot.it/v1/services"
+API_URL="https://api.taxpilot.it/api/services"
 
 echo "Testing CORS for domain: $YOUR_DOMAIN"
 echo "API URL: $API_URL"

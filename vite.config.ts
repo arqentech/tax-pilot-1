@@ -19,7 +19,7 @@ export default defineConfig({
     },
     proxy: {
       "/api": {
-        target: "https://stage-api.taxpilot.it/api",
+        target: "https://api.taxpilot.it/api",
         changeOrigin: true,
         secure: true, // Allow HTTPS
         rewrite: (path) => path.replace(/^\/api/, ""),
