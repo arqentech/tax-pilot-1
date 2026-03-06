@@ -29,28 +29,24 @@ import TermsOfUse from "./pages/terms of use/TermsOfUse";
 import GeneralTerms from "./pages/general terms and conditions/GeneralTerms";
 
 const TOKEN_PREFIX = "t4xp1l0t-5346-token=";
+const CART_TOKEN = "cart_token=";
 
 function TokenFromUrl() {
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const getCookie = (name: string) =>
-      document.cookie
-        .split("; ")
-        .find((c) => c.startsWith(name + "="))
-        ?.split("=")[1];
+    const query = window.location.search.slice(1);
 
-    const accessToken =
-      params.get(TOKEN_PREFIX) || getCookie("taxpilot-stage-front-accessToken");
-    const cartToken =
-      params.get("cart_token") || getCookie("taxpilot-stage-front-carUserID");
+    if (query.includes(TOKEN_PREFIX)) {
+      const token = query.split(TOKEN_PREFIX)[1].split("&")[0];
+      localStorage.setItem("authToken", token);
+    }
 
-    if (accessToken) localStorage.setItem("authToken", accessToken);
-    if (cartToken) localStorage.setItem("cartToken", cartToken);
+    if (query.includes(CART_TOKEN)) {
+      const cartToken = query.split(CART_TOKEN)[1].split("&")[0];
+      localStorage.setItem("cartToken", cartToken);
+    }
 
-    if (accessToken || cartToken)
-      window.dispatchEvent(new Event("auth-changed"));
-    if (window.location.search)
-      window.history.replaceState({}, "", window.location.pathname);
+    window.dispatchEvent(new Event("auth-changed"));
+    window.history.replaceState({}, "", window.location.pathname);
   }, []);
 
   return null;
