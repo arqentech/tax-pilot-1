@@ -6,20 +6,16 @@ import ServicesPage from "./pages/services/ServicesPage";
 import ServiceDetails from "./pages/service-details/ServiceDetails";
 import PrivacyPolicy from "./pages/privacy/PrivacyPolicy";
 import AuthLayout from "./pages/auth/Auth";
-// import LoginPage from "./pages/auth/Login";
 import FAQ from "./pages/faq/FAQPage";
 import FAQQuestionsPage from "./pages/faq/FAQQuestionsPage";
 import FAQDetailPage from "./pages/faq/FAQDetailPage";
 import ContactUs from "./pages/contact/ContactPage";
-// import SignUpPage from "./pages/auth/SignUp";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import Blogs from "./pages/blogs/Blogs";
 import BlogDetail from "./pages/blog-details/BlogDetails";
-// import CartPage from "./pages/cart/Cart";
 import CheckoutPage from "./pages/checkout/Checkout";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import ScrollToTop from "./components/layout/ScrollToTop";
-// import HomePage from "./pages/profile/HomePage";
 import Documents from "./pages/profile/Documents";
 import PersonalInfo from "./pages/profile/personal-info/PersonalInfo";
 import Requests from "./pages/profile/Requests";
@@ -28,18 +24,17 @@ import CookiePolicy from "./pages/cookies/CookiePolicy";
 import TermsOfUse from "./pages/terms of use/TermsOfUse";
 import GeneralTerms from "./pages/general terms and conditions/GeneralTerms";
 
-const TOKEN_PREFIX = "t4xp1l0t-5346-token=";
-const CART_TOKEN = "cart_token=";
-
 function TokenFromUrl() {
   useEffect(() => {
     const query = window.location.search.slice(1);
 
+    const TOKEN_PREFIX = "t4xp1l0t-5346-token=";
     if (query.includes(TOKEN_PREFIX)) {
       const token = query.split(TOKEN_PREFIX)[1].split("&")[0];
       localStorage.setItem("authToken", token);
     }
 
+    const CART_TOKEN = "cart_token=";
     if (query.includes(CART_TOKEN)) {
       const cartToken = query.split(CART_TOKEN)[1].split("&")[0];
       localStorage.setItem("cartToken", cartToken);
@@ -51,6 +46,62 @@ function TokenFromUrl() {
 
   return null;
 }
+
+const buildRedirectUrl = (baseUrl: string) => {
+  const authToken = localStorage.getItem("authToken");
+  const cartToken = localStorage.getItem("cartToken");
+
+  const params = new URLSearchParams();
+
+  if (authToken) params.append("t4xp1l0t-5346-token", authToken);
+  if (cartToken) params.append("cart_token", cartToken);
+
+  const finalUrl = `${baseUrl}?${params.toString()}`;
+  console.log("Redirect URL:", finalUrl);
+  return finalUrl;
+};
+
+const RedirectWithTokens = ({ envUrl }: { envUrl: string | undefined }) => {
+  useEffect(() => {
+    if (!envUrl) return;
+
+    const cartData = localStorage.getItem("cartData");
+    if (cartData) {
+      try {
+        const parsed = JSON.parse(cartData);
+        if (parsed.cartToken) {
+          localStorage.setItem("cartToken", parsed.cartToken);
+        }
+      } catch (error) {
+        console.error("Failed to parse cartData for cartToken:", error);
+      }
+    }
+
+    const redirectUrl = buildRedirectUrl(envUrl);
+    setTimeout(() => window.location.replace(redirectUrl), 100);
+  }, [envUrl]);
+
+  return <div>Redirecting...</div>;
+};
+
+const LoginRedirect = () => (
+  <RedirectWithTokens
+    envUrl={import.meta.env.VITE_TAXPILOT_STAGING_LOGIN_URL}
+  />
+);
+const RegisterRedirect = () => (
+  <RedirectWithTokens
+    envUrl={import.meta.env.VITE_TAXPILOT_STAGING_REGISTER_URL}
+  />
+);
+const CartRedirect = () => (
+  <RedirectWithTokens envUrl={import.meta.env.VITE_TAXPILOT_STAGING_CART_URL} />
+);
+const ProfileRedirect = () => (
+  <RedirectWithTokens
+    envUrl={import.meta.env.VITE_TAXPILOT_STAGING_PROFILE_URL}
+  />
+);
 
 function App() {
   return (
@@ -93,75 +144,3 @@ function App() {
 }
 
 export default App;
-
-const buildRedirectUrl = (baseUrl: string) => {
-  const authToken = localStorage.getItem("authToken");
-  const cartToken = localStorage.getItem("cartToken");
-
-  const params = new URLSearchParams();
-
-  if (authToken) {
-    params.append("t4xp1l0t-5346-token", authToken);
-  }
-
-  if (cartToken) {
-    params.append("cart_token", cartToken);
-  }
-  const finalUrl = `${baseUrl}?${params.toString()}`;
-
-  console.log("Redirect URL:", finalUrl);
-
-  return finalUrl;
-};
-
-const LoginRedirect = () => {
-  useEffect(() => {
-    const url = import.meta.env.VITE_TAXPILOT_STAGING_LOGIN_URL;
-
-    if (url) {
-      const redirectUrl = buildRedirectUrl(url);
-      window.location.replace(redirectUrl);
-    }
-  }, []);
-
-  return <div>Redirecting to TaxPilot login...</div>;
-};
-
-const RegisterRedirect = () => {
-  useEffect(() => {
-    const url = import.meta.env.VITE_TAXPILOT_STAGING_REGISTER_URL;
-
-    if (url) {
-      const redirectUrl = buildRedirectUrl(url);
-      window.location.replace(redirectUrl);
-    }
-  }, []);
-
-  return <div>Redirecting to TaxPilot registration...</div>;
-};
-
-const CartRedirect = () => {
-  useEffect(() => {
-    const url = import.meta.env.VITE_TAXPILOT_STAGING_CART_URL;
-
-    if (url) {
-      const redirectUrl = buildRedirectUrl(url);
-      window.location.replace(redirectUrl);
-    }
-  }, []);
-
-  return <div>Redirecting to TaxPilot cart...</div>;
-};
-
-const ProfileRedirect = () => {
-  useEffect(() => {
-    const url = import.meta.env.VITE_TAXPILOT_STAGING_PROFILE_URL;
-
-    if (url) {
-      const redirectUrl = buildRedirectUrl(url);
-      window.location.replace(redirectUrl);
-    }
-  }, []);
-
-  return <div>Redirecting to TaxPilot profile...</div>;
-};
