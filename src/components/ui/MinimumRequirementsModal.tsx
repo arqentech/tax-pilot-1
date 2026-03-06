@@ -116,24 +116,11 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
     );
   }
 
-  if (!currentStep) return null;
-
   if (isComplete) {
-    return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-        <div className="bg-white rounded-2xl px-10 py-12 max-w-[490px] w-full text-center shadow-xl">
-          <p className="text-[#34352E] font-archivo text-[18px] leading-[28px] font-medium">
-            We're analyzing your requirements so we can offer you the service
-            you've chosen. In a few seconds, you'll be redirected to the payment
-            page to complete your request.
-          </p>
-          <p className="mt-6 text-[#04226B] font-bricolage font-semibold text-[18px]">
-            Redirecting in {countdown}s
-          </p>
-        </div>
-      </div>
-    );
+    return null;
   }
+
+  if (!currentStep) return null;
 
   const { form, stepId, lastStepId } = currentStep;
   const showProgressBar = lastStepId > 1;
@@ -143,7 +130,6 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl px-8 pt-6 pb-8 max-w-[490px] w-full shadow-xl">
-        {/* Header row */}
         <div className="flex items-center gap-3 mb-6">
           <div className="w-5 flex-shrink-0">
             {showBackButton && (
@@ -177,7 +163,6 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
           </button>
         </div>
 
-        {/* Question */}
         <div className="text-center mb-8">
           <h2 className="text-[#34352E] font-bricolage font-extrabold text-[22px] leading-[30px] mb-2">
             {form.label}
@@ -187,7 +172,6 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
           </p>
         </div>
 
-        {/* Answer area */}
         {form.type === "yes_or_no" ? (
           <div className="flex justify-center gap-4">
             <button
@@ -232,8 +216,10 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
                   >
                     <option value="">Select an option</option>
                     {form.options.map((opt, i) => {
-                      const label: string = typeof opt === "string" ? opt : opt.label;
-                      const val: string = typeof opt === "string" ? opt : opt.value;
+                      const label: string =
+                        typeof opt === "string" ? opt : opt.label;
+                      const val: string =
+                        typeof opt === "string" ? opt : opt.value;
                       return (
                         <option key={i} value={val}>
                           {label}
@@ -272,7 +258,6 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
           </div>
         )}
 
-        {/* Error message */}
         {error && (
           <p className="text-red-500 font-archivo text-[14px] text-center mt-4 font-medium">
             {error}
