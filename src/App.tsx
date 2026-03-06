@@ -107,8 +107,11 @@ const buildRedirectUrl = (baseUrl: string) => {
   if (cartToken) {
     params.append("cart_token", cartToken);
   }
+  const finalUrl = `${baseUrl}?${params.toString()}`;
 
-  return `${baseUrl}?${params.toString()}`;
+  console.log("Redirect URL:", finalUrl);
+
+  return finalUrl;
 };
 
 const LoginRedirect = () => {
