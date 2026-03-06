@@ -1,6 +1,11 @@
 import React, { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useServices } from "@/hooks/useServices";
+import { getSitemapLinks, type SitemapLinkItem } from "@/api/sitemap.api";
 import { sitemapServices } from "./sitemap.data";
+import { Link } from "react-router-dom";
+
+const ITEMS_PER_COLUMN = 4;
 
 function chunkIntoColumns<T>(array: T[], maxPerColumn: number): T[][] {
   const columns: T[][] = [];
@@ -11,21 +16,37 @@ function chunkIntoColumns<T>(array: T[], maxPerColumn: number): T[][] {
 }
 
 const Sitemap: React.FC = () => {
-  const { data: services, isLoading, isError } = useServices();
+  const {
+    data: linkItems,
+    isLoading: linksLoading,
+    isError: linksError,
+  } = useQuery({
+    queryKey: ["sitemap-links"],
+    queryFn: getSitemapLinks,
+    staleTime: 10 * 60 * 1000,
+  });
 
-  const serviceNames = useMemo(() => {
-    if (services && Array.isArray(services) && services.length > 0) {
-      return services.map((s) => s.title);
+  const { data: services } = useServices();
+
+  const items = useMemo((): SitemapLinkItem[] => {
+    if (linkItems && linkItems.length > 0) {
+      return linkItems;
     }
-    return sitemapServices;
-  }, [services]);
+    if (services && Array.isArray(services) && services.length > 0) {
+      return services.map((s) => ({
+        label: s.title,
+        link: `/servizi/${s.identifier || s.id}`,
+      }));
+    }
+    return sitemapServices.map((label) => ({ label, link: "#" }));
+  }, [linkItems, services]);
 
   const columns = useMemo(
-    () => chunkIntoColumns(serviceNames, 4),
-    [serviceNames],
+    () => chunkIntoColumns(items, ITEMS_PER_COLUMN),
+    [items],
   );
 
-  const maxItemsPerColumn = Math.max(...columns.map((col) => col.length));
+  const maxItemsPerColumn = Math.max(1, ...columns.map((col) => col.length));
 
   return (
     <section className="w-full min-w-0 ">
@@ -37,7 +58,6 @@ const Sitemap: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile: remove main's left padding so less left space; desktop: keep same (no extra margin/padding) */}
       <div
         className="w-full md:w-[80vw] min-w-0 overflow-x-hidden  md:py-8 mb-10 -ml-6 px-4 md:ml-0 md:px-0"
         style={{ textAlign: "left" }}
@@ -46,15 +66,16 @@ const Sitemap: React.FC = () => {
           Active Services
         </h2>
 
-        {isLoading && (
-          <p className="font-normal text-[#5F6057] text-[18px] leading-[25px] text-center py-8">
-            Loading services…
+        {linksLoading && (
+          <p className="font-normal ]text-[#5F6057] text-[18px] leading-[25px] text-center py-8">
+            Loading…
           </p>
         )}
 
-        {isError && (
-          <p className="text-[#9D9E98] text-center py-8">
-            Showing static list. Services will update when the API is available.
+        {linksError && !linkItems && items.length > 0 && (
+          <p className="text-[#9D9E98] text-center py-4 text-sm">
+            Showing fallback list. Sitemap links will update when the API is
+            available.
           </p>
         )}
 
@@ -63,15 +84,39 @@ const Sitemap: React.FC = () => {
           style={{ textAlign: "left" }}
         >
           {columns.map((column, colIndex) => (
-            <ul key={colIndex} className="space-y-3 list-none p-0 m-0 min-w-0 text-left" style={{ textAlign: "left" }}>
-              {Array.from({ length: maxItemsPerColumn }).map((_, rowIndex) => (
-                <li
-                  key={`${colIndex}-${rowIndex}`}
-                  className="font-normal text-[#5F6057] text-[18px] leading-[25px] min-w-0 break-words text-left"
-                >
-                  {column[rowIndex] || ""}
-                </li>
-              ))}
+            <ul
+              key={colIndex}
+              className="space-y-3 list-none p-0 m-0 min-w-0 text-left"
+              style={{ textAlign: "left" }}
+            >
+              {Array.from({ length: maxItemsPerColumn }).map((_, rowIndex) => {
+                const item = column[rowIndex];
+                return (
+                  <li
+                    key={`${colIndex}-${rowIndex}`}
+                    className="font-normal text-[#ffffff] text-[#5F6057] text-[18px] leading-[25px] min-w-0 break-words text-left"
+                  >
+                    {item ? (
+                      <Link
+                        to={item.link}
+                        target={
+                          item.link.startsWith("http") ? "_blank" : undefined
+                        }
+                        rel={
+                          item.link.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
+                        className="text-[#34352E] hover:underline"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      ""
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           ))}
         </div>

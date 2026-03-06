@@ -123,7 +123,6 @@ const ProfileRedirect = () => (
   <RedirectWithTokens envUrl={env.VITE_TAXPILOT_STAGING_PROFILE_URL} />
 );
 
-
 function App() {
   return (
     <Router>
@@ -137,8 +136,11 @@ function App() {
           <Route path="blog/*" element={<BlogDetail />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="cookie-policy" element={<CookiePolicy />} />
-          <Route path="terms-of-use" element={<TermsOfUse />} />
-          <Route path="general-terms-of-purchase" element={<GeneralTerms />} />
+          <Route
+            path="termini-e-condizioni-utilizzo"
+            element={<TermsOfUse />}
+          />
+          <Route path="termini-e-condizioni-acquisto" element={<GeneralTerms />} />
           <Route path="faq" element={<FAQ />} />
           <Route path="faq/:category/:slug" element={<FAQDetailPage />} />
           <Route path="faq/:category" element={<FAQQuestionsPage />} />
