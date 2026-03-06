@@ -24,89 +24,107 @@ import CookiePolicy from "./pages/cookies/CookiePolicy";
 import TermsOfUse from "./pages/terms of use/TermsOfUse";
 import GeneralTerms from "./pages/general terms and conditions/GeneralTerms";
 
-function TokenFromUrl() {
-  useEffect(() => {
-    const query = window.location.search.slice(1);
+// ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
+const AUTH_TOKEN_KEY = "authToken";
+const CART_TOKEN_KEY = "cartToken";
+const AUTH_PARAM = "t4xp1l0t-5346-token";
+const TOKEN_PREFIX = "t4xp1l0t-5346-";
+const REDIRECT_DELAY_MS = 100;
 
-    const TOKEN_PREFIX = "t4xp1l0t-5346-token=";
-    if (query.includes(TOKEN_PREFIX)) {
-      const token = query.split(TOKEN_PREFIX)[1].split("&")[0];
-      localStorage.setItem("authToken", token);
-    }
+// ---------------------------------------------------------------------------
+// Token capture from URL (runs at module load so CartProvider sees cart_token)
+// ---------------------------------------------------------------------------
+function captureTokensFromUrl(): void {
+  if (typeof window === "undefined" || !window.location.search) return;
+  const params = new URLSearchParams(window.location.search);
+  let didStore = false;
 
-    const CART_TOKEN = "cart_token=";
-    if (query.includes(CART_TOKEN)) {
-      const cartToken = query.split(CART_TOKEN)[1].split("&")[0];
-      localStorage.setItem("cartToken", cartToken);
-    }
+  const cartToken = params.get("cart_token");
+  if (cartToken) {
+    localStorage.setItem(CART_TOKEN_KEY, cartToken);
+    didStore = true;
+  }
 
+  const authToken =
+    params.get(AUTH_PARAM) ??
+    params.get("token") ??
+    (() => {
+      const q = window.location.search.slice(1);
+      if (!q.startsWith(TOKEN_PREFIX)) return null;
+      const value = q
+        .slice(TOKEN_PREFIX.length)
+        .split("&")[0]
+        .replace(/^token=/, "");
+      return value || null;
+    })();
+
+  if (authToken) {
+    localStorage.setItem(AUTH_TOKEN_KEY, authToken);
     window.dispatchEvent(new Event("auth-changed"));
-    window.history.replaceState({}, "", window.location.pathname);
-  }, []);
+    didStore = true;
+  }
 
-  return null;
+  if (didStore) {
+    window.history.replaceState({}, "", window.location.pathname);
+  }
 }
 
-const buildRedirectUrl = (baseUrl: string) => {
-  const authToken = localStorage.getItem("authToken");
-  const cartToken = localStorage.getItem("cartToken");
+captureTokensFromUrl();
 
+function buildRedirectUrl(baseUrl: string): string {
   const params = new URLSearchParams();
+  const auth = localStorage.getItem(AUTH_TOKEN_KEY);
+  const cart = localStorage.getItem(CART_TOKEN_KEY);
+  if (auth) params.set(AUTH_PARAM, auth);
+  if (cart) params.set("cart_token", cart);
+  const query = params.toString();
+  return query ? `${baseUrl}?${query}` : baseUrl;
+}
 
-  if (authToken) params.append("t4xp1l0t-5346-token", authToken);
-  if (cartToken) params.append("cart_token", cartToken);
+function syncCartTokenFromCartData(): void {
+  try {
+    const raw = localStorage.getItem("cartData");
+    if (!raw) return;
+    const data = JSON.parse(raw) as { cartToken?: string };
+    if (data.cartToken) {
+      localStorage.setItem(CART_TOKEN_KEY, data.cartToken);
+    }
+  } catch {
+    // ignore invalid cartData
+  }
+}
 
-  const finalUrl = `${baseUrl}?${params.toString()}`;
-  console.log("Redirect URL:", finalUrl);
-  return finalUrl;
-};
-
-const RedirectWithTokens = ({ envUrl }: { envUrl: string | undefined }) => {
+function RedirectWithTokens({ envUrl }: { envUrl: string | undefined }) {
   useEffect(() => {
     if (!envUrl) return;
-
-    const cartData = localStorage.getItem("cartData");
-    if (cartData) {
-      try {
-        const parsed = JSON.parse(cartData);
-        if (parsed.cartToken) {
-          localStorage.setItem("cartToken", parsed.cartToken);
-        }
-      } catch (error) {
-        console.error("Failed to parse cartData for cartToken:", error);
-      }
-    }
-
-    const redirectUrl = buildRedirectUrl(envUrl);
-    setTimeout(() => window.location.replace(redirectUrl), 100);
+    syncCartTokenFromCartData();
+    const url = buildRedirectUrl(envUrl);
+    const t = setTimeout(() => window.location.replace(url), REDIRECT_DELAY_MS);
+    return () => clearTimeout(t);
   }, [envUrl]);
-
   return <div>Redirecting...</div>;
-};
+}
 
+const env = import.meta.env;
 const LoginRedirect = () => (
-  <RedirectWithTokens
-    envUrl={import.meta.env.VITE_TAXPILOT_STAGING_LOGIN_URL}
-  />
+  <RedirectWithTokens envUrl={env.VITE_TAXPILOT_STAGING_LOGIN_URL} />
 );
 const RegisterRedirect = () => (
-  <RedirectWithTokens
-    envUrl={import.meta.env.VITE_TAXPILOT_STAGING_REGISTER_URL}
-  />
+  <RedirectWithTokens envUrl={env.VITE_TAXPILOT_STAGING_REGISTER_URL} />
 );
 const CartRedirect = () => (
-  <RedirectWithTokens envUrl={import.meta.env.VITE_TAXPILOT_STAGING_CART_URL} />
+  <RedirectWithTokens envUrl={env.VITE_TAXPILOT_STAGING_CART_URL} />
 );
 const ProfileRedirect = () => (
-  <RedirectWithTokens
-    envUrl={import.meta.env.VITE_TAXPILOT_STAGING_PROFILE_URL}
-  />
+  <RedirectWithTokens envUrl={env.VITE_TAXPILOT_STAGING_PROFILE_URL} />
 );
+
 
 function App() {
   return (
     <Router>
-      <TokenFromUrl />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayout />}>
@@ -132,7 +150,6 @@ function App() {
           <Route path="dashboard-requests" element={<Requests />} />
           <Route path="sitemap" element={<Sitemap />} />
         </Route>
-
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginRedirect />} />
           <Route path="/sign-up" element={<RegisterRedirect />} />
