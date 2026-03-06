@@ -94,10 +94,31 @@ function App() {
 
 export default App;
 
+const buildRedirectUrl = (baseUrl: string) => {
+  const authToken = localStorage.getItem("authToken");
+  const cartToken = localStorage.getItem("cartToken");
+
+  const params = new URLSearchParams();
+
+  if (authToken) {
+    params.append("t4xp1l0t-5346-token", authToken);
+  }
+
+  if (cartToken) {
+    params.append("cart_token", cartToken);
+  }
+
+  return `${baseUrl}?${params.toString()}`;
+};
+
 const LoginRedirect = () => {
   useEffect(() => {
     const url = import.meta.env.VITE_TAXPILOT_STAGING_LOGIN_URL;
-    if (url) window.location.replace(url);
+
+    if (url) {
+      const redirectUrl = buildRedirectUrl(url);
+      window.location.replace(redirectUrl);
+    }
   }, []);
 
   return <div>Redirecting to TaxPilot login...</div>;
@@ -106,7 +127,11 @@ const LoginRedirect = () => {
 const RegisterRedirect = () => {
   useEffect(() => {
     const url = import.meta.env.VITE_TAXPILOT_STAGING_REGISTER_URL;
-    if (url) window.location.replace(url);
+
+    if (url) {
+      const redirectUrl = buildRedirectUrl(url);
+      window.location.replace(redirectUrl);
+    }
   }, []);
 
   return <div>Redirecting to TaxPilot registration...</div>;
@@ -115,16 +140,25 @@ const RegisterRedirect = () => {
 const CartRedirect = () => {
   useEffect(() => {
     const url = import.meta.env.VITE_TAXPILOT_STAGING_CART_URL;
-    if (url) window.location.replace(url);
+
+    if (url) {
+      const redirectUrl = buildRedirectUrl(url);
+      window.location.replace(redirectUrl);
+    }
   }, []);
 
   return <div>Redirecting to TaxPilot cart...</div>;
 };
+
 const ProfileRedirect = () => {
   useEffect(() => {
     const url = import.meta.env.VITE_TAXPILOT_STAGING_PROFILE_URL;
-    if (url) window.location.replace(url);
+
+    if (url) {
+      const redirectUrl = buildRedirectUrl(url);
+      window.location.replace(redirectUrl);
+    }
   }, []);
 
-  return <div>Redirecting to TaxPilot cart...</div>;
+  return <div>Redirecting to TaxPilot profile...</div>;
 };
