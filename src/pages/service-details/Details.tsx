@@ -152,11 +152,12 @@ const Details: React.FC = () => {
               )}
             </div>
 
-            <div className="mt-8 flex justify-center md:justify-start">
+            <div className="mt-8  flex justify-center md:justify-start">
               <PrimaryButton
                 text="Request Service"
-                width="220px"
+                width="230px"
                 onClick={handleRequestService}
+                className="pl-2"
               />
             </div>
           </div>

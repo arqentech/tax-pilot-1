@@ -8,6 +8,7 @@ interface PrimaryButtonProps {
   textColor?: string;
   onClick?: () => void;
   disabled?: boolean;
+  className?: string; 
 }
 
 export default function PrimaryButton({
@@ -18,6 +19,7 @@ export default function PrimaryButton({
   textColor = "#FFFFFF",
   onClick,
   disabled = false,
+  className = "",
 }: PrimaryButtonProps) {
   return (
     <button
@@ -32,7 +34,7 @@ export default function PrimaryButton({
         cursor: disabled ? "not-allowed" : "pointer",
         opacity: disabled ? 0.6 : 1,
       }}
-      className="rounded-full font-bricolage  text-[22px] font-extrabold flex items-center justify-center gap-2 shadow-lg transition-all duration-200"
+      className={`rounded-full font-bricolage text-[22px] font-extrabold flex items-center justify-center gap-2 shadow-lg transition-all duration-200 ${className}`}
       onMouseEnter={(e) =>
         !disabled && (e.currentTarget.style.backgroundColor = hoverColor)
       }

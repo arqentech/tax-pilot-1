@@ -29,7 +29,6 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
   const [isValidating, setIsValidating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isComplete, setIsComplete] = useState(false);
-  const [countdown, setCountdown] = useState(10);
   const [textAnswer, setTextAnswer] = useState("");
   const [selectAnswer, setSelectAnswer] = useState("");
 
@@ -57,16 +56,6 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
     init();
   }, [serviceId]);
 
-  useEffect(() => {
-    if (!isComplete) return;
-    if (countdown <= 0) {
-      onComplete();
-      return;
-    }
-    const timer = setTimeout(() => setCountdown((c) => c - 1), 1000);
-    return () => clearTimeout(timer);
-  }, [isComplete, countdown, onComplete]);
-
   const handleAnswer = async (answer: string) => {
     if (!currentStep || isValidating) return;
     setIsValidating(true);
@@ -77,7 +66,7 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
         answer,
       );
       if (results.next_step === false) {
-        setIsComplete(true);
+        onComplete();
       } else {
         const nextStep: StepState = {
           stepId: results.next_step.id,
