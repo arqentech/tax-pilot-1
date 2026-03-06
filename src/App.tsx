@@ -32,14 +32,26 @@ const TOKEN_PREFIX = "t4xp1l0t-5346-";
 
 function TokenFromUrl() {
   useEffect(() => {
-    const query = window.location.search.slice(1); // strip leading "?"
-    if (query.startsWith(TOKEN_PREFIX)) {
-      const token = query.slice(TOKEN_PREFIX.length);
+    const params = new URLSearchParams(window.location.search);
+
+    const tokenParam = params.get("token");
+    const cartToken = params.get("cart_token");
+
+    if (tokenParam && tokenParam.startsWith(TOKEN_PREFIX)) {
+      const token = tokenParam.slice(TOKEN_PREFIX.length);
       localStorage.setItem("authToken", token);
+    }
+
+    if (cartToken) {
+      localStorage.setItem("cartToken", cartToken);
+    }
+
+    if (tokenParam || cartToken) {
       window.dispatchEvent(new Event("auth-changed"));
       window.history.replaceState({}, "", window.location.pathname);
     }
   }, []);
+
   return null;
 }
 
