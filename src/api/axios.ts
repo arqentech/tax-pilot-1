@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseURL = import.meta.env.DEV
   ? "/api"
-  : import.meta.env.VITE_API_BASE_URL || " https://stage-api.taxpilot.it/api";
+  : import.meta.env.VITE_API_BASE_URL || "https://stage-api.taxpilot.it/api";
 
 export const api = axios.create({
   baseURL,
