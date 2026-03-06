@@ -40,10 +40,12 @@ function TokenFromUrl() {
     if (tokenParam && tokenParam.startsWith(TOKEN_PREFIX)) {
       const token = tokenParam.slice(TOKEN_PREFIX.length);
       localStorage.setItem("authToken", token);
+      console.log("authToken", token);
     }
 
     if (cartToken) {
       localStorage.setItem("cartToken", cartToken);
+      console.log("cartToken", cartToken);
     }
 
     if (tokenParam || cartToken) {
