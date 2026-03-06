@@ -19,7 +19,7 @@ import BlogDetail from "./pages/blog-details/BlogDetails";
 import CheckoutPage from "./pages/checkout/Checkout";
 import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 import ScrollToTop from "./components/layout/ScrollToTop";
-import HomePage from "./pages/profile/HomePage";
+// import HomePage from "./pages/profile/HomePage";
 import Documents from "./pages/profile/Documents";
 import PersonalInfo from "./pages/profile/personal-info/PersonalInfo";
 import Requests from "./pages/profile/Requests";
@@ -66,7 +66,7 @@ function App() {
           <Route path="cart" element={<CartRedirect />} />
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="checkout/success" element={<CheckoutSuccess />} />
-          <Route path="dashboard-home" element={<HomePage />} />
+          <Route path="area-clienti" element={<ProfileRedirect />} />
           <Route path="dashboard-documents" element={<Documents />} />
           <Route path="dashboard-personal-info" element={<PersonalInfo />} />
           <Route path="dashboard-requests" element={<Requests />} />
@@ -106,6 +106,14 @@ const RegisterRedirect = () => {
 const CartRedirect = () => {
   useEffect(() => {
     const url = import.meta.env.VITE_TAXPILOT_STAGING_CART_URL;
+    if (url) window.location.replace(url);
+  }, []);
+
+  return <div>Redirecting to TaxPilot cart...</div>;
+};
+const ProfileRedirect = () => {
+  useEffect(() => {
+    const url = import.meta.env.VITE_TAXPILOT_STAGING_PROFILE_URL;
     if (url) window.location.replace(url);
   }, []);
 
