@@ -82,7 +82,6 @@ const getCartToken = async (forceNew: boolean = false): Promise<string> => {
       return token;
     }
   } catch {
-    // Fallback: create cart via /available with customer_id=guest
   }
   const res = await api.get<CartAvailableResponse>("/customer/cart/available", {
     params: { customer_id: getCustomerId() },

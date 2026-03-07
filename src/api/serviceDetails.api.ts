@@ -19,20 +19,17 @@ function toService(raw: Record<string, unknown>): Service {
   return { ...raw, related_services: relatedServices } as Service;
 }
 
-/** API can return single service in results, or results.data (array or single object); normalize to one Service. */
 function parseServiceResponse(res: { data: { results: unknown } }, slug: string): Service {
   const results = res.data.results as Record<string, unknown> | undefined;
   if (!results) throw new Error(`Service with identifier "${slug}" not found`);
 
   const slugNorm = normalizeSlug(slug);
 
-  // Shape 1: single service — results is the service (id, identifier, title, ...)
   const asService = results as unknown as Service;
   if (typeof asService.identifier === "string" && typeof asService.title === "string") {
     if (slugMatches(asService.identifier, slug)) return toService(results as Record<string, unknown>);
   }
 
-  // Shape 2: results.data is array of services
   const data = results.data;
   if (Array.isArray(data)) {
     const service = (data as Service[]).find(
@@ -42,7 +39,6 @@ function parseServiceResponse(res: { data: { results: unknown } }, slug: string)
     throw new Error(`Service with identifier "${slug}" not found`);
   }
 
-  // Shape 3: results.data is a single service object
   if (data && typeof data === "object" && !Array.isArray(data)) {
     const single = data as Record<string, unknown>;
     const id = single.identifier as string | undefined;
@@ -54,7 +50,6 @@ function parseServiceResponse(res: { data: { results: unknown } }, slug: string)
 
 const MAX_PAGES_TO_SEARCH = 10;
 
-/** Search paginated list for a service whose identifier matches slug. */
 async function findServiceInList(slugNorm: string): Promise<Service> {
   for (let page = 1; page <= MAX_PAGES_TO_SEARCH; page++) {
     const res = await api.get<{ results?: { data?: Service[]; last_page?: number } }>("/services", {

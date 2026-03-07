@@ -24,19 +24,13 @@ import CookiePolicy from "./pages/cookies/CookiePolicy";
 import TermsOfUse from "./pages/terms of use/TermsOfUse";
 import GeneralTerms from "./pages/general terms and conditions/GeneralTerms";
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
 const AUTH_TOKEN_KEY = "authToken";
 const CART_TOKEN_KEY = "cartToken";
-const CART_ID_KEY = "cartId"; // must match cart.api so we clear it when token comes from URL
+const CART_ID_KEY = "cartId";
 const AUTH_PARAM = "t4xp1l0t-5346-token";
 const TOKEN_PREFIX = "t4xp1l0t-5346-";
 const REDIRECT_DELAY_MS = 100;
 
-// ---------------------------------------------------------------------------
-// Token capture from URL (runs at module load so CartProvider sees cart_token)
-// ---------------------------------------------------------------------------
 function captureTokensFromUrl(): void {
   if (typeof window === "undefined" || !window.location.search) return;
   const params = new URLSearchParams(window.location.search);
@@ -45,7 +39,7 @@ function captureTokensFromUrl(): void {
   const cartToken = params.get("cart_token");
   if (cartToken) {
     localStorage.setItem(CART_TOKEN_KEY, cartToken);
-    localStorage.removeItem(CART_ID_KEY); // force cart ID to be re-fetched for this token
+    localStorage.removeItem(CART_ID_KEY);
     didStore = true;
   }
 
@@ -94,7 +88,6 @@ function syncCartTokenFromCartData(): void {
       localStorage.setItem(CART_TOKEN_KEY, data.cartToken);
     }
   } catch {
-    // ignore invalid cartData
   }
 }
 

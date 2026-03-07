@@ -27,15 +27,10 @@ const ensureId = (item: CartItem) => ({
     (item.cart_item_id ? String(item.cart_item_id) : crypto.randomUUID()),
 });
 
-/**
- * Map backend cart item to frontend CartItem format
- */
 const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
-  // Extract hours and vatIncluded from service object or metadata
   let hours: string | undefined;
   let vatIncluded: boolean | undefined;
 
-  // First try to get from service object
   if (item.service.hours) {
     hours = item.service.hours;
   }
@@ -43,7 +38,6 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
     vatIncluded = item.service.vatIncluded;
   }
 
-  // If not found in service, check metadata
   if (!hours || vatIncluded === undefined) {
     if (item.metadata && Array.isArray(item.metadata)) {
       const metadataObj = item.metadata.find(
@@ -323,9 +317,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       };
     } catch (error) {
       console.error("Failed to add item to cart:", error);
-
-      // Keep the optimistic item in the cart so the UI doesn't blink to empty.
-      // The backend may have failed (e.g. QuotationModel) but we don't revert.
       const keptItems = [...previousItems, optimisticItem];
       setCartItemsState(keptItems);
       saveCartToStorage(keptItems, cartToken);

@@ -8,7 +8,6 @@ function isHtmlResponse(data: unknown): boolean {
   );
 }
 
-/** Normalize various API response shapes to a flat list of blogs. */
 function parseBlogList(data: unknown): Blog[] {
   if (isHtmlResponse(data)) {
     throw new Error(
@@ -17,7 +16,6 @@ function parseBlogList(data: unknown): Blog[] {
   }
   const raw = data as Record<string, unknown>;
   const results = raw?.results as Record<string, unknown> | undefined;
-  // results.data (paginated), raw.data, raw.results (array), or results itself
   if (Array.isArray(results?.data)) return results.data as Blog[];
   if (Array.isArray(raw?.data)) return raw.data as Blog[];
   if (Array.isArray(raw?.results)) return raw.results as Blog[];
@@ -31,7 +29,6 @@ export const getBlogs = async (): Promise<{ results: { data: Blog[] } }> => {
   return { results: { data: list } };
 };
 
-/** API returns category with `url`; we use it as identifier. */
 interface RawCategoryItem {
   id: number;
   name: string;

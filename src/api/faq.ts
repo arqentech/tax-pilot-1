@@ -42,11 +42,9 @@ export const getFaqDetail = async (
 
 export const searchFaqs = async (query: string): Promise<FaqSearchResult[]> => {
   try {
-    // Try backend search first
     const response = await api.get<FaqSearchResult[]>(`/faqs/search?q=${encodeURIComponent(query)}`);
     return response.data;
-  } catch (error) {
-    // Fallback to client-side search if backend search doesn't exist
+  } catch {
     return searchFaqsClientSide(query);
   }
 };
@@ -55,12 +53,10 @@ const searchFaqsClientSide = async (query: string): Promise<FaqSearchResult[]> =
   const topics = await getFaqTopics();
   const allFaqs: FaqSearchResult[] = [];
   
-  // Fetch all FAQ data from each topic
   for (const topic of topics) {
     try {
       const topicData = await getFaqByTopic(topic.slug_topic);
       
-      // For each question, we need to get the full details to access the response
       for (const item of topicData.children) {
         try {
           const detail = await getFaqDetail(item.slug_topic, item.slug);
@@ -73,15 +69,14 @@ const searchFaqsClientSide = async (query: string): Promise<FaqSearchResult[]> =
             response: detail.faq.response,
           });
         } catch {
-          // Skip if individual FAQ fetch fails
+          void 0;
         }
       }
     } catch {
-      // Skip if topic fetch fails
+      void 0;
     }
   }
 
-  // Search through questions and responses
   const searchTerm = query.toLowerCase().trim();
   return allFaqs.filter(faq => 
     faq.question.toLowerCase().includes(searchTerm) ||

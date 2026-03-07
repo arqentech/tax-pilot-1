@@ -1,22 +1,6 @@
 import { api } from "./axios";
 import { Service } from "../types/services";
 
-interface ApiError {
-  response?: {
-    status?: number;
-    data?: {
-      message?: string;
-    } | string;
-  };
-  request?: unknown;
-  message?: string;
-}
-
-interface FetchServicesParams {
-  search?: string;
-  category?: string;
-}
-
 export interface ServicesPaginationResult {
   services: Service[];
   current_page: number;
@@ -25,7 +9,6 @@ export interface ServicesPaginationResult {
   per_page?: number;
 }
 
-/** Default number of services per page. */
 const DEFAULT_PER_PAGE = 20;
 
 export const getAllServices = async (
@@ -39,7 +22,7 @@ export const getAllServices = async (
   if (category) {
     params.category = category;
     params.category_id = category;
-    params.quotation_category_id = category; // backend may filter by quotation category
+    params.quotation_category_id = category;
   }
 
   const response = await api.get("/services", { params });
@@ -56,18 +39,4 @@ export const getAllServices = async (
     total: results.total,
     per_page: results.per_page,
   };
-};
-
-export const fetchServices = async (
-  search: string,
-  category: string | null
-): Promise<Service[]> => {
-  const params: FetchServicesParams = {};
-  if (search) params.search = search;
-  if (category) params.category = category;
-
-  const res = await api.get("/services", { params });
-  if (res.status !== 200) throw new Error("Failed to fetch services");
-
-  return res.data.results.data;
 };

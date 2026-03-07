@@ -1,7 +1,3 @@
-/**
- * Sitemap data: names of active services only.
- * Used as fallback when the services API is unavailable; otherwise the sitemap uses the API.
- */
 export const sitemapServices: string[] = [
   "ISEE form",
   "ISEE Form for Minors",

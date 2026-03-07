@@ -1,4 +1,3 @@
-/** Item from GET /faqs/homepage */
 export interface HomepageFaqItem {
   topic: string;
   slug_topic: string;

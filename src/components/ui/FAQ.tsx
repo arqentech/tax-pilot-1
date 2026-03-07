@@ -5,7 +5,6 @@ import { stripHtml } from "@/lib/utils";
 export interface FAQItem {
   question: string;
   answer?: string;
-  /** When set, the row links to this path (e.g. /faq/:category/:slug) instead of expanding. */
   link?: string;
 }
 

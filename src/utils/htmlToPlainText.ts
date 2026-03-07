@@ -1,7 +1,3 @@
-/**
- * Converts HTML to plain text, preserving line breaks from block elements.
- * Works in browser (localhost + deployment) and in Node (SSR/build) without DOM.
- */
 export function htmlToPlainText(html: string): string {
   if (!html || typeof html !== "string") return "";
 
@@ -18,7 +14,6 @@ export function htmlToPlainText(html: string): string {
   return fallbackStripHtml(html);
 }
 
-/** Node / no-DOM fallback: replace block tags with newlines, then strip remaining tags */
 function fallbackStripHtml(html: string): string {
   let text = html
     .replace(/<br\s*\/?>/gi, "\n")
