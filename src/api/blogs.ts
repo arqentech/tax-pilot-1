@@ -8,35 +8,44 @@ function isHtmlResponse(data: unknown): boolean {
   );
 }
 
-export const getBlogs = async (): Promise<{ results: { data: Blog[] } }> => {
-  const response = await api.get("/blog/list");
-  const data = response.data;
-
+/** Normalize various API response shapes to a flat list of blogs. */
+function parseBlogList(data: unknown): Blog[] {
   if (isHtmlResponse(data)) {
     throw new Error(
-      "Server returned HTML. Check API base URL and /blog/list endpoint."
+      "Server returned HTML. Check API base URL and /blog/list endpoint.",
     );
   }
-
   const raw = data as Record<string, unknown>;
   const results = raw?.results as Record<string, unknown> | undefined;
-  const list: Blog[] = Array.isArray(results?.data)
-    ? (results.data as Blog[])
-    : Array.isArray(raw?.data)
-      ? (raw.data as Blog[])
-      : Array.isArray(raw?.results)
-        ? (raw.results as Blog[])
-        : [];
+  // results.data (paginated), raw.data, raw.results (array), or results itself
+  if (Array.isArray(results?.data)) return results.data as Blog[];
+  if (Array.isArray(raw?.data)) return raw.data as Blog[];
+  if (Array.isArray(raw?.results)) return raw.results as Blog[];
+  if (results && Array.isArray(results)) return results as Blog[];
+  return [];
+}
 
+export const getBlogs = async (): Promise<{ results: { data: Blog[] } }> => {
+  const response = await api.get("/blog/list");
+  const list = parseBlogList(response.data);
   return { results: { data: list } };
 };
+
+/** API returns category with `url`; we use it as identifier. */
+interface RawCategoryItem {
+  id: number;
+  name: string;
+  url?: string;
+  identifier?: string;
+  [key: string]: unknown;
+}
 
 interface CategoriesApiResponse {
   status?: string;
   code?: number;
   message?: string;
   results?: {
-    data?: CategoryOption[];
+    data?: RawCategoryItem[];
     current_page?: number;
     last_page?: number;
     total?: number;
@@ -50,7 +59,14 @@ export const fetchBlogCategories = async (): Promise<CategoryOption[]> => {
     if (isHtmlResponse(data)) return [];
     const results = (data as CategoriesApiResponse).results;
     const list = results?.data;
-    return Array.isArray(list) ? list : [];
+    if (!Array.isArray(list)) return [];
+    return list
+      .filter((item) => item && (item.url != null || item.identifier != null))
+      .map((item) => ({
+        id: item.id,
+        identifier: (item.identifier ?? item.url ?? "").toString(),
+        name: item.name ?? (item.url ?? item.identifier ?? "").toString(),
+      }));
   } catch {
     return [];
   }

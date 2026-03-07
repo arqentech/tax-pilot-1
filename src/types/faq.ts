@@ -1,3 +1,11 @@
+/** Item from GET /faqs/homepage */
+export interface HomepageFaqItem {
+  topic: string;
+  slug_topic: string;
+  slug: string;
+  question: string;
+}
+
 export interface FaqTopic {
   slug_topic: string;
   topic: string;

@@ -3,8 +3,20 @@ import {
   FaqTopicResponse,
   FaqDetailResponse,
   FaqSearchResult,
+  HomepageFaqItem,
 } from "@/types/faq";
 import { api } from "./axios";
+
+export const getHomepageFaqs = async (): Promise<HomepageFaqItem[]> => {
+  const response = await api.get<HomepageFaqItem[] | { results?: HomepageFaqItem[] }>(
+    "/faqs/homepage",
+  );
+  const data = response.data;
+  if (Array.isArray(data)) return data;
+  if (Array.isArray((data as { results?: HomepageFaqItem[] }).results))
+    return (data as { results: HomepageFaqItem[] }).results;
+  return [];
+};
 
 export const getFaqTopics = async (): Promise<FaqTopic[]> => {
   const response = await api.get<FaqTopic[]>("/faqs/topics");

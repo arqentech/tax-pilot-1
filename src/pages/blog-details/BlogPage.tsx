@@ -52,12 +52,15 @@ function normalizeFaqs(raw: unknown): FAQItem[] {
 
 function fromApi(api: Record<string, unknown>) {
   const text =
-    (api.description_long as string) || (api.description_short as string) || "";
+    (api.description_long as string) ||
+    (api.description_short as string) ||
+    (api.description as string) ||
+    "";
   const words = text
     .replace(/<[^>]*>/g, " ")
     .split(/\s+/)
     .filter(Boolean).length;
-  const cat = api.category as { name?: string } | undefined;
+  const cat = api.category as { name?: string; url?: string } | undefined;
   const img = api.image as { url?: string } | undefined;
   const createdAt = api.created_at as string | undefined;
   const faqs = normalizeFaqs(
@@ -79,13 +82,19 @@ function fromApi(api: Record<string, unknown>) {
     | {
         full_name?: string;
         authorname?: string;
+        user?: { full_name?: string; name?: string };
       }
     | undefined;
-  const author = rawAuthor?.full_name ?? rawAuthor?.authorname ?? "Unknown";
+  const author =
+    rawAuthor?.full_name ??
+    rawAuthor?.authorname ??
+    rawAuthor?.user?.full_name ??
+    (rawAuthor?.user as { name?: string } | undefined)?.name ??
+    "Unknown";
 
   return {
     title: (api.title as string) ?? "",
-    tag: cat?.name ?? "",
+    tag: cat?.name ?? cat?.url ?? "",
     author,
     image: img?.url ?? "",
     readTime: `${Math.max(1, Math.ceil(words / 200))} min read`,

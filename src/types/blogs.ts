@@ -8,20 +8,23 @@ interface BlogAuthor {
 }
 interface BlogCategory {
   id: number;
-  identifier: string;
+  identifier?: string;
+  url?: string;
   name: string;
 }
 export interface Blog {
   id: number;
-  identifier: string;
+  identifier?: string;
+  url?: string;
   title: string;
-  description_short: string | null;
-  description_long: string;
-  active: number;
+  description_short?: string | null;
+  description_long?: string;
+  description?: string;
+  active?: number;
   created_at: string;
-  category: BlogCategory;
-  author: BlogAuthor;
-  image: BlogImage;
+  category?: BlogCategory;
+  author?: BlogAuthor;
+  image?: BlogImage;
 }
 
 export interface CategoryOption {

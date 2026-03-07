@@ -5,6 +5,7 @@ import BlogCard from "@/components/ui/blogs/BlogCard";
 import Categories from "@/components/ui/Categories";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogs } from "@/api/blogs";
+import { useCategories } from "@/hooks/useCategories";
 import { CategoryOption } from "@/types/blogs";
 import { stripHtml } from "@/lib/utils";
 
@@ -38,7 +39,9 @@ const Blogs: React.FC = () => {
     return safeBlogs
       .filter((blog) => blog && (blog.identifier || blog.id))
       .map((blog) => {
-        const text = stripHtml(blog.description_short ?? blog.description_long ?? "");
+        const text = stripHtml(
+          blog.description_short ?? blog.description_long ?? blog.description ?? "",
+        );
         const wordCount = text.split(" ").length;
         const readTime = Math.max(1, Math.ceil(wordCount / 200));
         return {
@@ -47,28 +50,39 @@ const Blogs: React.FC = () => {
           title: blog.title ?? "",
           description: text, // now cleaned
           readTime: `${readTime} min read`,
-          slug: blog.identifier ?? String(blog.id ?? ""),
-          categoryId: blog.category?.identifier ?? "",
+          slug: blog.identifier ?? blog.url?.replace(/^\/+|\/+$/g, "") ?? String(blog.id ?? ""),
+          categoryId: blog.category?.identifier ?? blog.category?.url ?? "",
         };
       });
   }, [safeBlogs]);
+
+  const { data: apiCategories = [] } = useCategories();
 
   const derivedCategories: CategoryOption[] = useMemo(() => {
     const seen = new Map<string, CategoryOption>();
     safeBlogs.forEach((blog) => {
       const cat = blog.category;
-      if (cat?.identifier && !seen.has(cat.identifier)) {
-        seen.set(cat.identifier, {
+      const catId = cat?.identifier ?? cat?.url;
+      if (catId && !seen.has(catId)) {
+        seen.set(catId, {
           id: cat.id ?? 0,
-          identifier: cat.identifier,
-          name: cat.name ?? cat.identifier,
+          identifier: catId,
+          name: cat.name ?? catId,
         });
       }
     });
     return Array.from(seen.values());
   }, [safeBlogs]);
 
-  const availableCategories: CategoryOption[] = derivedCategories;
+  const availableCategories: CategoryOption[] = useMemo(() => {
+    const byId = new Map<string, CategoryOption>();
+    derivedCategories.forEach((c) => byId.set(c.identifier, c));
+    apiCategories.forEach((c) => {
+      if (c.identifier && !byId.has(c.identifier))
+        byId.set(c.identifier, { id: c.id, identifier: c.identifier, name: c.name ?? c.identifier });
+    });
+    return Array.from(byId.values());
+  }, [derivedCategories, apiCategories]);
 
   const filteredBlogs = useMemo(() => {
     const lowerQuery = query.toLowerCase().trim();
