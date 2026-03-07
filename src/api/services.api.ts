@@ -25,8 +25,8 @@ export interface ServicesPaginationResult {
   per_page?: number;
 }
 
-/** Default page size for faster first load; backend may ignore if not supported. */
-const DEFAULT_PER_PAGE = 12;
+/** Default number of services per page. */
+const DEFAULT_PER_PAGE = 20;
 
 export const getAllServices = async (
   page: number = 1,
@@ -36,7 +36,11 @@ export const getAllServices = async (
 ): Promise<ServicesPaginationResult> => {
   const params: Record<string, string | number> = { page, per_page: perPage };
   if (search?.trim()) params.search = search.trim();
-  if (category) params.category = category;
+  if (category) {
+    params.category = category;
+    params.category_id = category;
+    params.quotation_category_id = category; // backend may filter by quotation category
+  }
 
   const response = await api.get("/services", { params });
   const results = response.data?.results;

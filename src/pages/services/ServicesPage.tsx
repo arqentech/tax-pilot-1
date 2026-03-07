@@ -6,12 +6,13 @@ import FilterButton from "../../components/ui/FilterButton";
 import Categories from "@/components/ui/Categories";
 import type { GenericCategoryItem } from "@/components/ui/Categories";
 import { useServices } from "../../hooks/useServices";
+import { useQuotationCategories } from "@/hooks/useQuotationCategories";
 import { Service } from "../../types/services";
 
 const ServicesPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data, isLoading, isError, error } = useServices(
@@ -20,24 +21,34 @@ const ServicesPage: React.FC = () => {
     selectedCategory,
   );
 
-  const services = data?.services ?? [];
+  const { data: categoriesData = [], isLoading: categoriesLoading } =
+    useQuotationCategories();
+
+  const servicesFromApi = data?.services ?? [];
   const currentPageNum = data?.current_page ?? 1;
   const lastPage = data?.last_page ?? 1;
 
-  const availableCategories = useMemo<GenericCategoryItem[]>(() => {
-    const map = new Map<string, string>();
-    services.forEach((service: Service) => {
-      service.categories?.forEach((entry) => {
-        const id = entry.category?.identifier;
-        const title = entry.category?.title;
-        if (id && title && !map.has(id)) map.set(id, title);
-      });
-    });
-    return Array.from(map.entries()).map(([identifier, title]) => ({
-      identifier,
-      title,
-    }));
-  }, [services]);
+  const services = useMemo(() => {
+    if (!selectedCategory) return servicesFromApi;
+    return servicesFromApi.filter((service: Service) =>
+      service.categories?.some(
+        (sc) =>
+          String(sc.category?.id) === selectedCategory ||
+          sc.category?.identifier === selectedCategory,
+      ),
+    );
+  }, [servicesFromApi, selectedCategory]);
+
+  const availableCategories: GenericCategoryItem[] = useMemo(() => {
+    return categoriesData
+      .filter((c) => c.active === 1)
+      .map((c) => ({
+        id: c.id,
+        identifier: String(c.id),
+        name: c.name,
+        title: c.name,
+      }));
+  }, [categoriesData]);
 
   const toggleFilter = () => {
     setIsFilterOpen((prev) => {
@@ -112,6 +123,7 @@ const ServicesPage: React.FC = () => {
             searchValue={searchQuery}
             isOpen={isFilterOpen}
             selectedCategory={selectedCategory}
+            isLoading={categoriesLoading}
           />
         </div>
 
