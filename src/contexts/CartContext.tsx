@@ -226,12 +226,13 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
               saveCartToStorage(mergedItems, existingToken);
               return;
             } catch (error) {
-              console.warn("Existing cart token invalid, getting new token");
-              localStorage.removeItem("cartToken");
+              console.warn("Failed to fetch cart with existing token, keeping token for redirect");
             }
           }
 
-          await refreshCart(true);
+          if (!existingToken) {
+            await refreshCart(true);
+          }
         } catch (error) {
           console.error("Failed to initialize cart:", error);
         }
