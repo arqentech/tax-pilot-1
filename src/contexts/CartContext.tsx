@@ -194,19 +194,33 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       const localItems = loadCartFromStorage();
       const storedToken = getStoredCartTokenFromData() || getStoredCartToken();
 
-      if (localItems.length > 0 || storedToken) {
+      // If stored token is "guest" but user is logged in, use real customer ID
+      let effectiveToken = storedToken;
+      let tokenWasGuest = false;
+      if (effectiveToken === "guest") {
+        try {
+          const userData = localStorage.getItem("userData");
+          const customerId = userData ? String(JSON.parse(userData).id) : null;
+          if (customerId && customerId !== "guest") {
+            effectiveToken = customerId;
+            localStorage.setItem("cartToken", customerId);
+            tokenWasGuest = true;
+          }
+        } catch {}
+      }
+
+      if (localItems.length > 0 || effectiveToken) {
         setCartItemsState(localItems);
-        setCartToken(storedToken);
+        setCartToken(effectiveToken);
         setIsLoading(false);
       }
 
       const needsSync =
-        localItems.length === 0 || isCartDataStale() || !storedToken;
+        localItems.length === 0 || isCartDataStale() || !effectiveToken || tokenWasGuest;
 
       if (needsSync) {
         try {
-          const existingToken =
-            storedToken ?? getStoredCartToken();
+          const existingToken = effectiveToken;
           if (existingToken) {
             setCartToken(existingToken);
             try {
