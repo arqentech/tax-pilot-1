@@ -157,7 +157,7 @@ const Details: React.FC = () => {
                 text="Request Service"
                 width="230px"
                 onClick={handleRequestService}
-                className="pl-2"
+                className="pl-4"
               />
             </div>
           </div>

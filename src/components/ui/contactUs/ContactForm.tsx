@@ -14,6 +14,7 @@ interface ContactFormProps {
   ) => void;
   onSubmit: (e: React.FormEvent) => void;
   isMobile?: boolean;
+  isSubmitting?: boolean;
 }
 
 export default function ContactForm({
@@ -21,6 +22,7 @@ export default function ContactForm({
   onChange,
   onSubmit,
   isMobile = false,
+  isSubmitting = false,
 }: ContactFormProps) {
   return (
     <form onSubmit={onSubmit} className={`space-y-${isMobile ? "3" : "6"} `}>
@@ -58,9 +60,10 @@ export default function ContactForm({
 
       <Button
         type="submit"
-        className="w-full h-[60px] rounded-full bg-[linear-gradient(180deg,#54564A_0%,#34352E_44.72%)] text-[24px] text-white font-bricolage "
+        disabled={isSubmitting}
+        className="w-full h-[60px] rounded-full bg-[linear-gradient(180deg,#54564A_0%,#34352E_44.72%)] text-[24px] text-white font-bricolage disabled:opacity-70 disabled:cursor-not-allowed"
       >
-        Invia
+        {isSubmitting ? "Invio in corso..." : "Invia"}
       </Button>
     </form>
   );

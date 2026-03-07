@@ -1,25 +1,43 @@
 import Badge from "../../components/ui/Badge";
 import FAQ from "../../components/ui/FAQ";
 import type { FAQItem } from "../../components/ui/FAQ";
-import { getHomepageFaqs } from "@/api/faq";
-import { useQuery } from "@tanstack/react-query";
+import { getHomepageFaqs, getFaqDetail } from "@/api/faq";
+import { useQuery, useQueries } from "@tanstack/react-query";
+import { useMemo } from "react";
 import { homeFaqData } from "../../data/FAQData";
 
 function HomePageFAQ() {
-  const { data: apiFaqs = [], isLoading } = useQuery({
+  const { data: apiFaqs = [], isLoading: isLoadingList } = useQuery({
     queryKey: ["faqs", "homepage"],
     queryFn: getHomepageFaqs,
     staleTime: 5 * 60 * 1000,
     refetchOnWindowFocus: false,
   });
 
-  const faqData: FAQItem[] =
-    apiFaqs.length > 0
-      ? apiFaqs.map((item) => ({
-          question: item.question.replace(/^"|"$/g, "").trim(),
-          link: `/faq/${item.slug_topic}/${item.slug}`,
-        }))
-      : homeFaqData;
+  const detailQueries = useQueries({
+    queries: apiFaqs.map((item) => ({
+      queryKey: ["faq", "detail", item.slug_topic, item.slug],
+      queryFn: () => getFaqDetail(item.slug_topic, item.slug),
+      enabled: apiFaqs.length > 0,
+      staleTime: 5 * 60 * 1000,
+    })),
+  });
+
+  const faqData: FAQItem[] = useMemo(() => {
+    if (apiFaqs.length === 0) return homeFaqData;
+    return apiFaqs.map((item, i) => {
+      const detail = detailQueries[i]?.data;
+      const question = item.question.replace(/^"|"$/g, "").trim();
+      const link = `/faq/${item.slug_topic}/${item.slug}`;
+      const answer = detail?.faq?.response;
+      return {
+        question,
+        ...(answer != null && answer !== "" ? { answer, link } : { link }),
+      };
+    });
+  }, [apiFaqs, detailQueries]);
+
+  const isLoading = isLoadingList || (apiFaqs.length > 0 && detailQueries.some((q) => q.isLoading));
 
   return (
     <div className="w-full py-16">
@@ -32,7 +50,7 @@ function HomePageFAQ() {
         </h2>
       </div>
       <div className="max-w-2xl mx-auto ">
-        {isLoading && apiFaqs.length === 0 ? (
+        {isLoading ? (
           <p className="text-center text-[#5F6057] py-8">Caricamento FAQ...</p>
         ) : (
           <FAQ data={faqData} />
