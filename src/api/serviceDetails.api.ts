@@ -1,32 +1,111 @@
 import { Service, RelatedServiceItem } from "@/types/services";
 import { api } from "./axios";
 
-/** API can return single service in results or list in results.data; normalize to one Service. */
+const normalizeSlug = (s: string) =>
+  s
+    .replace(/^\/+|\/+$/g, "")
+    .trim()
+    .toLowerCase()
+    .replace(/_/g, "-");
+
+function slugMatches(serviceIdentifier: string | undefined, slug: string): boolean {
+  if (!serviceIdentifier) return false;
+  return normalizeSlug(serviceIdentifier) === normalizeSlug(slug);
+}
+
+function toService(raw: Record<string, unknown>): Service {
+  const relatedServices: RelatedServiceItem[] | Service[] =
+    (raw.related_services as RelatedServiceItem[] | Service[] | undefined) ?? [];
+  return { ...raw, related_services: relatedServices } as Service;
+}
+
+/** API can return single service in results, or results.data (array or single object); normalize to one Service. */
 function parseServiceResponse(res: { data: { results: unknown } }, slug: string): Service {
   const results = res.data.results as Record<string, unknown> | undefined;
   if (!results) throw new Error(`Service with identifier "${slug}" not found`);
 
-  // Shape 1: single service — results is the service (id, identifier, title, categories, ...)
+  const slugNorm = normalizeSlug(slug);
+
+  // Shape 1: single service — results is the service (id, identifier, title, ...)
   const asService = results as unknown as Service;
   if (typeof asService.identifier === "string" && typeof asService.title === "string") {
-    const relatedServices: RelatedServiceItem[] | Service[] =
-      (asService.related_services as RelatedServiceItem[] | Service[] | undefined) ?? [];
-    return { ...asService, related_services: relatedServices };
+    if (slugMatches(asService.identifier, slug)) return toService(results as Record<string, unknown>);
   }
 
-  // Shape 2: list — results.data is array of services
-  const data = results.data as Service[] | undefined;
-  if (!Array.isArray(data)) throw new Error(`Service with identifier "${slug}" not found`);
-  const service = data.find(
-    (s) => s.identifier === slug || String(s.id) === slug
-  );
-  if (!service) throw new Error(`Service with identifier "${slug}" not found`);
-  const relatedServices: RelatedServiceItem[] | Service[] =
-    (service.related_services as RelatedServiceItem[] | Service[] | undefined) ?? [];
-  return { ...service, related_services: relatedServices };
+  // Shape 2: results.data is array of services
+  const data = results.data;
+  if (Array.isArray(data)) {
+    const service = (data as Service[]).find(
+      (s) => slugMatches(s.identifier, slug) || String(s.id) === slugNorm,
+    );
+    if (service) return toService(service as unknown as Record<string, unknown>);
+    throw new Error(`Service with identifier "${slug}" not found`);
+  }
+
+  // Shape 3: results.data is a single service object
+  if (data && typeof data === "object" && !Array.isArray(data)) {
+    const single = data as Record<string, unknown>;
+    const id = single.identifier as string | undefined;
+    if (id && slugMatches(id, slug)) return toService(single);
+  }
+
+  throw new Error(`Service with identifier "${slug}" not found`);
+}
+
+const MAX_PAGES_TO_SEARCH = 10;
+
+/** Search paginated list for a service whose identifier matches slug. */
+async function findServiceInList(slugNorm: string): Promise<Service> {
+  for (let page = 1; page <= MAX_PAGES_TO_SEARCH; page++) {
+    const res = await api.get<{ results?: { data?: Service[]; last_page?: number } }>("/services", {
+      params: { page, per_page: 20 },
+    });
+    const data = res.data?.results?.data;
+    if (!Array.isArray(data)) break;
+    const found = data.find((s) => slugMatches(s.identifier, slugNorm));
+    if (found) return toService(found as unknown as Record<string, unknown>);
+    const lastPage = res.data?.results?.last_page ?? 1;
+    if (page >= lastPage) break;
+  }
+  throw new Error(`Service with identifier "${slugNorm}" not found`);
 }
 
 export const getServiceDetails = async (slug: string): Promise<Service> => {
-  const res = await api.get(`/services`, { params: { identifier: slug } });
-  return parseServiceResponse(res, slug);
+  const slugNorm = slug.replace(/^\/+|\/+$/g, "").trim();
+  if (!slugNorm) throw new Error("Service identifier is required");
+
+  const tryByQuery = async (param: "identifier" | "slug"): Promise<Service> => {
+    const res = await api.get(`/services`, { params: { [param]: slugNorm } });
+    return parseServiceResponse(res, slugNorm);
+  };
+
+  const tryByPath = async (): Promise<Service> => {
+    const res = await api.get(`/services/${encodeURIComponent(slugNorm)}`);
+    return parseServiceResponse(res, slugNorm);
+  };
+
+  const notFound = (e: unknown) =>
+    (e instanceof Error && e.message.includes("not found")) ||
+    (e && typeof e === "object" && "response" in e && (e as { response?: { status?: number } }).response?.status === 404);
+
+  try {
+    return await tryByQuery("identifier");
+  } catch (e1) {
+    if (!notFound(e1)) throw e1;
+    try {
+      return await tryByQuery("slug");
+    } catch (e2) {
+      if (!notFound(e2)) throw e2;
+      try {
+        return await tryByPath();
+      } catch (e3) {
+        if (!notFound(e3)) throw e3;
+        try {
+          return await findServiceInList(slugNorm);
+        } catch {
+          throw e1;
+        }
+      }
+    }
+  }
 };

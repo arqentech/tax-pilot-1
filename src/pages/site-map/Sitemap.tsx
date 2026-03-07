@@ -26,16 +26,18 @@ const Sitemap: React.FC = () => {
     staleTime: 10 * 60 * 1000,
   });
 
-  const { data: services } = useServices();
+  const { data: servicesData } = useServices(1, undefined, null, 100);
+
+  const services = servicesData?.services ?? [];
 
   const items = useMemo((): SitemapLinkItem[] => {
     if (linkItems && linkItems.length > 0) {
       return linkItems;
     }
-    if (services && Array.isArray(services) && services.length > 0) {
-      return services.map((s) => ({
+    if (services.length > 0) {
+      return services.map((s: { title: string; identifier?: string; id?: number }) => ({
         label: s.title,
-        link: `/servizi/${s.identifier || s.id}`,
+        link: `/servizi/${s.identifier ?? s.id}`,
       }));
     }
     return sitemapServices.map((label) => ({ label, link: "#" }));

@@ -25,12 +25,16 @@ export interface ServicesPaginationResult {
   per_page?: number;
 }
 
+/** Default page size for faster first load; backend may ignore if not supported. */
+const DEFAULT_PER_PAGE = 12;
+
 export const getAllServices = async (
   page: number = 1,
   search?: string,
   category?: string,
+  perPage: number = DEFAULT_PER_PAGE,
 ): Promise<ServicesPaginationResult> => {
-  const params: Record<string, string | number> = { page };
+  const params: Record<string, string | number> = { page, per_page: perPage };
   if (search?.trim()) params.search = search.trim();
   if (category) params.category = category;
 

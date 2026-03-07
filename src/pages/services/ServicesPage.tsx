@@ -85,8 +85,8 @@ const ServicesPage: React.FC = () => {
   }
 
   return (
-    <div className="w-full py-16">
-      <div className="flex flex-col items-center min-h-screen md:pb-16">
+    <div className="w-full py-16 flex flex-col min-h-[calc(100vh-8rem)] md:min-h-[calc(100vh-6rem)]">
+      <div className="flex flex-col items-center flex-1">
         <div className="mb-8 text-center">
           <h1 className="font-bricolage heading-base">Tutti i Servizi</h1>
           <p className="mt-2 text-base">
@@ -115,7 +115,7 @@ const ServicesPage: React.FC = () => {
           />
         </div>
 
-        <div className="mt-6 w-full">
+        <div className="mt-6 w-full flex-1">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 pb-4">
             {services.length > 0 ? (
               services.map((service: Service) => (
@@ -139,34 +139,34 @@ const ServicesPage: React.FC = () => {
               </div>
             )}
           </div>
-
-          {lastPage > 1 && (
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <button
-                type="button"
-                onClick={() => goToPage(currentPageNum - 1)}
-                disabled={currentPageNum <= 1}
-                aria-label="Pagina precedente"
-                className="p-2.5 rounded-full border border-[#E6E6E1] bg-white text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FBFBFA] transition-colors"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <span className="px-4 py-2 text-sm text-[#5F6057]">
-                Pagina {currentPageNum} di {lastPage}
-              </span>
-              <button
-                type="button"
-                onClick={() => goToPage(currentPageNum + 1)}
-                disabled={currentPageNum >= lastPage}
-                aria-label="Pagina successiva"
-                className="p-2.5 rounded-full border border-[#E6E6E1] bg-white text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FBFBFA] transition-colors"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-          )}
         </div>
       </div>
+
+      {lastPage > 1 && (
+        <div className="mt-auto pt-8 pb-4 flex flex-wrap items-center justify-center gap-3 border-t border-[#E6E6E1]">
+          <button
+            type="button"
+            onClick={() => goToPage(currentPageNum - 1)}
+            disabled={currentPageNum <= 1}
+            aria-label="Pagina precedente"
+            className="p-2.5 rounded-full border border-[#E6E6E1] bg-white text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FBFBFA] transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <span className="px-4 py-2 text-sm text-[#5F6057]">
+            Pagina {currentPageNum} di {lastPage}
+          </span>
+          <button
+            type="button"
+            onClick={() => goToPage(currentPageNum + 1)}
+            disabled={currentPageNum >= lastPage}
+            aria-label="Pagina successiva"
+            className="p-2.5 rounded-full border border-[#E6E6E1] bg-white text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FBFBFA] transition-colors"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
