@@ -43,20 +43,13 @@ export interface Service {
   title: string;
   description_short: string;
   description_long: string;
-  price: number;
+  price: number | string;
   vatIncluded?: boolean;
   hours?: string;
   inDepthAnalysis?: string;
   advantages?: string[];
-  image?: {
-    url: string;
-  };
-  categories?: {
-    category: {
-      identifier: string;
-      title: string;
-    };
-  }[];
+  image?: ServiceImage;
+  categories?: ServiceCategory[];
   faqs?: FAQ[];
   related_services?: RelatedServiceItem[] | Service[];
 }

@@ -84,7 +84,7 @@ const Details: React.FC = () => {
       await addToCart({
         service_id: service.id,
         title: service.title,
-        price: service.price,
+        price: Number(service.price ?? 0),
         description: stripHtml(service.description_short),
         hours: service.hours ?? "",
         link: `/servizi/${service.identifier}`,

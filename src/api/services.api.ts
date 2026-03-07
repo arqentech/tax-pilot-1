@@ -17,54 +17,37 @@ interface FetchServicesParams {
   category?: string;
 }
 
-export const getAllServices = async () => {
-  try {
-    const response = await api.get("/services");
+export interface ServicesPaginationResult {
+  services: Service[];
+  current_page: number;
+  last_page: number;
+  total?: number;
+  per_page?: number;
+}
 
-    if (
-      typeof response.data === "string" &&
-      response.data.trim().startsWith("<!DOCTYPE")
-    ) {
-      throw new Error(
-        "Server returned HTML error page. Check if API endpoint is correct."
-      );
-    }
+export const getAllServices = async (
+  page: number = 1,
+  search?: string,
+  category?: string,
+): Promise<ServicesPaginationResult> => {
+  const params: Record<string, string | number> = { page };
+  if (search?.trim()) params.search = search.trim();
+  if (category) params.category = category;
 
-    if (!response.data?.results?.data) {
-      throw new Error("Invalid API response structure");
-    }
+  const response = await api.get("/services", { params });
+  const results = response.data?.results;
 
-    return response.data.results.data;
-  } catch (error) {
-    const apiError = error as ApiError;
-    if (apiError.response) {
-      const responseData = apiError.response.data;
-      if (
-        typeof responseData === "string" &&
-        responseData.includes("<!DOCTYPE")
-      ) {
-        throw new Error(
-          `API returned HTML error page (Status: ${apiError.response.status}). ` +
-            `The proxy may not be working. Check if dev server was restarted and proxy is configured correctly.`
-        );
-      }
-
-      const errorMessage =
-        typeof responseData === "object" && responseData !== null
-          ? responseData.message
-          : undefined;
-      throw new Error(
-        errorMessage ||
-          `Failed to fetch services: ${apiError.response.status}`
-      );
-    } else if (apiError.request) {
-      throw new Error(
-        "Network error: Could not reach the server. Make sure dev server is running."
-      );
-    } else {
-      throw error;
-    }
+  if (!results?.data || !Array.isArray(results.data)) {
+    throw new Error("Invalid API response structure");
   }
+
+  return {
+    services: results.data as Service[],
+    current_page: results.current_page ?? page,
+    last_page: results.last_page ?? 1,
+    total: results.total,
+    per_page: results.per_page,
+  };
 };
 
 export const fetchServices = async (

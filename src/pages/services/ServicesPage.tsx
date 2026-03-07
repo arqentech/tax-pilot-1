@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import SearchBar from "../../components/ui/SearchBar";
 import ServiceCard from "../../components/ui/ServiceCard";
 import FilterButton from "../../components/ui/FilterButton";
@@ -11,8 +12,17 @@ const ServicesPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const { data: services = [], isLoading, isError, error } = useServices();
+  const { data, isLoading, isError, error } = useServices(
+    currentPage,
+    searchQuery,
+    selectedCategory,
+  );
+
+  const services = data?.services ?? [];
+  const currentPageNum = data?.current_page ?? 1;
+  const lastPage = data?.last_page ?? 1;
 
   const availableCategories = useMemo<GenericCategoryItem[]>(() => {
     const map = new Map<string, string>();
@@ -29,20 +39,6 @@ const ServicesPage: React.FC = () => {
     }));
   }, [services]);
 
-  const filteredServices = useMemo(() => {
-    const query = searchQuery.toLowerCase().trim();
-    return services.filter((service: Service) => {
-      const matchesCategory =
-        !selectedCategory ||
-        service.categories?.some(
-          (c) => c.category.identifier === selectedCategory,
-        );
-      const matchesSearch =
-        !query || service.title.toLowerCase().includes(query);
-      return matchesCategory && matchesSearch;
-    });
-  }, [services, searchQuery, selectedCategory]);
-
   const toggleFilter = () => {
     setIsFilterOpen((prev) => {
       if (prev) setSelectedCategory(null);
@@ -52,6 +48,16 @@ const ServicesPage: React.FC = () => {
 
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory((prev) => (prev === categoryId ? null : categoryId));
+    setCurrentPage(1);
+  };
+
+  const handleSearch = (value: string) => {
+    setSearchQuery(value);
+    setCurrentPage(1);
+  };
+
+  const goToPage = (page: number) => {
+    setCurrentPage(() => Math.max(1, Math.min(lastPage, page)));
   };
 
   if (isLoading)
@@ -83,12 +89,18 @@ const ServicesPage: React.FC = () => {
       <div className="flex flex-col items-center min-h-screen md:pb-16">
         <div className="mb-8 text-center">
           <h1 className="font-bricolage heading-base">Tutti i Servizi</h1>
-          <p className="mt-2 text-base">Scegli tra gli oltre 150 servizi e bonus disponibili.</p>
+          <p className="mt-2 text-base">
+            Scegli tra gli oltre 150 servizi e bonus disponibili.
+          </p>
         </div>
 
         <div className="flex w-full items-center gap-3 justify-center md:gap-4">
           <div className="w-full md:max-w-[720px]">
-            <SearchBar onSearch={setSearchQuery} placeholder="Cerca un servizio" value={searchQuery} />
+            <SearchBar
+              onSearch={handleSearch}
+              placeholder="Cerca un servizio"
+              value={searchQuery}
+            />
           </div>
           <FilterButton onFilterClick={toggleFilter} />
         </div>
@@ -104,9 +116,9 @@ const ServicesPage: React.FC = () => {
         </div>
 
         <div className="mt-6 w-full">
-          <div className="grid grid-cols-1 gap-6 overflow-y-auto max-h-[calc(100vh-20px)] md:grid-cols-2 lg:grid-cols-2 pb-4">
-            {filteredServices.length > 0 ? (
-              filteredServices.map((service: Service) => (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 pb-4">
+            {services.length > 0 ? (
+              services.map((service: Service) => (
                 <ServiceCard
                   key={service.id}
                   title={
@@ -127,6 +139,32 @@ const ServicesPage: React.FC = () => {
               </div>
             )}
           </div>
+
+          {lastPage > 1 && (
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={() => goToPage(currentPageNum - 1)}
+                disabled={currentPageNum <= 1}
+                aria-label="Pagina precedente"
+                className="p-2.5 rounded-full border border-[#E6E6E1] bg-white text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FBFBFA] transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <span className="px-4 py-2 text-sm text-[#5F6057]">
+                Pagina {currentPageNum} di {lastPage}
+              </span>
+              <button
+                type="button"
+                onClick={() => goToPage(currentPageNum + 1)}
+                disabled={currentPageNum >= lastPage}
+                aria-label="Pagina successiva"
+                className="p-2.5 rounded-full border border-[#E6E6E1] bg-white text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FBFBFA] transition-colors"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
