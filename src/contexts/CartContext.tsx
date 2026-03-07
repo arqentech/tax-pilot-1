@@ -258,7 +258,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
     const localExists = cartItems.some(
       (existing) =>
-        itemWithId.service_id && existing.service_id === itemWithId.service_id,
+        itemWithId.service_id &&
+        existing.service_id === itemWithId.service_id &&
+        existing.cart_item_id != null,
     );
 
     if (localExists) {

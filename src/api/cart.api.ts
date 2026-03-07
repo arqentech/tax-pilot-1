@@ -76,10 +76,18 @@ const getCartToken = async (forceNew: boolean = false): Promise<string> => {
 
   try {
     const res = await api.get<CartTokenResponse>("/customer/cart/cart-token");
-    if (res.data.status === "success" && res.data.results?.token) {
-      const token = res.data.results.token;
-      localStorage.setItem(CART_TOKEN_KEY, token);
-      return token;
+    const raw = res.data as unknown as Record<string, unknown>;
+    if (raw.status === "success") {
+      if (typeof raw.cart_id === "number") {
+        localStorage.setItem(CART_ID_KEY, String(raw.cart_id));
+      }
+      const token = (raw.results as Record<string, unknown> | undefined)?.token as string | undefined;
+      if (token) {
+        localStorage.setItem(CART_TOKEN_KEY, token);
+        return token;
+      }
+      const existing = getStoredCartToken();
+      if (existing) return existing;
     }
   } catch {
   }
