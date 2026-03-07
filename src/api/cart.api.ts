@@ -175,6 +175,15 @@ const addItemToCart = async (
     cartData = (data as CartResponse).results;
   }
 
+  // Handle minimal success response: {status:"success",cart_id:N}
+  if (!cartData) {
+    const raw = data as unknown as Record<string, unknown>;
+    if (raw.status === "success") {
+      const updatedCart = await getCart(cartToken);
+      cartData = updatedCart;
+    }
+  }
+
   if (!cartData) {
     throw new Error(
       (data as CartResponse).message || "Failed to add item to cart",

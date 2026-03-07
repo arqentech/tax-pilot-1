@@ -31,10 +31,10 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
   let hours: string | undefined;
   let vatIncluded: boolean | undefined;
 
-  if (item.service.hours) {
+  if (item.service?.hours) {
     hours = item.service.hours;
   }
-  if (item.service.vatIncluded !== undefined) {
+  if (item.service?.vatIncluded !== undefined) {
     vatIncluded = item.service.vatIncluded;
   }
 
@@ -65,10 +65,12 @@ const mapCartItemFromBackend = (item: CartItemResponse): CartItem => {
     id: String(item.id),
     cart_item_id: item.id,
     service_id: item.service_id,
-    title: item.service.title,
+    title: item.service?.title ?? "",
     price: item.price,
-    description: stripHtml(item.service.description_short),
-    link: `/servizi/${item.service.identifier}`,
+    description: item.service?.description_short
+      ? stripHtml(item.service.description_short)
+      : "",
+    link: item.service?.identifier ? `/servizi/${item.service.identifier}` : "",
     hours,
     vatIncluded,
   };
