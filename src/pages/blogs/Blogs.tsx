@@ -63,7 +63,7 @@ const Blogs: React.FC = () => {
     safeBlogs.forEach((blog) => {
       const cat = blog.category;
       const catId = cat?.identifier ?? cat?.url;
-      if (catId && !seen.has(catId)) {
+      if (cat && catId && !seen.has(catId)) {
         seen.set(catId, {
           id: cat.id ?? 0,
           identifier: catId,

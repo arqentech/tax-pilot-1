@@ -30,9 +30,12 @@ export const getBlogBySlug = async (slug: string) => {
 
   const response = await api.get(`/blog/${blog.id}`);
   const data = response.data as Record<string, unknown>;
-  if (data?.results != null && typeof data.results === "object" && !Array.isArray(data.results))
-    return data.results;
-  if (data?.results?.data != null) return (data.results as Record<string, unknown>).data;
+  const apiResults = data?.results;
+  if (apiResults != null && typeof apiResults === "object" && !Array.isArray(apiResults)) {
+    const inner = apiResults as Record<string, unknown>;
+    if (inner.data != null) return inner.data;
+    return apiResults;
+  }
   if (data?.data != null) return data.data;
   throw new Error("Invalid blog response");
 };
