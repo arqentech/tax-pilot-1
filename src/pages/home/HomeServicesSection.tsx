@@ -9,7 +9,8 @@ import PrimaryButton from "@/components/ui/PrimaryButton";
 
 const ServicesSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const { data: services = [], isLoading } = useServices();
+  const { data, isLoading } = useServices(1);
+  const services = data?.services ?? [];
 
   const filteredServices = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
