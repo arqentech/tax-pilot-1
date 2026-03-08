@@ -100,7 +100,9 @@ const Blogs: React.FC = () => {
       const matchesCategory =
         !selectedCategory || blog.categoryId === selectedCategory;
       const matchesSearch =
-        !lowerQuery || blog.title.toLowerCase().includes(lowerQuery);
+        !lowerQuery ||
+        blog.title.toLowerCase().includes(lowerQuery) ||
+        (blog.description && blog.description.toLowerCase().includes(lowerQuery));
       return matchesCategory && matchesSearch;
     });
   }, [transformedBlogs, selectedCategory, query]);

@@ -21,25 +21,18 @@ const Categories: React.FC<CategoriesProps> = ({
   selectedCategory,
   onSelect,
   isOpen,
-  searchValue = "",
   isLoading = false,
 }) => {
   if (!isOpen) return null;
-
-  const normalizedSearch = searchValue.trim().toLowerCase();
-  const filtered = categories.filter((cat) => {
-    const label = (cat.title ?? cat.name ?? cat.identifier).toLowerCase();
-    return !normalizedSearch || label.includes(normalizedSearch);
-  });
 
   return (
     <div className="w-full max-w-[874px] border border-[#E6E6E1] rounded-[32px] p-4 flex flex-wrap gap-3 mt-4">
       {isLoading ? (
         <p className="text-gray-500 text-sm">Loading categories...</p>
-      ) : filtered.length === 0 ? (
+      ) : categories.length === 0 ? (
         <p className="text-gray-500 text-sm">No category found</p>
       ) : (
-        filtered.map((cat) => (
+        categories.map((cat) => (
           <button
             key={cat.id ?? cat.identifier}
             type="button"

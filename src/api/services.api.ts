@@ -18,7 +18,10 @@ export const getAllServices = async (
   perPage: number = DEFAULT_PER_PAGE,
 ): Promise<ServicesPaginationResult> => {
   const params: Record<string, string | number> = { page, per_page: perPage };
-  if (search?.trim()) params.search = search.trim();
+  if (search?.trim()) {
+    params.search = search.trim();
+    params.search_fields = "title,description_short";
+  }
   if (category) {
     params.category = category;
     params.category_id = category;
