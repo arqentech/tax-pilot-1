@@ -49,12 +49,12 @@ const BlogCard: React.FC<BlogCardProps> = ({
         </span>
       </div>
 
-      <div className="flex flex-col px-4 py-5 flex-1">
-        <h3 className="text-[22px] text-[#34352E] md:text-[24px] font-bricolage font-extrabold leading-tight">
+      <div className="flex flex-col px-4 py-5 flex-1 min-h-0">
+        <h3 className="text-[22px] text-[#34352E] md:text-[24px] font-bricolage font-extrabold leading-tight line-clamp-2 min-h-[2.6em]">
           {title}
         </h3>
 
-        <p className="mt-2 text-[#5F6057] text-[15px] md:text-[17px] leading-[22px] line-clamp-3">
+        <p className="mt-2 text-[#5F6057] text-[15px] md:text-[17px] leading-[22px] line-clamp-3 min-h-[4.1em]">
           {description}
         </p>
 

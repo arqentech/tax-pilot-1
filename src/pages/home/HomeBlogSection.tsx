@@ -22,7 +22,11 @@ export default function HomeBlogSection() {
       .filter((blog) => blog && (blog.identifier || blog.id))
       .slice(0, visibleBlogs)
       .map((blog) => {
-        const rawText = blog.description_short ?? blog.description_long ?? "";
+        const rawText =
+          blog.description_short ??
+          blog.description_long ??
+          blog.description ??
+          "";
         const cleanText = stripHtml(rawText);
         const wordCount = cleanText.split(/\s+/).filter(Boolean).length;
         const readTime = Math.max(1, Math.ceil(wordCount / 200));
@@ -32,7 +36,12 @@ export default function HomeBlogSection() {
           title: blog.title ?? "",
           description: cleanText,
           readTime: `${readTime} min read`,
-          slug: blog.identifier ?? String(blog.id ?? ""),
+          slug:
+            blog.identifier ??
+            (typeof blog.url === "string"
+              ? blog.url.replace(/^\/+|\/+$/g, "")
+              : null) ??
+            String(blog.id ?? ""),
         };
       });
   }, [data?.results?.data]);

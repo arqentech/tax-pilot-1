@@ -58,7 +58,7 @@ const Blogs: React.FC = () => {
           tag: blog.category?.name ?? "",
           image: blog.image?.url ?? "",
           title: blog.title ?? "",
-          description: text, // now cleaned
+          description: text, 
           readTime: `${readTime} min read`,
           slug: blog.identifier ?? blog.url?.replace(/^\/+|\/+$/g, "") ?? String(blog.id ?? ""),
           categoryId: blog.category?.identifier ?? blog.category?.url ?? "",
