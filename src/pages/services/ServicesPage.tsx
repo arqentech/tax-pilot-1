@@ -29,15 +29,27 @@ const ServicesPage: React.FC = () => {
   const lastPage = data?.last_page ?? 1;
 
   const services = useMemo(() => {
-    if (!selectedCategory) return servicesFromApi;
-    return servicesFromApi.filter((service: Service) =>
-      service.categories?.some(
-        (sc) =>
-          String(sc.category?.id) === selectedCategory ||
-          sc.category?.identifier === selectedCategory,
-      ),
-    );
-  }, [servicesFromApi, selectedCategory]);
+    const q = searchQuery.trim().toLowerCase();
+    let list = servicesFromApi;
+    if (selectedCategory) {
+      list = list.filter((service: Service) =>
+        service.categories?.some(
+          (sc) =>
+            String(sc.category?.id) === selectedCategory ||
+            sc.category?.identifier === selectedCategory,
+        ),
+      );
+    }
+    if (q) {
+      list = list.filter(
+        (service: Service) =>
+          service.title?.toLowerCase().includes(q) ||
+          (typeof service.description_short === "string" &&
+            service.description_short.toLowerCase().includes(q)),
+      );
+    }
+    return list;
+  }, [servicesFromApi, selectedCategory, searchQuery]);
 
   const availableCategories: GenericCategoryItem[] = useMemo(() => {
     return categoriesData
@@ -106,7 +118,7 @@ const ServicesPage: React.FC = () => {
         </div>
 
         <div className="flex w-full items-center gap-3 justify-center md:gap-4">
-          <div className="w-full md:max-w-[720px]">
+          <div className="w-full w-[70vw] md:w-[40vw]">
             <SearchBar
               onSearch={handleSearch}
               placeholder="Cerca un servizio"
@@ -161,11 +173,11 @@ const ServicesPage: React.FC = () => {
             onClick={() => goToPage(currentPageNum - 1)}
             disabled={currentPageNum <= 1}
             aria-label="Pagina precedente"
-            className="p-2.5 rounded-full border border-[#E6E6E1] bg-white text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FBFBFA] transition-colors"
+            className="p-2.5  text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:text-[#5F6057] transition-colors"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft className="w-6 h-6" />
           </button>
-          <span className="px-4 py-2 text-sm text-[#5F6057]">
+          <span className="px-4 py-2 text-[18px] text-[#34352E]">
             Pagina {currentPageNum} di {lastPage}
           </span>
           <button
@@ -173,9 +185,9 @@ const ServicesPage: React.FC = () => {
             onClick={() => goToPage(currentPageNum + 1)}
             disabled={currentPageNum >= lastPage}
             aria-label="Pagina successiva"
-            className="p-2.5 rounded-full border border-[#E6E6E1] bg-white text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#FBFBFA] transition-colors"
+            className=" text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:text-[#5F6057] transition-colors"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-6 h-6" />
           </button>
         </div>
       )}

@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import SearchBar from "../../components/ui/SearchBar";
 import FilterButton from "../../components/ui/FilterButton";
 import BlogCard from "@/components/ui/blogs/BlogCard";
@@ -9,10 +10,13 @@ import { useCategories } from "@/hooks/useCategories";
 import { CategoryOption } from "@/types/blogs";
 import { stripHtml } from "@/lib/utils";
 
+const BLOGS_PER_PAGE = 12;
+
 const Blogs: React.FC = () => {
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const toggleFilter = () => {
     if (isFilterOpen) {
@@ -23,6 +27,12 @@ const Blogs: React.FC = () => {
 
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory((prev) => (prev === categoryId ? null : categoryId));
+    setCurrentPage(1);
+  };
+
+  const handleSearch = (value: string) => {
+    setQuery(value);
+    setCurrentPage(1);
   };
 
   const { data, isLoading, error } = useQuery({
@@ -95,6 +105,16 @@ const Blogs: React.FC = () => {
     });
   }, [transformedBlogs, selectedCategory, query]);
 
+  const lastPage = Math.max(1, Math.ceil(filteredBlogs.length / BLOGS_PER_PAGE));
+  const paginatedBlogs = useMemo(() => {
+    const start = (currentPage - 1) * BLOGS_PER_PAGE;
+    return filteredBlogs.slice(start, start + BLOGS_PER_PAGE);
+  }, [filteredBlogs, currentPage]);
+
+  const goToPage = (page: number) => {
+    setCurrentPage((p) => Math.max(1, Math.min(lastPage, page)));
+  };
+
   if (isLoading) return <p className="text-center mt-6">Loading blogs...</p>;
   if (error)
     return (
@@ -102,8 +122,8 @@ const Blogs: React.FC = () => {
     );
 
   return (
-    <div className="py-10 mt-4 sm:mt-5 md:mt-6 flex justify-center min-h-screen ">
-      <div className="w-full flex flex-col items-center">
+    <div className="w-full py-16 flex flex-col min-h-[calc(100vh-8rem)] md:min-h-[calc(100vh-6rem)]">
+      <div className="flex flex-col items-center flex-1">
         <div className="text-center mb-8">
           <h1 className="font-bricolage heading-base">Il blog di TaxPilot</h1>
           <p className="mt-2 text-[#5F6057] text-[18px] md:text-[20px]">
@@ -114,7 +134,7 @@ const Blogs: React.FC = () => {
 
         <div className="flex w-full items-center gap-3 justify-center md:gap-4">
           <div className="w-full md:max-w-[720px]">
-            <SearchBar onSearch={setQuery} placeholder="Cerca" value={query} />
+            <SearchBar onSearch={handleSearch} placeholder="Cerca" value={query} />
           </div>
           <FilterButton onFilterClick={toggleFilter} />
         </div>
@@ -130,15 +150,41 @@ const Blogs: React.FC = () => {
           />
         </div>
 
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center w-full pt-4">
-          {filteredBlogs.length > 0 ? (
-            filteredBlogs.map((blog) => <BlogCard key={blog.slug} {...blog} />)
-          ) : (
-            <div className="col-span-full text-center mt-6">
-              <p className="text-base">No blog found</p>
-            </div>
-          )}
+        <div className="mt-6 w-full flex-1">
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center w-full pt-4">
+            {paginatedBlogs.length > 0 ? (
+              paginatedBlogs.map((blog) => <BlogCard key={blog.slug} {...blog} />)
+            ) : (
+              <div className="col-span-full text-center mt-6">
+                <p className="text-base">No blog found</p>
+              </div>
+            )}
+          </div>
         </div>
+      </div>
+
+      <div className="mt-auto pt-8 pb-4 flex flex-wrap items-center justify-center gap-3 border-t border-[#E6E6E1]">
+        <button
+          type="button"
+          onClick={() => goToPage(currentPage - 1)}
+          disabled={currentPage <= 1}
+          aria-label="Pagina precedente"
+          className="p-2.5 text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:text-[#5F6057] transition-colors"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <span className="px-4 py-2 text-[18px] text-[#34352E]">
+          Pagina {currentPage} di {lastPage}
+        </span>
+        <button
+          type="button"
+          onClick={() => goToPage(currentPage + 1)}
+          disabled={currentPage >= lastPage}
+          aria-label="Pagina successiva"
+          className="text-[#34352E] disabled:opacity-50 disabled:cursor-not-allowed hover:text-[#5F6057] transition-colors"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
       </div>
     </div>
   );

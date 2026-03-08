@@ -48,7 +48,7 @@ const Footer = () => {
 
 export default Footer;
 const quickLinks = [
-  { label: "How it works", path: "/" },
+  { label: "Come funziona", path: "/" },
   { label: "Servizi", path: "/servizi" },
   { label: "Blogs", path: "/blog" },
   { label: "FAQ", path: "/faq" },
