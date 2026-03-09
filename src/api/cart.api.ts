@@ -98,6 +98,10 @@ const getCartToken = async (forceNew: boolean = false): Promise<string> => {
   } catch {
     // fall through to guest cart
   }
+  // Never use customer_id "guest"; get a proper anonymous cart token instead.
+  if (getCustomerId() === "guest") {
+    return initGuestCart();
+  }
   const res = await api.get<CartAvailableResponse>("/customer/cart/available", {
     params: { customer_id: getCustomerId() },
   });

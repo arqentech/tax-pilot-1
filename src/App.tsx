@@ -80,7 +80,16 @@ function captureTokensFromUrl(): void {
   }
 }
 
+/** On first load, if storage has the legacy "guest" token, clear it so a fresh guest token is requested. */
+function ensureNoGuestCartToken(): void {
+  if (typeof localStorage === "undefined") return;
+  if (localStorage.getItem(CART_TOKEN_KEY) === "guest") {
+    clearGuestCart();
+  }
+}
+
 captureTokensFromUrl();
+ensureNoGuestCartToken();
 
 function buildRedirectUrl(baseUrl: string): string {
   const params = new URLSearchParams();
