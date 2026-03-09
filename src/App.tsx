@@ -56,7 +56,11 @@ function captureTokensFromUrl(): void {
       return value || null;
     })();
 
-  if (authToken) {
+  if (authToken === "") {
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+    window.dispatchEvent(new Event("auth-changed"));
+    didStore = true;
+  } else if (authToken) {
     localStorage.setItem(AUTH_TOKEN_KEY, authToken);
     window.dispatchEvent(new Event("auth-changed"));
     didStore = true;
@@ -87,8 +91,7 @@ function syncCartTokenFromCartData(): void {
     if (data.cartToken) {
       localStorage.setItem(CART_TOKEN_KEY, data.cartToken);
     }
-  } catch {
-  }
+  } catch {}
 }
 
 function RedirectWithTokens({ envUrl }: { envUrl: string | undefined }) {
@@ -133,7 +136,10 @@ function App() {
             path="termini-e-condizioni-utilizzo"
             element={<TermsOfUse />}
           />
-          <Route path="termini-e-condizioni-acquisto" element={<GeneralTerms />} />
+          <Route
+            path="termini-e-condizioni-acquisto"
+            element={<GeneralTerms />}
+          />
           <Route path="faq" element={<FAQ />} />
           <Route path="faq/:category/:slug" element={<FAQDetailPage />} />
           <Route path="faq/:category" element={<FAQQuestionsPage />} />
