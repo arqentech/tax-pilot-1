@@ -155,6 +155,7 @@ const ServicesPage: React.FC = () => {
                   price={service.price}
                   advantages={service.advantages}
                   identifier={service.identifier ?? service.id}
+                  active={service.active}
                 />
               ))
             ) : (

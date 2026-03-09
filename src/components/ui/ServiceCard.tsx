@@ -14,6 +14,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   link,
   identifier,
   advantages,
+  active,
 }) => {
   const sanitize = (value?: string) =>
     value
@@ -38,6 +39,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     const numeric = typeof price === "string" ? parseFloat(price) : price;
     return Number.isFinite(numeric) ? `€ ${numeric.toFixed(2)}` : null;
   }, [price]);
+
+  const isActive = active === undefined ? true : active === true || active === 1;
 
   const serviceLink =
     link ?? (identifier ? `/servizi/${identifier}` : undefined);
@@ -76,6 +79,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             <span className="flex items-center gap-1 bg-[#D2BDE9] text-[#3C0D6D] text-xs font-medium px-2 py-1 rounded-full">
               <Clock className="w-3 h-3" />
               {hours}
+            </span>
+          )}
+
+          {!isActive && (
+            <span className="flex items-center gap-1 bg-[#FEE2E2] text-[#B91C1C] text-xs font-medium px-2 py-1 rounded-full">
+              Not available
             </span>
           )}
         </div>

@@ -66,4 +66,5 @@ export interface ServiceCardProps {
   link?: string;
   identifier?: string;
   advantages?: string[];
+  active?: number | boolean;
 }
