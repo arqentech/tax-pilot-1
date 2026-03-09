@@ -16,6 +16,7 @@ export function stripHtml(html: string): string {
       const text = doc.body?.textContent ?? "";
       return text.replace(/\s+/g, " ").trim();
     } catch {
+      // ignore parse errors
     }
   }
 

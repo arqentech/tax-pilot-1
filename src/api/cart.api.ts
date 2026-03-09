@@ -20,8 +20,11 @@ interface CartAvailableResponse {
   [key: string]: unknown;
 }
 
-const getStoredCartToken = (): string | null =>
-  localStorage.getItem(CART_TOKEN_KEY);
+const getStoredCartToken = (): string | null => {
+  const token = localStorage.getItem(CART_TOKEN_KEY);
+  // Treat a legacy/placeholder guest token as if there were no token
+  return token === "guest" ? null : token;
+};
 
 function getCustomerId(): string {
   try {
@@ -96,9 +99,17 @@ const getCartToken = async (forceNew: boolean = false): Promise<string> => {
       if (existing) return existing;
     }
   } catch {
+    // fall through to guest cart
   }
+
+  const customerId = getCustomerId();
+  // For true guests, initialize a dedicated guest cart without passing customer_id
+  if (customerId === "guest") {
+    return initGuestCart();
+  }
+
   const res = await api.get<CartAvailableResponse>("/customer/cart/available", {
-    params: { customer_id: getCustomerId() },
+    params: { customer_id: customerId },
   });
   const results = normalizeCartResponse(res.data);
   if (results.id != null && results.cart_token) {
@@ -250,7 +261,7 @@ const clearCartToken = (): void => {
  * Backend responds with a random cart token (e.g. `cc`) that we store and use
  * for the session.
  */
-const initGuestCart = async (): Promise<string> => {
+async function initGuestCart(): Promise<string> {
   const res = await api.get<CartAvailableResponse>("/customer/cart/available");
   const data = res.data;
 
@@ -272,7 +283,7 @@ const initGuestCart = async (): Promise<string> => {
   }
 
   throw new Error("Failed to initialize guest cart");
-};
+}
 
 export {
   getCartToken,

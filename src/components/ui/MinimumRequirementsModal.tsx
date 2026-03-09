@@ -28,7 +28,7 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [isValidating, setIsValidating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isComplete, setIsComplete] = useState(false);
+  const [isComplete, _setIsComplete] = useState(false);
    const [textAnswer, setTextAnswer] = useState("");
   const [selectAnswer, setSelectAnswer] = useState("");
 

@@ -114,7 +114,7 @@ const Blogs: React.FC = () => {
   }, [filteredBlogs, currentPage]);
 
   const goToPage = (page: number) => {
-    setCurrentPage((p) => Math.max(1, Math.min(lastPage, page)));
+    setCurrentPage((_prev) => Math.max(1, Math.min(lastPage, page)));
   };
 
   if (isLoading) return <p className="text-center mt-6">Loading blogs...</p>;

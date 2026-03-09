@@ -116,7 +116,7 @@ const isCartDataStale = (): boolean => {
     const data: StoredCartData = JSON.parse(storedData) as StoredCartData;
     const age = Date.now() - data.timestamp;
     return age > CART_SYNC_INTERVAL;
-  } catch (error) {
+  } catch {
     return true;
   }
 };
@@ -128,7 +128,9 @@ const getStoredCartTokenFromData = (): string | null => {
       const data: StoredCartData = JSON.parse(storedData) as StoredCartData;
       return data.cartToken || null;
     }
-  } catch (error) {}
+  } catch {
+    // ignore parse errors
+  }
   return null;
 };
 
@@ -205,7 +207,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
             localStorage.setItem("cartToken", customerId);
             tokenWasGuest = true;
           }
-        } catch {}
+        } catch {
+          // ignore
+        }
       }
 
       if (localItems.length > 0 || effectiveToken) {
@@ -243,7 +247,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
               setCartItemsState(mergedItems);
               saveCartToStorage(mergedItems, existingToken);
               return;
-            } catch (error) {
+            } catch {
               console.warn(
                 "Failed to fetch cart with existing token, keeping token for redirect",
               );

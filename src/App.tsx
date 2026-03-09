@@ -108,7 +108,9 @@ function syncCartTokenFromCartData(): void {
     if (data.cartToken) {
       localStorage.setItem(CART_TOKEN_KEY, data.cartToken);
     }
-  } catch {}
+  } catch {
+    // ignore parse errors
+  }
 }
 
 function RedirectWithTokens({ envUrl }: { envUrl: string | undefined }) {
