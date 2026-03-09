@@ -25,21 +25,16 @@ const WhatDefinesUs: React.FC = () => {
   return (
     <section className="w-full md:py-24">
       <div className="page-container">
-        <div className="flex flex-col items-center md:grid md:grid-cols-2 gap-6 mb-12 text-center md:text-left">
-          <h2 className="heading-base font-bricolage block md:whitespace-nowrap">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-6 mb-12 text-center ">
+          <h2 className="heading-base font-bricolage lg:whitespace-nowrap">
             Perché farlo con TaxPilot
           </h2>
-          <div>
-            <p className="text-base md:text-right">
-              Con noi puoi usufruire di oltre 150 servizi forniti da CAF e
-            </p>
-            <p className="text-base md:text-right">
-              patronato, ricevendoli comodamente in formato digitale
-            </p>
-            <p className="text-base md:text-right">
-              senza dover uscire di casa.
-            </p>
-          </div>
+
+          <p className="text-base w-full text-center md:text-right md:justify-self-end md:max-w-[400px]">
+            Con noi puoi usufruire di oltre 150 servizi forniti da CAF e
+            patronato, ricevendoli comodamente in formato digitale senza dover
+            uscire di casa.
+          </p>
         </div>
 
         <div className="hidden lg:flex w-full bg-[#FBFBFA] rounded-[24px] border border-[#E6E6E1] justify-between p-12 gap-6">
