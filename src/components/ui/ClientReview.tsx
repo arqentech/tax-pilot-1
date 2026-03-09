@@ -14,11 +14,10 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
         {showBadge && <Badge text="Testimonianze" width="146px" center />}
 
         <div className="text-center  mt-6 md:mt-2">
-          <h2 className="font-bricolage sub-heading">
-         Cosa dicono di noi
-          </h2>
+          <h2 className="font-bricolage sub-heading">Cosa dicono di noi</h2>
           <p className="mt-4 text-base max-w-[409px] mx-auto">
-           Ogni giorno supportiamo centinaia di persone ad orientarsi nel noioso mondo burocratico.
+            Ogni giorno supportiamo centinaia di persone ad orientarsi nel
+            noioso mondo burocratico.
           </p>
         </div>
 
@@ -36,7 +35,7 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
                   4.6
                 </h2>
                 <p className="text-sm mt-2">
-                  Based on
+                  Basato su
                   <span className="ml-1 underline">456 reviews</span>
                 </p>
 
@@ -60,7 +59,7 @@ const ClientReviews: React.FC<ClientReviewsProps> = ({ showBadge = true }) => {
               4.6
             </h2>
             <p className="text-sm mt-2 font-light">
-              Based on
+              Basato su
               <span className="ml-1 underline font-bold">456 reviews</span>
             </p>
 
