@@ -8,21 +8,21 @@ export const teamMembers: TeamMember[] = [
   {
     name: "Manuela",
     role: "Consulente Fiscale",
-    image: "/png/Manuela.JPG.jpeg",
+    image: "/png/Manuela.jpeg",
   },
   {
     name: "Marco",
     role: "Fiscal Advisor",
-    image: "/png/Marco.JPG.jpeg",
+    image: "/png/Marco.jpeg",
   },
   {
     name: "Daniela",
     role: "Consulente Bonus e Agevolazioni",
-    image: "/png/Daniela.JPG.jpeg",
+    image: "/png/Daniela.jpeg",
   },
   {
     name: "Gabriele",
     role: " Customer Care Specialist",
-    image: "/png/Gabriele.JPG.jpeg",
+    image: "/png/Gabriele.jpeg",
   },
 ];
