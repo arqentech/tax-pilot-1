@@ -235,6 +235,16 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         setIsLoading(false);
       }
 
+      // Always fetch fresh count from backend to correct any stale localStorage value
+      if (effectiveToken) {
+        try {
+          const count = await getCartCount(effectiveToken);
+          setCartItemCount(count);
+        } catch {
+          // silently fail — cached count is already showing
+        }
+      }
+
       const needsSync =
         localItems.length === 0 ||
         isCartDataStale() ||
