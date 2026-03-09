@@ -81,6 +81,7 @@ const ServicesPage: React.FC = () => {
 
   const goToPage = (page: number) => {
     setCurrentPage(() => Math.max(1, Math.min(lastPage, page)));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   if (isLoading)
