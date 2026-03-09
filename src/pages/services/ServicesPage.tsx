@@ -48,12 +48,7 @@ const ServicesPage: React.FC = () => {
             service.description_short.toLowerCase().includes(q)),
       );
     }
-    return [...list].sort((a, b) => {
-      const aActive = a.active === true || a.active === 1 ? 1 : 0;
-      const bActive = b.active === true || b.active === 1 ? 1 : 0;
-      if (bActive !== aActive) return bActive - aActive;
-      return a.id - b.id;
-    });
+    return list;
   }, [servicesFromApi, selectedCategory, searchQuery]);
 
   const availableCategories: GenericCategoryItem[] = useMemo(() => {
