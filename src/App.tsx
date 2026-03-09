@@ -31,17 +31,17 @@ const AUTH_PARAM = "t4xp1l0t-5346-token";
 const TOKEN_PREFIX = "t4xp1l0t-5346-";
 const REDIRECT_DELAY_MS = 100;
 
+function clearGuestCart(): void {
+  localStorage.removeItem(CART_TOKEN_KEY);
+  localStorage.removeItem(CART_ID_KEY);
+  localStorage.removeItem("cartData");
+  localStorage.removeItem("cartItems");
+}
+
 function captureTokensFromUrl(): void {
   if (typeof window === "undefined" || !window.location.search) return;
   const params = new URLSearchParams(window.location.search);
   let didStore = false;
-
-  const cartToken = params.get("cart_token");
-  if (cartToken) {
-    localStorage.setItem(CART_TOKEN_KEY, cartToken);
-    localStorage.removeItem(CART_ID_KEY);
-    didStore = true;
-  }
 
   const authToken =
     params.get(AUTH_PARAM) ??
@@ -56,13 +56,22 @@ function captureTokensFromUrl(): void {
       return value || null;
     })();
 
+  const cartTokenFromUrl = params.get("cart_token");
+
   if (authToken === "") {
     localStorage.removeItem(AUTH_TOKEN_KEY);
     window.dispatchEvent(new Event("auth-changed"));
     didStore = true;
   } else if (authToken) {
+    clearGuestCart();
     localStorage.setItem(AUTH_TOKEN_KEY, authToken);
     window.dispatchEvent(new Event("auth-changed"));
+    didStore = true;
+  }
+
+  if (cartTokenFromUrl) {
+    localStorage.setItem(CART_TOKEN_KEY, cartTokenFromUrl);
+    localStorage.removeItem(CART_ID_KEY);
     didStore = true;
   }
 
