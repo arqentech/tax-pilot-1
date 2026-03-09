@@ -4,6 +4,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import TopBar from "./Topbar";
 import Footer from "./footer/Footer";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { useCart } from "@/hooks/useCart";
 
 const MainLayout = () => {
@@ -29,6 +30,7 @@ const MainLayout = () => {
         <Outlet />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
