@@ -159,11 +159,10 @@ const addItemToCart = async (
   const cartId = await getCartId(cartToken);
 
   const response = await api.put<CartResponse | CartAvailableResponse>(
-    `/customer/cart/${cartId}/item`,
+    `/cart/${cartId}/item`,
     {
       quotationId: serviceId,
     },
-    { params: { customer_id: cartToken } },
   );
 
   const data = response.data as CartResponse | CartAvailableResponse;
