@@ -75,10 +75,18 @@ captureTokensFromUrl();
 
 function buildRedirectUrl(baseUrl: string): string {
   const params = new URLSearchParams();
+
   const auth = localStorage.getItem(AUTH_TOKEN_KEY);
   const cart = localStorage.getItem(CART_TOKEN_KEY);
-  if (auth) params.set(AUTH_PARAM, auth);
+
+  if (auth) {
+    params.set(AUTH_PARAM, auth);
+  } else {
+    params.set(AUTH_PARAM, "");
+  }
+
   if (cart) params.set("cart_token", cart);
+
   const query = params.toString();
   return query ? `${baseUrl}?${query}` : baseUrl;
 }
