@@ -36,7 +36,9 @@ const WhatDefinesUs: React.FC = () => {
             <p className="text-base md:text-right">
               patronato, ricevendoli comodamente in formato digitale
             </p>
-            <p className="text-base md:text-right">senza dover uscire di casa.</p>
+            <p className="text-base md:text-right">
+              senza dover uscire di casa.
+            </p>
           </div>
         </div>
 

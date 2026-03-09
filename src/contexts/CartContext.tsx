@@ -5,6 +5,7 @@ import {
   getStoredCartToken,
   addItemToCart,
   removeItemFromCart,
+  initGuestCart,
 } from "@/api/cart.api";
 import { CartItemResponse, CartItemMetadata } from "@/types/cart";
 import { stripHtml } from "@/lib/utils";
@@ -198,17 +199,18 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
       let effectiveToken = storedToken;
       let tokenWasGuest = false;
+
+      // If we still have the legacy \"guest\" token, drop it and create
+      // a fresh anonymous cart token from the backend.
       if (effectiveToken === "guest") {
         try {
-          const userData = localStorage.getItem("userData");
-          const customerId = userData ? String(JSON.parse(userData).id) : null;
-          if (customerId && customerId !== "guest") {
-            effectiveToken = customerId;
-            localStorage.setItem("cartToken", customerId);
-            tokenWasGuest = true;
-          }
-        } catch {
-          // ignore
+          localStorage.removeItem("cartToken");
+          localStorage.removeItem("cartId");
+          effectiveToken = await initGuestCart();
+          tokenWasGuest = true;
+        } catch (e) {
+          console.error("Failed to reinitialize guest cart token", e);
+          effectiveToken = null;
         }
       }
 
