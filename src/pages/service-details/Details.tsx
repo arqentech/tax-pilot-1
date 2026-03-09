@@ -71,6 +71,9 @@ const Details: React.FC = () => {
     );
   }
 
+  const isServiceActive =
+    service.active === 1 || service.active === true;
+
   const formatLabel = (value: string | undefined) =>
     value?.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 
@@ -152,13 +155,19 @@ const Details: React.FC = () => {
               )}
             </div>
 
-            <div className="mt-8  flex justify-center md:justify-start">
+            <div className="mt-8 flex flex-col items-center md:items-start">
               <PrimaryButton
                 text="Request Service"
                 width="230px"
                 onClick={handleRequestService}
+                disabled={!isServiceActive}
                 className="pl-4"
               />
+              {!isServiceActive && (
+                <p className="mt-3 text-sm font-medium text-red-600">
+                  Service is not available.
+                </p>
+              )}
             </div>
           </div>
         </div>

@@ -194,7 +194,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       const localItems = loadCartFromStorage();
       const storedToken = getStoredCartTokenFromData() || getStoredCartToken();
 
-      // If stored token is "guest" but user is logged in, use real customer ID
       let effectiveToken = storedToken;
       let tokenWasGuest = false;
       if (effectiveToken === "guest") {
@@ -216,7 +215,10 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       }
 
       const needsSync =
-        localItems.length === 0 || isCartDataStale() || !effectiveToken || tokenWasGuest;
+        localItems.length === 0 ||
+        isCartDataStale() ||
+        !effectiveToken ||
+        tokenWasGuest;
 
       if (needsSync) {
         try {
@@ -242,7 +244,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
               saveCartToStorage(mergedItems, existingToken);
               return;
             } catch (error) {
-              console.warn("Failed to fetch cart with existing token, keeping token for redirect");
+              console.warn(
+                "Failed to fetch cart with existing token, keeping token for redirect",
+              );
             }
           }
 
@@ -292,7 +296,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     const previousItems = [...cartItems];
-    const previousToken = cartToken;
 
     setCartItemsState((prev) => {
       const newItems = [...prev, optimisticItem];
@@ -308,7 +311,10 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       try {
         backendItems = fetchedCartItems.map(mapCartItemFromBackend);
       } catch (mapError) {
-        console.warn("Could not map backend cart items, keeping optimistic cart:", mapError);
+        console.warn(
+          "Could not map backend cart items, keeping optimistic cart:",
+          mapError,
+        );
       }
 
       let finalItems: CartItem[];

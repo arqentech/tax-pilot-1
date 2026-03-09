@@ -44,6 +44,7 @@ export interface Service {
   description_short: string;
   description_long: string;
   price: number | string;
+  active?: number | boolean;
   vatIncluded?: boolean;
   hours?: string;
   inDepthAnalysis?: string;
