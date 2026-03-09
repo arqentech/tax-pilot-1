@@ -6,23 +6,23 @@ export interface TeamMember {
 
 export const teamMembers: TeamMember[] = [
   {
-    name: "Luca Ferraro",
-    role: "Chief Tax Consultant",
-    image: "/png/member1.png",
+    name: "Manuela",
+    role: "Consulente Fiscale",
+    image: "/png/Manuela.JPG.jpeg",
   },
   {
-    name: "Elena Marino",
-    role: "Senior Tax Advisor",
-    image: "/png/member2.png",
+    name: "Marco",
+    role: "Fiscal Advisor",
+    image: "/png/Marco.JPG.jpeg",
   },
   {
-    name: "Mateo Ortiz",
-    role: "Compliance Specialist",
-    image: "/png/member3.png",
+    name: "Daniela",
+    role: "Consulente Bonus e Agevolazioni",
+    image: "/png/Daniela.JPG.jpeg",
   },
   {
-    name: "Sofia Ricci",
-    role: "Client Success Lead",
-    image: "/png/member4.png",
+    name: "Gabriele",
+    role: " Customer Care Specialist",
+    image: "/png/Gabriele.JPG.jpeg",
   },
 ];

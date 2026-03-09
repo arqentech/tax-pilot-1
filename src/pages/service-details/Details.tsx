@@ -71,8 +71,7 @@ const Details: React.FC = () => {
     );
   }
 
-  const isServiceActive =
-    service.active === 1 || service.active === true;
+  const isServiceActive = service.active === 1 || service.active === true;
 
   const formatLabel = (value: string | undefined) =>
     value?.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
@@ -212,21 +211,16 @@ const Details: React.FC = () => {
             <Badge text="FAQ" width="86px" className="md:hidden flex" center />
             <h1 className="sub-heading font-bricolage mt-8">
               <span className="block md:hidden text-center text-[38px] sm:text-[32px] ">
-                Your Tax Questions,
+                Le tue domande fiscali,
               </span>
               <span className="block md:hidden text-center text-[38px] sm:text-[32px] ">
-                answered Simply.
+                rispose Semplicemente.
               </span>
               <span className="hidden md:block max-w-[457px]">
-                Frequently asked questions.
+                Domande frequenti.
               </span>
             </h1>
 
-            <p className="hidden md:block mt-6 text-base">
-              The Equivalent Economic Situation Indicator (ISEE) is a numerical
-              value that certifies the economic situation of a household in
-              Italy.
-            </p>
             <div className="hidden md:flex text-[#04226B] items-center gap-1 text-[18px] mt-4 font-semibold">
               <span>Hai ancora domande?</span>
               <Link to="/contatti" className="underline italic">

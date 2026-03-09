@@ -22,7 +22,7 @@ const TeamSection = () => {
             bgColor="#FFFFFF"
             className="flex md:hidden"
           />
-          <h2 className=" mt-6 md:mt-2 font-bricolage text-[38px] text-[#34352E] font-extrabold leading-[38px] md:leading-[73px] tracking-[-0.07em] md:text-[58px]">
+          <h2 className=" mt-6 md:mt-2 font-bricolage text-[38px] text-[#34352E] font-extrabold leading-[38px] md:leading-[60px] tracking-[-0.07em] md:text-[58px]">
             <p>Non un semplice </p>
             <p>portale.</p>
             <p>Siamo un Team.</p>
