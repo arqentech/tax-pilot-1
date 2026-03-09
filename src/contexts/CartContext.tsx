@@ -230,6 +230,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (localItems.length > 0 || effectiveToken) {
         setCartItemsState(localItems);
+        setCartItemCount(localItems.length);
         setCartToken(effectiveToken);
         setIsLoading(false);
       }
