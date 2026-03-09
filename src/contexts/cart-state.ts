@@ -17,6 +17,7 @@ export type CartContextType = {
   cartItems: CartItem[];
   isLoading: boolean;
   cartToken: string | null;
+  cartItemCount: number;
   addToCart: (item: CartItem) => Promise<{ added: boolean; message: string }>;
   removeFromCart: (
     id: string,
@@ -24,6 +25,7 @@ export type CartContextType = {
   clearCart: () => void;
   setCartItems: (items: CartItem[]) => void;
   refreshCart: (force?: boolean) => Promise<void>;
+  refreshCartCount: () => Promise<void>;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);

@@ -14,9 +14,9 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation();
-  const { cartItems } = useCart();
+  const { cartItemCount } = useCart();
 
-  const cartCount = cartItems.length;
+  const cartCount = cartItemCount;
   const isHome = pathname === "/";
 
   const navWrapperClass = isHome
