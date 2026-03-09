@@ -168,6 +168,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
         const mergedItems = [...backendItems, ...localOnlyItems];
         setCartItemsState(mergedItems);
+        setCartItemCount(mergedItems.length);
         saveCartToStorage(mergedItems, token);
       } catch (error) {
         console.error("Failed to fetch cart:", error);
