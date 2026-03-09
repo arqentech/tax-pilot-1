@@ -11,7 +11,13 @@ interface CartAvailableResponse {
     cart_items?: CartResponse["results"]["cart_items"];
     [key: string]: unknown;
   };
+  // Some endpoints return a full results object instead of `cart`
   results?: CartResponse["results"];
+  // When called without customer_id, backend may return a top-level cart token
+  // like: { cart: {...}, items: 0, cc: "ZbWk7VdWu5" }
+  items?: number;
+  cc?: string;
+  [key: string]: unknown;
 }
 
 const getStoredCartToken = (): string | null =>
@@ -239,6 +245,35 @@ const clearCartToken = (): void => {
   localStorage.removeItem(CART_ID_KEY);
 };
 
+/**
+ * Initialize a new guest cart by calling the cart API **without** customer_id.
+ * Backend responds with a random cart token (e.g. `cc`) that we store and use
+ * for the session.
+ */
+const initGuestCart = async (): Promise<string> => {
+  const res = await api.get<CartAvailableResponse>("/customer/cart/available");
+  const data = res.data;
+
+  const token =
+    (data.cc as string | undefined) ||
+    (data.results as CartResponse["results"] | undefined)?.cart_token;
+
+  const cartId =
+    data.cart?.id ??
+    (data.results as CartResponse["results"] | undefined)?.id;
+
+  if (cartId != null) {
+    localStorage.setItem(CART_ID_KEY, String(cartId));
+  }
+
+  if (token) {
+    localStorage.setItem(CART_TOKEN_KEY, token);
+    return token;
+  }
+
+  throw new Error("Failed to initialize guest cart");
+};
+
 export {
   getCartToken,
   getCart,
@@ -247,4 +282,5 @@ export {
   addItemToCart,
   removeItemFromCart,
   clearCartToken,
+  initGuestCart,
 };
