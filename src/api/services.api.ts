@@ -17,7 +17,7 @@ export const getAllServices = async (
   category?: string,
   perPage: number = DEFAULT_PER_PAGE,
 ): Promise<ServicesPaginationResult> => {
-  const params: Record<string, string | number> = { page, per_page: perPage, order_by: "active", order: "dsc" };
+  const params: Record<string, string | number> = { page, per_page: perPage, order_by: "active", order: "asc" };
   if (search?.trim()) {
     params.search = search.trim();
     params.search_fields = "title,description_short";
