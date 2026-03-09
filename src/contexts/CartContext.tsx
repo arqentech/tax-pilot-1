@@ -6,6 +6,7 @@ import {
   addItemToCart,
   removeItemFromCart,
   initGuestCart,
+  getCartCount,
 } from "@/api/cart.api";
 import { CartItemResponse, CartItemMetadata } from "@/types/cart";
 import { stripHtml } from "@/lib/utils";
@@ -139,6 +140,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItemsState] = useState<CartItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [cartToken, setCartToken] = useState<string | null>(null);
+  const [cartItemCount, setCartItemCount] = useState<number>(0);
 
   const refreshCart = useCallback(
     async (force: boolean = false) => {
@@ -191,6 +193,17 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     },
     [cartToken],
   );
+
+  const refreshCartCount = useCallback(async () => {
+    try {
+      const token = cartToken || getStoredCartToken();
+      if (!token) return;
+      const count = await getCartCount(token);
+      setCartItemCount(count);
+    } catch (error) {
+      console.error("Failed to refresh cart count:", error);
+    }
+  }, [cartToken]);
 
   useEffect(() => {
     const initializeCart = async () => {
@@ -247,6 +260,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
               const mergedItems = [...backendItems, ...localOnlyItems];
               setCartItemsState(mergedItems);
+              setCartItemCount(mergedItems.length);
               saveCartToStorage(mergedItems, existingToken);
               return;
             } catch {
@@ -475,11 +489,13 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         cartItems,
         isLoading,
         cartToken,
+        cartItemCount,
         addToCart,
         removeFromCart,
         clearCart,
         setCartItems,
         refreshCart,
+        refreshCartCount,
       }}
     >
       {children}

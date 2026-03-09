@@ -274,6 +274,13 @@ const initGuestCart = async (): Promise<string> => {
   throw new Error("Failed to initialize guest cart");
 };
 
+const getCartCount = async (cartToken: string): Promise<number> => {
+  const res = await api.get<CartAvailableResponse>("/customer/cart/available", {
+    params: { customer_id: cartToken },
+  });
+  return (res.data.items as number) ?? 0;
+};
+
 export {
   getCartToken,
   getCart,
@@ -283,4 +290,5 @@ export {
   removeItemFromCart,
   clearCartToken,
   initGuestCart,
+  getCartCount,
 };
