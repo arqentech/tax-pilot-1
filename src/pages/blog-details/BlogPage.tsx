@@ -241,7 +241,7 @@ export default function BlogPage() {
           {blogFaqs.length > 0 && (
             <>
               <h2 className="mt-10 font-bricolage font-extrabold text-[20px] sm:text-[22px] md:text-[26px] lg:text-[30px]">
-                Frequently Asked Questions
+                Domande frequenti
               </h2>
               <BlogsFaq faqs={blogFaqs} />
             </>

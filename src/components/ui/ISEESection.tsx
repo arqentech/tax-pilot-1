@@ -6,25 +6,23 @@ export default function IseeSection() {
       <div className=" bg-[#037BFF] relative w-full rounded-[28px] p-6 flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-20 text-white">
         <div className="flex-1">
           <h2 className=" md:max-w-full font-bricolage leading-[38px] font-extrabold lg:text-[35px] lg:leading-[36px]">
-            <p className="text-[33px]">
-              Get your ISEE prepared by certified CAF experts.
-            </p>
+            <p className="text-[33px]">La burocrazia, finalmente semplice.</p>
           </h2>
 
           <ul className="mt-4 space-y-3 text-[#BFDDFF] text-[16px] lg:text-[20px] leading-[25px]">
             <li className="flex items-center gap-3">
               <BadgeCheck color="#FFC107" width={20} />
-              <span>Upload. Done. Relax</span>
+              <span>Carica i documenti. Al resto pensiamo noi.</span>
             </li>
 
             <li className="flex text-[#BFDDFF] items-center gap-3">
               <BadgeCheck color="#FFC107" width={20} />
-              <span>Anytime, anywhere, any device</span>
+              <span>Ovunque ti trovi, da qualsiasi dispositivo.</span>
             </li>
 
             <li className="flex text-[#BFDDFF] items-center gap-3">
               <BadgeCheck color="#FFC107" width={20} />
-              <span>Your data protected by certified experts</span>
+              <span>I tuoi documenti verificati da professionisti reali.</span>
             </li>
           </ul>
 
@@ -36,7 +34,7 @@ export default function IseeSection() {
                 "0px -3px 3px 0px #272822 inset, 0px 5px 8px 0px #2E2F289E inset, 0px 6px 10px 0px #34352E26",
             }}
           >
-            Get Started <ArrowRight size={18} />
+            Esplora i servizi <ArrowRight size={18} />
           </button>
         </div>
 

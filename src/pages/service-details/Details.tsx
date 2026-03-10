@@ -182,7 +182,7 @@ const Details: React.FC = () => {
       {service.description_long && (
         <section className="grid grid-cols-1 md:grid-cols-3  sm:mb-8 md:mb-12 gap-3 sm:gap-4 md:gap-6 px-2 sm:px-4 md:px-0">
           <h2 className="text-[#34352E] font-bricolage text-[28px] font-extrabold leading-[73px] md:leading-[30px] ">
-            Analisi approfondita
+            Descrizione servizio
           </h2>
           <div className="md:col-span-2 leading-[25px] text-[18px] text-[#5F6057] font-normal whitespace-pre-line break-words">
             <div
