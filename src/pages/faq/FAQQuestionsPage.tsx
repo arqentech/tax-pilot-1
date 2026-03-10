@@ -50,7 +50,7 @@ export default function FAQQuestionsPage() {
           Le domande più frequenti dei nostri servizi
         </p>
 
-        <div className="w-[40vw]">
+        <div className="w-[70vw] lg:w-[40vw]">
           <SearchBar
             onSearch={setQuery}
             value={query}
@@ -68,7 +68,7 @@ export default function FAQQuestionsPage() {
           </div>
         )}
 
-        <div className=" w-[40vw] space-y-4 mt-2">
+        <div className=" w-[70vw] lg:w-[40vw] space-y-4 mt-2">
           {filtered.map((item) => (
             <div
               key={item.slug}
