@@ -158,7 +158,7 @@ const Details: React.FC = () => {
 
             <div className="mt-8 flex flex-col items-center md:items-start">
               <PrimaryButton
-                text="Request Service"
+                text="Acquista Servizio"
                 width="230px"
                 onClick={handleRequestService}
                 disabled={!isServiceActive}
