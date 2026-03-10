@@ -4,6 +4,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import TopBar from "./Topbar";
 import Footer from "./footer/Footer";
+import FloatingNavbar from "./FloatingNavbar";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { useCart } from "@/hooks/useCart";
 
@@ -26,6 +27,7 @@ const MainLayout = () => {
     <div className="min-h-screen flex flex-col">
       <TopBar />
       <Navbar />
+      <FloatingNavbar />
       <main className="flex-1 global-container">
         <Outlet />
       </main>
