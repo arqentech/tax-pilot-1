@@ -51,7 +51,7 @@ const FloatingNavbar = () => {
           </Link>
         ))}
 
-        <div className="[&_button]:text-white [&_button]:hover:bg-white/20">
+        <div className="[&_button:hover]:bg-white/20 [&_img]:[filter:brightness(0)_invert(1)]">
           <UserDropdown />
         </div>
 
