@@ -18,8 +18,8 @@ const ServicesPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { data: allData, isLoading, isError, error } = useAllServices(
-    searchQuery,
-    selectedCategory,
+    undefined,
+    undefined,
     SERVICES_PER_PAGE,
   );
 
@@ -29,7 +29,26 @@ const ServicesPage: React.FC = () => {
   const allServices = allData?.services ?? [];
 
   const sortedServices = useMemo(() => {
-    const list = [...allServices];
+    const q = searchQuery.trim().toLowerCase();
+    let list = allServices;
+    if (selectedCategory) {
+      list = list.filter((service: Service) =>
+        service.categories?.some(
+          (sc) =>
+            String(sc.category?.id) === selectedCategory ||
+            sc.category?.identifier === selectedCategory,
+        ),
+      );
+    }
+    if (q) {
+      list = list.filter(
+        (service: Service) =>
+          service.title?.toLowerCase().includes(q) ||
+          (typeof service.description_short === "string" &&
+            service.description_short.toLowerCase().includes(q)),
+      );
+    }
+    list = [...list];
     list.sort((a, b) => {
       const aActive =
         a.active === undefined ? true : a.active === true || a.active === 1;
@@ -39,7 +58,7 @@ const ServicesPage: React.FC = () => {
       return aActive ? -1 : 1;
     });
     return list;
-  }, [allServices]);
+  }, [allServices, searchQuery, selectedCategory]);
 
   const lastPage = Math.max(1, Math.ceil(sortedServices.length / SERVICES_PER_PAGE));
   const currentPageNum = Math.max(1, Math.min(currentPage, lastPage));
@@ -82,7 +101,8 @@ const ServicesPage: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  if (isLoading)
+  const hasData = (allData?.services?.length ?? 0) > 0;
+  if (isLoading && !hasData)
     return (
       <div className="text-center mt-10 text-gray-600">Loading services…</div>
     );
@@ -145,8 +165,8 @@ const ServicesPage: React.FC = () => {
                 <ServiceCard
                   key={service.id}
                   title={
-                    searchQuery
-                      ? highlightText(service.title, searchQuery)
+                    searchQuery.trim()
+                      ? highlightText(service.title, searchQuery.trim())
                       : service.title
                   }
                   description_short={service.description_short}

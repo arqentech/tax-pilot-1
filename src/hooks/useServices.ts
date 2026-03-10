@@ -38,6 +38,7 @@ export const useAllServices = (
         category ?? undefined,
         perPage,
       ),
+    placeholderData: keepPreviousData,
     staleTime: 5 * 60 * 1000,
   });
 };

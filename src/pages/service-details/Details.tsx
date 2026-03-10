@@ -25,6 +25,7 @@ const Details: React.FC = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const [addToCartError, setAddToCartError] = useState<string | null>(null);
 
   const {
     data: service,
@@ -77,25 +78,26 @@ const Details: React.FC = () => {
     value?.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 
   const handleRequestService = () => {
+    setAddToCartError(null);
     setShowModal(true);
   };
 
-  const handleModalComplete = async () => {
+  const handleModalComplete = () => {
     setShowModal(false);
-    try {
-      await addToCart({
-        service_id: service.id,
-        title: service.title,
-        price: Number(service.price ?? 0),
-        description: stripHtml(service.description_short),
-        hours: service.hours ?? "",
-        link: `/servizi/${service.identifier}`,
-        vatIncluded: !!service.vatIncluded,
-      });
-      setShowSuccessDialog(true);
-    } catch (error) {
-      console.error("Error adding service to cart:", error);
-    }
+    setAddToCartError(null);
+    setShowSuccessDialog(true);
+    addToCart({
+      service_id: service.id,
+      title: service.title,
+      price: Number(service.price ?? 0),
+      description: stripHtml(service.description_short),
+      hours: service.hours ?? "",
+      link: `/servizi/${service.identifier}`,
+      vatIncluded: !!service.vatIncluded,
+    }).catch((err) => {
+      setShowSuccessDialog(false);
+      setAddToCartError(err instanceof Error ? err.message : "Failed to add to cart");
+    });
   };
 
   const handleSuccessDialogClose = () => {
@@ -165,6 +167,11 @@ const Details: React.FC = () => {
               {!isServiceActive && (
                 <p className="mt-3 text-sm font-medium text-red-600">
                   Service is not available.
+                </p>
+              )}
+              {addToCartError && (
+                <p className="mt-3 text-sm font-medium text-red-600">
+                  {addToCartError}
                 </p>
               )}
             </div>
