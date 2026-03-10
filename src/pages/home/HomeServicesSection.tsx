@@ -19,8 +19,10 @@ const ServicesSection = () => {
         service.active === undefined
           ? true
           : service.active === true || service.active === 1;
-      if (!isActive) return false;
+      // Without a search query, only show active services
+      if (!query && !isActive) return false;
       if (!query) return true;
+      // With a search query, search across all services (active and inactive)
       const title = service.title?.toLowerCase() ?? "";
       const desc = service.description_short?.toLowerCase() ?? "";
       return title.includes(query) || desc.includes(query);

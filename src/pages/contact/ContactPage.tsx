@@ -59,7 +59,7 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="w-full w-auto md:max-w-[874px] md:h-[817px] flex-col justify-center items-center py-7 mb-10">
+    <div className="w-full w-auto md:max-w-[874px] flex-col justify-center items-center py-7 mb-10">
       <Card className="w-full px-6 py-3 shadow-lg rounded-[26px] border border-[#E6E6E1] bg-white">
         <CardHeader className="text-center ">
           <CardTitle className="sub-heading font-bricolage">
