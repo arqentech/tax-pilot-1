@@ -14,11 +14,18 @@ const ServicesSection = () => {
 
   const filteredServices = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
-    return services.filter(
-      (service: Service) =>
-        service.title.toLowerCase().includes(query) ||
-        service.description_short?.toLowerCase().includes(query),
-    );
+    return services
+      .filter((service: Service) => {
+        const isActive =
+          service.active === undefined
+            ? true
+            : service.active === true || service.active === 1;
+        if (!isActive) return false;
+        if (!query) return true;
+        const title = service.title?.toLowerCase() ?? "";
+        const desc = service.description_short?.toLowerCase() ?? "";
+        return title.includes(query) || desc.includes(query);
+      });
   }, [services, searchQuery]);
 
   const displayServices = filteredServices.slice(0, 6);
@@ -83,6 +90,7 @@ const ServicesSection = () => {
               price={service.price}
               advantages={service.advantages}
               identifier={service.identifier ?? service.id}
+              active={service.active}
             />
           ))}
         </div>
