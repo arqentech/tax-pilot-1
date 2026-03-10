@@ -80,7 +80,6 @@ function captureTokensFromUrl(): void {
   }
 }
 
-/** On first load, if storage has the legacy "guest" token, clear it so a fresh guest token is requested. */
 function ensureNoGuestCartToken(): void {
   if (typeof localStorage === "undefined") return;
   if (localStorage.getItem(CART_TOKEN_KEY) === "guest") {
@@ -117,9 +116,7 @@ function syncCartTokenFromCartData(): void {
     if (data.cartToken) {
       localStorage.setItem(CART_TOKEN_KEY, data.cartToken);
     }
-  } catch {
-    // ignore parse errors
-  }
+  } catch {}
 }
 
 function RedirectWithTokens({ envUrl }: { envUrl: string | undefined }) {

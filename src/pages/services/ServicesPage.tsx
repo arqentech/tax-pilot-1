@@ -5,9 +5,11 @@ import ServiceCard from "../../components/ui/ServiceCard";
 import FilterButton from "../../components/ui/FilterButton";
 import Categories from "@/components/ui/Categories";
 import type { GenericCategoryItem } from "@/components/ui/Categories";
-import { useServices } from "../../hooks/useServices";
+import { useAllServices } from "../../hooks/useServices";
 import { useQuotationCategories } from "@/hooks/useQuotationCategories";
 import { Service } from "../../types/services";
+
+const SERVICES_PER_PAGE = 20;
 
 const ServicesPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,41 +17,37 @@ const ServicesPage: React.FC = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data, isLoading, isError, error } = useServices(
-    currentPage,
+  const { data: allData, isLoading, isError, error } = useAllServices(
     searchQuery,
     selectedCategory,
+    SERVICES_PER_PAGE,
   );
 
   const { data: categoriesData = [], isLoading: categoriesLoading } =
     useQuotationCategories();
 
-  const servicesFromApi = data?.services ?? [];
-  const currentPageNum = data?.current_page ?? 1;
-  const lastPage = data?.last_page ?? 1;
+  const allServices = allData?.services ?? [];
+
+  const sortedServices = useMemo(() => {
+    const list = [...allServices];
+    list.sort((a, b) => {
+      const aActive =
+        a.active === undefined ? true : a.active === true || a.active === 1;
+      const bActive =
+        b.active === undefined ? true : b.active === true || b.active === 1;
+      if (aActive === bActive) return 0;
+      return aActive ? -1 : 1;
+    });
+    return list;
+  }, [allServices]);
+
+  const lastPage = Math.max(1, Math.ceil(sortedServices.length / SERVICES_PER_PAGE));
+  const currentPageNum = Math.max(1, Math.min(currentPage, lastPage));
 
   const services = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
-    let list = servicesFromApi;
-    if (selectedCategory) {
-      list = list.filter((service: Service) =>
-        service.categories?.some(
-          (sc) =>
-            String(sc.category?.id) === selectedCategory ||
-            sc.category?.identifier === selectedCategory,
-        ),
-      );
-    }
-    if (q) {
-      list = list.filter(
-        (service: Service) =>
-          service.title?.toLowerCase().includes(q) ||
-          (typeof service.description_short === "string" &&
-            service.description_short.toLowerCase().includes(q)),
-      );
-    }
-    return list;
-  }, [servicesFromApi, selectedCategory, searchQuery]);
+    const start = (currentPageNum - 1) * SERVICES_PER_PAGE;
+    return sortedServices.slice(start, start + SERVICES_PER_PAGE);
+  }, [sortedServices, currentPageNum]);
 
   const availableCategories: GenericCategoryItem[] = useMemo(() => {
     return categoriesData
@@ -80,7 +78,7 @@ const ServicesPage: React.FC = () => {
   };
 
   const goToPage = (page: number) => {
-    setCurrentPage(() => Math.max(1, Math.min(lastPage, page)));
+    setCurrentPage(Math.max(1, Math.min(lastPage, page)));
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

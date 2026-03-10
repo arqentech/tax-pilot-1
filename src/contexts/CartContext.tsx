@@ -130,9 +130,7 @@ const getStoredCartTokenFromData = (): string | null => {
       const data: StoredCartData = JSON.parse(storedData) as StoredCartData;
       return data.cartToken || null;
     }
-  } catch {
-    // ignore parse errors
-  }
+  } catch {}
   return null;
 };
 
@@ -214,8 +212,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
       let effectiveToken = storedToken;
       let tokenWasGuest = false;
 
-      // If we still have the legacy \"guest\" token, drop it and create
-      // a fresh anonymous cart token from the backend.
       if (effectiveToken === "guest") {
         try {
           localStorage.removeItem("cartToken");
@@ -235,14 +231,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         setIsLoading(false);
       }
 
-      // Always fetch fresh count from backend to correct any stale localStorage value
       if (effectiveToken) {
         try {
           const count = await getCartCount(effectiveToken);
           setCartItemCount(count);
-        } catch {
-          // silently fail — cached count is already showing
-        }
+        } catch {}
       }
 
       const needsSync =
@@ -294,7 +287,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     initializeCart();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addToCart = async (item: CartItem) => {

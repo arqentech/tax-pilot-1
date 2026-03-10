@@ -43,3 +43,30 @@ export const getAllServices = async (
     per_page: results.per_page,
   };
 };
+
+export const getAllServicesAllPages = async (
+  search?: string,
+  category?: string,
+  perPage: number = DEFAULT_PER_PAGE,
+): Promise<{ services: Service[]; total: number }> => {
+  const first = await getAllServices(1, search, category, perPage);
+  const all: Service[] = [...first.services];
+  const lastPage = first.last_page ?? 1;
+
+  if (lastPage <= 1) {
+    return { services: all, total: first.total ?? all.length };
+  }
+
+  const rest = await Promise.all(
+    Array.from({ length: lastPage - 1 }, (_, i) =>
+      getAllServices(i + 2, search, category, perPage),
+    ),
+  );
+  for (const res of rest) {
+    all.push(...res.services);
+  }
+  return {
+    services: all,
+    total: first.total ?? all.length,
+  };
+};

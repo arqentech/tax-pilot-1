@@ -12,9 +12,9 @@ export default function HowWeWork() {
             </span>
 
             <h2 className="mt-6 md:text-left text-center font-bricolage text-[38px] md:text-[58px] md:leading-[59px] font-extrabold leading-[38px] tracking-[-0.05em]">
-              <span className="block whitespace-nowrap">La burocrazia,</span>
-              <span className="block whitespace-nowrap"> affrontata </span>
-              <span className="block whitespace-nowrap"> insieme.</span>
+              <span className="block ">La burocrazia,</span>
+              <span className="block "> affrontata </span>
+              <span className="block "> insieme.</span>
             </h2>
 
             <p className="mt-6 md:text-left text-center text-[#BFDDFF] text-[18px] md:text-[20px] leading-[25px]">
@@ -40,7 +40,7 @@ export default function HowWeWork() {
                   idx !== 0 ? "border-t border-[1px] border-[#51A4FF]" : ""
                 }`}
               >
-                <div className="flex flex-col items-start gap-4 px-5 sm:px-12 py-8 max-w-[450px] w-[70%]">
+                <div className="flex flex-col items-start gap-4 px-5 sm:px-12 py-8 max-w-[450px] w-[30%] md:w-[70%]">
                   <img
                     src={step.icon}
                     alt={`${step.title} icon`}

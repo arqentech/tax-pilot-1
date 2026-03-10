@@ -11,10 +11,7 @@ interface CartAvailableResponse {
     cart_items?: CartResponse["results"]["cart_items"];
     [key: string]: unknown;
   };
-  // Some endpoints return a full results object instead of `cart`
   results?: CartResponse["results"];
-  // When called without customer_id, backend may return a top-level cart token
-  // like: { cart: {...}, items: 0, cc: "ZbWk7VdWu5" }
   items?: number;
   cc?: string;
   [key: string]: unknown;
@@ -95,10 +92,7 @@ const getCartToken = async (forceNew: boolean = false): Promise<string> => {
       const existing = getStoredCartToken();
       if (existing) return existing;
     }
-  } catch {
-    // fall through to guest cart
-  }
-  // Never use customer_id "guest"; get a proper anonymous cart token instead.
+  } catch {}
   if (getCustomerId() === "guest") {
     return initGuestCart();
   }
@@ -185,7 +179,6 @@ const addItemToCart = async (
     cartData = (data as CartResponse).results;
   }
 
-  // Handle minimal success response: {status:"success",cart_id:N}
   if (!cartData) {
     const raw = data as unknown as Record<string, unknown>;
     if (raw.status === "success") {
@@ -249,11 +242,6 @@ const clearCartToken = (): void => {
   localStorage.removeItem(CART_ID_KEY);
 };
 
-/**
- * Initialize a new guest cart by calling the cart API **without** customer_id.
- * Backend responds with a random cart token (e.g. `cc`) that we store and use
- * for the session.
- */
 const initGuestCart = async (): Promise<string> => {
   const res = await api.get<CartAvailableResponse>("/customer/cart/available");
   const data = res.data;
