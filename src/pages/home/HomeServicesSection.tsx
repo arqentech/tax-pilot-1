@@ -3,32 +3,33 @@ import { Link } from "react-router-dom";
 import ServiceCard from "../../components/ui/ServiceCard";
 import SearchBar from "../../components/ui/SearchBar";
 import Badge from "../../components/ui/Badge";
-import { useServices } from "../../hooks/useServices";
+import { useAllServices } from "../../hooks/useServices";
 import { Service } from "../../types/services";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 
 const ServicesSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const { data, isLoading } = useServices(1);
+  const { data, isLoading } = useAllServices();
   const services = data?.services ?? [];
 
   const filteredServices = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
-    return services
-      .filter((service: Service) => {
-        const isActive =
-          service.active === undefined
-            ? true
-            : service.active === true || service.active === 1;
-        if (!isActive) return false;
-        if (!query) return true;
-        const title = service.title?.toLowerCase() ?? "";
-        const desc = service.description_short?.toLowerCase() ?? "";
-        return title.includes(query) || desc.includes(query);
-      });
+    return services.filter((service: Service) => {
+      const isActive =
+        service.active === undefined
+          ? true
+          : service.active === true || service.active === 1;
+      if (!isActive) return false;
+      if (!query) return true;
+      const title = service.title?.toLowerCase() ?? "";
+      const desc = service.description_short?.toLowerCase() ?? "";
+      return title.includes(query) || desc.includes(query);
+    });
   }, [services, searchQuery]);
 
-  const displayServices = filteredServices.slice(0, 6);
+  const displayServices = searchQuery.trim()
+    ? filteredServices
+    : filteredServices.slice(0, 6);
 
   if (isLoading) {
     return (
@@ -81,18 +82,24 @@ const ServicesSection = () => {
         </div>
 
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center mt-10 w-full">
-          {displayServices.map((service: Service) => (
-            <ServiceCard
-              key={service.id}
-              title={service.title}
-              description_short={service.description_short}
-              description_long={service.description_long}
-              price={service.price}
-              advantages={service.advantages}
-              identifier={service.identifier ?? service.id}
-              active={service.active}
-            />
-          ))}
+          {displayServices.length > 0 ? (
+            displayServices.map((service: Service) => (
+              <ServiceCard
+                key={service.id}
+                title={service.title}
+                description_short={service.description_short}
+                description_long={service.description_long}
+                price={service.price}
+                advantages={service.advantages}
+                identifier={service.identifier ?? service.id}
+                active={service.active}
+              />
+            ))
+          ) : (
+            <div className="col-span-full mt-6 text-center">
+              <p className="text-base">Nessun servizio trovato.</p>
+            </div>
+          )}
         </div>
 
         <div className="hidden md:flex justify-center mt-10">

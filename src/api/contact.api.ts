@@ -5,6 +5,7 @@ export interface SendSupportRequestPayload {
   name: string;
   surname: string;
   message: string;
+  order_number?: string | null;
 }
 
 interface SendSupportResponse {

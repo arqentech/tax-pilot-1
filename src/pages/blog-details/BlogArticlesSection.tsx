@@ -27,7 +27,7 @@ export default function BlogArticlesSection() {
           image: blog.image?.url ?? "",
           title: blog.title ?? "",
           description: text,
-          readTime: `${readTime} min read`,
+          readTime: `${readTime} min di lettura`,
           slug: blog.identifier ?? String(blog.id ?? ""),
         };
       });
@@ -38,7 +38,7 @@ export default function BlogArticlesSection() {
       <div className="w-full text-center max-w-[1320px]">
         <Badge text="Blog" width="78px" center />
 
-        <h2 className="heading-base py-4">Related Article</h2>
+        <h2 className="heading-base py-4">Articoli Correlati</h2>
 
         <div className="w-full mt-14">
           {isLoading ? (

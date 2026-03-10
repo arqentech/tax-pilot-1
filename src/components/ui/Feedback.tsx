@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Feedback = ({
-  question = "Was this article helpful?",
+  question = "Hai trovato utile l'articolo?",
   options = defaultOptions,
   onSelect,
   className = "",

@@ -154,7 +154,7 @@ const MinimumRequirementsModal: React.FC<MinimumRequirementsModalProps> = ({
             {form.label}
           </h2>
           <p className="text-[#9D9E98] font-archivo text-[14px] leading-[22px]">
-            Minimum requirements to request the chosen service!
+            Requisiti minimi per richiedere il servizio
           </p>
         </div>
            {form.type === "yes_or_no" ? (

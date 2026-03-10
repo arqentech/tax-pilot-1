@@ -179,7 +179,7 @@ const ServicesPage: React.FC = () => {
               ))
             ) : (
               <div className="col-span-full mt-6 text-center">
-                <p className="text-base">No service found</p>
+                <p className="text-base">Nessun servizio trovato.</p>
               </div>
             )}
           </div>

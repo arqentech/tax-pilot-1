@@ -35,7 +35,7 @@ export default function HomeBlogSection() {
           image: blog.image?.url ?? "",
           title: blog.title ?? "",
           description: cleanText,
-          readTime: `${readTime} min read`,
+          readTime: `${readTime} min di lettura`,
           slug:
             blog.identifier ??
             (typeof blog.url === "string"

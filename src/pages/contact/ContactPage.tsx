@@ -9,6 +9,7 @@ const initialForm = {
   surname: "",
   email: "",
   message: "",
+  order_number: "",
 };
 
 export default function ContactUs() {
@@ -36,6 +37,7 @@ export default function ContactUs() {
         name: form.name.trim(),
         surname: form.surname.trim(),
         message: form.message.trim(),
+        order_number: form.order_number.trim() || null,
       });
       setSuccessMessage(
         "La tua richiesta è stata inviata. Ti contatteremo al più presto.",

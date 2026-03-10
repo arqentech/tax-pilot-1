@@ -8,6 +8,7 @@ interface ContactFormProps {
     surname: string;
     email: string;
     message: string;
+    order_number: string;
   };
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -28,35 +29,48 @@ export default function ContactForm({
     <form onSubmit={onSubmit} className={`space-y-${isMobile ? "3" : "6"} `}>
       <Input
         name="name"
-        placeholder="Nome"
+        placeholder="Nome *"
+        required
         value={form.name}
         onChange={onChange}
         className="bg-[#FBFBFA] rounded-[14px] !text-[18px] h-[60px] border border-[#FBFBFA] placeholder:!text-[#9D9E98]"
       />
       <Input
         name="surname"
-        placeholder="Cognome"
+        placeholder="Cognome *"
+        required
         value={form.surname}
         onChange={onChange}
         className="bg-[#FBFBFA] rounded-[14px] h-[60px] border border-[#FBFBFA] !text-[18px] placeholder:!text-[#9D9E98]"
       />
       <Input
         name="email"
-        placeholder="Indirizzo email"
+        placeholder="Indirizzo email *"
+        required
         value={form.email}
+        onChange={onChange}
+        className="bg-[#FBFBFA] rounded-[14px] h-[60px] border border-[#FBFBFA] !text-[18px] placeholder:!text-[#9D9E98]"
+      />
+      <Input
+        name="order_number"
+        placeholder="Numero Ordine"
+        value={form.order_number}
         onChange={onChange}
         className="bg-[#FBFBFA] rounded-[14px] h-[60px] border border-[#FBFBFA] !text-[18px] placeholder:!text-[#9D9E98]"
       />
 
       <TextArea
         name="message"
-        placeholder="Messaggio"
+        placeholder="Messaggio *"
+        required
         className={`${
           isMobile ? "h-24" : "h-28"
         } bg-[#FBFBFA] rounded-[14px] border border-[#FBFBFA] placeholder:!text-[#9D9E98] !text-[18px]`}
         value={form.message}
         onChange={onChange}
       />
+
+      <p className="text-[13px] text-[#9D9E98]">* Campi obbligatori</p>
 
       <Button
         type="submit"

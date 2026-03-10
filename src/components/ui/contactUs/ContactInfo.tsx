@@ -1,6 +1,6 @@
 export default function ContactInfo() {
   const items = [
-    { icon: "/svg/phone.svg", title: "Telefono", desc: "+39 000 111 2222" },
+    { icon: "/svg/phone.svg", title: "Telefono", desc: "+39 379 310 8745" },
     { icon: "/svg/email.svg", title: "Email Us", desc: "support@taxpilot.it" },
     {
       icon: "/svg/location.svg",

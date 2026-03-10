@@ -62,7 +62,7 @@ const Blogs: React.FC = () => {
           image: blog.image?.url ?? "",
           title: blog.title ?? "",
           description: text,
-          readTime: `${readTime} min read`,
+          readTime: `${readTime} min di lettura`,
           slug:
             blog.identifier ??
             blog.url?.replace(/^\/+|\/+$/g, "") ??

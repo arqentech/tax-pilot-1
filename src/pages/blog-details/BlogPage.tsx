@@ -97,7 +97,7 @@ function fromApi(api: Record<string, unknown>) {
     tag: cat?.name ?? cat?.url ?? "",
     author,
     image: img?.url ?? "",
-    readTime: `${Math.max(1, Math.ceil(words / 200))} min read`,
+    readTime: `${Math.max(1, Math.ceil(words / 200))} min di lettura`,
     inDepthAnalysis: text,
     advantages: Array.isArray(advantages) ? advantages : undefined,
     conclusion: typeof conclusion === "string" ? conclusion : undefined,

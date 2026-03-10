@@ -59,6 +59,6 @@ const legalLinks = [
   { label: "Privacy policy", path: "/privacy-policy" },
   { label: "Cookie policy", path: "/cookie-policy" },
   { label: "Termini e Condizioni", path: "/termini-e-condizioni-utilizzo" },
-  { label: "General use cases", path: "/termini-e-condizioni-acquisto" },
+  { label: "Condizioni di Acquisto", path: "/termini-e-condizioni-acquisto" },
   { label: "Sitemap ", path: "/sitemap" },
 ];
