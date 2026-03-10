@@ -45,7 +45,7 @@ const FloatingNavbar = () => {
           <Link
             key={to}
             to={to}
-            className="text-white font-medium text-base hover:text-[#BFDDFF] transition-colors whitespace-nowrap"
+            className="!text-white font-medium text-base hover:!text-[#BFDDFF] transition-colors whitespace-nowrap"
           >
             {label}
           </Link>
