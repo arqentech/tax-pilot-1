@@ -45,19 +45,19 @@ const FloatingNavbar = () => {
           <Link
             key={to}
             to={to}
-            className="!text-white font-medium text-base hover:!text-[#BFDDFF] transition-colors whitespace-nowrap"
+            className="!text-white/70 font-medium text-base hover:!text-white transition-colors whitespace-nowrap"
           >
             {label}
           </Link>
         ))}
 
-        <div className="[&_button:hover]:bg-white/20 [&_img]:[filter:brightness(0)_invert(1)]">
+        <div className="opacity-70 hover:opacity-100 transition-opacity [&_button:hover]:bg-white/20 [&_img]:[filter:brightness(0)_invert(1)]">
           <UserDropdown />
         </div>
 
         <Link
           to="/cart"
-          className="relative flex items-center text-white hover:text-[#BFDDFF] transition-colors"
+          className="relative flex items-center text-white/70 hover:text-white transition-colors"
         >
           <Handbag className="h-6 w-6" />
           {cartItemCount > 0 && (
