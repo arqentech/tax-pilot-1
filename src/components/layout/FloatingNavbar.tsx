@@ -51,7 +51,9 @@ const FloatingNavbar = () => {
           </Link>
         ))}
 
-        <UserDropdown />
+        <div className="[&_button]:text-white [&_button]:hover:bg-white/20">
+          <UserDropdown />
+        </div>
 
         <Link
           to="/cart"
