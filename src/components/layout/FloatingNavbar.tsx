@@ -40,12 +40,12 @@ const FloatingNavbar = () => {
           : "opacity-0 -translate-y-4 pointer-events-none"
       }`}
     >
-      <div className="bg-[#007BFF] rounded-full shadow-lg px-6 py-3 flex items-center gap-6">
+      <div className="bg-[#007BFF] border-2 border-white rounded-full shadow-lg px-8 py-4 flex items-center gap-8">
         {navLinks.map(({ to, label }) => (
           <Link
             key={to}
             to={to}
-            className="text-white font-medium text-sm hover:text-[#BFDDFF] transition-colors whitespace-nowrap"
+            className="text-white font-medium text-base hover:text-[#BFDDFF] transition-colors whitespace-nowrap"
           >
             {label}
           </Link>
@@ -57,7 +57,7 @@ const FloatingNavbar = () => {
           to="/cart"
           className="relative flex items-center text-white hover:text-[#BFDDFF] transition-colors"
         >
-          <Handbag className="h-5 w-5" />
+          <Handbag className="h-6 w-6" />
           {cartItemCount > 0 && (
             <span className="absolute -right-2 -top-2 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-white px-1 text-xs font-semibold text-[#007BFF]">
               {cartItemCount}
