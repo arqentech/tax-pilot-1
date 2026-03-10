@@ -13,8 +13,8 @@ const TeamSection = () => {
   const handleActivate = (name: string) => setActiveMember(name);
 
   return (
-    <section className="w-full py-16 px-3 full-bleed-mobile bg-[#F6F6F3] md:bg-transparent">
-      <div className="flex w-full flex-col items-center text-center lg:flex-row lg:items-start lg:justify-center lg:gap-12 lg:text-left">
+    <section className="w-full py-16  full-bleed-mobile bg-[#F6F6F3] md:bg-transparent">
+      <div className="flex w-full flex-col items-center text-center lg:flex-row lg:items-center lg:justify-center lg:gap-12 lg:text-left">
         <div className="flex flex-col items-center gap-2 lg:items-start">
           <Badge text="Chi siamo" className="hidden md:flex" />
           <Badge

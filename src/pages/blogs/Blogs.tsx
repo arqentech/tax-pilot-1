@@ -171,14 +171,14 @@ const Blogs: React.FC = () => {
         </div>
 
         <div className="mt-6 flex-1">
-          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 justify-items-center max-w-[900px] pt-4">
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center  pt-4">
             {paginatedBlogs.length > 0 ? (
               paginatedBlogs.map((blog) => (
                 <BlogCard key={blog.slug} {...blog} />
               ))
             ) : (
               <div className="col-span-full text-center mt-6">
-                <p className="text-base">No blog found</p>
+                <p className="text-base">Nessun blog trovato</p>
               </div>
             )}
           </div>
