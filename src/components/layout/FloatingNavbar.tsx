@@ -40,7 +40,7 @@ const FloatingNavbar = () => {
           : "opacity-0 -translate-y-4 pointer-events-none"
       }`}
     >
-      <div className="bg-[#007BFF] border-2 border-white rounded-full shadow-lg px-8 py-4 flex items-center gap-8">
+      <div className="bg-[#007BFF] border-2 border-white/40 rounded-full shadow-lg px-8 py-4 flex items-center gap-8">
         {navLinks.map(({ to, label }) => (
           <Link
             key={to}
