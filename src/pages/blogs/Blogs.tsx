@@ -50,7 +50,10 @@ const Blogs: React.FC = () => {
       .filter((blog) => blog && (blog.identifier || blog.id))
       .map((blog) => {
         const text = stripHtml(
-          blog.description_short ?? blog.description_long ?? blog.description ?? "",
+          blog.description_short ??
+            blog.description_long ??
+            blog.description ??
+            "",
         );
         const wordCount = text.split(" ").length;
         const readTime = Math.max(1, Math.ceil(wordCount / 200));
@@ -58,9 +61,12 @@ const Blogs: React.FC = () => {
           tag: blog.category?.name ?? "",
           image: blog.image?.url ?? "",
           title: blog.title ?? "",
-          description: text, 
+          description: text,
           readTime: `${readTime} min read`,
-          slug: blog.identifier ?? blog.url?.replace(/^\/+|\/+$/g, "") ?? String(blog.id ?? ""),
+          slug:
+            blog.identifier ??
+            blog.url?.replace(/^\/+|\/+$/g, "") ??
+            String(blog.id ?? ""),
           categoryId: blog.category?.identifier ?? blog.category?.url ?? "",
         };
       });
@@ -89,7 +95,11 @@ const Blogs: React.FC = () => {
     derivedCategories.forEach((c) => byId.set(c.identifier, c));
     apiCategories.forEach((c) => {
       if (c.identifier && !byId.has(c.identifier))
-        byId.set(c.identifier, { id: c.id, identifier: c.identifier, name: c.name ?? c.identifier });
+        byId.set(c.identifier, {
+          id: c.id,
+          identifier: c.identifier,
+          name: c.name ?? c.identifier,
+        });
     });
     return Array.from(byId.values());
   }, [derivedCategories, apiCategories]);
@@ -102,12 +112,16 @@ const Blogs: React.FC = () => {
       const matchesSearch =
         !lowerQuery ||
         blog.title.toLowerCase().includes(lowerQuery) ||
-        (blog.description && blog.description.toLowerCase().includes(lowerQuery));
+        (blog.description &&
+          blog.description.toLowerCase().includes(lowerQuery));
       return matchesCategory && matchesSearch;
     });
   }, [transformedBlogs, selectedCategory, query]);
 
-  const lastPage = Math.max(1, Math.ceil(filteredBlogs.length / BLOGS_PER_PAGE));
+  const lastPage = Math.max(
+    1,
+    Math.ceil(filteredBlogs.length / BLOGS_PER_PAGE),
+  );
   const paginatedBlogs = useMemo(() => {
     const start = (currentPage - 1) * BLOGS_PER_PAGE;
     return filteredBlogs.slice(start, start + BLOGS_PER_PAGE);
@@ -136,7 +150,11 @@ const Blogs: React.FC = () => {
 
         <div className="flex w-full items-center gap-3 justify-center md:gap-4">
           <div className="w-full md:max-w-[720px]">
-            <SearchBar onSearch={handleSearch} placeholder="Cerca" value={query} />
+            <SearchBar
+              onSearch={handleSearch}
+              placeholder="Cerca"
+              value={query}
+            />
           </div>
           <FilterButton onFilterClick={toggleFilter} />
         </div>
@@ -152,10 +170,12 @@ const Blogs: React.FC = () => {
           />
         </div>
 
-        <div className="mt-6 w-full flex-1">
-          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center w-full pt-4">
+        <div className="mt-6 flex-1">
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 justify-items-center max-w-[900px] pt-4">
             {paginatedBlogs.length > 0 ? (
-              paginatedBlogs.map((blog) => <BlogCard key={blog.slug} {...blog} />)
+              paginatedBlogs.map((blog) => (
+                <BlogCard key={blog.slug} {...blog} />
+              ))
             ) : (
               <div className="col-span-full text-center mt-6">
                 <p className="text-base">No blog found</p>
@@ -165,7 +185,7 @@ const Blogs: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-auto pt-8 pb-4 flex flex-wrap items-center justify-center gap-3 border-t border-[#E6E6E1]">
+      <div className="mt-auto pt-8 pb-4 flex flex-wrap items-center justify-center gap-3 ">
         <button
           type="button"
           onClick={() => goToPage(currentPage - 1)}
