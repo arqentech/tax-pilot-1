@@ -14,7 +14,7 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Eye, EyeClosed } from "lucide-react";
 import { useLogin } from "@/hooks/useLogin";
 import { useGoogleLogin } from "@react-oauth/google";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
