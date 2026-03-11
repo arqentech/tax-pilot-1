@@ -1,8 +1,9 @@
 import Badge from "@/components/ui/Badge";
-import BlogList from "@/components/ui/blogs/BlogList";
+import BlogCard from "@/components/ui/blogs/BlogCard";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogs } from "@/api/blogs";
 import { useMemo } from "react";
+import { stripHtml } from "@/lib/utils";
 
 export default function BlogArticlesSection() {
   const { data, isLoading, error } = useQuery({
@@ -15,20 +16,34 @@ export default function BlogArticlesSection() {
   const relatedBlogs = useMemo(() => {
     const blogs = data?.results?.data ?? [];
     const list = Array.isArray(blogs) ? blogs : [];
+
     return list
       .filter((blog) => blog && (blog.identifier || blog.id))
       .slice(0, 3)
       .map((blog) => {
-        const text = blog.description_short ?? blog.description_long ?? "";
-        const wordCount = (text || "").split(/\s+/).filter(Boolean).length;
+        const rawText =
+          blog.description_short ??
+          blog.description_long ??
+          blog.description ??
+          "";
+
+        const cleanText = stripHtml(rawText);
+
+        const wordCount = cleanText.split(/\s+/).filter(Boolean).length;
         const readTime = Math.max(1, Math.ceil(wordCount / 200));
+
         return {
           tag: blog.category?.name ?? "",
           image: blog.image?.url ?? "",
           title: blog.title ?? "",
-          description: text,
+          description: cleanText,
           readTime: `${readTime} min di lettura`,
-          slug: blog.identifier ?? String(blog.id ?? ""),
+          slug:
+            blog.identifier ??
+            (typeof blog.url === "string"
+              ? blog.url.replace(/^\/+|\/+$/g, "")
+              : null) ??
+            String(blog.id ?? ""),
         };
       });
   }, [data?.results?.data]);
@@ -42,11 +57,31 @@ export default function BlogArticlesSection() {
 
         <div className="w-full mt-14">
           {isLoading ? (
-            <p className="text-center text-[#5F6057]">Loading related articles…</p>
+            <p className="text-center text-[#5F6057]">
+              Loading related articles…
+            </p>
           ) : error ? (
-            <p className="text-center text-[#5F6057]">Unable to load related articles.</p>
+            <p className="text-center text-[#5F6057]">
+              Unable to load related articles.
+            </p>
           ) : (
-            <BlogList blogs={relatedBlogs} />
+            <>
+              <div className="block sm:hidden overflow-x-auto">
+                <div className="flex gap-4 px-4">
+                  {relatedBlogs.map((blog, index) => (
+                    <div key={index} className="min-w-[300px]">
+                      <BlogCard {...blog} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {relatedBlogs.map((blog, index) => (
+                  <BlogCard key={index} {...blog} />
+                ))}
+              </div>
+            </>
           )}
         </div>
       </div>
