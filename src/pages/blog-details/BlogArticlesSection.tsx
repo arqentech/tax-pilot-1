@@ -66,7 +66,7 @@ export default function BlogArticlesSection() {
             </p>
           ) : (
             <>
-              <div className="block sm:hidden overflow-x-auto">
+              <div className="block sm:hidden overflow-x-auto mr-4">
                 <div className="flex gap-4 px-4">
                   {relatedBlogs.map((blog, index) => (
                     <div key={index} className="min-w-[300px]">
@@ -76,7 +76,7 @@ export default function BlogArticlesSection() {
                 </div>
               </div>
 
-              <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-8 ">
                 {relatedBlogs.map((blog, index) => (
                   <BlogCard key={index} {...blog} />
                 ))}
