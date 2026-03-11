@@ -1,11 +1,11 @@
 import BlogPage from "./BlogPage";
-import HomeBlogSection from "../home/HomeBlogSection";
+import BlogArticlesSection from "./BlogArticlesSection";
 
 function BlogDetail() {
   return (
     <div className="flex flex-col">
       <BlogPage />
-      <HomeBlogSection />
+      <BlogArticlesSection />
     </div>
   );
 }
