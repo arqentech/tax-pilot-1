@@ -5,7 +5,7 @@ import { stripHtml } from "@/lib/utils";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import { useAuth } from "@/utils/auth";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 interface FilledCartProps {
   items: {
@@ -59,7 +59,7 @@ export default function FilledCart({ items }: FilledCartProps) {
                   <div className="hidden md:flex md:flex-wrap md:items-center md:gap-3 md:gap-4 md:justify-end">
                     <span className="inline-flex items-center gap-2 rounded-full bg-[#EEFCD7] px-3 py-1 text-xs font-semibold text-[#36500C]">
                       <CircleCheck className="h-4 w-4" />
-                     IVA inclusa
+                      IVA inclusa
                     </span>
                     {item.hours ? (
                       <span className="inline-flex items-center gap-2 rounded-full bg-[#E9E3FF] px-3 py-1 text-xs font-semibold text-[#4C3A9A] ">

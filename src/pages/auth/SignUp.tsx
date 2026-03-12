@@ -6,7 +6,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/InputField";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeClosed } from "lucide-react";
@@ -261,7 +261,7 @@ export default function SignUpPage() {
                 alt="Google"
                 className="w-5 h-5"
               />
-             Login con Google
+              Login con Google
             </Button>
 
             <p className="text-center text-[18px] leading-[25px]">
