@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import SearchBar from "../../components/ui/SearchBar";
 import ServiceCard from "../../components/ui/ServiceCard";
@@ -100,6 +100,10 @@ const ServicesPage: React.FC = () => {
     setCurrentPage(Math.max(1, Math.min(lastPage, page)));
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" })
+}, [currentPage]) 
 
   const hasData = (allData?.services?.length ?? 0) > 0;
   if (isLoading && !hasData)
