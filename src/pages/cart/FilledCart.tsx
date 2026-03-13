@@ -5,7 +5,7 @@ import { stripHtml } from "@/lib/utils";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import { useAuth } from "@/utils/auth";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 interface FilledCartProps {
   items: {

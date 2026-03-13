@@ -23,6 +23,7 @@ import Sitemap from "./pages/site-map/Sitemap";
 import CookiePolicy from "./pages/cookies/CookiePolicy";
 import TermsOfUse from "./pages/terms of use/TermsOfUse";
 import GeneralTerms from "./pages/general terms and conditions/GeneralTerms";
+import AskQuestion from "./pages/question-form/AskQuestion";
 
 const AUTH_TOKEN_KEY = "authToken";
 const CART_TOKEN_KEY = "cartToken";
@@ -116,7 +117,9 @@ function syncCartTokenFromCartData(): void {
     if (data.cartToken) {
       localStorage.setItem(CART_TOKEN_KEY, data.cartToken);
     }
-  } catch {}
+  } catch (error) {
+    console.error("Failed to parse cartData:", error);
+  }
 }
 
 function RedirectWithTokens({ envUrl }: { envUrl: string | undefined }) {
@@ -177,6 +180,7 @@ function App() {
           <Route path="dashboard-personal-info" element={<PersonalInfo />} />
           <Route path="dashboard-requests" element={<Requests />} />
           <Route path="sitemap" element={<Sitemap />} />
+          <Route path="ask-questions" element={<AskQuestion />} />
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginRedirect />} />
